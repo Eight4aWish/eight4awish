@@ -1,4 +1,4 @@
-## Hi there 👋
+Eight4aWish Eurorack DIY designs including modules based around a range of microcontrollers.
 
 <!--
 **Eight4aWish/eight4awish** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
