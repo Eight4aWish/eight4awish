@@ -1,5 +1,6 @@
 Eight4aWish Eurorack DIY designs including modules based around a range of microcontrollers.
 
+[![Buy Me a Coffee](https://img.buymeacoffee.com/button-api/?text=Buy%20me%20a%20coffee&emoji=&slug=eight4awish&button_colour=FFDD00&font_colour=000000&font_family=Poppins&outline_colour=000000&coffee_colour=ffffff)](https://buymeacoffee.com/yourusername)
 <!--
 **Eight4aWish/eight4awish** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
