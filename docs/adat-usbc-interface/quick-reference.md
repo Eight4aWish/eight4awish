@@ -83,11 +83,11 @@
 - USB Interface: Bus powered or external PSU (varies by model)
 
 ## Common Pitfalls to Avoid
-❌ Using interface as clock slave (should be master)
-❌ Forgetting to enable ADAT channels in DAW
-❌ Using damaged optical cables (no light transmission)
-❌ Buffer size too small causing dropouts
-❌ Wrong sample rate causing sync issues
+- AVOID: Using interface as clock slave (should be master)
+- AVOID: Forgetting to enable ADAT channels in DAW
+- AVOID: Using damaged optical cables (no light transmission)
+- AVOID: Buffer size too small causing dropouts
+- AVOID: Wrong sample rate causing sync issues
 
 ## Software Tools
 - Expert Sleepers Silent Way (calibration)
