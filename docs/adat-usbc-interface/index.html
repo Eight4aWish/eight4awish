@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADAT to USB-C Interface for Expert Sleepers ES-10</title>
+    <style>
+        body { 
+            font-family: sans-serif; 
+            line-height: 1.6; 
+            max-width: 900px; 
+            margin: 40px auto; 
+            padding: 0 20px; 
+        }
+        h1, h2, h3 { color: #333; }
+        .warning {
+            background-color: #fff3cd;
+            border: 1px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .info {
+            background-color: #d1ecf1;
+            border: 1px solid #0c5460;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        .specs {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-left: 4px solid #333;
+            margin: 20px 0;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+</head>
+<body>
+    <header>
+        <h1>ADAT to USB-C Interface for Expert Sleepers ES-10</h1>
+        <p><a href="../index.html">← Back to Eight4aWish Projects</a></p>
+    </header>
+
+    <main>
+        <section>
+            <h2>Project Overview</h2>
+            <p>This project documents how to create an ADAT to USB-C interface to use the Expert Sleepers ES-10 8-channel Eurorack module as a computer audio interface. The ES-10 provides 8 channels of DC-coupled audio I/O via ADAT optical connection, making it perfect for interfacing modular synthesizers with your DAW.</p>
+            
+            <div class="info">
+                <strong>What You'll Achieve:</strong>
+                <ul>
+                    <li>8 channels of high-quality audio I/O between your modular synth and computer</li>
+                    <li>DC-coupled operation for CV and audio signals</li>
+                    <li>Low latency performance suitable for real-time music production</li>
+                    <li>USB-C connectivity for modern computers</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>About the Expert Sleepers ES-10</h2>
+            <div class="specs">
+                <h3>ES-10 Specifications</h3>
+                <ul>
+                    <li><strong>Channels:</strong> 8 input, 8 output (via ADAT optical)</li>
+                    <li><strong>Sample Rate:</strong> 44.1 kHz or 48 kHz (ADAT standard)</li>
+                    <li><strong>Coupling:</strong> DC-coupled (suitable for CV signals)</li>
+                    <li><strong>Format:</strong> ADAT Lightpipe optical (S/PDIF optical connectors)</li>
+                    <li><strong>Eurorack:</strong> 6HP width module</li>
+                    <li><strong>Power:</strong> +12V: 60mA, -12V: 50mA</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>Solution: USB Audio Interface with ADAT I/O</h2>
+            <p>The most straightforward solution is to use a USB audio interface that has ADAT optical I/O. This eliminates the need for custom hardware and provides a reliable, professional-grade connection.</p>
+
+            <h3>Recommended USB Audio Interfaces</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Interface</th>
+                        <th>ADAT I/O</th>
+                        <th>USB Type</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Focusrite Scarlett 18i20 (3rd Gen)</strong></td>
+                        <td>8 in / 8 out</td>
+                        <td>USB-C</td>
+                        <td>Excellent choice, native USB-C, includes additional analog I/O</td>
+                    </tr>
+                    <tr>
+                        <td><strong>MOTU M4</strong></td>
+                        <td>Via expansion (M4x)</td>
+                        <td>USB-C</td>
+                        <td>Compact, requires MOTU M4x for ADAT</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Audient iD44</strong></td>
+                        <td>8 in / 8 out</td>
+                        <td>USB-C</td>
+                        <td>Professional quality, clean preamps</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Behringer U-PHORIA UMC1820</strong></td>
+                        <td>8 in / 8 out</td>
+                        <td>USB 2.0 (USB-A)</td>
+                        <td>Budget option, requires USB-A to USB-C adapter/cable</td>
+                    </tr>
+                    <tr>
+                        <td><strong>PreSonus Studio 1810c</strong></td>
+                        <td>8 in / 8 out</td>
+                        <td>USB-C</td>
+                        <td>Good value, native USB-C connection</td>
+                    </tr>
+                    <tr>
+                        <td><strong>RME Fireface UCX II</strong></td>
+                        <td>8 in / 8 out</td>
+                        <td>USB-C</td>
+                        <td>Premium option, exceptional drivers and quality</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="warning">
+                <strong>Important:</strong> Ensure your chosen interface supports 44.1/48 kHz sample rates via ADAT (standard ADAT). Some interfaces also support S/MUX for higher sample rates, which reduces channel count.
+            </div>
+        </section>
+
+        <section>
+            <h2>Connection Setup</h2>
+            <h3>Hardware Connections</h3>
+            <ol>
+                <li><strong>Power:</strong> Connect the ES-10 to your Eurorack power supply (+12V, -12V, GND)</li>
+                <li><strong>ADAT Output:</strong> Connect ES-10's ADAT OUT (optical) to your USB interface's ADAT IN</li>
+                <li><strong>ADAT Input:</strong> Connect ES-10's ADAT IN (optical) to your USB interface's ADAT OUT</li>
+                <li><strong>USB:</strong> Connect your USB audio interface to your computer via USB-C</li>
+            </ol>
+
+            <div class="info">
+                <strong>Cable Note:</strong> Use standard TOSLINK optical cables. These are the same cables used for S/PDIF digital audio. Cable length can typically be up to 5 meters without issues.
+            </div>
+
+            <h3>Audio Routing</h3>
+            <p>The 8 channels on the ES-10 connect as follows:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ES-10 Jack</th>
+                        <th>ADAT Channel</th>
+                        <th>DAW Channel</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>IN 1</td><td>ADAT 1</td><td>Input 1 (or 9, 17, etc. depending on interface)</td></tr>
+                    <tr><td>IN 2</td><td>ADAT 2</td><td>Input 2 (or 10, 18, etc.)</td></tr>
+                    <tr><td>IN 3</td><td>ADAT 3</td><td>Input 3 (or 11, 19, etc.)</td></tr>
+                    <tr><td>IN 4</td><td>ADAT 4</td><td>Input 4 (or 12, 20, etc.)</td></tr>
+                    <tr><td>IN 5</td><td>ADAT 5</td><td>Input 5 (or 13, 21, etc.)</td></tr>
+                    <tr><td>IN 6</td><td>ADAT 6</td><td>Input 6 (or 14, 22, etc.)</td></tr>
+                    <tr><td>IN 7</td><td>ADAT 7</td><td>Input 7 (or 15, 23, etc.)</td></tr>
+                    <tr><td>IN 8</td><td>ADAT 8</td><td>Input 8 (or 16, 24, etc.)</td></tr>
+                </tbody>
+            </table>
+            <p><em>The same mapping applies to outputs (OUT 1-8)</em></p>
+        </section>
+
+        <section>
+            <h2>Software Configuration</h2>
+            
+            <h3>Clock Synchronization</h3>
+            <div class="warning">
+                <strong>Critical:</strong> The ES-10 must be clocked from the USB audio interface. Set your interface to be the clock master and the ES-10 will automatically sync to the incoming ADAT signal.
+            </div>
+
+            <h3>Configuration Steps</h3>
+            <h4>On Your Audio Interface:</h4>
+            <ol>
+                <li>Set the sample rate to 44.1 kHz or 48 kHz</li>
+                <li>Set the clock source to "Internal" (the interface is the master)</li>
+                <li>Enable ADAT input and output in the interface's control panel</li>
+                <li>Set buffer size appropriately (128-256 samples is a good starting point)</li>
+            </ol>
+
+            <h4>In Your DAW:</h4>
+            <ol>
+                <li>Select your USB audio interface as the audio device</li>
+                <li>Enable the ADAT channels in your DAW's audio preferences</li>
+                <li>Create audio tracks and assign them to the ADAT channels</li>
+                <li>Set monitoring as needed (usually "auto" or "off" to avoid feedback)</li>
+            </ol>
+
+            <h4>DAW-Specific Notes:</h4>
+            <ul>
+                <li><strong>Ableton Live:</strong> Preferences → Audio → Input/Output Config → Enable ADAT channels</li>
+                <li><strong>Logic Pro:</strong> Preferences → Audio → Devices → I/O Buffer Size, Core Audio tab</li>
+                <li><strong>Reaper:</strong> Options → Preferences → Audio → Device → Enable ADAT inputs/outputs</li>
+                <li><strong>Bitwig Studio:</strong> Settings → Audio → Audio Device → Configure inputs/outputs</li>
+                <li><strong>VCV Rack:</strong> Use the Audio module and select ADAT channels from your interface</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Operating Voltage and Calibration</h2>
+            <p>The ES-10 operates at Eurorack voltage levels:</p>
+            <ul>
+                <li><strong>Audio signals:</strong> ±10V peak (0dBFS in DAW = 10V peak in Eurorack)</li>
+                <li><strong>CV signals:</strong> 0-10V or ±5V depending on application</li>
+                <li><strong>DC-coupled:</strong> Can pass both audio and control voltages</li>
+            </ul>
+
+            <div class="info">
+                <strong>Calibration:</strong> Expert Sleepers provides a calibration tool (Silent Way) that helps ensure accurate voltage scaling. This is especially important for pitch CV applications.
+            </div>
+        </section>
+
+        <section>
+            <h2>Alternative: DIY ADAT to USB Interface</h2>
+            <p>For those interested in a DIY approach, you would need:</p>
+            
+            <h3>Components</h3>
+            <ul>
+                <li>USB Audio controller chip (e.g., XMOS XU216 or similar)</li>
+                <li>ADAT optical receiver (e.g., Cirrus Logic CS8416 or CS8427)</li>
+                <li>ADAT optical transmitter (e.g., Cirrus Logic CS8406 or Analog Devices ADM1032)</li>
+                <li>Optical TOSLINK connectors</li>
+                <li>ADC/DAC chips (if analog I/O is desired)</li>
+                <li>Supporting circuitry (power supply, crystal oscillators, etc.)</li>
+            </ul>
+
+            <div class="warning">
+                <strong>Complexity Warning:</strong> Building a custom USB audio interface is a complex undertaking requiring:
+                <ul>
+                    <li>Advanced PCB design skills (4+ layer boards)</li>
+                    <li>USB audio class driver implementation or ASIO driver development</li>
+                    <li>Firmware programming for USB audio controllers</li>
+                    <li>Clock domain management and jitter reduction</li>
+                    <li>Extensive testing and debugging equipment</li>
+                </ul>
+                <p>For most users, a commercial USB audio interface with ADAT I/O is far more practical and cost-effective.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Recommended Shopping List</h2>
+            <h3>Essential Items</h3>
+            <ul>
+                <li>Expert Sleepers ES-10 (if not already owned)</li>
+                <li>USB audio interface with ADAT I/O (see recommendations above)</li>
+                <li>2x TOSLINK optical cables (1 for input, 1 for output)</li>
+                <li>USB-C cable (usually included with interface)</li>
+            </ul>
+
+            <h3>Optional but Recommended</h3>
+            <ul>
+                <li>Expert Sleepers Silent Way software (for calibration and additional features)</li>
+                <li>Furman power conditioner (to reduce ground loop noise)</li>
+                <li>Extra TOSLINK cables (for future expansion)</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Troubleshooting</h2>
+            
+            <h3>No Signal from ES-10 to Computer</h3>
+            <ul>
+                <li>Verify optical cable is firmly connected and not damaged</li>
+                <li>Check that ADAT input is enabled in interface control panel</li>
+                <li>Confirm ES-10 is receiving power (check LED indicators)</li>
+                <li>Ensure interface is set as clock master (Internal clock source)</li>
+                <li>Try a different sample rate (44.1 kHz vs 48 kHz)</li>
+            </ul>
+
+            <h3>Crackling or Dropouts</h3>
+            <ul>
+                <li>Increase buffer size in DAW settings</li>
+                <li>Check CPU usage and close unnecessary applications</li>
+                <li>Verify USB cable is high quality and properly connected</li>
+                <li>Update audio interface drivers</li>
+            </ul>
+
+            <h3>Incorrect Voltage Levels</h3>
+            <ul>
+                <li>Use Expert Sleepers calibration tool (Silent Way)</li>
+                <li>Check gain settings in interface control panel</li>
+                <li>Verify DAW is set to unity gain (0dB) for CV applications</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Additional Resources</h2>
+            <ul>
+                <li><a href="https://expert-sleepers.co.uk/es10.html" target="_blank">Expert Sleepers ES-10 Official Page</a></li>
+                <li><a href="https://expert-sleepers.co.uk/silentway.html" target="_blank">Silent Way Software</a></li>
+                <li><a href="https://www.modulargrid.net/" target="_blank">ModularGrid - Plan Your Rack</a></li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Community and Support</h2>
+            <p>For questions and discussion:</p>
+            <ul>
+                <li>ModWiggler Forums - Expert Sleepers subforum</li>
+                <li>Reddit - r/modular and r/synthesizers</li>
+                <li>Expert Sleepers Support Forum</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd;">
+        <p><a href="../index.html">← Back to Eight4aWish Projects</a></p>
+        <p><small>Created by Eight4aWish | <a href="https://github.com/Eight4aWish">GitHub</a></small></p>
+    </footer>
+</body>
+</html>
