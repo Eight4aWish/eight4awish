@@ -16,8 +16,21 @@
         }
         body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: 40px auto; padding: 0 20px; }
         h1, h2 { color: #333; }
+        .module-gallery {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 8px;
+            align-items: stretch;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+        .module-gallery img {
+            height: 200px;
+            width: auto;
+            object-fit: contain;
+            border-radius: 4px;
+        }
     </style>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
 </head>
 <body>
     <header>
@@ -29,21 +42,43 @@
                 <h1>Eurorack DIY by Eight4aWish</h1>
             </div>
         </div>
-        <p>Welcome! This is where I'm documenting my journey with Eurorack modules and other DIY electronics.</p>
+        <p>Welcome! This is where I'm documenting my journey with Eurorack modules and other DIY projects.</p>
     </header>
 
-    <img src="./images/84WModular.jpeg" alt="84W Modular" style="max-width: 20%; height: auto;">
     <main>
         <h2>Repositories</h2>
 
+
         <p><b><a href="https://github.com/Eight4aWish/eurorack_modules">eurorack_modules</a></b></p>
-        <p>Firmware + docs for Eurorack modules across multiple platforms.</p>
+        <p>Hardware and software for Eurorack modules based around Teensy 4.1, Raspberry Pi Pico 2W and Electrosmith Daisy Seed microcontrollers. </p>
+
+        <div class="module-gallery">
+            <img src="./images/teensymove.jpeg" alt="Teensy Move">
+            <img src="./images/pico2wonclite.jpeg" alt="Pico2W Oncl Lite">
+            <img src="./images/daisymultifx.jpeg" alt="Daisy Multi FX">
+        </div>
+
+        <p>The TeensyMove is designed as a Eurorack interface for the Ableton Move controller featuring four channels of USB midi to CV, 4 channel midi drum triggers, midi clock/reset and audio processing for the Move audio line out. A chord pattern based drone synth is a bonus. </p>
+        <p>The Pico2W OnC Lite is a Raspberry Pi Pico 2W module inspired by some of the apps from the popular Ornament and Crime. It features 4 channels of CV processing and a USB midi to CV interface. </p>
+        <p>The Daisy Multi FX is a multi effects module based on the Electrosmith Daisy Seed. It features stereo audio processing with a selection of audio effects. </p>
 
         <p><b><a href="https://github.com/Eight4aWish/eurorack_daisy_patch_init">eurorack_daisy_patch_init</a></b></p>
-        <p>Daisy Patch Init projects and experiments.</p>
+        <p>Software for Electrosmith Daisy Patch Init based Eurorack modules including versions of the Mutable Instruments Braids and Grids modules.</p>
+
+        <div class="module-gallery">
+            <img src="./images/daisypibraids.jpeg" alt="Daisy Braids">
+            <img src="./images/daisypigrids.jpeg" alt="Daisy Grids">
+            <img src="./images/daisypiintosc.jpeg" alt="Daisy Interval Osc">
+            <img src="./images/daisypimfx.jpeg" alt="Daisy Patch Init MFX">
+        </div>
+
+        <p>Small screens have been added to the Braids and MFX modules to enable easy patch selection and parameter editing. The Grids module features an internal drum sounds mode as well as external trigger and CV/pot adjustments for X, Y, density and chaos. The IntervalOsc is based on the <a href="https://github.com/ndonald2/DaisyPatches/tree/main/patches/IntervalOsc">IntervalOsc by Nick Donaldson. It sounds great!</a></p>
 
         <p><b><a href="https://github.com/Eight4aWish/build123d">build123d</a></b></p>
-        <p>CAD / mechanical work using build123d.</p>
+        <p>CAD / mechanical work using build123d which includes all the Eurorack faceplate designs as well as Eurorack cable and  headphone holder designs.</p>
+
+        <h2>Thanks</h2>
+        <p>Huge thanks to <a href="https://benjiaomodular.com" target="_blank" rel="noopener noreferrer">Benjiao Modular</a> for their fantastic work and inspiration.</p>
 
         <h2>Support</h2>
         <a href="https://buymeacoffee.com/eight4awish" target="_blank" rel="noopener noreferrer">
