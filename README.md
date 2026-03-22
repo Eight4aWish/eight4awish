@@ -6,7 +6,7 @@ Welcome! This is where I'm documenting my journey with Eurorack modules and othe
 
 ### [eurorack_modules](https://github.com/Eight4aWish/eurorack_modules)
 
-Hardware and software for Eurorack modules based around Teensy 4.1, Raspberry Pi Pico 2W and Electrosmith Daisy Seed microcontrollers.
+Hardware and software for Eurorack modules based around Teensy 4.1, Raspberry Pi Pico 2W, Electrosmith Daisy Seed and Ksoloti Core microcontrollers.
 
 <p>
   <img src="docs/images/teensymove.jpeg" alt="Teensy Move" height="200">
