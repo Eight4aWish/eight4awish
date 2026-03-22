@@ -12,6 +12,7 @@ Hardware and software for Eurorack modules based around Teensy 4.1, Raspberry Pi
   <img src="docs/images/teensymove.jpeg" alt="Teensy Move" height="200">
   <img src="docs/images/pico2wonclite.jpeg" alt="Pico2W Oncl Lite" height="200">
   <img src="docs/images/daisymultifx.jpeg" alt="Daisy Multi FX" height="200">
+  <img src="docs/images/elements.jpeg" alt="Ksoloti Elements" height="200">
 </p>
 
 The TeensyMove is designed as a Eurorack interface for the Ableton Move controller featuring four channels of USB midi to CV, 4 channel midi drum triggers, midi clock/reset and audio processing for the Move audio line out. A chord pattern based drone synth is a bonus.
@@ -19,6 +20,8 @@ The TeensyMove is designed as a Eurorack interface for the Ableton Move controll
 The Pico2W OnC Lite is a Raspberry Pi Pico 2W module inspired by some of the apps from the popular Ornament and Crime. It features 4 channels of CV processing and a USB midi to CV interface.
 
 The Daisy Multi FX is a multi effects module based on the Electrosmith Daisy Seed. It features stereo audio processing with a selection of audio effects.
+
+The Ksoloti Elements is a port of the Mutable Instruments Elements module to the Ksoloti Big Genes hardware.
 
 ### [eurorack_daisy_patch_init](https://github.com/Eight4aWish/eurorack_daisy_patch_init)
 
