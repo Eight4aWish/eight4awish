@@ -40,6 +40,10 @@ Small screens have been added to the Braids and MFX modules to enable easy patch
 
 CAD / mechanical work using build123d which includes all the Eurorack faceplate designs as well as Eurorack cable and headphone holder designs.
 
+### [retrospective](https://github.com/Eight4aWish/seeed-recorder)
+
+Seeed Xiao midi based switch connected to a Mac app which listens in and retrospectively captures audio arriving at a chosen soundcard. The Macc app works also works with any midi encoder but I had a spare 10HP in my 1U rack.
+
 ## Thanks
 
 Huge thanks to [Benjiao Modular](https://benjiaomodular.com) for their fantastic work and inspiration.
