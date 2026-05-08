@@ -10,7 +10,8 @@ Hardware and software for Eurorack modules based around Teensy 4.1, Raspberry Pi
 
 <p>
   <img src="docs/images/teensymove.jpeg" alt="Teensy Move" height="200">
-  <img src="docs/images/corthex.jpeg" alt="CortHex" height="200">  
+  <img src="docs/images/corthex.jpeg" alt="CortHex" height="200"> 
+  <img src="docs/images/corthex.png" alt="CortHex Web App" height="200">  
   <img src="docs/images/pico2wonclite.jpeg" alt="Pico2W Oncl Lite" height="200">
   <img src="docs/images/daisymultifx.jpeg" alt="Daisy Multi FX" height="200">
   <img src="docs/images/elements.jpeg" alt="Ksoloti Elements" height="200">
@@ -18,7 +19,7 @@ Hardware and software for Eurorack modules based around Teensy 4.1, Raspberry Pi
 
 The TeensyMove is designed as a Eurorack interface for the Ableton Move controller featuring four channels of USB midi to CV, 4 channel midi drum triggers, midi clock/reset and audio processing for the Move audio line out. A chord pattern based drone synth is a bonus.
 
-The CortHex is an AI LLM based patch generator with gate in, control button interface and six CV outs to control and modulate VCO, VCF and VCA settings. Natural language user queries lead to the creation of patch banks which can be saved and recalled between sessions. 
+The CortHex is an AI LLM based patch generator with gate in, control button interface and six CV outs to control and modulate VCO, VCF and VCA settings. Natural language user queries via the module web interface lead to the creation of patch banks which can be saved and recalled between sessions. 
 
 The Pico2W OnC Lite is a Raspberry Pi Pico 2W module inspired by some of the apps from the popular Ornament and Crime. It features 4 channels of CV processing and a USB midi to CV interface.
 
