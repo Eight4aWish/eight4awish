@@ -45,11 +45,11 @@ CAD / mechanical work using build123d which includes all the Eurorack faceplate 
 
 ### [retrospective](https://github.com/Eight4aWish/seeed-recorder)
 
-Seeed Xiao midi based switch connected to a Mac app which listens in and retrospectively captures audio arriving at a chosen soundcard. The Mac app works also works with any midi controller but I had a spare 10HP in my 1U rack.
+Seeed Xiao midi based switch connected to a Mac app which listens in and retrospectively captures audio arriving at a chosen soundcard. The Mac app also works with any midi controller but I had a spare 10HP in my 1U rack.
 
 <p>
   <img src="docs/images/retrospective.jpeg" alt="Retrospective" height="100">
-  <img src="docs/images/retrospective-settings" alt="Retrospective Settings" height="200">
+  <img src="docs/images/retrospective-settings.png" alt="Retrospective Settings" height="200">
 </p>
 
 ## Thanks
