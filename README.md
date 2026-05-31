@@ -27,6 +27,8 @@ The Daisy Multi FX is a multi effects module based on the Electrosmith Daisy See
 
 The Ksoloti Elements is a port of the Mutable Instruments Elements module to the Ksoloti Big Genes hardware.  
 
+The ESP32 ClkLink is a Eurorack clock and reset generator that can run standalone or sync to an Ableton Link network on the same WiFi. 
+
 ### [eurorack_daisy_patch_init](https://github.com/Eight4aWish/eurorack_daisy_patch_init)
 
 Software for Electrosmith Daisy Patch Init based Eurorack modules including versions of the Mutable Instruments Braids and Grids modules.
