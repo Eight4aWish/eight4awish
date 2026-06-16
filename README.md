@@ -27,7 +27,11 @@ The Daisy Multi FX is a multi effects module based on the Electrosmith Daisy See
 
 The Ksoloti Elements is a port of the Mutable Instruments Elements module to the Ksoloti Big Genes hardware.  
 
-The ESP32 ClkLink is a Eurorack clock and reset generator that can run standalone or sync to an Ableton Link network on the same WiFi. 
+The ESP32 ClkLink is a Eurorack clock and reset generator that can run standalone or sync to an Ableton Link network on the same WiFi.
+
+The ESP32 ClkLinkRec is a variant of the ClkLink that adds a Capture button which fires an HTTP trigger to the Retrospective Mac app over WiFi. Hardware locked, firmware in progress.
+
+The AMYboard PatchBank is a MicroPython/Tulip app for the shorepine AMYboard (ESP32-S3 + AMY synth engine). Browse a curated bank of 10 pads and 10 basses on a 128×128 OLED via rotary encoder, tweak up to four macros per patch across two pages, and play from CV/Gate or TRS MIDI.
 
 ### [eurorack_daisy_patch_init](https://github.com/Eight4aWish/eurorack_daisy_patch_init)
 
@@ -48,7 +52,7 @@ CAD / mechanical work using build123d which includes all the Eurorack faceplate 
 
 ### [retrospective](https://github.com/Eight4aWish/seeed-recorder)
 
-Seeed Xiao midi based switch connected to a Mac app which listens in and retrospectively captures audio arriving at a chosen soundcard. The Mac app also works with any midi controller but I had a spare 10HP in my 1U rack.
+Seeed Xiao midi based switch connected to a Mac app which listens in and retrospectively captures audio arriving at a chosen soundcard. The Mac app also works with any midi controller but I had a spare 10HP in my 1U rack. The ESP32 ClkLinkRec module (in eurorack_modules) adds a second trigger path over WiFi/HTTP for rigs that aren't tethered to the Mac by USB.
 
 <p>
   <img src="docs/images/retrospective.jpeg" alt="Retrospective" height="100">
