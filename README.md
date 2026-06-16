@@ -31,6 +31,10 @@ The ESP32 ClkLink is a Eurorack clock and reset generator that can run standalon
 
 The AMYboard PatchBank is a MicroPython/Tulip app for the shorepine AMYboard (ESP32-S3 + AMY synth engine). Browse a curated bank of 10 pads and 10 basses on a 128×128 OLED via rotary encoder, tweak up to four macros per patch across two pages, and play from CV/Gate or TRS MIDI.
 
+### [eurorack_electronics](https://github.com/Eight4aWish/eurorack_electronics)
+
+Analog Eurorack breadboard layouts, drum-voice schematics, and a browser-based layout visualiser. Includes netlists and breadboard layout for a **dual pingable LPG** design built around the canonical Buchla 292 audio path (derived from the NLC, AI017, Aalto/DAFx 2013, Bergmann and Thomas White references).
+
 ### [eurorack_daisy_patch_init](https://github.com/Eight4aWish/eurorack_daisy_patch_init)
 
 Software for Electrosmith Daisy Patch Init based Eurorack modules including versions of the Mutable Instruments Braids and Grids modules.
