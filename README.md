@@ -15,6 +15,8 @@ Hardware and software for Eurorack modules based around Teensy 4.1, Raspberry Pi
   <img src="docs/images/pico2wonclite.jpeg" alt="Pico2W Oncl Lite" height="200">
   <img src="docs/images/daisymultifx.jpeg" alt="Daisy Multi FX" height="200">
   <img src="docs/images/elements.jpeg" alt="Ksoloti Elements" height="200">
+  <img src="docs/images/clklinkrec.jpeg" alt="ESP32 ClkLinkRec" height="200">
+  <img src="docs/images/amyboardpatchbank.jpeg" alt="AMYboard PatchBank" height="200">
 </p>
 
 The TeensyMove is designed as a Eurorack interface for the Ableton Move controller featuring four channels of USB midi to CV, 4 channel midi drum triggers, midi clock/reset and audio processing for the Move audio line out. A chord pattern based drone synth is a bonus.
@@ -34,6 +36,10 @@ The AMYboard PatchBank is a MicroPython/Tulip app for the shorepine AMYboard (ES
 ### [eurorack_electronics](https://github.com/Eight4aWish/eurorack_electronics)
 
 Analog Eurorack breadboard layouts, drum-voice schematics, and a browser-based layout visualiser. Includes netlists and breadboard layout for a **dual pingable LPG** design built around the canonical Buchla 292 audio path (derived from the NLC, AI017, Aalto/DAFx 2013, Bergmann and Thomas White references).
+
+<p>
+  <img src="docs/images/duallpg.jpeg" alt="DualLPG" height="200">
+</p>
 
 ### [eurorack_daisy_patch_init](https://github.com/Eight4aWish/eurorack_daisy_patch_init)
 
