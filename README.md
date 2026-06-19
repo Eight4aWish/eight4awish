@@ -13,7 +13,6 @@ Hardware and software for Eurorack modules based around Teensy 4.1, Raspberry Pi
   <img src="docs/images/corthex.jpeg" alt="CortHex" height="200"> 
   <img src="docs/images/corthex.png" alt="CortHex Web App" height="200">  
   <img src="docs/images/pico2wonclite.jpeg" alt="Pico2W Oncl Lite" height="200">
-  <img src="docs/images/daisymultifx.jpeg" alt="Daisy Multi FX" height="200">
   <img src="docs/images/elements.jpeg" alt="Ksoloti Elements" height="200">
   <img src="docs/images/clklinkrec.jpeg" alt="ESP32 ClkLinkRec" height="200">
   <img src="docs/images/amyboardpatchbank.jpeg" alt="AMYboard PatchBank" height="200">
@@ -24,8 +23,6 @@ The TeensyMove is designed as a Eurorack interface for the Ableton Move controll
 The CortHex is an AI LLM based patch generator with gate in, control button interface and six CV outs to control and modulate VCO, VCF and VCA settings. Natural language user queries via the module web interface lead to the creation of patch banks which can be saved and recalled between sessions. 
 
 The Pico2W OnC Lite is a Raspberry Pi Pico 2W module inspired by some of the apps from the popular Ornament and Crime. It features 4 channels of CV processing and a USB midi to CV interface.
-
-The Daisy Multi FX is a multi effects module based on the Electrosmith Daisy Seed. It features stereo audio processing with a selection of audio effects.
 
 The Ksoloti Elements is a port of the Mutable Instruments Elements module to the Ksoloti Big Genes hardware.  
 
