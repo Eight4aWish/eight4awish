@@ -48,11 +48,10 @@ Software for Electrosmith Daisy Patch Init based Eurorack modules including vers
 <p>
   <img src="docs/images/daisypibraids.jpeg" alt="Daisy Braids" height="200">
   <img src="docs/images/daisypigrids.jpeg" alt="Daisy Grids" height="200">
-  <img src="docs/images/daisypiintosc.jpeg" alt="Daisy Interval Osc" height="200">
   <img src="docs/images/daisypimfx.jpeg" alt="Daisy Patch Init MFX" height="200">
 </p>
 
-Small screens have been added to the Braids and MFX modules to enable easy patch selection and parameter editing. The Grids module features an internal drum sounds mode as well as external trigger and CV/pot adjustments for X, Y, density and chaos. The IntervalOsc is based on the [IntervalOsc by Nick Donaldson](https://github.com/ndonald2/DaisyPatches/tree/main/patches/IntervalOsc). It sounds great!
+Small screens have been added to the Braids and MFX modules to enable easy patch selection and parameter editing. The Grids module features an internal drum sounds mode as well as external trigger and CV/pot adjustments for X, Y, density and chaos. 
 
 ### [build123d](https://github.com/Eight4aWish/build123d)
 
