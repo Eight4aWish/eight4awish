@@ -24,7 +24,7 @@ model and bank. It runs on stock hardware, so the build is the screen, the wirin
 panel — no custom PCB to fabricate.
 
 It's based on **Mutable Instruments Braids** by Émilie Gillet, and named — like everything here —
-after the magpie counting rhyme: *one for sorrow, two for joy*. Not affiliated with, or endorsed by,
+after the nursery rhyme: *one for sorrow, two for joy*. Not affiliated with, or endorsed by,
 Mutable Instruments or Electrosmith.
 
 ## The screen

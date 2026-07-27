@@ -24,7 +24,7 @@ triggers; Sorrow also **makes the sounds** — three drum voices synthesised on 
 it works as a self-contained beatbox with no separate drum modules to patch.
 
 It's based on **Mutable Instruments Grids** by Émilie Gillet, and named — like everything here —
-after the magpie counting rhyme: *one for sorrow, two for joy*. Not affiliated with, or endorsed by,
+after the nursery rhyme: *one for sorrow, two for joy*. Not affiliated with, or endorsed by,
 Mutable Instruments or Electrosmith.
 
 ## The sounds
