@@ -1,0 +1,25 @@
+{
+  "name": "eight4awish",
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "sync:lessons": "mkdir -p public/lessons && cp strudel/lessons/simple_song*.js public/lessons/",
+    "predev": "npm run sync:lessons",
+    "dev": "astro dev",
+    "prebuild": "npm run sync:lessons",
+    "build": "astro build",
+    "preview": "astro preview",
+    "preedit": "npm run sync:lessons",
+    "edit": "astro dev --open /keystatic"
+  },
+  "dependencies": {
+    "@astrojs/node": "^11.0.2",
+    "@astrojs/react": "^6.0.1",
+    "@keystatic/astro": "^5.2.0",
+    "@keystatic/core": "^0.5.51",
+    "@markdoc/markdoc": "^0.5.7",
+    "astro": "^7.0.7",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
+  }
+}

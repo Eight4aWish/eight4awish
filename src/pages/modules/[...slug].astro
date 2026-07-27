@@ -1,0 +1,60 @@
+---
+import { getCollection, render } from 'astro:content'
+import Base from '../../layouts/Base.astro'
+import Video from '../../components/Video.astro'
+import Flash from '../../components/Flash.astro'
+
+export async function getStaticPaths() {
+  // Drafts are previewable locally but never published.
+  const modules = (await getCollection('modules'))
+    .filter((m) => import.meta.env.DEV || !m.data.draft)
+  return modules.map((m) => ({ params: { slug: m.id }, props: { module: m } }))
+}
+
+const { module: mod } = Astro.props
+const { Content } = await render(mod)
+const d = mod.data
+const updated = d.date.toLocaleDateString('en-GB', { month: 'long', year: 'numeric' })
+---
+<Base title={`${d.title} — Eight4aWish`} description={d.summary} image={d.photo ?? d.panel} nav="modules">
+
+  <div class="crumb"><a href="/modules/">Modules</a> / {d.title}</div>
+
+  <h1 style="margin:6px 0 4px">{d.title}</h1>
+  <div class="chips" style="margin-bottom:14px">
+    <span class="chip acc">{d.platform}</span>
+    {d.tags.map((t) => <span class="chip">{t}</span>)}
+    {d.status !== 'built' && <span class="chip">{d.status}</span>}
+  </div>
+  <p class="sub">{d.summary}</p>
+
+  {/* the video is the hero — everything below is its support material */}
+  <Video id={d.video} title={d.title} poster={d.photo ?? d.panel} />
+
+  <section class="mod-hero" style="margin-top:26px">
+    <div class="shot"><img src={d.panel} alt={`${d.title} panel`} /></div>
+    <div>
+      {d.photo && (
+        <figure class="photo" style="margin:0 0 14px">
+          <img src={d.photo} alt={`${d.title}, built`} loading="lazy" />
+          <figcaption>{d.photoCaption ?? 'The built module.'}</figcaption>
+        </figure>
+      )}
+      <div class="dl">
+        {d.binary && <a class="btn" href={d.binary}>Download firmware{d.firmwareVersion ? ` ${d.firmwareVersion}` : ''}</a>}
+        {d.firmware && <a class="btn ghost" href={d.firmware} target="_blank" rel="noopener">Source on GitHub</a>}
+        {d.stl && <a class="btn ghost" href={d.stl}>Panel STL</a>}
+        {d.step && <a class="btn ghost" href={d.step}>Panel STEP</a>}
+      </div>
+      <p class="tiny">Panel designed in Python — see <a href="/tutorials/panels/">Panels as code</a>.
+         Sequence it with <a href="/tutorials/strudel/">Strudel</a>.</p>
+    </div>
+  </section>
+
+  <div class="prose"><Content /></div>
+
+  <Flash binary={d.binary} version={d.firmwareVersion} method={d.flashWith} title={d.title} />
+
+  <p class="tiny" style="margin-top:30px">Updated {updated}</p>
+
+</Base>

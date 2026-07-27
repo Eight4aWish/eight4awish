@@ -1,0 +1,39 @@
+---
+// The two card shapes, in one place — change here, every grid follows.
+const { modules = [], tutorials = [] } = Astro.props
+---
+{modules.length > 0 && (
+  <div class="grid">
+    {modules.map((m) => (
+      <a class="card" href={`/modules/${m.id}/`}>
+        <div class="thumb"><img src={m.data.panel} alt={m.data.title} /></div>
+        <div class="body">
+          <h3>{m.data.title}</h3>
+          <p>{m.data.summary}</p>
+          <div class="chips">
+            <span class="chip acc">{m.data.platform}</span>
+            {m.data.tags.map((t) => <span class="chip">{t}</span>)}
+          </div>
+        </div>
+      </a>
+    ))}
+  </div>
+)}
+
+{tutorials.length > 0 && (
+  <div class="grid tut">
+    {tutorials.map((t) => (
+      <a class="card" href={t.data.cta ?? `/tutorials/${t.id}/`}>
+        <div class="thumb"><img src={t.data.graphic} alt={t.data.title} /></div>
+        <div class="body">
+          <p class="eyebrow">{t.data.eyebrow}</p>
+          <h3>{t.data.title}</h3>
+          <p>{t.data.summary}</p>
+          <div class="chips">
+            {t.data.chips.map((c, i) => <span class={i === 0 ? 'chip acc' : 'chip'}>{c}</span>)}
+          </div>
+        </div>
+      </a>
+    ))}
+  </div>
+)}

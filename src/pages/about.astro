@@ -1,0 +1,12 @@
+---
+import Base from '../layouts/Base.astro'
+// edited in the CMS under Pages → About
+import { Content, frontmatter } from '../content/about/index.md'
+---
+<Base title={`${frontmatter.heading} — Eight4aWish`}>
+  <div class="intro">
+    <h1>{frontmatter.heading}</h1>
+    <p>{frontmatter.intro}</p>
+  </div>
+  <div class="prose"><Content /></div>
+</Base>

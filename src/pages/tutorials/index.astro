@@ -1,0 +1,18 @@
+---
+import { getCollection } from 'astro:content'
+import Base from '../../layouts/Base.astro'
+import Cards from '../../components/Cards.astro'
+import page from '../../content/tutorials-index.json'   // CMS → Pages → Tutorials index page
+
+const tutorials = (await getCollection('tutorials'))
+  .filter((t) => !t.data.draft)
+  .sort((a, b) => a.data.order - b.data.order)
+---
+<Base title={`${page.heading} — Eight4aWish`} nav="tutorials">
+  <div class="intro">
+    <h1>{page.heading}</h1>
+    <p>{page.intro}</p>
+  </div>
+  <Cards tutorials={tutorials} />
+  {page.footnote && <div class="note" style="margin-top:26px">{page.footnote}</div>}
+</Base>
