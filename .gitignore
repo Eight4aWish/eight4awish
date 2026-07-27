@@ -1,0 +1,18 @@
+# dependencies
+node_modules/
+
+# astro build caches (docs/ is NOT ignored — it is what GitHub Pages serves)
+.astro/
+.vite/
+dist/
+
+# macOS
+.DS_Store
+**/.DS_Store
+
+# env
+.env
+.env.production
+
+# not public (yet)
+CONTENT_ROADMAP.md

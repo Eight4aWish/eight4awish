@@ -1,0 +1,41 @@
+---
+import { getCollection } from 'astro:content'
+import Base from '../layouts/Base.astro'
+import Cards from '../components/Cards.astro'
+import home from '../content/home.json'   // edited in the CMS under Pages → Home page
+
+const live = (c) => c.filter((e) => !e.data.draft)
+const allModules = live(await getCollection('modules'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+const tutorials = live(await getCollection('tutorials'))
+  .sort((a, b) => a.data.order - b.data.order)
+const latest = allModules.slice(0, home.latestCount)
+---
+<Base title="Eight4aWish — DIY Eurorack">
+
+  <div class="intro">
+    <h1>{home.heading}</h1>
+    <p>{home.intro}</p>
+    <p class="tagline">{home.tagline}</p>
+  </div>
+
+  <div class="sechead">
+    <h2 class="sec">Tutorials</h2>
+    <a class="seeall" href="/tutorials/">All tutorials →</a>
+  </div>
+  <p class="sub">{home.tutorialsBlurb}</p>
+  <Cards tutorials={tutorials.slice(0, 3)} />
+
+  <div class="sechead">
+    <h2 class="sec">Latest modules</h2>
+    <a class="seeall" href="/modules/">All {allModules.length} modules →</a>
+  </div>
+  <Cards modules={latest} />
+
+  {allModules.length > latest.length && (
+    <div class="morerow">
+      <a class="btn ghost" href="/modules/">See all {allModules.length} modules →</a>
+    </div>
+  )}
+
+</Base>

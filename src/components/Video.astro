@@ -1,0 +1,16 @@
+---
+// The hero of every module and tutorial page. No video yet? Show the artwork with an
+// honest placeholder rather than an empty box — the page still works, it just says so.
+const { id, title, poster } = Astro.props
+---
+{id ? (
+  <div class="hero-video">
+    <iframe src={`https://www.youtube-nocookie.com/embed/${id}`} title={title}
+            frameborder="0" allowfullscreen loading="lazy"></iframe>
+  </div>
+) : (
+  <div class="hero-video pending">
+    {poster && <img src={poster} alt="" />}
+    <span class="badge">Video coming soon</span>
+  </div>
+)}

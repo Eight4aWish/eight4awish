@@ -1,0 +1,17 @@
+---
+import { getCollection } from 'astro:content'
+import Base from '../../layouts/Base.astro'
+import Cards from '../../components/Cards.astro'
+import page from '../../content/modules-index.json'   // CMS → Pages → Modules index page
+
+const modules = (await getCollection('modules'))
+  .filter((m) => !m.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+---
+<Base title={`${page.heading} — Eight4aWish`} nav="modules">
+  <div class="intro">
+    <h1>{page.heading}</h1>
+    <p>{page.intro}</p>
+  </div>
+  <Cards modules={modules} />
+</Base>

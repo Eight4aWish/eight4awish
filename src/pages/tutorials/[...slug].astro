@@ -1,0 +1,76 @@
+---
+import { getCollection, render } from 'astro:content'
+import Base from '../../layouts/Base.astro'
+import Video from '../../components/Video.astro'
+
+export async function getStaticPaths() {
+  // Drafts are previewable locally but never published.
+  const tutorials = (await getCollection('tutorials'))
+    .filter((t) => import.meta.env.DEV || !t.data.draft)
+  return tutorials.map((t) => ({ params: { slug: t.id }, props: { tut: t } }))
+}
+
+const { tut } = Astro.props
+const { Content } = await render(tut)
+const d = tut.data
+const anchor = (i) => `song${i + 1}`
+
+// Notes are plain text in the CMS; render a tiny bit of inline markdown (`code`, **bold**).
+// Escape HTML first so the note can't inject tags, then add our own.
+const inlineMd = (s = '') => s
+  .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+  .replace(/`([^`]+)`/g, '<code>$1</code>')
+  .replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>')
+---
+<Base title={`${d.title} — Eight4aWish`} description={d.summary} image={d.graphic} nav="tutorials">
+  <div class="crumb"><a href="/tutorials/">Tutorials</a> / {d.title}</div>
+
+  <p class="eyebrow" style="margin-top:14px">{d.eyebrow}</p>
+  <h1 style="margin:0 0 6px">{d.title}</h1>
+  <p class="sub">{d.summary}</p>
+
+  {/* the video leads — everything below is its support material */}
+  <Video id={d.video} title={d.title} poster={d.graphic} />
+
+  {d.songs.length > 0 && (
+    <nav class="chapnav">
+      <span>Songs</span>
+      {d.songs.map((sng, i) => <a href={`#${anchor(i)}`}>{sng.title}</a>)}
+    </nav>
+  )}
+
+  <div class="prose"><Content /></div>
+
+  {d.songs.map((sng, i) => (
+    <section class="song" id={anchor(i)}>
+      <div class="songhead">
+        <h2 class="sec">{sng.title}</h2>
+        <div class="songlinks">
+          {sng.download && (
+            <a class="dl-link" href={sng.download} download>↓ {sng.download.split('/').pop()}</a>
+          )}
+          {d.video && sng.videoTime && (
+            <a class="seeall" href={`https://youtu.be/${d.video}?t=${sng.videoTime}`}
+               target="_blank" rel="noopener">Watch this bit →</a>
+          )}
+        </div>
+      </div>
+
+      {sng.blurb && <p class="sub">{sng.blurb}</p>}
+
+      {sng.blocks.map((b) => (
+        <div class="block">
+          {b.label && <div class="lbl">{b.label}</div>}
+          <pre><code>{b.code}</code></pre>
+          {b.note && <div class="annot" set:html={inlineMd(b.note)} />}
+        </div>
+      ))}
+    </section>
+  ))}
+
+  {d.repo && (
+    <div class="dl" style="margin-top:26px">
+      <a class="btn ghost" href={d.repo} target="_blank" rel="noopener">Source on GitHub</a>
+    </div>
+  )}
+</Base>
