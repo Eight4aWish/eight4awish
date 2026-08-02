@@ -4,9 +4,9 @@ date: 2026-07-05
 summary: >-
   A Mutable Instruments Braids based oscillator for the Daisy Patch.Init - with
   a screen added to facilitate patch selection.
-platform: Patch.Init
+platform: Patch Submodule
 tags:
-  - oscillator
+  - Oscillator
   - Daisy Patch Init
 panel: /renders/daisy_braids_flat.png
 photo: /images/daisypibraids.jpeg
@@ -14,8 +14,8 @@ photoCaption: The Joy build, with the OLED fitted for patch selection.
 status: built
 firmware: https://github.com/Eight4aWish/eurorack_daisy_patch_init
 binary: >-
-  https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/joy-v1.1.0/joy.bin
-firmwareVersion: v1.1.0
+  https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/joy-v1.3.0/joy.bin
+firmwareVersion: v1.3.0
 flashWith: daisy-qspi
 draft: false
 ---
@@ -38,14 +38,27 @@ The front panel is written in Python (build123d); the same file exports the STL 
 **Bill of materials:** Daisy Patch.Init · 64×48 SSD1306 OLED (I²C) · a few hook-up wires · the
 printed panel. A small breakout PCB tidies the OLED wiring.
 
-## Bring-up and tuning
+## Calibration, on the module
 
-The oscillator is digital, but its V/oct CV input is analog and needs calibrating. Instead of a
-boot-time routine, you can measure the error and set two constants in the firmware:
+The oscillator is digital, but its V/oct CV input is analog and needs calibrating. Early
+versions meant measuring the error, solving for a scale and a centre, editing two constants
+and reflashing — fine for me, useless for anybody else. Since **v1.3** the module does it
+itself, with no toolchain and no reflash:
 
-1. Play a C at several octaves from a calibrated source and note the cents error at each.
-1. The error is a straight line — an offset plus a slope.
-1. Solve for a scale and a centre, reflash, and every C lands within about a cent.
+1. Hold **B7 while powering up** to enter calibration.
+1. The screen reads `CALIBRATE 1V` — patch a **1 V** reference (C1) to V/Oct and press **B7**.
+1. It reads `CALIBRATE 3V` — patch **3 V** (C3, two octaves up) and press **B7**.
+1. `DONE`. The result is solved, saved to flash and used immediately.
+
+It persists across power cycles, stored alongside your last-used patch. A bad capture —
+nothing patched, or the wrong voltage — is rejected and the previous calibration kept, so the
+routine can't leave the module mistracking. If you never calibrate, sensible measured
+defaults are used.
 
 Worth knowing: although it is digital, the input drifts a few cents as the board warms up, so
 calibrate warm and give it a warm-up minute like an analog VCO.
+
+## No screen? Try Joy Lite
+
+If you would rather not solder an OLED to your Daisy, **[Joy Lite](/modules/joy-lite/)** is the
+screenless sibling — sixteen distinctively-Braids models on completely stock hardware.

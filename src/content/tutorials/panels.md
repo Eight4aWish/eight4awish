@@ -9,9 +9,10 @@ graphic: /renders/tut_panels.png
 chips:
   - Python
   - STL / STEP
+  - 3D Printing
 repo: https://github.com/Eight4aWish
 order: 2
-draft: true
+draft: false
 songs: []
 ---
 ## Why write a panel instead of drawing one

@@ -6,7 +6,7 @@ summary: >-
   Genes hardware.
 platform: Ksoloti
 tags:
-  - resonator
+  - Resonator
   - Ksoloti
 panel: /renders/ksoloti_elements_flat.png
 photo: /images/elements.jpeg
@@ -19,8 +19,8 @@ firmwareVersion: v1.0.1
 flashWith: ksoloti
 draft: false
 ---
-**Girl** is a modal-synthesis voice — a physical-modelling resonator — running on **Ksoloti Big
-Genes** hardware. It's based on **Mutable Instruments Elements** by Émilie Gillet, and named, like
+**Girl** is a modal-synthesis voice — a physical-modelling resonator — running on **Ksoloti Big**
+**Genes** hardware. It's based on **Mutable Instruments Elements** by Émilie Gillet, and named, like
 everything here, after the nursery rhyme: *three for a girl*. Not affiliated with, or
 endorsed by, Mutable Instruments.
 

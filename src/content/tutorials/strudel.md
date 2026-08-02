@@ -7,8 +7,8 @@ summary: >-
   generative one, and a visual one that shares its signals with the picture.
 graphic: /renders/tut_music.png
 chips:
-  - three songs
-  - real rig code
+  - Strudel
+  - Live Coding
 repo: https://github.com/Eight4aWish
 cta: /tutorials/strudel/
 order: 1

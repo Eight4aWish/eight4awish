@@ -4,9 +4,9 @@ date: 2026-06-28
 summary: >-
   A Mutable Instrument Grids based drum machine for the Daisy Patch.Init — with
   internal drum sounds, not just triggers.
-platform: Patch.Init
+platform: Patch Submodule
 tags:
-  - drums
+  - Drums
   - Daisy Patch Init
 panel: /renders/daisy_grids_flat.png
 photo: /images/daisypigrids.jpeg
