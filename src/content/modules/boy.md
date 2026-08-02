@@ -11,6 +11,7 @@ tags:
   - N8Synth
 panel: /renders/teensy_move_flat.png
 status: built
+extraBinaries: []
 flashWith: daisy-direct
-draft: false
+draft: true
 ---

@@ -10,7 +10,7 @@ chips:
   - N8Synth
 repo: https://github.com/Eight4aWish/eurorack_electronics
 order: 3
-draft: false
+draft: true
 songs: []
 ---
 ## From netlist to soldered, without a PCB
