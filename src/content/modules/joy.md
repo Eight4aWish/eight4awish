@@ -58,7 +58,33 @@ defaults are used.
 Worth knowing: although it is digital, the input drifts a few cents as the board warms up, so
 calibrate warm and give it a warm-up minute like an analog VCO.
 
-## No screen? Try Joy Lite
+## No screen? Build Joy Lite instead
 
-If you would rather not solder an OLED to your Daisy, **[Joy Lite](/modules/joy-lite/)** is the
-screenless sibling — sixteen distinctively-Braids models on completely stock hardware.
+Joy asks you to wire an OLED to the Daisy's expansion header and give up the B8 toggle to make
+panel space for it. That is a fair thing to refuse — so the repo also builds **Joy Lite**, a
+screenless version that runs on completely stock hardware. No soldering, nothing removed.
+
+It is the same Braids engine and the same knobs. What changes is how many models you get and
+how you move between them.
+
+### Why sixteen models, and these sixteen
+
+Anyone running a Daisy Patch.Init probably already owns Plaits. So Joy Lite skips everything
+Plaits already does well — virtual analog, FM, additive, wavetables, speech, noise, physical
+models, drums — and ships the sounds that are distinctively *Braids* instead. Two banks of
+eight, chosen on the toggle Joy had to sacrifice:
+
+- **Bank A** — CSAW · Saw-Sync · Ring-Mod · VOSIM · Digi-Filter BP · Chaotic-FM · QPSK · TOY
+- **Bank B** — Square-Sync · Buzz · Saw-Comb · Digi-Filter LP · Digi-Filter HP · Clocked-Noise ·
+  Twin-Peaks · ????
+
+### Finding your way without a screen
+
+The panel tells you where you are. **B8** flips between banks, and each bank remembers the model
+you left it on. A **short press of B7** steps to the next model, wrapping 1 → 8, and the **LED
+blinks the model number** back at you. Hold B7 to re-blink the current number if you lose your
+place.
+
+Joy Lite is flashed exactly like Joy — it is the same SD-card route, so the steps below apply to
+both. The one difference is which file you copy to the card:
+[**joy_lite.bin**](https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/joy_lite-v1.3.0/joy_lite.bin).
