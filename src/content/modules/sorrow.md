@@ -15,6 +15,7 @@ status: built
 firmware: https://github.com/Eight4aWish/eurorack_daisy_patch_init
 binary: >-
   https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/sorrow-v1.0.1/sorrow.bin
+extraBinaries: []
 firmwareVersion: v1.0.1
 flashWith: daisy-direct
 draft: false

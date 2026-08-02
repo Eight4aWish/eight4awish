@@ -15,6 +15,7 @@ status: built
 firmware: https://github.com/Eight4aWish/eurorack_modules
 binary: >-
   https://github.com/Eight4aWish/eurorack_modules/releases/download/girl-v1.0.1/girl.bin
+extraBinaries: []
 firmwareVersion: v1.0.1
 flashWith: ksoloti
 draft: false
