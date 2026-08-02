@@ -1,0 +1,22 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Breadboard layouts for the N8Synth — Eight4aWish</title><meta name="description" content="Turn a netlist into a solderable breadboard layout, then solder that exact board — no PCB, no fab, no waiting."><link rel="canonical" href="https://eight4awish.com/tutorials/breadboard-layouts/"><!-- so a link pasted into YouTube, Reddit or Discord shows the artwork --><meta property="og:type" content="website"><meta property="og:title" content="Breadboard layouts for the N8Synth — Eight4aWish"><meta property="og:description" content="Turn a netlist into a solderable breadboard layout, then solder that exact board — no PCB, no fab, no waiting."><meta property="og:image" content="https://eight4awish.com/renders/tut_circuits.png"><meta property="og:url" content="https://eight4awish.com/tutorials/breadboard-layouts/"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Breadboard layouts for the N8Synth — Eight4aWish"><meta name="twitter:description" content="Turn a netlist into a solderable breadboard layout, then solder that exact board — no PCB, no fab, no waiting."><meta name="twitter:image" content="https://eight4awish.com/renders/tut_circuits.png"><link rel="stylesheet" href="/_astro/Base.Bhi5vNQl.css"></head><body><header class="site"><div class="wrap"><a class="brand" href="/">Home</a><nav class="site"><a href="/modules/">Modules</a><a href="/tutorials/" class="on">Tutorials</a><a href="/about/">About</a></nav></div></header><main class="wrap"><div class="crumb"><a href="/tutorials/">Tutorials</a> / Breadboard layouts for the N8Synth</div><p class="eyebrow" style="margin-top:14px">Circuits as code</p><h1 style="margin:0 0 6px">Breadboard layouts for the N8Synth</h1><p class="sub">Turn a netlist into a solderable breadboard layout, then solder that exact board — no PCB, no fab, no waiting.</p><div class="hero-video pending"><img src="/renders/tut_circuits.png" alt=""><span class="badge">Video coming soon</span></div><div class="prose"><h2 id="from-netlist-to-soldered-without-a-pcb">From netlist to soldered, without a PCB</h2>
+<p>The N8Synth board is a solderable breadboard: the same row-and-rail topology as a solderless one, but
+you keep it. That makes the layout — which part goes in which row — the real design work, and the
+thing most likely to go wrong at 11pm with a hot iron in your hand.</p>
+<p>So make the layout a <strong>file</strong>. A netlist goes in, a placement comes out, and it can be drawn and
+checked before anything is soldered. Because the layout is data rather than a sketch on paper, it can
+also be validated against the netlist — every connection the circuit needs, confirmed present on the
+board you’re about to build.</p>
+<p>The picture at the top of this page is one of those layouts, drawn straight from its own JSON: the
+ICs, resistors, transistors and jumper wires are exactly where they go on the real board.</p>
+<h2 id="build-it-in-stages-test-as-you-go">Build it in stages, test as you go</h2>
+<p>The layout carries its own build order. Each stage is a group of parts with a test at the end of it —
+install the op-amps and their decoupling, then check the rails; wire the gate-to-trigger front end,
+then probe for a clean trigger pulse. You power up and prove each block as you place it, rather than
+soldering the whole board and discovering at the end that it does nothing.</p>
+<p>That’s the real argument for describing a circuit as code: not the drawing, the <strong>checking</strong>.</p>
+<h2 id="the-tools">The tools</h2>
+<p>The layout, the validators and the netlists live in
+<a href="https://github.com/Eight4aWish/eurorack_electronics">eurorack_electronics</a>. They’re the working tools
+behind the boards on this site — a kick, a snare, an FM drum and the dual low-pass gate — rather than
+a polished product, so treat them as a workshop you’re welcome to look around, not an app.</p>
+</div><div class="dl" style="margin-top:26px"><a class="btn ghost" href="https://github.com/Eight4aWish/eurorack_electronics" target="_blank" rel="noopener">Source on GitHub</a></div></main><footer class="site"><div class="wrap"><span>© Eight4aWish</span><a href="https://github.com/Eight4aWish">GitHub</a><a href="https://buymeacoffee.com/eight4awish">Buy me a coffee</a></div></footer></body></html>

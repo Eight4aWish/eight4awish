@@ -7,11 +7,10 @@ summary: >-
   board — no PCB, no fab, no waiting.
 graphic: /renders/tut_circuits.png
 chips:
-  - netlist to layout
-  - no PCB
+  - N8Synth
 repo: https://github.com/Eight4aWish/eurorack_electronics
 order: 3
-draft: true
+draft: false
 songs: []
 ---
 ## From netlist to soldered, without a PCB
