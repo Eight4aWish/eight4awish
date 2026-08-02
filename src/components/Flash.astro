@@ -3,7 +3,7 @@
 // just on the platform — a Daisy BOOT_NONE build fits internal flash and flashes
 // directly, while a BOOT_QSPI build runs from the QSPI chip via the Daisy bootloader
 // and needs that installed once first.
-const { binary, version, method = 'daisy-direct' } = Astro.props
+const { binary, version, method = 'daisy-direct', extras = [] } = Astro.props
 
 const DAISY_WEB = 'https://flash.daisy.audio'
 
@@ -83,8 +83,16 @@ const isDaisy = method === 'daisy-direct' || method === 'daisy-qspi'
 
     <div class="dl">
       <a class="btn" href={binary}>Download firmware{version ? ` ${version}` : ''}</a>
+      {extras.map((b) => (
+        <a class="btn" href={b.url}>Download {b.label}{b.version ? ` ${b.version}` : ''}</a>
+      ))}
       {isDaisy && <a class="btn ghost" href={DAISY_WEB} target="_blank" rel="noopener">Daisy Web Programmer</a>}
     </div>
+
+    {extras.length > 0 && (
+      <p class="tiny">These builds flash exactly the same way — the steps below apply to all of
+         them. The only difference is which <code>.bin</code> you download and put on the card.</p>
+    )}
 
     {g.bootSteps && (
       <>
