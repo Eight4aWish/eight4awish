@@ -27,7 +27,28 @@ routine can’t leave the module mistracking. If you never calibrate, sensible m
 defaults are used.</p>
 <p>Worth knowing: although it is digital, the input drifts a few cents as the board warms up, so
 calibrate warm and give it a warm-up minute like an analog VCO.</p>
-<h2 id="no-screen-try-joy-lite">No screen? Try Joy Lite</h2>
-<p>If you would rather not solder an OLED to your Daisy, <strong><a href="/modules/joy-lite/">Joy Lite</a></strong> is the
-screenless sibling — sixteen distinctively-Braids models on completely stock hardware.</p>
+<h2 id="no-screen-build-joy-lite-instead">No screen? Build Joy Lite instead</h2>
+<p>Joy asks you to wire an OLED to the Daisy’s expansion header and give up the B8 toggle to make
+panel space for it. That is a fair thing to refuse — so the repo also builds <strong>Joy Lite</strong>, a
+screenless version that runs on completely stock hardware. No soldering, nothing removed.</p>
+<p>It is the same Braids engine and the same knobs. What changes is how many models you get and
+how you move between them.</p>
+<h3 id="why-sixteen-models-and-these-sixteen">Why sixteen models, and these sixteen</h3>
+<p>Anyone running a Daisy Patch.Init probably already owns Plaits. So Joy Lite skips everything
+Plaits already does well — virtual analog, FM, additive, wavetables, speech, noise, physical
+models, drums — and ships the sounds that are distinctively <em>Braids</em> instead. Two banks of
+eight, chosen on the toggle Joy had to sacrifice:</p>
+<ul>
+<li><strong>Bank A</strong> — CSAW · Saw-Sync · Ring-Mod · VOSIM · Digi-Filter BP · Chaotic-FM · QPSK · TOY</li>
+<li><strong>Bank B</strong> — Square-Sync · Buzz · Saw-Comb · Digi-Filter LP · Digi-Filter HP · Clocked-Noise ·
+Twin-Peaks · ????</li>
+</ul>
+<h3 id="finding-your-way-without-a-screen">Finding your way without a screen</h3>
+<p>The panel tells you where you are. <strong>B8</strong> flips between banks, and each bank remembers the model
+you left it on. A <strong>short press of B7</strong> steps to the next model, wrapping 1 → 8, and the <strong>LED
+blinks the model number</strong> back at you. Hold B7 to re-blink the current number if you lose your
+place.</p>
+<p>Joy Lite is flashed exactly like Joy — it is the same SD-card route, so the steps below apply to
+both. The one difference is which file you copy to the card:
+<a href="https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/joy_lite-v1.3.0/joy_lite.bin"><strong>joy_lite.bin</strong></a>.</p>
 </div><section class="flash"><h2 class="sec">Flash it — no compiler needed</h2><p class="sub">This firmware is too big for the Daisy’s internal flash, so it runs from the QSPI chip via the Daisy bootloader. That means a one-time bootloader install, then the firmware itself goes on with an SD card. Still no compiler needed.</p><div class="dl"><a class="btn" href="https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/joy-v1.3.0/joy.bin">Download firmware v1.3.0</a><a class="btn ghost" href="https://flash.daisy.audio" target="_blank" rel="noopener">Daisy Web Programmer</a></div><h3 class="flashsub">One time per module — install the bootloader</h3><ol class="flashsteps"><li>Plug the Daisy Patch.Init in with a USB-C data cable.</li><li>Hold BOOT, tap RESET, then release BOOT.</li><li>Open the Daisy Web Programmer and go to its Bootloader section.</li><li>Click Flash. That is the bootloader on — you never have to do this again.</li></ol><h3 class="flashsub">Every time — load the firmware</h3><ol class="flashsteps"><li>Download the .bin above.</li><li>Copy it to the root of a FAT32 SD card. It must be the only .bin file on the card.</li><li>Insert the card and power-cycle the module.</li><li>The bootloader spots the file, compares it with what is already in QSPI, flashes it if it differs, and boots. Watch the LED.</li></ol><div class="note"><b>Watch out:</b> On a Mac, run dot_clean /Volumes/YOURCARD afterwards. macOS writes hidden sidecar files like ._joy.bin — that also ends in .bin, and it confuses the bootloader’s scanner.</div></section><p class="tiny" style="margin-top:30px">Updated July 2026</p></main><footer class="site"><div class="wrap"><span>© Eight4aWish</span><a href="https://github.com/Eight4aWish">GitHub</a><a href="https://buymeacoffee.com/eight4awish">Buy me a coffee</a></div></footer></body></html>
