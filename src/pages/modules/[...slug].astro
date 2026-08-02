@@ -33,6 +33,9 @@ const updated = d.date.toLocaleDateString('en-GB', { month: 'long', year: 'numer
 
   <div class="dl" style="margin-top:22px">
     {d.binary && <a class="btn" href={d.binary}>Download firmware{d.firmwareVersion ? ` ${d.firmwareVersion}` : ''}</a>}
+    {d.extraBinaries.map((b) => (
+      <a class="btn" href={b.url}>Download {b.label}{b.version ? ` ${b.version}` : ''}</a>
+    ))}
     {d.firmware && <a class="btn ghost" href={d.firmware} target="_blank" rel="noopener">Source on GitHub</a>}
     {d.stl && <a class="btn ghost" href={d.stl}>Panel STL</a>}
     {d.step && <a class="btn ghost" href={d.step}>Panel STEP</a>}
