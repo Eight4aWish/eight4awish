@@ -16,6 +16,11 @@ firmware: https://github.com/Eight4aWish/eurorack_daisy_patch_init
 binary: >-
   https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/joy-v1.3.0/joy.bin
 firmwareVersion: v1.3.0
+extraBinaries:
+  - label: Joy Lite
+    url: >-
+      https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/joy_lite-v1.3.0/joy_lite.bin
+    version: v1.3.0
 flashWith: daisy-qspi
 draft: false
 ---
@@ -85,6 +90,6 @@ you left it on. A **short press of B7** steps to the next model, wrapping 1 → 
 blinks the model number** back at you. Hold B7 to re-blink the current number if you lose your
 place.
 
-Joy Lite is flashed exactly like Joy — it is the same SD-card route, so the steps below apply to
-both. The one difference is which file you copy to the card:
-[**joy_lite.bin**](https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/joy_lite-v1.3.0/joy_lite.bin).
+Joy Lite is flashed exactly like Joy — same SD-card route, so the steps below apply to both.
+The only difference is which file you copy to the card: use the **Download Joy Lite** button
+above to get `joy_lite.bin` instead of `joy.bin`.

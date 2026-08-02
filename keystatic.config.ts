@@ -111,6 +111,14 @@ export default config({
           label: 'Compiled binary (release asset URL)',
           description: 'The .bin from GitHub Releases — the download for people who will not compile.',
         }),
+        extraBinaries: fields.array(
+          fields.object({
+            label: fields.text({ label: 'Button label', description: 'e.g. Joy Lite' }),
+            url: fields.url({ label: 'Release asset URL' }),
+            version: fields.text({ label: 'Version' }),
+          }),
+          { label: 'Extra builds', itemLabel: (p) => p.fields.label.value || 'Build' },
+        ),
         firmwareVersion: fields.text({ label: 'Firmware version', description: 'e.g. v1.0.0' }),
         flashWith: fields.select({
           label: 'Flashing method',

@@ -20,6 +20,12 @@ const modules = defineCollection({
     firmware: z.string().optional(),             // repo URL (for people who build it themselves)
     binary: z.string().optional(),               // compiled release asset — the no-compiler path
     firmwareVersion: z.string().optional(),      // so people know what they're flashing
+    // extra builds of the same module (e.g. a screenless variant) — each gets its own button
+    extraBinaries: z.array(z.object({
+      label: z.string(),                         // e.g. "Joy Lite"
+      url: z.string(),
+      version: z.string().optional(),
+    })).default([]),
     // depends on how the firmware is BUILT (Daisy BOOT_NONE vs BOOT_QSPI), not just the platform
     flashWith: z.enum(['daisy-direct', 'daisy-qspi', 'ksoloti', 'uf2']).optional(),
     stl: z.string().optional(),
