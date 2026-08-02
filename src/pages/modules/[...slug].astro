@@ -45,7 +45,7 @@ const updated = d.date.toLocaleDateString('en-GB', { month: 'long', year: 'numer
 
   <div class="prose"><Content /></div>
 
-  <Flash binary={d.binary} version={d.firmwareVersion} method={d.flashWith} title={d.title} />
+  <Flash binary={d.binary} version={d.firmwareVersion} method={d.flashWith} title={d.title} extras={d.extraBinaries} />
 
   <p class="tiny" style="margin-top:30px">Updated {updated}</p>
 
