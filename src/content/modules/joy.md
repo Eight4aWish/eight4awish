@@ -14,13 +14,13 @@ photoCaption: The Joy build, with the OLED fitted for patch selection.
 status: built
 firmware: https://github.com/Eight4aWish/eurorack_daisy_patch_init
 binary: >-
-  https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/joy-v1.3.0/joy.bin
-firmwareVersion: v1.3.0
+  https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/joy-v1.4.0/joy.bin
+firmwareVersion: v1.4.0
 extraBinaries:
   - label: Joy Lite
     url: >-
-      https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/joy_lite-v1.3.0/joy_lite.bin
-    version: v1.3.0
+      https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/joy_lite-v1.4.0/joy_lite.bin
+    version: v1.4.0
 flashWith: daisy-qspi
 draft: false
 ---
@@ -42,6 +42,23 @@ The front panel is written in Python (build123d); the same file exports the STL 
 
 **Bill of materials:** Daisy Patch.Init · 64×48 SSD1306 OLED (I²C) · a few hook-up wires · the
 printed panel. A small breakout PCB tidies the OLED wiring.
+
+## Patching it
+
+**CV_8 is an FM input.** It was the one unused jack on the panel, and Braids' own FM input
+had nowhere to go, so it lands there at the depth Braids gives it with the MOD attenuverter
+fully clockwise — about ±30 semitones across ±5V, so roughly 6 semitones per volt. It is
+deliberately *not* 1V/oct: this is a depth control, not a second pitch input, so it takes the
+raw CV rather than the calibrated V/Oct path. The depth is fixed because no knob is free —
+attenuate at the source if you want less. Like Braids, it is applied once per render block,
+so it is control-rate FM.
+
+**Leave GATE IN 1 unpatched and Joy drones.** The internal AD envelope only closes the VCA
+when something is patched, so with nothing plugged in the oscillator runs continuously —
+which is what you want when you are auditioning models or using Joy as a drone voice.
+
+**The audio runs at 96 kHz.** Braids' firmware clocks its render timer at that rate, and the
+vendored DSP only behaves as written there. Builds before v1.4 ran at the wrong rate.
 
 ## Calibration, on the module
 
