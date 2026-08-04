@@ -8,7 +8,7 @@ platform: Ksoloti
 tags:
   - Resonator
   - Ksoloti
-panel: /renders/ksoloti_elements_flat.png
+panel: /renders/ksoloti_biggenes_flat.png
 photo: /images/elements.jpeg
 photoCaption: Girl running on the Ksoloti Big Genes.
 status: built
