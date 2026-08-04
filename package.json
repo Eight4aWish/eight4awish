@@ -4,13 +4,14 @@
   "version": "1.0.0",
   "scripts": {
     "sync:lessons": "mkdir -p public/lessons && cp strudel/lessons/simple_song*.js public/lessons/",
-    "predev": "npm run sync:lessons",
+    "predev": "npm run sync:lessons && npm run sync:renders",
     "dev": "astro dev",
-    "prebuild": "npm run sync:lessons",
+    "prebuild": "npm run sync:lessons && npm run sync:renders",
     "build": "astro build",
     "preview": "astro preview",
-    "preedit": "npm run sync:lessons",
-    "edit": "astro dev --open /keystatic"
+    "preedit": "npm run sync:lessons && npm run sync:renders",
+    "edit": "astro dev --open /keystatic",
+    "sync:renders": "node tools/sync-renders.mjs"
   },
   "dependencies": {
     "@astrojs/node": "^11.0.2",
