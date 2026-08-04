@@ -4,7 +4,7 @@
 //
 // Only copies when the bytes differ, and reports what moved.
 
-import { readdirSync, readFileSync, writeFileSync, existsSync, statSync, mkdirSync } from 'node:fs'
+import { readdirSync, readFileSync, writeFileSync, existsSync, statSync, utimesSync } from 'node:fs'
 import { join, basename, dirname } from 'node:path'
 import { homedir } from 'node:os'
 import { fileURLToPath } from 'node:url'
@@ -42,7 +42,19 @@ for (const src of sources) {
     // only overwrite files that already exist there — don't scatter unused renders around
     if (!existsSync(dest)) continue
     if (readFileSync(dest).equals(data)) continue
+
+    // NEVER let an older source clobber a newer destination. build123d can hold more than
+    // one render per module (e.g. ksoloti_biggenes_flat.png supersedes the older
+    // ksoloti_elements_flat.png), and matching on filename alone once restored a stale one
+    // over a good file. mtimes are preserved on copy so this comparison stays meaningful.
+    const st = statSync(src)
+    if (st.mtimeMs <= statSync(dest).mtimeMs) {
+      console.log(`  SKIP ${name} -> ${destDir.replace(homedir(), '~')} (source is older)`)
+      continue
+    }
+
     writeFileSync(dest, data)
+    utimesSync(dest, st.atime, st.mtime)
     console.log(`  updated ${name} -> ${destDir.replace(homedir(), '~')}`)
     copied++
   }
