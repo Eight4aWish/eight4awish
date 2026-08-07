@@ -9,6 +9,7 @@ tags:
   - Oscillator
   - Daisy Patch Init
 panel: /renders/daisy_braids_flat.png
+video: qR6oma1cY7w
 photo: /images/daisypibraids.jpeg
 photoCaption: The Joy build, with the OLED fitted for patch selection.
 status: built
