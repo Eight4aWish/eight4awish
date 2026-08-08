@@ -2,7 +2,7 @@
 title: Sorrow
 date: 2026-06-28
 summary: >-
-  A Mutable Instrument Grids based drum machine for the Daisy Patch.Init — with
+  A Mutable Instruments Grids based drum machine for the Daisy Patch.Init — with
   internal drum sounds, not just triggers.
 platform: Patch Submodule
 tags:
