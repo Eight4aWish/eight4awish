@@ -1,5 +1,6 @@
 ---
 import '../styles/site.css'
+import { opt } from '../lib/img'
 const {
   title,
   nav = '',
@@ -7,7 +8,8 @@ const {
   image = '/renders/tut_panels.png',
 } = Astro.props
 const url = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astro.url
-const img = Astro.site ? new URL(image, Astro.site) : image
+const social = opt(image, 'og')
+const img = Astro.site ? new URL(social, Astro.site) : social
 ---
 <!doctype html>
 <html lang="en">

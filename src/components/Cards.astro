@@ -1,12 +1,13 @@
 ---
 // The two card shapes, in one place — change here, every grid follows.
+import { opt } from '../lib/img'
 const { modules = [], tutorials = [] } = Astro.props
 ---
 {modules.length > 0 && (
   <div class="grid">
     {modules.map((m) => (
       <a class="card" href={`/modules/${m.id}/`}>
-        <div class="thumb"><img src={m.data.panel} alt={m.data.title} /></div>
+        <div class="thumb"><img src={opt(m.data.panel)} alt={m.data.title} loading="lazy" decoding="async" /></div>
         <div class="body">
           <h3>{m.data.title}</h3>
           <p>{m.data.summary}</p>
@@ -24,7 +25,7 @@ const { modules = [], tutorials = [] } = Astro.props
   <div class="grid tut">
     {tutorials.map((t) => (
       <a class="card" href={t.data.cta ?? `/tutorials/${t.id}/`}>
-        <div class="thumb"><img src={t.data.graphic} alt={t.data.title} /></div>
+        <div class="thumb"><img src={opt(t.data.graphic)} alt={t.data.title} loading="lazy" decoding="async" /></div>
         <div class="body">
           <p class="eyebrow">{t.data.eyebrow}</p>
           <h3>{t.data.title}</h3>
