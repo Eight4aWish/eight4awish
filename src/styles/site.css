@@ -1,6 +1,11 @@
 :root{
   --bg:#ffffff; --bg2:#f4f4f5; --tx:#17181a; --mut:#6a6d73; --line:#e2e3e6;
   --red:#d0202a; --radius:8px; --maxw:1040px;
+  /* heading scale — h1 down to h4. Body stays 16px. */
+  --h1:34px; --h2:24px; --h3:18px; --h4:14.5px;
+  /* how much air around headings. The ratios between levels are fixed in the
+     rules below; this dials all of them at once. Lower is tighter. */
+  --lead:.88;
   --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
 }
 *{box-sizing:border-box}
@@ -19,7 +24,7 @@ nav.site a{color:var(--mut);font-weight:500}
 nav.site a:hover,nav.site a.on{color:var(--tx);text-decoration:none}
 
 .intro{padding:30px 0 4px}
-.intro h1{font-size:26px;margin:0 0 4px}
+.intro h1{font-size:var(--h1);margin:0 0 4px}
 .intro p{color:var(--mut);margin:0;max-width:660px}
 .tagline{color:var(--mut);font-size:14px;margin:2px 0 0}
 
@@ -48,7 +53,7 @@ nav.site a:hover,nav.site a.on{color:var(--tx);text-decoration:none}
 .eyebrow{font-size:10.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
   color:var(--red);margin:0 0 3px}
 
-h2.sec{font-size:18px;margin:34px 0 6px;padding-left:10px;border-left:3px solid var(--red)}
+h2.sec{font-size:var(--h2);margin:34px 0 6px;padding-left:10px;border-left:3px solid var(--red)}
 .sub{color:var(--mut);margin:0 0 10px}
 
 .rowlink{display:flex;gap:16px;align-items:center;border:1px solid var(--line);
@@ -66,7 +71,7 @@ h2.sec{font-size:18px;margin:34px 0 6px;padding-left:10px;border-left:3px solid 
 .mod-hero{display:grid;grid-template-columns:260px 1fr;gap:30px;align-items:start;margin:4px 0}
 .shot{background:var(--bg2);border:1px solid var(--line);border-radius:var(--radius);padding:16px;text-align:center}
 .shot img{max-height:420px;object-fit:contain}
-.mod-hero h1{margin:0 0 8px;font-size:28px}
+.mod-hero h1{margin:0 0 8px;font-size:var(--h1)}
 figure{margin:0;background:var(--bg2);border:1px solid var(--line);border-radius:var(--radius);padding:16px;text-align:center}
 figure img{max-height:280px;object-fit:contain}
 figcaption{color:var(--mut);font-size:13px;margin-top:8px}
@@ -99,9 +104,13 @@ a.brand:hover{text-decoration:none}
 
 /* markdown body from the CMS */
 .prose{margin-top:22px}
-.prose h2{font-size:18px;margin:30px 0 6px;padding-left:10px;border-left:3px solid var(--red)}
-.prose p{margin:0 0 12px}
-.prose ul,.prose ol{color:var(--mut);margin:0 0 12px;padding-left:22px}
+.prose h2{font-size:var(--h2);margin:calc(1.8em*var(--lead)) 0 calc(.55em*var(--lead));padding-left:10px;border-left:3px solid var(--red)}
+.prose h3{font-size:var(--h3);font-weight:700;margin:calc(1.6em*var(--lead)) 0 calc(.4em*var(--lead))}
+.prose h4{font-size:var(--h4);font-weight:700;margin:calc(1.6em*var(--lead)) 0 calc(.35em*var(--lead));
+  text-transform:uppercase;letter-spacing:.07em;color:var(--mut)}
+.prose > :first-child{margin-top:0}
+.prose p{margin:0 0 14px}
+.prose ul,.prose ol{color:var(--mut);margin:0 0 14px;padding-left:22px}
 .prose li{margin:3px 0}
 .prose img{border:1px solid var(--line);border-radius:var(--radius)}
 .vidwrap{aspect-ratio:16/9;max-width:640px;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line)}
