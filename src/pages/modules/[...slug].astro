@@ -15,6 +15,14 @@ const { module: mod } = Astro.props
 const { Content } = await render(mod)
 const d = mod.data
 const updated = d.date.toLocaleDateString('en-GB', { month: 'long', year: 'numeric' })
+
+// Only link tutorials that are actually published — a draft has no page, so the link
+// would 404. Deliberately ignores the DEV draft exception the routes above use, so what
+// you see locally is what visitors get. Flip a tutorial's draft flag and its line
+// reappears here on its own.
+const liveTutorial = new Set(
+  (await getCollection('tutorials')).filter((t) => !t.data.draft).map((t) => t.id),
+)
 ---
 <Base title={`${d.title} — Eight4aWish`} description={d.summary} image={d.photo ?? d.panel} nav="modules">
 
@@ -40,8 +48,12 @@ const updated = d.date.toLocaleDateString('en-GB', { month: 'long', year: 'numer
     {d.stl && <a class="btn ghost" href={d.stl}>Panel STL</a>}
     {d.step && <a class="btn ghost" href={d.step}>Panel STEP</a>}
   </div>
-  <p class="tiny">Panel designed in Python — see <a href="/tutorials/panels/">Panels as code</a>.
-     Sequence it with <a href="/tutorials/strudel/">Strudel</a>.</p>
+  {(liveTutorial.has('panels') || liveTutorial.has('strudel')) && (
+    <p class="tiny">
+      {liveTutorial.has('panels') && <Fragment>Panel designed in Python — see <a href="/tutorials/panels/">Panels as code</a>. </Fragment>}
+      {liveTutorial.has('strudel') && <Fragment>Sequence it with <a href="/tutorials/strudel/">Strudel</a>.</Fragment>}
+    </p>
+  )}
 
   <div class="prose"><Content /></div>
 
