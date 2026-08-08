@@ -2,8 +2,8 @@
 title: Joy
 date: 2026-07-05
 summary: >-
-  A Mutable Instruments Braids based oscillator for the Daisy Patch.Init - with
-  a screen added to facilitate patch selection.
+  A Mutable Instruments Braids based oscillator for the Daisy patch.Init() -
+  with a screen added to facilitate patch selection.
 platform: Patch Submodule
 tags:
   - Oscillator
@@ -27,7 +27,7 @@ draft: false
 ---
 ## **Overview**
 
-**Joy** is an oscillator for the Daisy Patch.Init, with an OLED added so you can see and select the model and bank. It runs on stock hardware, so the build is the screen, the wiring and the printed panel — no custom PCB to fabricate.
+**Joy** is an oscillator for the Daisy patch.Init(), with an OLED added so you can see and select the model and bank. It runs on stock hardware, so the build is the screen, the wiring and the printed panel — no custom PCB to fabricate.
 
 It's based on **Mutable Instruments Braids** by Émilie Gillet, and named — like everything here —
 after the nursery rhyme: *one for sorrow, two for joy*. Not affiliated with, or endorsed by,
@@ -35,7 +35,7 @@ Mutable Instruments or Electrosmith.
 
 ## Hardware
 
-**Bill of materials:** Daisy Patch.Init · 64×48 SSD1306 OLED (I²C) · a few hook-up wires · the printed panel. The OLED shows the current model and bank, so you select by name rather than counting clicks.
+**Bill of materials:** Daisy patch.Init() · 64×48 SSD1306 OLED (I²C) · a few hook-up wires · the printed panel. The OLED shows the current model and bank, so you select by name rather than counting clicks.
 
 The front panel is written in Python (build123d); the same file exports the STL you print.
 
@@ -62,9 +62,7 @@ Joy Lite is a subset of the Braids models which can be flashed and used on a reg
 
 ### Why sixteen models, and these sixteen
 
-Anyone running a Daisy Patch.Init probably already owns Plaits. So Joy Lite skips everything
-Plaits already does well — virtual analog, FM, additive, wavetables, speech, noise, physical
-models, drums — and ships the sounds that are distinctively *Braids* instead. Two banks of
+Anyone running a Daisy patch.Init() possibly already owns Plaits. So Joy Lite skips everything Plaits already does well — virtual analog, FM, additive, wavetables, speech, noise, physical models, drums — and ships the sounds that are distinctively *Braids* instead. Two banks of
 eight, chosen on the toggle Joy had to sacrifice:
 
 - **Bank A** — CSAW · Saw-Sync · Ring-Mod · VOSIM · Digi-Filter BP · Chaotic-FM · QPSK · TOY
