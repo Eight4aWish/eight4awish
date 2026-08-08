@@ -1,7 +1,9 @@
 ---
 import Base from '../layouts/Base.astro'
-// edited in the CMS under Pages → About
-import { Content, frontmatter } from '../content/about/index.md'
+// edited in the CMS under Pages → About. Keystatic writes this singleton to
+// src/content/about.md — import that file, not a hand-made folder beside it,
+// or a save in the CMS lands somewhere the page never reads.
+import { Content, frontmatter } from '../content/about.md'
 ---
 <Base title={`${frontmatter.heading} — Eight4aWish`}>
   <div class="intro">
