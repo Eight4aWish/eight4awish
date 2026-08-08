@@ -12,7 +12,8 @@
     "preedit": "npm run sync:lessons && npm run sync:renders",
     "edit": "astro dev --open /keystatic",
     "sync:renders": "node tools/sync-renders.mjs",
-    "images": "node tools/optimise-images.mjs"
+    "images": "node tools/optimise-images.mjs",
+    "deploy": "node tools/deploy.mjs"
   },
   "dependencies": {
     "@astrojs/node": "^11.0.2",
