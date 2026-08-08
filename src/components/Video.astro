@@ -1,6 +1,7 @@
 ---
 // The hero of every module and tutorial page. No video yet? Show the artwork with an
 // honest placeholder rather than an empty box — the page still works, it just says so.
+import { opt } from '../lib/img'
 const { id, title, poster } = Astro.props
 ---
 {id ? (
@@ -10,7 +11,7 @@ const { id, title, poster } = Astro.props
   </div>
 ) : (
   <div class="hero-video pending">
-    {poster && <img src={poster} alt="" />}
+    {poster && <img src={opt(poster, 'med')} alt="" loading="lazy" decoding="async" />}
     <span class="badge">Video coming soon</span>
   </div>
 )}
