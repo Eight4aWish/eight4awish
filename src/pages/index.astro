@@ -16,14 +16,14 @@ const latest = allModules.slice(0, home.latestCount)
   <div class="intro">
     <h1>{home.heading}</h1>
     <p>{home.intro}</p>
-    <p class="tagline">{home.tagline}</p>
+    {home.tagline && <p class="tagline">{home.tagline}</p>}
   </div>
 
   <div class="sechead">
     <h2 class="sec">Tutorials</h2>
     <a class="seeall" href="/tutorials/">All tutorials →</a>
   </div>
-  <p class="sub">{home.tutorialsBlurb}</p>
+  {home.tutorialsBlurb && <p class="sub">{home.tutorialsBlurb}</p>}
   <Cards tutorials={tutorials.slice(0, 3)} />
 
   <div class="sechead">
