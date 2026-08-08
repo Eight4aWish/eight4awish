@@ -56,7 +56,7 @@ It persists across power cycles, stored alongside your last-used patch. A bad ca
 
 **CV\_8 is an FM input.** There is no onboard attenuverter but presumably all racks will have the means to tweak signal depth so the input signal lands at the depth Braids gives it with the it's attenuverter fully clockwise — about ±30 semitones across ±5V, so roughly 6 semitones per volt. It is deliberately *not* 1V/oct: this is a depth control, not a second pitch input, so it takes the raw CV rather than the calibrated V/Oct path. Like Braids, it is applied once per render block, so it is control-rate FM.
 
-## Joy Lite - screenless variant
+## Joy Lite — screenless variant
 
 Joy Lite is a subset of the Braids models which can be flashed and used on a regular, unmodified Daisy Patch Init. It is the same Braids engine and the same knobs. What changes is how many models you get and how you move between them.
 

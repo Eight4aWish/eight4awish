@@ -18,7 +18,7 @@ Mutable Instruments or Electrosmith.</p>
 <h3 id="patching-tips">Patching tips</h3>
 <p><strong>Leave GATE unpatched and Joy drones.</strong> The internal AD envelope only closes the VCA when something is patched, so with nothing plugged in the oscillator runs continuously — which is what you want when you are auditioning models or using Joy as a drone voice.</p>
 <p><strong>CV_8 is an FM input.</strong> There is no onboard attenuverter but presumably all racks will have the means to tweak signal depth so the input signal lands at the depth Braids gives it with the it’s attenuverter fully clockwise — about ±30 semitones across ±5V, so roughly 6 semitones per volt. It is deliberately <em>not</em> 1V/oct: this is a depth control, not a second pitch input, so it takes the raw CV rather than the calibrated V/Oct path. Like Braids, it is applied once per render block, so it is control-rate FM.</p>
-<h2 id="joy-lite---screenless-variant">Joy Lite - screenless variant</h2>
+<h2 id="joy-lite--screenless-variant">Joy Lite — screenless variant</h2>
 <p>Joy Lite is a subset of the Braids models which can be flashed and used on a regular, unmodified Daisy Patch Init. It is the same Braids engine and the same knobs. What changes is how many models you get and how you move between them.</p>
 <h3 id="why-sixteen-models-and-these-sixteen">Why sixteen models, and these sixteen</h3>
 <p>Anyone running a Daisy patch.Init() possibly already owns Plaits. So Joy Lite skips everything Plaits already does well — virtual analog, FM, additive, wavetables, speech, noise, physical models, drums — and ships the sounds that are distinctively <em>Braids</em> instead. Two banks of
