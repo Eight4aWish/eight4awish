@@ -25,7 +25,7 @@ flashWith: daisy-qspi
 video: qR6oma1cY7w
 draft: false
 ---
-## **Joy - Mutable Braids on the Daisy Patch Init**
+## **Overview**
 
 **Joy** is an oscillator for the Daisy Patch.Init, with an OLED added so you can see and select the model and bank. It runs on stock hardware, so the build is the screen, the wiring and the printed panel — no custom PCB to fabricate.
 
@@ -50,20 +50,15 @@ The oscillator is digital, but its V/oct CV input is analog and needs calibratin
 
 It persists across power cycles, stored alongside your last-used patch. A bad capture — nothing patched, or the wrong voltage — is rejected and the previous calibration kept, so the routine can't leave the module mistracking. If you never calibrate, sensible measured defaults are used.
 
-## Patching tips
+### Patching tips
 
 **Leave GATE unpatched and Joy drones.** The internal AD envelope only closes the VCA when something is patched, so with nothing plugged in the oscillator runs continuously — which is what you want when you are auditioning models or using Joy as a drone voice.
 
 **CV\_8 is an FM input.** There is no onboard attenuverter but presumably all racks will have the means to tweak signal depth so the input signal lands at the depth Braids gives it with the it's attenuverter fully clockwise — about ±30 semitones across ±5V, so roughly 6 semitones per volt. It is deliberately *not* 1V/oct: this is a depth control, not a second pitch input, so it takes the raw CV rather than the calibrated V/Oct path. Like Braids, it is applied once per render block, so it is control-rate FM.
 
-## No screen? Build Joy Lite instead
+## Joy Lite - screenless variant
 
-Joy asks you to wire an OLED to the Daisy's expansion header and give up the B8 toggle to make
-panel space for it. That is a fair thing to refuse — so the repo also builds **Joy Lite**, a
-screenless version that runs on completely stock hardware. No soldering, nothing removed.
-
-It is the same Braids engine and the same knobs. What changes is how many models you get and
-how you move between them.
+Joy Lite is a subset of the Braids models which can be flashed and used on a regular, unmodified Daisy Patch Init. It is the same Braids engine and the same knobs. What changes is how many models you get and how you move between them.
 
 ### Why sixteen models, and these sixteen
 
