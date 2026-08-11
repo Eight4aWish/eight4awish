@@ -14,9 +14,9 @@ photoCaption: Girl running on the Ksoloti Big Genes.
 status: built
 firmware: https://github.com/Eight4aWish/eurorack_modules
 binary: >-
-  https://github.com/Eight4aWish/eurorack_modules/releases/download/girl-v1.0.1/girl.bin
+  https://github.com/Eight4aWish/eurorack_modules/releases/download/girl-v1.1.0/girl.bin
 extraBinaries: []
-firmwareVersion: v1.0.1
+firmwareVersion: v1.1.0
 flashWith: ksoloti
 draft: false
 ---
@@ -28,10 +28,12 @@ endorsed by, Mutable Instruments.
 ## Running Elements on Ksoloti
 
 Elements is one of the most demanding things Mutable made — its resonator can pin a processor on its
-own. To keep it solid on the Ksoloti, the settings are deliberately **conservative** next to the
-original: a few of Elements' parameters are dialled back from stock so the CPU keeps some headroom
-and the voice never overruns, glitches or drops out. It trades a little of the original's ceiling for
-a build that simply runs.
+own. It is a bank of tuned filters, and how many of them you run is the single biggest thing you can
+spend CPU on. Mutable run **52**. Girl runs **44**.
+
+That number was found by testing rather than assumed. 52 and 48 both drop out audibly on this board;
+44 runs clean, and sounds fuller than the 36 the first release shipped with. It trades a little of the
+original's ceiling for a build that simply runs.
 
 ## It's firmware, not a Patcher patch
 
