@@ -9,6 +9,22 @@ endorsed by, Mutable Instruments.</p>
 <p>Three Exciters — bow, blow and strike — are summed and fed into the Resonator, then into Space. Each exciter owns one pot, with <strong>S4</strong> used to cycle between: level, meta, and timbre, the order Elements uses across its own panel. Space is one knob doing three jobs as you turn it up: dry bleed, then stereo spread, then reverb.</p>
 <p><img src="/images/girl-signal-flow.webp" alt="Elements signal path: bow, blow and strike summed into the resonator, then Space, with
 the Girl pot that drives each parameter"></p>
+<p>Everything the diagram doesn’t cover:</p>
+<ul>
+<li><strong>CV-X</strong> — V/oct pitch, centred on middle C, trimmable on the board.</li>
+<li><strong>CV-Y</strong> — FM. Bipolar, and zero when nothing is patched.</li>
+<li><strong>CV-D</strong> — gate and strength together: above 0.2 V it opens, and the voltage itself sets
+how hard the note is struck.</li>
+<li><strong>CV P1–P4</strong> — summed with the pots in hardware, so each one adds straight into geometry,
+brightness, damping and position. No assignment needed, and no separate ADC.</li>
+<li><strong>CV-A, CV-B, CV-C</strong> — the assignable three, ±0.5 around whatever the pot is set to.
+<strong>S2</strong> steps which slot you are editing, <strong>E2</strong> chooses what it drives. Eleven targets,
+including five with no knob of their own: signature, modulation frequency and offset,
+and the two reverb controls. Defaults are Flow on A and Mallet on B.</li>
+<li><strong>S1</strong> — cycles the resonator model: modal, then string, then chords.</li>
+<li><strong>S3</strong> — play. A manual gate at fixed strength, so you can hear the voice without
+patching anything. CV-D takes over when it is patched.</li>
+</ul>
 <h2 id="its-firmware-not-a-patcher-patch">It’s firmware, not a Patcher patch</h2>
 <p>Girl is <strong>not</strong> loaded through the Ksoloti Patcher as a live patch. It’s flashed as <strong>firmware</strong> — you upload the <code>.bin</code> to the board — so it boots straight into the voice with nothing to open, compile or run in the Patcher. Flashing steps are below.</p>
 </div><section class="flash"><h2 class="sec">Flash it — no compiler needed</h2><p class="sub">You need the .bin above and one free tool — dfu-util. No coding, no Patcher, no build environment.</p><div class="warn"><b>Read this first —</b> This is firmware, not a patch. If you have used a Ksoloti before you will expect a script you open in the Patcher and upload — this is not that. It replaces the Ksoloti firmware entirely and boots straight into Girl, so the Patcher is not involved at any point. You can put the stock firmware back whenever you like (see below).</div><div class="dl"><a class="btn" href="https://github.com/Eight4aWish/eurorack_modules/releases/download/girl-v1.2.0/girl.bin">Download firmware v1.2.0</a></div><ol class="flashsteps"><li>Download girl.bin above.</li><li>Install dfu-util — on a Mac: brew install dfu-util. (Windows: dfu-util.sourceforge.net, add it to PATH. Linux: sudo apt install dfu-util.)</li><li>Put the Big Genes in DFU mode: unplug the USB-C cable from the prog socket, hold the E1/S1 encoder button in (push the left encoder shaft), plug USB-C back into prog while still holding, then release.</li><li>The screen and LEDs will stay off — that is normal, it means you are in DFU mode. Your computer should now see a DFU device.</li><li>Run the command below in a terminal, from wherever girl.bin is.</li><li>When it says “File downloaded successfully” the module restarts into Girl. The OLED should read “S1 Mod E1 Con SE2 Cv”.</li></ol><pre><code>dfu-util -d 0483:df11 -a 0 -s 0x08000000:leave -D girl.bin</code></pre><div class="note"><b>Watch out:</b> Nothing here is one-way. To go back to a stock Ksoloti, flash the original firmware .bin from ksoloti.github.io using exactly the same DFU steps. And if you see “No DFU capable USB device available”, the board is not in DFU mode — you must hold E1/S1 before the cable goes in.</div></section><p class="tiny" style="margin-top:30px">Updated May 2026</p></main><footer class="site"><div class="wrap"><span>© Eight4aWish</span><a href="https://github.com/Eight4aWish">GitHub</a><a href="mailto:info@eight4awish.com">info@eight4awish.com</a><a href="https://buymeacoffee.com/eight4awish">Buy me a coffee</a></div></footer></body></html>

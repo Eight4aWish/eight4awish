@@ -38,6 +38,22 @@ Three Exciters — bow, blow and strike — are summed and fed into the Resonato
 ![Elements signal path: bow, blow and strike summed into the resonator, then Space, with
 the Girl pot that drives each parameter](/images/girl-signal-flow.webp)
 
+Everything the diagram doesn't cover:
+
+- **CV-X** — V/oct pitch, centred on middle C, trimmable on the board.
+- **CV-Y** — FM. Bipolar, and zero when nothing is patched.
+- **CV-D** — gate and strength together: above 0.2 V it opens, and the voltage itself sets
+  how hard the note is struck.
+- **CV P1–P4** — summed with the pots in hardware, so each one adds straight into geometry,
+  brightness, damping and position. No assignment needed, and no separate ADC.
+- **CV-A, CV-B, CV-C** — the assignable three, ±0.5 around whatever the pot is set to.
+  **S2** steps which slot you are editing, **E2** chooses what it drives. Eleven targets,
+  including five with no knob of their own: signature, modulation frequency and offset,
+  and the two reverb controls. Defaults are Flow on A and Mallet on B.
+- **S1** — cycles the resonator model: modal, then string, then chords.
+- **S3** — play. A manual gate at fixed strength, so you can hear the voice without
+  patching anything. CV-D takes over when it is patched.
+
 ## It's firmware, not a Patcher patch
 
 Girl is **not** loaded through the Ksoloti Patcher as a live patch. It's flashed as **firmware** — you upload the `.bin` to the board — so it boots straight into the voice with nothing to open, compile or run in the Patcher. Flashing steps are below.
