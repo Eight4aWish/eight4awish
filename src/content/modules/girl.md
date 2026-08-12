@@ -33,16 +33,11 @@ Elements is one of the most demanding things Mutable made — its resonator can 
 
 ## Signal flow, and where the controls sit
 
-Three Exciters — bow, blow and strike — are summed and fed into the Resonator, then into Space. Each exciter owns one pot, with **S4** used to cycle between: level, meta, and timbre, the order Elements uses across its own panel.
+Three Exciters — bow, blow and strike — are summed and fed into the Resonator, then into Space. Each exciter owns one pot, with **S4** used to cycle between: level, meta, and timbre, the order Elements uses across its own panel. Space is one knob doing three jobs as you turn it up: dry bleed, then stereo spread, then reverb.
 
 ![Elements signal path: bow, blow and strike summed into the resonator, then Space, with
 the Girl pot that drives each parameter](/images/girl-signal-flow.webp)
 
-Space is one knob doing three jobs as you turn it up: dry bleed, then stereo spread, then reverb.
-
 ## It's firmware, not a Patcher patch
 
-This is the part that surprises Ksoloti users: Girl is **not** loaded through the Ksoloti Patcher as
-a live patch. It's flashed as **firmware** — you upload the `.bin` to the board — so it boots
-straight into the voice with nothing to open, compile or run in the Patcher. Flashing steps are
-below.
+Girl is **not** loaded through the Ksoloti Patcher as a live patch. It's flashed as **firmware** — you upload the `.bin` to the board — so it boots straight into the voice with nothing to open, compile or run in the Patcher. Flashing steps are below.
