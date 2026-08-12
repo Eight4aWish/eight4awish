@@ -112,7 +112,10 @@ a.brand:hover{text-decoration:none}
 .prose p{margin:0 0 14px}
 .prose ul,.prose ol{color:var(--mut);margin:0 0 14px;padding-left:22px}
 .prose li{margin:3px 0}
-.prose img{border:1px solid var(--line);border-radius:var(--radius)}
+/* Match the video hero's 720px: a diagram running wider than the video above it makes
+   the page look like two different layouts. */
+.prose img{border:1px solid var(--line);border-radius:var(--radius);
+  max-width:720px;display:block}
 .vidwrap{aspect-ratio:16/9;max-width:640px;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line)}
 .vidwrap iframe{width:100%;height:100%;border:0}
 
