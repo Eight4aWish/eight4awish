@@ -48,7 +48,7 @@ Everything the diagram doesn't cover:
 | Play | S3 — manual gate, no patching needed |
 | Resonator CV | P1–P4, summed with the pots |
 | Assignable CV | A, B, C — S2 selects, E2 assigns |
-| Pitch mod | CV-Y — ±1 semitone, not FM |
+| Pitch mod | CV-Y — ±1 semitone |
 
 Pin map, CV targets and full behaviour are in the
 [repo docs](https://github.com/Eight4aWish/eurorack_modules/blob/main/docs/KSOLOTI_ELEMENTS.md).
