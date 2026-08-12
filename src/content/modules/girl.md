@@ -41,7 +41,10 @@ the Girl pot that drives each parameter](/images/girl-signal-flow.webp)
 Everything the diagram doesn't cover:
 
 - **CV-X** — V/oct pitch, centred on middle C, trimmable on the board.
-- **CV-Y** — FM. Bipolar, and zero when nothing is patched.
+- **CV-Y** — pitch modulation, bipolar, and zero when nothing is patched. Worth being
+  precise about the depth: it adds at most **±1 semitone**, applied once per block, so it
+  is vibrato and fine detune rather than FM in the timbral sense. CV-X, by contrast, spans
+  ±30 semitones.
 - **CV-D** — gate and strength together: above 0.2 V it opens, and the voltage itself sets
   how hard the note is struck.
 - **CV P1–P4** — summed with the pots in hardware, so each one adds straight into geometry,
