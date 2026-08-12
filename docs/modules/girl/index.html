@@ -9,6 +9,15 @@ spend CPU on. Mutable run <strong>52</strong>. Girl runs <strong>44</strong>.</p
 <p>That number was found by testing rather than assumed. 52 and 48 both drop out audibly on this board;
 44 runs clean, and sounds fuller than the 36 the first release shipped with. It trades a little of the
 original’s ceiling for a build that simply runs.</p>
+<h2 id="signal-flow-and-where-the-controls-sit">Signal flow, and where the controls sit</h2>
+<p>Three exciters — bow, blow and strike — are summed and fed into the resonator, then into
+Space. Each exciter owns one pot, and <strong>S4</strong> cycles what that pot holds: level, then meta,
+then timbre, the order Elements uses across its own panel. P1–P4, P8 and E1 never change,
+so they carry no number.</p>
+<p><img src="/images/girl-signal-flow.webp" alt="Elements signal path: bow, blow and strike summed into the resonator, then Space, with
+the Girl pot that drives each parameter"></p>
+<p>Space is worth singling out — it is one knob doing three jobs as you turn it up: dry bleed,
+then stereo spread, then reverb.</p>
 <h2 id="its-firmware-not-a-patcher-patch">It’s firmware, not a Patcher patch</h2>
 <p>This is the part that surprises Ksoloti users: Girl is <strong>not</strong> loaded through the Ksoloti Patcher as
 a live patch. It’s flashed as <strong>firmware</strong> — you upload the <code>.bin</code> to the board — so it boots
