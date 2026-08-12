@@ -35,6 +35,19 @@ That number was found by testing rather than assumed. 52 and 48 both drop out au
 44 runs clean, and sounds fuller than the 36 the first release shipped with. It trades a little of the
 original's ceiling for a build that simply runs.
 
+## Signal flow, and where the controls sit
+
+Three exciters — bow, blow and strike — are summed and fed into the resonator, then into
+Space. Each exciter owns one pot, and **S4** cycles what that pot holds: level, then meta,
+then timbre, the order Elements uses across its own panel. P1–P4, P8 and E1 never change,
+so they carry no number.
+
+![Elements signal path: bow, blow and strike summed into the resonator, then Space, with
+the Girl pot that drives each parameter](/images/girl-signal-flow.webp)
+
+Space is worth singling out — it is one knob doing three jobs as you turn it up: dry bleed,
+then stereo spread, then reverb.
+
 ## It's firmware, not a Patcher patch
 
 This is the part that surprises Ksoloti users: Girl is **not** loaded through the Ksoloti Patcher as
