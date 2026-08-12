@@ -40,22 +40,18 @@ the Girl pot that drives each parameter](/images/girl-signal-flow.webp)
 
 Everything the diagram doesn't cover:
 
-- **CV-X** — V/oct pitch, centred on middle C, trimmable on the board.
-- **CV-Y** — pitch modulation, bipolar, and zero when nothing is patched. Worth being
-  precise about the depth: it adds at most **±1 semitone**, applied once per block, so it
-  is vibrato and fine detune rather than FM in the timbral sense. CV-X, by contrast, spans
-  ±30 semitones.
-- **CV-D** — gate and strength together: above 0.2 V it opens, and the voltage itself sets
-  how hard the note is struck.
-- **CV P1–P4** — summed with the pots in hardware, so each one adds straight into geometry,
-  brightness, damping and position. No assignment needed, and no separate ADC.
-- **CV-A, CV-B, CV-C** — the assignable three, ±0.5 around whatever the pot is set to.
-  **S2** steps which slot you are editing, **E2** chooses what it drives. Eleven targets,
-  including five with no knob of their own: signature, modulation frequency and offset,
-  and the two reverb controls. Defaults are Flow on A and Mallet on B.
-- **S1** — cycles the resonator model: modal, then string, then chords.
-- **S3** — play. A manual gate at fixed strength, so you can hear the voice without
-  patching anything. CV-D takes over when it is patched.
+| Control | |
+|---|---|
+| Gate | CV-D — voltage also sets strength |
+| Pitch | CV-X — V/oct, ±30 semitones |
+| Model | S1 — modal, string, chords |
+| Play | S3 — manual gate, no patching needed |
+| Resonator CV | P1–P4, summed with the pots |
+| Assignable CV | A, B, C — S2 selects, E2 assigns |
+| Pitch mod | CV-Y — ±1 semitone, not FM |
+
+Pin map, CV targets and full behaviour are in the
+[repo docs](https://github.com/Eight4aWish/eurorack_modules/blob/main/docs/KSOLOTI_ELEMENTS.md).
 
 ## It's firmware, not a Patcher patch
 
