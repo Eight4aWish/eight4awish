@@ -116,6 +116,13 @@ a.brand:hover{text-decoration:none}
    the page look like two different layouts. */
 .prose img{border:1px solid var(--line);border-radius:var(--radius);
   max-width:720px;display:block}
+/* Reference tables: the left column names the thing, so it stays narrow and never wraps. */
+.prose table{width:100%;max-width:720px;border-collapse:collapse;margin:2px 0 14px;font-size:15px}
+.prose th{text-align:left;font-size:11px;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--mut);padding:0 14px 7px 0;border-bottom:1px solid var(--line)}
+.prose td{padding:8px 14px 8px 0;border-bottom:1px solid var(--line);vertical-align:top;
+  color:var(--mut)}
+.prose td:first-child{color:var(--tx);font-weight:700;white-space:nowrap;width:1%}
 .vidwrap{aspect-ratio:16/9;max-width:640px;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line)}
 .vidwrap iframe{width:100%;height:100%;border:0}
 
