@@ -20,6 +20,8 @@ firmwareVersion: v1.1.0
 flashWith: ksoloti
 draft: false
 ---
+## Overview
+
 **Girl** is a modal-synthesis voice — a physical-modelling resonator — running on **Ksoloti Big**
 **Genes** hardware. It's based on **Mutable Instruments Elements** by Émilie Gillet, and named, like
 everything here, after the nursery rhyme: *three for a girl*. Not affiliated with, or
@@ -37,16 +39,12 @@ original's ceiling for a build that simply runs.
 
 ## Signal flow, and where the controls sit
 
-Three exciters — bow, blow and strike — are summed and fed into the resonator, then into
-Space. Each exciter owns one pot, and **S4** cycles what that pot holds: level, then meta,
-then timbre, the order Elements uses across its own panel. P1–P4, P8 and E1 never change,
-so they carry no number.
+Three Exciters — bow, blow and strike — are summed and fed into the Resonator, then into Space. Each exciter owns one pot, with **S4** used to cycle between: level, meta, and timbre, the order Elements uses across its own panel.
 
 ![Elements signal path: bow, blow and strike summed into the resonator, then Space, with
 the Girl pot that drives each parameter](/images/girl-signal-flow.webp)
 
-Space is worth singling out — it is one knob doing three jobs as you turn it up: dry bleed,
-then stereo spread, then reverb.
+Space is one knob doing three jobs as you turn it up: dry bleed, then stereo spread, then reverb.
 
 ## It's firmware, not a Patcher patch
 
