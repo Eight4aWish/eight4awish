@@ -14,9 +14,9 @@ photoCaption: Girl running on the Ksoloti Big Genes.
 status: built
 firmware: https://github.com/Eight4aWish/eurorack_modules
 binary: >-
-  https://github.com/Eight4aWish/eurorack_modules/releases/download/girl-v1.2.0/girl.bin
+  https://github.com/Eight4aWish/eurorack_modules/releases/download/girl-v1.2.1/girl.bin
 extraBinaries: []
-firmwareVersion: v1.2.0
+firmwareVersion: v1.2.1
 flashWith: ksoloti
 draft: false
 ---
@@ -48,7 +48,7 @@ Everything the diagram doesn't cover:
 | Play | S3 — manual gate, no patching needed |
 | Resonator CV | P1–P4, summed with the pots |
 | Assignable CV | A, B, C — S2 selects, E2 assigns |
-| Pitch mod | CV-Y — ±1 semitone |
+| FM | CV-Y — ±49.5 semitones; attenuate at the source |
 
 Pin map, CV targets and full behaviour are in the
 [repo docs](https://github.com/Eight4aWish/eurorack_modules/blob/main/docs/KSOLOTI_ELEMENTS.md).
