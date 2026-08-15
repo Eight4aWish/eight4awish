@@ -14,9 +14,9 @@ photoCaption: Girl running on the Ksoloti Big Genes.
 status: built
 firmware: https://github.com/Eight4aWish/eurorack_modules
 binary: >-
-  https://github.com/Eight4aWish/eurorack_modules/releases/download/girl-v1.2.1/girl.bin
+  https://github.com/Eight4aWish/eurorack_modules/releases/download/girl-v1.2.2/girl.bin
 extraBinaries: []
-firmwareVersion: v1.2.1
+firmwareVersion: v1.2.2
 flashWith: ksoloti
 draft: false
 ---
@@ -43,7 +43,7 @@ Everything the diagram doesn't cover:
 | Control | |
 |---|---|
 | Gate | CV-D — voltage also sets strength |
-| Pitch | CV-X — V/oct, ±30 semitones |
+| Pitch | CV-X — 1V/oct, centred on middle C |
 | Model | S1 — modal, string, chords |
 | Play | S3 — manual gate, no patching needed |
 | Resonator CV | P1–P4, summed with the pots |
