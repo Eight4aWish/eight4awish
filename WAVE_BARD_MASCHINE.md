@@ -287,7 +287,66 @@ that your 16 kits need to be 8.
 - **Build banks as playable sets of 8**, not as inventory: kick, snare, two hats, two
   percs, one tonal, one texture. Remember all banks must hold the same count.
 
-## 7. Licensing
+## 7. Changing expansion at the module
+
+Read out of [`bastl-instruments/kastle2`](https://github.com/bastl-instruments/kastle2)
+(the firmware is open source too), which settles what is and isn't possible without a
+hardware mod.
+
+**Bank selection already has three inputs, no soldering required:**
+
+- **CV.** `Hardware.hpp` documents `AnalogInput::MODE` as "Mode (FX Wizard) / **Bank
+  (Wave Bard)**". The app's `bank_select_` is a `FancyMode` using that input with
+  continuous reading and an attenuator (`BANK_MOD`, mode layer + centre knob). So the
+  Bank input is patchable and attenuverted — a stepped CV source selects the expansion.
+  The Sample control has its own separate CV on `PARAM_1`.
+- **MIDI CC 1** over USB-C, "mapped across x number of values (0-127 mapped to 1-6 etc)",
+  with CC 26 as its attenuator. The app also *sends* CC 32 when the bank changes, so a
+  controller can track state. Needs a USB host — a computer, or a Teensy 4.1 host port.
+- **The bank button**, and the selection persists in the AT24C EEPROM across power cycles.
+
+With 32 banks the CV range is ~150 mV per bank, so a quantised or stepped source is worth
+using; at 6–8 banks it's forgiving.
+
+**The I2C header is the wrong tool, twice over.** It is `i2c0` on GPIO20/21, brought up at
+100 kHz and shared with the NAU88C22 codec and the EEPROM — roughly 10 kB/s of payload,
+against the 88 kB/s a single 44.1 kHz mono stream needs. Bulk-loading 7.5 MB over it would
+take ~13 minutes on a bus the codec is using. As a *control* channel it would work, but
+the RP2040 is the bus leader, so an external controller can't simply write to it — the app
+would have to poll a follower device, which means custom firmware. An I2C-to-CV bridge in
+one of your own modules gets the same result with stock Bard firmware.
+
+**What genuinely requires a reflash** is changing *which* samples are in flash.
+`memmap_kastle2.ld` allocates 512 kB of program at `0x10000000` and 7,680 kB of user data
+at `0x10080000` — 8 MB exactly, no spare region. Samples are played straight out of XIP
+flash (the loader explicitly doesn't copy them: 264 kB of RAM total) and parsed once at
+boot. Three ways to make that less painful, cheapest first:
+
+1. **Fill the banks.** 32 banks is the ceiling. At 22.05 kHz mono, 16 banks × 8 samples
+   gives 1.4 s per slot and 8 × 8 gives 2.8 s — sixteen expansion kits resident at once,
+   switched by knob, CV or CC. For most uses this removes the need to swap sets at all.
+2. **Samples-only UF2.** The program and the data are separate flash regions, and a UF2
+   containing only blocks at `0x10080000` and above rewrites just the sample area.
+   `generateUf2(FAMILY_ID, USER_DATA_BEGIN, blob)` produces exactly that *before* the web
+   app merges it with the base firmware, so a swappable "sample pack" file is one function
+   call away. Same drag-and-drop, but a folder of interchangeable packs.
+3. **Per-bank partial flash.** UF2 addresses every 256-byte block individually, and the
+   firmware validates only the `k2wb` magic, the file size and the end marker — there is
+   no checksum over sample data. So if every pack is built to an identical layout (same
+   bank and sample counts, each sample padded to a fixed byte length), bank *N* always
+   occupies the same flash range and a UF2 covering only that range swaps one bank in
+   about a second instead of rewriting 10 MB. Cost: padding wastes memory and the layout
+   has to stay disciplined. `wavebard_pack.py` would need a fixed-slot mode to emit these.
+
+There is no `reset_usb_boot` anywhere in the firmware, so entering the bootloader stays a
+physical button operation — but once the drive mounts, flashing is a `cp` and can be
+scripted against a library of prebuilt packs.
+
+Option 3 is reasoned from the format and the loader, not something flashed on hardware:
+the individual facts are verified, but try the first per-bank write when a full reflash is
+easy to fall back on.
+
+## 8. Licensing
 
 NI's terms allow the samples to be used freely in your own productions, commercial
 included, but explicitly prohibit redistributing or repackaging them as sounds — which
@@ -296,7 +355,7 @@ own Bard freely; don't publish the banks, the drafts or the firmware. Bastl's ow
 samples are "all rights reserved" too, so a merged firmware containing both is doubly
 un-shareable. Some expansion content is third-party licensed on top of that.
 
-## 8. Confidence
+## 9. Confidence
 
 **Verified directly** — everything in §1, §2 and the binary layout, by reading the MIT
 source and round-tripping a generated draft through Bastl's own writer, reader, UF2
@@ -313,7 +372,7 @@ and several gear sites are blocked by the proxy here, so the Bard helpline page,
 official manual and the flashing procedure came via search summaries and the repo rather
 than first-hand. Check the helpline page for the bootloader button combo.
 
-## 9. Next steps
+## 10. Next steps
 
 - Test the Sound-vs-Group FX question on one kit with an obvious group effect.
 - Try Option B first for a quick win: NITools previews → chop → one bank, an hour's work,
