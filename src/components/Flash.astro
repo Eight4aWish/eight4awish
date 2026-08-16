@@ -53,7 +53,7 @@ const GUIDES = {
       'Put the Big Genes in DFU mode: unplug the USB-C cable from the prog socket, hold the E1/S1 encoder button in (push the left encoder shaft), plug USB-C back into prog while still holding, then release.',
       'The screen and LEDs will stay off — that is normal, it means you are in DFU mode. Your computer should now see a DFU device.',
       'Run the command below in a terminal, from wherever girl.bin is.',
-      'When it says “File downloaded successfully” the module restarts into Girl. The OLED should read “S1 Mod E1 Con SE2 Cv”.',
+      'When it says “File downloaded successfully” the module restarts into Girl. The top line of the OLED should read “S1:Mod”.',
     ],
     command: 'dfu-util -d 0483:df11 -a 0 -s 0x08000000:leave -D girl.bin',
     note:
