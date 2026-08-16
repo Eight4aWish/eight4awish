@@ -14,5 +14,8 @@ dist/
 .env
 .env.production
 
-# not public (yet)
+# not public
 CONTENT_ROADMAP.md
+CHANNEL_PLAN.md
+MODULE_IDEAS.md
+VIDEO_IDEAS.md
