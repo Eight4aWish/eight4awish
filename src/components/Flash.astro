@@ -3,9 +3,7 @@
 // just on the platform — a Daisy BOOT_NONE build fits internal flash and flashes
 // directly, while a BOOT_QSPI build runs from the QSPI chip via the Daisy bootloader
 // and needs that installed once first.
-const { binary, version, method = 'daisy-direct', extras = [], flash = {} } = Astro.props
-
-const DAISY_WEB = 'https://flash.daisy.audio'
+const { binary, version, extras = [], flash = {} } = Astro.props
 
 
 // Every word of this section comes from the page's own frontmatter - there is no wording
@@ -14,8 +12,7 @@ const DAISY_WEB = 'https://flash.daisy.audio'
 const g = flash ?? {}
 const steps = g.steps ?? []
 const bootSteps = g.bootSteps ?? []
-// The only thing the method still decides: whether to offer the Daisy Web Programmer link.
-const isDaisy = method === 'daisy-direct' || method === 'daisy-qspi'
+
 ---
 {binary && (
   <section class="flash">
@@ -29,7 +26,9 @@ const isDaisy = method === 'daisy-direct' || method === 'daisy-qspi'
       {extras.map((b) => (
         <a class="btn" href={b.url}>Download {b.label}{b.version ? ` ${b.version}` : ''}</a>
       ))}
-      {isDaisy && <a class="btn ghost" href={DAISY_WEB} target="_blank" rel="noopener">Daisy Web Programmer</a>}
+      {(g.links ?? []).map((l) => (
+        <a class="btn ghost" href={l.url} target="_blank" rel="noopener">{l.label}</a>
+      ))}
     </div>
 
     {extras.length > 0 && (
@@ -49,6 +48,6 @@ const isDaisy = method === 'daisy-direct' || method === 'daisy-qspi'
 
     {g.command && <pre><code>{g.command}</code></pre>}
 
-    {g.note && <div class="note"><b>Watch out:</b> {g.note}</div>}
+    {g.note && <div class="note">{g.note}</div>}
   </section>
 )}

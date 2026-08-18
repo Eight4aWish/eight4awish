@@ -120,17 +120,6 @@ export default config({
           { label: 'Extra builds', itemLabel: (p) => p.fields.label.value || 'Build' },
         ),
         firmwareVersion: fields.text({ label: 'Firmware version', description: 'e.g. v1.0.0' }),
-        flashWith: fields.select({
-          label: 'Flashing method',
-          description: 'Depends on how the firmware is built: a Daisy BOOT_NONE build flashes direct; a BOOT_QSPI build needs the bootloader + SD card.',
-          options: [
-            { label: 'Daisy — direct (BOOT_NONE, fits internal flash)', value: 'daisy-direct' },
-            { label: 'Daisy — bootloader + SD card (BOOT_QSPI)', value: 'daisy-qspi' },
-            { label: 'Ksoloti / DFU', value: 'ksoloti' },
-            { label: 'UF2 drag-and-drop', value: 'uf2' },
-          ],
-          defaultValue: 'daisy-direct',
-        }),
         flash: fields.object(
           {
             intro: fields.text({ label: 'Intro line', multiline: true }),
@@ -145,12 +134,19 @@ export default config({
               itemLabel: (p) => p.value || 'Step',
             }),
             command: fields.text({ label: 'Terminal command' }),
-            note: fields.text({ label: 'Watch out note', multiline: true }),
+            links: fields.array(
+              fields.object({
+                label: fields.text({ label: 'Button label' }),
+                url: fields.url({ label: 'Link' }),
+              }),
+              { label: 'Extra buttons', itemLabel: (p) => p.fields.label.value || 'Link' },
+            ),
+            note: fields.text({ label: 'Closing note', multiline: true }),
           },
           {
             label: 'Flashing wording',
             description:
-              'Overrides the standard wording for the method above. Leave a field blank and the standard wording is used, so you only need to fill in what is specific to this module.',
+              'Every word of the flashing section on the page. Nothing here has a fallback - a field left blank simply does not appear.',
           },
         ),
         stl: fields.text({ label: 'Panel STL link' }),

@@ -17,7 +17,6 @@ binary: >-
   https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/sorrow-v1.0.1/sorrow.bin
 extraBinaries: []
 firmwareVersion: v1.0.1
-flashWith: daisy-direct
 flash:
   intro: Straight to the module — no bootloader, no card, no toolchain.
   bootSteps: []
@@ -30,6 +29,9 @@ flash:
     - Choose the .bin you downloaded and click Program. Power-cycle. Done.
   note: >-
     Needs Chrome or Edge — it uses WebUSB, which Safari and Firefox do not support.
+  links:
+    - label: Daisy Web Programmer
+      url: https://flash.daisy.audio
 draft: false
 ---
 ## **Overview**

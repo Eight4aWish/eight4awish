@@ -17,7 +17,6 @@ binary: >-
   https://github.com/Eight4aWish/eurorack_modules/releases/download/girl-v1.2.3/girl.bin
 extraBinaries: []
 firmwareVersion: v1.2.3
-flashWith: ksoloti
 flash:
   intro: >-
     You need the .bin above and one free tool — dfu-util. No coding, no Patcher, no build

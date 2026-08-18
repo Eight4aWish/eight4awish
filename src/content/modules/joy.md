@@ -21,7 +21,6 @@ extraBinaries:
       https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/joy_lite-v1.4.0/joy_lite.bin
     version: v1.4.0
 firmwareVersion: v1.4.0
-flashWith: daisy-qspi
 flash:
   intro: >-
     This firmware is too big for the Daisy’s internal flash, so it runs from the QSPI chip
@@ -48,6 +47,9 @@ flash:
     press Cmd-Shift-. (period) in Finder to reveal hidden files and drag ._joy.bin to the
     Trash, or if you are happy in Terminal run dot_clean /Volumes/YOURCARD, which clears them
     in one go. Windows and Linux are unaffected.
+  links:
+    - label: Daisy Web Programmer
+      url: https://flash.daisy.audio
 video: qR6oma1cY7w
 draft: false
 ---

@@ -26,8 +26,7 @@ const modules = defineCollection({
       url: z.string(),
       version: z.string().optional(),
     })).default([]),
-    // depends on how the firmware is BUILT (Daisy BOOT_NONE vs BOOT_QSPI), not just the platform
-    flashWith: z.enum(['daisy-direct', 'daisy-qspi', 'ksoloti', 'uf2']).optional(),
+
     // Per-module wording for the flashing section. Every field is optional and falls back
     // to the preset for flashWith, so a module only states what is different about it -
     // its filename, its "you should see this" - and a new module still gets working
@@ -39,6 +38,9 @@ const modules = defineCollection({
       bootSteps: z.array(z.string()).default([]),
       steps: z.array(z.string()).default([]),
       command: z.string().optional(),
+      // Extra buttons beside the download - a web flasher, a vendor page. The template has
+      // no idea what platform this is; if a page wants a link, it says so here.
+      links: z.array(z.object({ label: z.string(), url: z.string() })).default([]),
       note: z.string().optional(),
     }).optional(),
     stl: z.string().optional(),

@@ -12,6 +12,5 @@ tags:
 panel: /renders/teensy_move_flat.png
 status: built
 extraBinaries: []
-flashWith: daisy-direct
 draft: true
 ---
