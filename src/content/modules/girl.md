@@ -49,8 +49,9 @@ flash:
   links: []
   note: >-
     Nothing here is one-way. To go back to a stock Ksoloti, flash the original
-    firmware. The easiest way to do this is using the Ksoloti desktop app.
-    Choose "Board - Firmware - Flash (Rescue)" from the menu.
+    firmware. The easiest way to do this is using the Ksoloti desktop app. Put
+    the board back into DFU mode, then choose "Board - Firmware - Flash
+    (Rescue)" from the menu.
 draft: false
 ---
 ## Overview
