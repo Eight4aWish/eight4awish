@@ -74,31 +74,15 @@ the Girl pot that drives each parameter](/images/girl-signal-flow.webp)
 
 Everything the diagram doesn't cover:
 
-{% table %}
-- Control
-- 
----
-- Gate
-- CV-D — voltage also sets strength
----
-- Pitch
-- CV-X — 1V/oct, centred on middle C
----
-- Model
-- S1 — modal, string, chords
----
-- Play
-- S3 — manual gate, no patching needed
----
-- Resonator CV
-- P1–P4, summed with the pots
----
-- Assignable CV
-- A, B, C — S2 selects, E2 assigns
----
-- FM
-- CV-Y — ±49.5 semitones; attenuate at the source
-{% /table %}
+| Control |  |
+|---|---|
+| Gate | CV-D — voltage also sets strength |
+| Pitch | CV-X — 1V/oct, centred on middle C |
+| Model | S1 — modal, string, chords |
+| Play | S3 — manual gate, no patching needed |
+| Resonator CV | P1–P4, summed with the pots |
+| Assignable CV | A, B, C — S2 selects, E2 assigns |
+| FM | CV-Y — ±49.5 semitones; attenuate at the source |
 
 Pin map, CV targets and full behaviour are in the
 [repo docs](https://github.com/Eight4aWish/eurorack_modules/blob/main/docs/KSOLOTI_ELEMENTS.md).
