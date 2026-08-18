@@ -19,38 +19,38 @@ extraBinaries: []
 firmwareVersion: v1.2.3
 flash:
   intro: >-
-    You need the .bin above and one free tool — dfu-util. No coding, no Patcher, no build
-    environment.
+    You need the .bin above and one free tool — dfu-util. No coding, no Patcher,
+    no build environment.
   warn: >-
-    This is firmware, not a patch. If you have used a Ksoloti before you will expect a
-    script you open in the Patcher and upload — this is not that. It replaces the Ksoloti
-    firmware entirely and boots straight into Girl, so the Patcher is not involved at any
-    point. You can put the stock firmware back whenever you like (see below).
+    This is firmware, not a patch. If you have used a Ksoloti before you will
+    expect a script you open in the Patcher and upload — this is not that.
+    Instead it replaces the Ksoloti firmware entirely and boots straight into
+    Girl, so the Patcher is not involved at any point. You can put the stock
+    firmware back whenever you like (see below).
   bootSteps: []
   steps:
+    - Download girl.bin above.
     - >-
-      Download girl.bin above.
+      Install dfu-util — on a Mac: brew install dfu-util. (Windows:
+      dfu-util.sourceforge.net, add it to PATH. Linux: sudo apt install
+      dfu-util.)
     - >-
-      Install dfu-util — on a Mac: brew install dfu-util. (Windows: dfu-util.sourceforge.net,
-      add it to PATH. Linux: sudo apt install dfu-util.)
+      Put the Big Genes in DFU mode: unplug the USB-C cable from the prog
+      socket, hold the E1/S1 encoder button in (push the left encoder shaft),
+      plug USB-C back into prog while still holding, then release.
     - >-
-      Put the Big Genes in DFU mode: unplug the USB-C cable from the prog socket, hold the
-      E1/S1 encoder button in (push the left encoder shaft), plug USB-C back into prog while
-      still holding, then release.
+      The screen and LEDs will stay off — that is normal, it means you are in
+      DFU mode. Your computer should now see a DFU device.
+    - Run the command below in a terminal, from wherever girl.bin is.
     - >-
-      The screen and LEDs will stay off — that is normal, it means you are in DFU mode. Your
-      computer should now see a DFU device.
-    - >-
-      Run the command below in a terminal, from wherever girl.bin is.
-    - >-
-      When it says “File downloaded successfully” the module restarts into Girl. The top line
-      of the OLED should read “S1:Mod”.
+      When it says “File downloaded successfully” the module restarts into Girl.
+      The top line of the OLED should read “S1:Mod”.
   command: dfu-util -d 0483:df11 -a 0 -s 0x08000000:leave -D girl.bin
+  links: []
   note: >-
-    Nothing here is one-way. To go back to a stock Ksoloti, flash the original firmware .bin
-    from ksoloti.github.io using exactly the same DFU steps. And if you see “No DFU capable
-    USB device available”, the board is not in DFU mode — you must hold E1/S1 before the
-    cable goes in.
+    Nothing here is one-way. To go back to a stock Ksoloti, flash the original
+    firmware. The easiest way to do this is using the Ksoloti desktop app.
+    Choose "Board - Firmware - Flash (Rescue)" from the menu.
 draft: false
 ---
 ## Overview
@@ -73,15 +73,31 @@ the Girl pot that drives each parameter](/images/girl-signal-flow.webp)
 
 Everything the diagram doesn't cover:
 
-| Control | |
-|---|---|
-| Gate | CV-D — voltage also sets strength |
-| Pitch | CV-X — 1V/oct, centred on middle C |
-| Model | S1 — modal, string, chords |
-| Play | S3 — manual gate, no patching needed |
-| Resonator CV | P1–P4, summed with the pots |
-| Assignable CV | A, B, C — S2 selects, E2 assigns |
-| FM | CV-Y — ±49.5 semitones; attenuate at the source |
+{% table %}
+- Control
+- 
+---
+- Gate
+- CV-D — voltage also sets strength
+---
+- Pitch
+- CV-X — 1V/oct, centred on middle C
+---
+- Model
+- S1 — modal, string, chords
+---
+- Play
+- S3 — manual gate, no patching needed
+---
+- Resonator CV
+- P1–P4, summed with the pots
+---
+- Assignable CV
+- A, B, C — S2 selects, E2 assigns
+---
+- FM
+- CV-Y — ±49.5 semitones; attenuate at the source
+{% /table %}
 
 Pin map, CV targets and full behaviour are in the
 [repo docs](https://github.com/Eight4aWish/eurorack_modules/blob/main/docs/KSOLOTI_ELEMENTS.md).
