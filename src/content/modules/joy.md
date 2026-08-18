@@ -22,6 +22,15 @@ extraBinaries:
     version: v1.4.0
 firmwareVersion: v1.4.0
 flashWith: daisy-qspi
+flash:
+  bootSteps: []
+  steps: []
+  note: >-
+    On a Mac, copying to the card also writes a hidden twin of your file — ._joy.bin. That
+    also ends in .bin, and it confuses the bootloader’s scanner, so it has to go. Either
+    press Cmd-Shift-. (period) in Finder to reveal hidden files and drag ._joy.bin to the
+    Trash, or if you are happy in Terminal run dot_clean /Volumes/YOURCARD, which clears them
+    in one go. Windows and Linux are unaffected.
 video: qR6oma1cY7w
 draft: false
 ---

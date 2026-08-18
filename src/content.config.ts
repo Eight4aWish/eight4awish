@@ -28,6 +28,19 @@ const modules = defineCollection({
     })).default([]),
     // depends on how the firmware is BUILT (Daisy BOOT_NONE vs BOOT_QSPI), not just the platform
     flashWith: z.enum(['daisy-direct', 'daisy-qspi', 'ksoloti', 'uf2']).optional(),
+    // Per-module wording for the flashing section. Every field is optional and falls back
+    // to the preset for flashWith, so a module only states what is different about it -
+    // its filename, its "you should see this" - and a new module still gets working
+    // instructions without writing any.
+    flash: z.object({
+      intro: z.string().optional(),
+      warn: z.string().optional(),
+      stepsTitle: z.string().optional(),
+      bootSteps: z.array(z.string()).default([]),
+      steps: z.array(z.string()).default([]),
+      command: z.string().optional(),
+      note: z.string().optional(),
+    }).optional(),
     stl: z.string().optional(),
     step: z.string().optional(),
     video: z.string().optional(),                // YouTube id; blank = "coming soon"

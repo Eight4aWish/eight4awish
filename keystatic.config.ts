@@ -131,6 +131,28 @@ export default config({
           ],
           defaultValue: 'daisy-direct',
         }),
+        flash: fields.object(
+          {
+            intro: fields.text({ label: 'Intro line', multiline: true }),
+            warn: fields.text({ label: 'Warning box', multiline: true }),
+            stepsTitle: fields.text({ label: 'Heading for the one-time steps' }),
+            bootSteps: fields.array(fields.text({ label: 'Step', multiline: true }), {
+              label: 'One-time steps (bootloader installs)',
+              itemLabel: (p) => p.value || 'Step',
+            }),
+            steps: fields.array(fields.text({ label: 'Step', multiline: true }), {
+              label: 'Flashing steps',
+              itemLabel: (p) => p.value || 'Step',
+            }),
+            command: fields.text({ label: 'Terminal command' }),
+            note: fields.text({ label: 'Watch out note', multiline: true }),
+          },
+          {
+            label: 'Flashing wording',
+            description:
+              'Overrides the standard wording for the method above. Leave a field blank and the standard wording is used, so you only need to fill in what is specific to this module.',
+          },
+        ),
         stl: fields.text({ label: 'Panel STL link' }),
         step: fields.text({ label: 'Panel STEP link' }),
         video: fields.text({ label: 'YouTube video id', description: 'Leave blank for "coming soon".' }),

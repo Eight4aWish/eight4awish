@@ -18,6 +18,32 @@ binary: >-
 extraBinaries: []
 firmwareVersion: v1.2.3
 flashWith: ksoloti
+flash:
+  warn: >-
+    This is firmware, not a patch. If you have used a Ksoloti before you will expect a
+    script you open in the Patcher and upload — this is not that. It replaces the Ksoloti
+    firmware entirely and boots straight into Girl, so the Patcher is not involved at any
+    point. You can put the stock firmware back whenever you like (see below).
+  bootSteps: []
+  steps:
+    - >-
+      Download girl.bin above.
+    - >-
+      Install dfu-util — on a Mac: brew install dfu-util. (Windows: dfu-util.sourceforge.net,
+      add it to PATH. Linux: sudo apt install dfu-util.)
+    - >-
+      Put the Big Genes in DFU mode: unplug the USB-C cable from the prog socket, hold the
+      E1/S1 encoder button in (push the left encoder shaft), plug USB-C back into prog while
+      still holding, then release.
+    - >-
+      The screen and LEDs will stay off — that is normal, it means you are in DFU mode. Your
+      computer should now see a DFU device.
+    - >-
+      Run the command below in a terminal, from wherever girl.bin is.
+    - >-
+      When it says “File downloaded successfully” the module restarts into Girl. The top line
+      of the OLED should read “S1:Mod”.
+  command: dfu-util -d 0483:df11 -a 0 -s 0x08000000:leave -D girl.bin
 draft: false
 ---
 ## Overview
