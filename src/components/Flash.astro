@@ -7,91 +7,20 @@ const { binary, version, method = 'daisy-direct', extras = [], flash = {} } = As
 
 const DAISY_WEB = 'https://flash.daisy.audio'
 
-const GUIDES = {
-  // small builds: fits the Daisy's 128KB internal flash
-  'daisy-direct': {
-    intro: 'Straight to the module — no bootloader, no card, no toolchain.',
-    steps: [
-      'Download the .bin above.',
-      'Plug the Daisy Patch.Init in with a USB-C data cable.',
-      'Hold BOOT, tap RESET, then release BOOT — the Daisy is now in its ROM bootloader.',
-      'Open the Daisy Web Programmer, click Connect, and pick the DFU device.',
-      'Choose the .bin you downloaded and click Program. Power-cycle. Done.',
-    ],
-    note: 'Needs Chrome or Edge — it uses WebUSB, which Safari and Firefox do not support.',
-  },
 
-  // large builds: runs from QSPI via the Daisy bootloader
-  'daisy-qspi': {
-    intro:
-      'This firmware is too big for the Daisy’s internal flash, so it runs from the QSPI chip via the Daisy bootloader. That means a one-time bootloader install, then the firmware itself goes on with an SD card. Still no compiler needed.',
-    stepsTitle: 'One time per module — install the bootloader',
-    bootSteps: [
-      'Plug the Daisy Patch.Init in with a USB-C data cable.',
-      'Hold BOOT, tap RESET, then release BOOT.',
-      'Open the Daisy Web Programmer and go to its Bootloader section.',
-      'Click Flash. That is the bootloader on — you never have to do this again.',
-    ],
-    steps: [
-      'Download the .bin above.',
-      'Copy it to the root of a FAT32 SD card. It must be the only .bin file on the card.',
-      'Insert the card and power-cycle the module.',
-      'The bootloader spots the file, compares it with what is already in QSPI, flashes it if it differs, and boots. Watch the LED.',
-    ],
-    note:
-      'On a Mac, copying to the card also writes a hidden twin of your file, its name prefixed with ._ — that also ends in .bin, and it confuses the bootloader’s scanner, so it has to go. Either press Cmd-Shift-. (period) in Finder to reveal hidden files and drag it to the Trash, or if you are happy in Terminal run dot_clean /Volumes/YOURCARD, which clears them in one go. Windows and Linux are unaffected.',
-  },
-
-  ksoloti: {
-    intro:
-      'You need the .bin above and one free tool — dfu-util. No coding, no Patcher, no build environment.',
-    warn:
-      'This is firmware, not a patch. If you have used a Ksoloti before you will expect a script you open in the Patcher and upload — this is not that. It replaces the Ksoloti firmware entirely and boots straight into the module, so the Patcher is not involved at any point. You can put the stock firmware back whenever you like (see below).',
-    steps: [
-      'Download the .bin above.',
-      'Install dfu-util — on a Mac: brew install dfu-util. (Windows: dfu-util.sourceforge.net, add it to PATH. Linux: sudo apt install dfu-util.)',
-      'Put the Big Genes in DFU mode: unplug the USB-C cable from the prog socket, hold the E1/S1 encoder button in (push the left encoder shaft), plug USB-C back into prog while still holding, then release.',
-      'The screen and LEDs will stay off — that is normal, it means you are in DFU mode. Your computer should now see a DFU device.',
-      'Run the command below in a terminal, from wherever the .bin is.',
-      'When it says “File downloaded successfully” the module restarts into its new firmware.',
-    ],
-    command: 'dfu-util -d 0483:df11 -a 0 -s 0x08000000:leave -D firmware.bin',
-    note:
-      'Nothing here is one-way. To go back to a stock Ksoloti, flash the original firmware .bin from ksoloti.github.io using exactly the same DFU steps. And if you see “No DFU capable USB device available”, the board is not in DFU mode — you must hold E1/S1 before the cable goes in.',
-  },
-
-  uf2: {
-    intro: 'The easiest of the lot — no software at all.',
-    steps: [
-      'Download the .uf2 above.',
-      'Hold BOOTSEL and plug the board in — it mounts as a USB drive.',
-      'Drag the .uf2 onto that drive. The board reboots itself. Done.',
-    ],
-    note: null,
-  },
-}
-
-const preset = GUIDES[method] ?? GUIDES['daisy-direct']
-
-// Per-module wording wins field by field. A blank string or an empty list falls through to
-// the preset, which is what lets a page override only its own filename and leave the rest.
-const pick = (v, fallback) => (Array.isArray(v) ? (v.length ? v : fallback) : v || fallback)
-
-const g = {
-  intro: pick(flash?.intro, preset.intro),
-  warn: pick(flash?.warn, preset.warn),
-  stepsTitle: pick(flash?.stepsTitle, preset.stepsTitle),
-  bootSteps: pick(flash?.bootSteps, preset.bootSteps),
-  steps: pick(flash?.steps, preset.steps),
-  command: pick(flash?.command, preset.command),
-  note: pick(flash?.note, preset.note),
-}
+// Every word of this section comes from the page's own frontmatter - there is no wording
+// in here to fall back on, deliberately, so nothing can be published that only a code edit
+// can correct. A field left blank simply does not render.
+const g = flash ?? {}
+const steps = g.steps ?? []
+const bootSteps = g.bootSteps ?? []
+// The only thing the method still decides: whether to offer the Daisy Web Programmer link.
 const isDaisy = method === 'daisy-direct' || method === 'daisy-qspi'
 ---
 {binary && (
   <section class="flash">
     <h2 class="sec">Flash it — no compiler needed</h2>
-    <p class="sub">{g.intro}</p>
+    {g.intro && <p class="sub">{g.intro}</p>}
 
     {g.warn && <div class="warn"><b>Read this first —</b> {g.warn}</div>}
 
@@ -108,15 +37,15 @@ const isDaisy = method === 'daisy-direct' || method === 'daisy-qspi'
          them. The only difference is which <code>.bin</code> you download and put on the card.</p>
     )}
 
-    {g.bootSteps && (
+    {bootSteps.length > 0 && (
       <>
         <h3 class="flashsub">{g.stepsTitle}</h3>
-        <ol class="flashsteps">{g.bootSteps.map((s) => <li>{s}</li>)}</ol>
+        <ol class="flashsteps">{bootSteps.map((s) => <li>{s}</li>)}</ol>
         <h3 class="flashsub">Every time — load the firmware</h3>
       </>
     )}
 
-    <ol class="flashsteps">{g.steps.map((s) => <li>{s}</li>)}</ol>
+    {steps.length > 0 && <ol class="flashsteps">{steps.map((s) => <li>{s}</li>)}</ol>}
 
     {g.command && <pre><code>{g.command}</code></pre>}
 

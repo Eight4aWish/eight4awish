@@ -23,8 +23,25 @@ extraBinaries:
 firmwareVersion: v1.4.0
 flashWith: daisy-qspi
 flash:
-  bootSteps: []
-  steps: []
+  intro: >-
+    This firmware is too big for the Daisy’s internal flash, so it runs from the QSPI chip
+    via the Daisy bootloader. That means a one-time bootloader install, then the firmware
+    itself goes on with an SD card. Still no compiler needed.
+  stepsTitle: One time per module — install the bootloader
+  bootSteps:
+    - Plug the Daisy Patch.Init in with a USB-C data cable.
+    - Hold BOOT, tap RESET, then release BOOT.
+    - Open the Daisy Web Programmer and go to its Bootloader section.
+    - >-
+      Click Flash. That is the bootloader on — you never have to do this again.
+  steps:
+    - Download the .bin above.
+    - >-
+      Copy it to the root of a FAT32 SD card. It must be the only .bin file on the card.
+    - Insert the card and power-cycle the module.
+    - >-
+      The bootloader spots the file, compares it with what is already in QSPI, flashes it if
+      it differs, and boots. Watch the LED.
   note: >-
     On a Mac, copying to the card also writes a hidden twin of your file — ._joy.bin. That
     also ends in .bin, and it confuses the bootloader’s scanner, so it has to go. Either

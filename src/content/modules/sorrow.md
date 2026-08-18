@@ -18,6 +18,18 @@ binary: >-
 extraBinaries: []
 firmwareVersion: v1.0.1
 flashWith: daisy-direct
+flash:
+  intro: Straight to the module — no bootloader, no card, no toolchain.
+  bootSteps: []
+  steps:
+    - Download the .bin above.
+    - Plug the Daisy Patch.Init in with a USB-C data cable.
+    - >-
+      Hold BOOT, tap RESET, then release BOOT — the Daisy is now in its ROM bootloader.
+    - Open the Daisy Web Programmer, click Connect, and pick the DFU device.
+    - Choose the .bin you downloaded and click Program. Power-cycle. Done.
+  note: >-
+    Needs Chrome or Edge — it uses WebUSB, which Safari and Firefox do not support.
 draft: false
 ---
 ## **Overview**

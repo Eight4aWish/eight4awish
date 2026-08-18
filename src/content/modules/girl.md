@@ -19,6 +19,9 @@ extraBinaries: []
 firmwareVersion: v1.2.3
 flashWith: ksoloti
 flash:
+  intro: >-
+    You need the .bin above and one free tool — dfu-util. No coding, no Patcher, no build
+    environment.
   warn: >-
     This is firmware, not a patch. If you have used a Ksoloti before you will expect a
     script you open in the Patcher and upload — this is not that. It replaces the Ksoloti
@@ -44,6 +47,11 @@ flash:
       When it says “File downloaded successfully” the module restarts into Girl. The top line
       of the OLED should read “S1:Mod”.
   command: dfu-util -d 0483:df11 -a 0 -s 0x08000000:leave -D girl.bin
+  note: >-
+    Nothing here is one-way. To go back to a stock Ksoloti, flash the original firmware .bin
+    from ksoloti.github.io using exactly the same DFU steps. And if you see “No DFU capable
+    USB device available”, the board is not in DFU mode — you must hold E1/S1 before the
+    cable goes in.
 draft: false
 ---
 ## Overview
