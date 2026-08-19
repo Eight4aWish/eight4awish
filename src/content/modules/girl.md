@@ -52,6 +52,7 @@ flash:
     firmware. The easiest way to do this is using the Ksoloti desktop app. Put
     the board back into DFU mode, then choose "Board - Firmware - Flash
     (Rescue)" from the menu.
+video: Xg3jdBBeHSY
 draft: false
 ---
 ## Overview
