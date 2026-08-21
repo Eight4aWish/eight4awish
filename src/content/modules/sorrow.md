@@ -3,8 +3,8 @@ title: Sorrow
 date: 2026-06-28
 summary: >-
   A Mutable Instruments Grids based drum machine for the Daisy patch.Init() —
-  with its own drum voices, a pool of models to roll between, and three
-  pattern banks.
+  with its own drum voices, a pool of models to roll between, and three pattern
+  banks.
 platform: Patch Submodule
 tags:
   - Drums
@@ -28,8 +28,7 @@ flash:
     - Plug the Daisy Patch.Init in with a USB-C data cable.
     - Hold BOOT, tap RESET, then release BOOT.
     - Open the Daisy Web Programmer and go to its Bootloader section.
-    - >-
-      Click Flash. That is the bootloader on — you never have to do this again.
+    - Click Flash. That is the bootloader on — you never have to do this again.
   steps:
     - Download the .bin above.
     - >-
@@ -39,68 +38,44 @@ flash:
     - >-
       The bootloader compares the file with what is already in QSPI, flashes it
       if it differs, and boots. Two slow LED blinks means the firmware started.
-  note: >-
-    Needs Chrome or Edge for the bootloader step — it uses WebUSB, which Safari
-    and Firefox do not support. The card must be FAT32, not exFAT.
   links:
     - label: Daisy Web Programmer
       url: https://flash.daisy.audio
+  note: >-
+    Needs Chrome or Edge for the bootloader step — it uses WebUSB, which Safari
+    and Firefox do not support. The card must be FAT32, not exFAT.
 draft: false
 ---
 ## **Overview**
 
-**Sorrow** is a drum machine for the Daisy patch.Init(). It has its own drum voices, so it works as
-a self-contained beatbox with nothing else patched — and it drives external modules at the same
-time, rather than instead. It's based on **Mutable Instruments Grids** by Émilie Gillet, and named,
-like everything here, after the nursery rhyme: *one for sorrow, two for joy*. Not affiliated with,
-or endorsed by, Mutable Instruments or Electrosmith.
+**Sorrow** is a drum machine for the Daisy patch.Init(). It's based on **Mutable Instruments Grids** by Émilie Gillet, and named, like everything here, after the nursery rhyme: *one for sorrow, two for joy*. Not affiliated with, or endorsed by, Mutable Instruments or Electrosmith. Unlike Grids it has its own drum voices — lots of them, covering different styles — so it works as a self-contained beatbox with nothing else patched. It can also drive external modules, or both at once.
 
 ## Rolling a kit
 
-Sorrow is a dice machine. **Flip the B8 toggle out and back and you get a new kit** — that gesture
-is the instrument, and it's the main way you change the sound.
+Sorrow is a randomised drum machine. **Flip the B8 toggle down and up and you get a new kit** — that gesture is the instrument, and it's the main way you change the sound.
 
-Each of the three slots is filled from a pool of ten DaisySP models rather than one fixed voice:
-Émilie's synthetic and 808-lineage drum models, the metallic hi-hats, and physical-modelling voices
-for something stranger. **Wildness** is the single control over how far a roll may go — which models
-are eligible, how far their parameters roam, and whether the three slots agree on a family or clash.
-Low, and you get a coherent kit from tame ranges. High, and an analog kick can sit under a modal
-snare and a ring-mod hat.
+Each of the three slots is filled from a pool of ten DaisySP models rather than one fixed voice: based on Mutable's synthetic and 808-lineage drum models, the metallic hi-hats, and physical-modelling voices for something stranger. **Wildness** is the single control over how far the randomiser may go — which models are eligible, how far their parameters roam, and whether the three slots agree on a family or clash. Low, and you get a coherent, safe kit from tame ranges. High, and an analog kick can sit under a modal snare and a ring-mod hat.
 
-There's no per-drum editing. That was tried and removed: rolling the dice was always more rewarding
-than dialling in a sound.
+Don't like the kit — randomise.
 
 ## Three pattern banks
 
-Grids is a lookup table, not an algorithm — 25 hand-authored patterns, and X/Y interpolates between
-four of them at a time. All the musicality is in about 2.4 KB of data, which means a different bank
-is a different instrument for no extra processing at all.
-
-**Hold B7** to cycle banks. The module says which one it's switched to.
+Grids is a morphing lookup table — 25 hand-authored patterns, where X/Y controls interpolate between four of them at a time. All the musicality is in about 2.4 KB of data. The Grids classics are here but fresh banks have been added for extra variation. **Hold B7** to cycle banks. The module — synthetic Dan — lets you know which has been selected.
 
 - **Original** — Émilie's Grids map, derived from electronic music
-- **Club** — derived here from the Lakh MIDI Dataset, selected by *rhythmic signature* rather than by
-  genre: four-to-the-floor with offbeat hats, breakbeats and half-time patterns, whoever happened to
-  play them
+- **Club** — derived here from the Lakh MIDI Dataset, selected by *rhythmic signature* rather than by genre: four-to-the-floor with offbeat hats, breakbeats and half-time patterns, regardless of who played them
 - **Traditional** — derived from the Groove MIDI Dataset: human drummers, rock through jazz
 
-Both derived banks come from a 5×5 self-organising map over tens of thousands of two-bar patterns,
-so neighbouring points on the map are musically related and X/Y morphs rather than jumps. The
-[tooling is in the repo](https://github.com/Eight4aWish/eurorack_daisy_patch_init/tree/main/daisy_grids/tools/groove_nodes),
+The additional banks come from a 5×5 self-organising map over tens of thousands of two-bar patterns, so neighbouring points on the map are musically related and X/Y morphs smoothly between patterns. The bank maker [tooling is in the repo](https://github.com/Eight4aWish/eurorack_daisy_patch_init/tree/main/daisy_grids/tools/groove_nodes),
 so you can point it at your own MIDI library and derive a bank of your own genres.
 
 ## Controls
 
-**Home page** — X and Y move around the pattern map, master density decides how much plays, and
-chaos perturbs the groove. CV inputs modulate all four. The LED marks the bar so you can see where
-you are.
+**Home page** — X and Y move around the pattern map, master density decides how many hits within a pattern actually play, and chaos perturbs the groove. CV inputs modulate all four. The LED marks the bar so you can see where you are.
 
-**Kit page** (short press B7) — density trim per drum, and wildness. The sequencer keeps running
-while you set them.
+**Kit page** (short press B7) — the first three pots adjust the density per drum, the fourth dials in some wildness. The sequencer keeps running while you set them, so you hear the change as you make it.
 
-**Clock** — feed it anything. Sorrow measures the incoming pulse and works out whether you're
-sending 24, 8, 4, 2 or 1 ppqn, so it locks to a MIDI clock divider, a Pam's output or a quarter-note
-trigger without being told which. Unpatched it runs at 120 BPM. Reset on the second gate input.
+**Clock** — feed it anything. Sorrow measures the incoming pulse and works out whether you're most likely sending 24, 8, 4, 2 or 1 ppqn, so it locks to a MIDI clock divider, a Pam's output or a quarter-note trigger without being told which. Unpatched it runs at 120 BPM. Reset on the second gate input.
 
 **Outputs** — the internal kit plays the audio outs while kick, snare and hat triggers fire from the
 gate outputs and CV out, from the same pattern, all the time.
