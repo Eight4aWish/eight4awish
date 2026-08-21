@@ -66,7 +66,8 @@ Grids is a morphing lookup table — 25 hand-authored patterns, where X/Y contro
 - **Club** — derived here from the Lakh MIDI Dataset, selected by *rhythmic signature* rather than by genre: four-to-the-floor with offbeat hats, breakbeats and half-time patterns, regardless of who played them
 - **Traditional** — derived from the Groove MIDI Dataset: human drummers, rock through jazz
 
-The additional banks come from a 5×5 self-organising map over tens of thousands of two-bar patterns, so neighbouring points on the map are musically related and X/Y morphs smoothly between patterns. The bank maker [tooling is in the repo](https://github.com/Eight4aWish/eurorack_daisy_patch_init/tree/main/daisy_grids/tools/groove_nodes),
+The additional banks come from a 5×5 self-organising map trained on thousands of two-bar patterns —
+60,000 for Club, 11,155 for Traditional — so neighbouring points on the map are musically related and X/Y morphs smoothly between patterns. The bank maker [tooling is in the repo](https://github.com/Eight4aWish/eurorack_daisy_patch_init/tree/main/daisy_grids/tools/groove_nodes),
 so you can point it at your own MIDI library and derive a bank of your own genres.
 
 ## Controls
