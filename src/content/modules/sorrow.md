@@ -20,11 +20,9 @@ extraBinaries: []
 firmwareVersion: v2.0.0
 flash:
   intro: >-
-    Version 2 runs from SRAM via the Daisy bootloader rather than internal flash,
-    because the drum models no longer fit in 128 KB. That means a one-time
-    bootloader install, then the firmware goes on with an SD card. Still no
-    compiler needed. If you flashed v1 the old way, the bootloader step is new —
-    the v2 binary will not run without it.
+    Sorrow runs from SRAM via the Daisy bootloader, so there is a one-time
+    bootloader install and then the firmware goes on with an SD card. No
+    compiler needed.
   stepsTitle: One time per module — install the bootloader
   bootSteps:
     - Plug the Daisy Patch.Init in with a USB-C data cable.
