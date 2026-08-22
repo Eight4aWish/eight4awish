@@ -85,6 +85,7 @@ I don't own a Grids, so this is everything that can be established without one �
 - **The code is untouched.** All four builds — stock, and the three banks — come out at precisely 12,122 bytes of code and 58 of data. Diff the stock binary against a bank build and every difference sits inside a 2,399-byte span. That is the pattern table and nothing else. Not one byte of program logic changes.
 - **The tables are genuinely drop-in.** Fed Grids' own data, the table generator reproduces the block in `resources.cc` byte for byte, whitespace included.
 - **The audio carries what it should.** I wrote a decoder that reads each `.wav` back the way the bootloader does — 96 packets, each 128 bytes of firmware plus a CRC32. Every checksum is valid and the recovered bytes match the compiled firmware exactly.
+- **And the encoding is checked against a file known to work.** The same decoder reads Mutable's own `grids_1.0.wav` — the one they publish for reverting a module to stock — and recovers all 99 of its packets cleanly. That matters more than the point above: it pins the format to something that has flashed real hardware, rather than to my own assumptions about it. It also caught a real error. My first encode used the encoder's default symbol timings, and Mutable's file measures different ones; against the module's decoder every zero would have read as a one. Those files would never have flashed.
 
 None of which proves it flashes and plays on a real module. That is the ask.
 
