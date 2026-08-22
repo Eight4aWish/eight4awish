@@ -49,10 +49,6 @@ Then, somewhere near the end of video planning, I realised the obvious thing: **
 **structure.** Same 25 nodes, same 96 bytes, same `drum_map[5][5]`. Which means these banks
 are *portable* to real hardware — they are a byte-for-byte data substitution. Same size, no code change, nothing to fit into the flash budget. I just don't own the real hardware to test it out.
 
-**Others have been here.** [Rich Heslip's MIDI2Drums](https://github.com/rheslip/2HPico-Sketches/tree/master/Grids_Drums)
-does the same job for his Pico drum machine, and [Phazerville's](https://github.com/djphazer/O_C-Phazerville)
-DrumMap applet for Ornament & Crime already runs a non-Mutable map.
-
 ## The three banks
 
 Coherence below is how alike neighbouring cells on the map are, which is what decides

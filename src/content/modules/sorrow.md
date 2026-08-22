@@ -71,6 +71,10 @@ The additional banks each come from a 5×5 self-organising map trained on a few 
 patterns — past about three thousand, more source material stops making a better map — so neighbouring points are musically related and X/Y morphs smoothly between patterns. The bank maker [tooling is in the repo](https://github.com/Eight4aWish/eurorack_daisy_patch_init/tree/main/daisy_grids/tools/groove_nodes),
 so you can point it at your own MIDI library and derive a bank of your own genres.
 
+**Others have been here.** [Rich Heslip's MIDI2Drums](https://github.com/rheslip/2HPico-Sketches/tree/master/Grids_Drums)
+does the same job for his Pico drum machine, and [Phazerville's](https://github.com/djphazer/O_C-Phazerville)
+DrumMap applet for Ornament & Crime already runs a non-Mutable map.
+
 Real Grids hardware uses the same 25 nodes of the same 96 bytes, so these banks drop into it
 unchanged. There is [firmware for that too](/notes/grids-patterns/) — built and checked as far
 as it can be without a module, and looking for someone with the hardware to try it.
