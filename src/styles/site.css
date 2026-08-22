@@ -82,6 +82,8 @@ code{font-family:var(--mono);font-size:13px}
 pre code{color:#24262b}
 .note{background:var(--bg2);border-left:3px solid var(--red);border-radius:0 6px 6px 0;padding:11px 15px;color:#3a3d43;margin:14px 0}
 .note b{color:var(--tx)}
+/* .note already carries the red rule; a .sec heading inside it would draw a second one. */
+.note h2.sec{border-left:0;padding-left:0;margin-top:0}
 .vidslot{aspect-ratio:16/9;max-width:640px;background:var(--bg2);border:1px solid var(--line);border-radius:var(--radius);
   display:flex;align-items:center;justify-content:center;color:var(--mut)}
 

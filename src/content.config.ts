@@ -80,4 +80,29 @@ const tutorials = defineCollection({
   }),
 })
 
-export const collections = { modules, tutorials }
+// A note is the short form: something learned or made that is not a module and not a
+// tutorial. No video, no build guide - a page, sometimes a file to download, and often
+// a question for whoever reads it.
+const notes = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/notes' }),
+  schema: z.object({
+    title: z.string(),
+    date: z.coerce.date(),                       // newest first
+    eyebrow: z.string().default('Note'),         // "Note", "Experiment", "Call for testers"
+    summary: z.string(),                         // the card blurb
+    graphic: z.string().optional(),              // card thumb; text-only card without one
+    chips: z.array(z.string()).default([]),
+    repo: z.string().optional(),
+    // Files to try. A note often exists *because* there is something to hand over.
+    downloads: z.array(z.object({
+      label: z.string(),
+      url: z.string(),
+      note: z.string().optional(),               // one line under the button
+    })).default([]),
+    // The point of most notes: someone else can do the bit we cannot.
+    ask: z.string().optional(),                  // the call to action, in one paragraph
+    draft: z.boolean().default(false),
+  }),
+})
+
+export const collections = { modules, tutorials, notes }

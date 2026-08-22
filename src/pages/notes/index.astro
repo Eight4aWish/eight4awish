@@ -1,0 +1,18 @@
+---
+import { getCollection } from 'astro:content'
+import Base from '../../layouts/Base.astro'
+import Cards from '../../components/Cards.astro'
+
+// Notes are the short form — no index singleton, because the heading never changes.
+const notes = (await getCollection('notes'))
+  .filter((n) => import.meta.env.DEV || !n.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+---
+<Base title="Notes — Eight4aWish" description="Short write-ups: things made or learned along the way that are not a module and not a tutorial." nav="notes">
+  <div class="intro">
+    <h1>Notes</h1>
+    <p>The short form. Things made or learned along the way that are not a module and not
+       a tutorial — usually with something to download, and often with a question attached.</p>
+  </div>
+  <Cards notes={notes} />
+</Base>

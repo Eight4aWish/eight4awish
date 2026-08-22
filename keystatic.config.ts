@@ -8,7 +8,7 @@ export default config({
     brand: { name: 'Eight4aWish' },
     navigation: {
       Pages: ['home', 'modulesIndex', 'tutorialsIndex', 'about'],
-      Content: ['modules', 'tutorials'],
+      Content: ['modules', 'tutorials', 'notes'],
     },
   },
 
@@ -208,6 +208,45 @@ export default config({
           }),
           { label: 'Songs', itemLabel: (p) => p.fields.title.value || 'Song' },
         ),
+        content: fields.markdoc({ label: 'Page content', extension: 'md' }),
+      },
+    }),
+
+    notes: collection({
+      label: 'Notes',
+      slugField: 'title',
+      path: 'src/content/notes/*',
+      format: { contentField: 'content' },
+      columns: ['title', 'date'],
+      schema: {
+        title: fields.slug({ name: { label: 'Title' } }),
+        date: fields.date({ label: 'Date', validation: { isRequired: true } }),
+        eyebrow: fields.text({
+          label: 'Eyebrow',
+          defaultValue: 'Note',
+          description: 'e.g. Note, Experiment, Call for testers',
+        }),
+        summary: fields.text({ label: 'Summary', multiline: true, validation: { isRequired: true } }),
+        graphic: fields.text({
+          label: 'Graphic (path)',
+          description: 'Optional. Path under public/, e.g. /renders/daisy_grids_flat.png. Blank gives a text-only card.',
+        }),
+        chips: fields.array(fields.text({ label: 'Chip' }), { label: 'Chips', itemLabel: (p) => p.value }),
+        repo: fields.url({ label: 'Repo' }),
+        downloads: fields.array(
+          fields.object({
+            label: fields.text({ label: 'Button label' }),
+            url: fields.text({ label: 'URL or path' }),
+            note: fields.text({ label: 'One line under the button', multiline: true }),
+          }),
+          { label: 'Downloads', itemLabel: (p) => p.fields.label.value || 'Download' },
+        ),
+        ask: fields.text({
+          label: 'The ask',
+          multiline: true,
+          description: 'The call to action, in one paragraph. Shown in a callout above the downloads.',
+        }),
+        draft: fields.checkbox({ label: 'Draft (hide from the site)', defaultValue: false }),
         content: fields.markdoc({ label: 'Page content', extension: 'md' }),
       },
     }),

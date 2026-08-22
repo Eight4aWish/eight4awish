@@ -4,16 +4,17 @@
   "version": "1.0.0",
   "scripts": {
     "sync:lessons": "mkdir -p public/lessons && cp strudel/lessons/simple_song*.js public/lessons/",
-    "predev": "npm run sync:lessons && npm run sync:renders",
+    "predev": "node tools/normalise-markdoc-tables.mjs && npm run sync:lessons && npm run sync:renders",
     "dev": "astro dev",
-    "prebuild": "node tools/optimise-images.mjs",
+    "prebuild": "node tools/normalise-markdoc-tables.mjs && node tools/optimise-images.mjs",
     "build": "astro build",
     "preview": "astro preview",
-    "preedit": "npm run sync:lessons && npm run sync:renders",
+    "preedit": "npm run sync:lessons && npm run sync:renders && node tools/normalise-markdoc-tables.mjs",
     "edit": "astro dev --open /keystatic",
     "sync:renders": "node tools/sync-renders.mjs",
     "images": "node tools/optimise-images.mjs",
-    "deploy": "node tools/deploy.mjs"
+    "deploy": "node tools/deploy.mjs",
+    "tables": "node tools/normalise-markdoc-tables.mjs"
   },
   "dependencies": {
     "@astrojs/node": "^11.0.2",

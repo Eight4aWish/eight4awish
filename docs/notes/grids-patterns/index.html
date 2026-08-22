@@ -1,0 +1,72 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>New pattern banks for Mutable Grids — Eight4aWish</title><meta name="description" content="Sorrow's derived drum maps are the same data structure Grids uses, so they drop straight into the real module. Three new banks, but no hardware to test them on."><link rel="canonical" href="https://eight4awish.com/notes/grids-patterns/"><!-- so a link pasted into YouTube, Reddit or Discord shows the artwork --><meta property="og:type" content="website"><meta property="og:title" content="New pattern banks for Mutable Grids — Eight4aWish"><meta property="og:description" content="Sorrow's derived drum maps are the same data structure Grids uses, so they drop straight into the real module. Three new banks, but no hardware to test them on."><meta property="og:image" content="https://eight4awish.com/opt/daisy_grids_flat.og.jpg"><meta property="og:url" content="https://eight4awish.com/notes/grids-patterns/"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="New pattern banks for Mutable Grids — Eight4aWish"><meta name="twitter:description" content="Sorrow's derived drum maps are the same data structure Grids uses, so they drop straight into the real module. Three new banks, but no hardware to test them on."><meta name="twitter:image" content="https://eight4awish.com/opt/daisy_grids_flat.og.jpg"><link rel="stylesheet" href="/_astro/Base.Bptdj6Om.css"></head><body><header class="site"><div class="wrap"><a class="brand" href="/">Home</a><nav class="site"><a href="/modules/">Modules</a><a href="/tutorials/">Tutorials</a><a href="/notes/" class="on">Notes</a><a href="/about/">About</a></nav></div></header><main class="wrap"><div class="crumb"><a href="/notes/">Notes</a> / New pattern banks for Mutable Grids</div><p class="eyebrow" style="margin-top:14px">Call for testers · 22 August 2026</p><h1 style="margin:0 0 6px">New pattern banks for Mutable Grids</h1><p class="sub">Sorrow&#39;s derived drum maps are the same data structure Grids uses, so they drop straight into the real module. Three new banks, but no hardware to test them on.</p><div class="chips" style="margin:14px 0 0"><span class="chip acc">Call for testers</span><span class="chip">Mutable Grids</span><span class="chip">Drums</span></div><section class="note"><h2 class="sec">Can you help?</h2><p style="margin:0">I do not own a Grids, and I have not run any of this on real hardware. If you have one — or a clone that accepts Grids firmware updates — I would love to know whether it works and what it sounds like. Even better, if you are in the UK and would lend me one for a fortnight, I will upload the firmware, film the result and send it back refreshed with the original firmware.</p></section><div class="prose"><h2 id="in-making-the-sorrow-video-i-had-an-idea">In making the Sorrow video, I had an idea</h2>
+<p><a href="/modules/sorrow/"><strong>Sorrow</strong></a> is a Grids port for the Daisy patch.Init(), with its own drum voices and drum patterns. In developing the port I learnt that Grids’ patterns are a lookup table — machine-learned from a big pile of drum loops, then arranged by hand. Twenty-five hand-selected patterns, 96 bytes each, and X/Y interpolates between the four nearest. All the musicality lives in about 2.4 KB of data. But if you change the data you can have a different instrument running the same engine.</p>
+<p>So I built a pipeline that derives a bank from any folder of MIDI: quantises to 16ths, cuts two-bar windows, boils the result down to 25 patterns arranged on a 5×5 grid, then matches each lane’s loudness distribution back onto Grids’ own so that density and accent behave exactly as they did before.</p>
+<p>The arranging is the interesting part, and it is why this uses a <strong>self-organising map</strong> rather than ordinary clustering. Clustering would give you 25 sensible piles of patterns in arbitrary order — so pile 3 might be nothing like pile 4. A self-organising map sorts <em>and</em> arranges at once: it finds the cell closest to each pattern, nudges that cell towards it, and nudges its neighbours a little too. Do that a few thousand times and neighbouring cells end up genuinely alike.</p>
+<p>Which is exactly what Grids needs, because X and Y slide <em>between</em> adjacent cells. Arbitrary order and the knobs jump between unrelated beats; a proper map and they morph.</p>
+<p>Then, somewhere near the end of video planning, I realised the obvious thing: <strong>the real Grids uses exactly the same</strong>
+<strong>structure.</strong> Same 25 nodes, same 96 bytes, same <code>drum_map[5][5]</code>. Which means these banks
+are <em>portable</em> to real hardware — they are a byte-for-byte data substitution. Same size, no code change, nothing to fit into the flash budget. I just don’t own the real hardware to test it out.</p>
+<h2 id="the-three-banks">The three banks</h2>
+<p>Coherence below is how alike neighbouring cells on the map are, which is what decides
+whether X and Y morph smoothly or jump. The tighter the family of rhythms, the higher it
+goes — so Latin, the most focused of the three, comes top; Traditional spans rock
+through blues to jazz across the same twenty-five cells; and Club has to cover
+four-to-the-floor, breakbeat and half-time all at once.</p>
+<table>
+<thead>
+<tr>
+<th>bank</th>
+<th>corpus</th>
+<th>patterns</th>
+<th>coherence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Latin</strong></td>
+<td>Groove MIDI, filtered to latin, jazz and afro styles</td>
+<td>4,793</td>
+<td><strong>41.9%</strong></td>
+</tr>
+<tr>
+<td><strong>Traditional (Rock, Blues etc)</strong></td>
+<td>Groove MIDI, all styles</td>
+<td>11,155</td>
+<td>38.8%</td>
+</tr>
+<tr>
+<td><strong>Club</strong></td>
+<td>Lakh, by rhythmic signature</td>
+<td>60,000</td>
+<td>34.9%</td>
+</tr>
+</tbody>
+</table>
+<h2 id="getting-it-onto-a-module">Getting it onto a module</h2>
+<p>Grids’ bootloader accepts firmware as <strong>FSK-encoded audio through the CLOCK input</strong> — no
+programmer, no opening the case.</p>
+<ol>
+<li><strong>Hold RESET</strong> while you power the module on. The LEDs flash to confirm the bootloader is listening.</li>
+<li>Patch an audio output — phone, laptop, interface — into <strong>CLOCK IN</strong>.</li>
+<li>Play the <code>.wav</code> at <strong>full volume</strong>, no EQ, no effects, no Bluetooth. It runs about thirty seconds.</li>
+<li>The LEDs march along as pages are written, then flash, and the module boots into the new bank.</li>
+</ol>
+<p>It is Mutable’s own official update path, which means <strong>it is reversible</strong>: the stock
+firmware WAV puts the module back exactly as it was, by exactly the same steps. There is a
+<code>.hex</code> of each build alongside the audio if you would rather use a programmer.</p>
+<h2 id="what-i-could-check-without-a-module">What I could check without a module</h2>
+<p>I don’t own a Grids, so this is everything that can be established without one — which turned out to be more than I expected:</p>
+<ul>
+<li><strong>The code is untouched.</strong> All four builds — stock, and the three banks — come out at precisely 12,122 bytes of code and 58 of data. Diff the stock binary against a bank build and every difference sits inside a 2,399-byte span. That is the pattern table and nothing else. Not one byte of program logic changes.</li>
+<li><strong>The tables are genuinely drop-in.</strong> Fed Grids’ own data, the table generator reproduces the block in <code>resources.cc</code> byte for byte, whitespace included.</li>
+<li><strong>The audio carries what it should.</strong> I wrote a decoder that reads each <code>.wav</code> back the way the bootloader does — 96 packets, each 128 bytes of firmware plus a CRC32. Every checksum is valid and the recovered bytes match the compiled firmware exactly.</li>
+</ul>
+<p>None of which proves it flashes and plays on a real module. That is the ask.</p>
+<h2 id="what-is-not-done">What is not done</h2>
+<p>What is missing is somebody to try it on a module that actually exists. I would also like
+to know whether the jazz/latin bank is as good to play as it measures — coherence is a
+number, and a number is not a groove.</p>
+<p>Grids is GPL-3.0, so anything I distribute ships with complete corresponding source. The
+tooling, the tables and the derivation scripts are all in the repo linked below — point
+<code>groove_nodes</code> at your own MIDI folder and it will derive a bank of your own genres.</p>
+</div><section style="margin-top:26px"><h2 class="sec">Downloads</h2><p style="margin:0 0 14px"><a class="btn" href="/firmware/grids/grids_latin.wav">grids_latin.wav</a><span class="sub" style="display:block;margin-top:6px">Latin, jazz, afro-cuban, afrobeat, New Orleans. The most coherent map of the three, and the furthest from anything Grids does out of the box.</span></p><p style="margin:0 0 14px"><a class="btn" href="/firmware/grids/grids_groove.wav">grids_groove.wav</a><span class="sub" style="display:block;margin-top:6px">Human drummers, rock through jazz, from the Groove MIDI Dataset.</span></p><p style="margin:0 0 14px"><a class="btn" href="/firmware/grids/grids_club.wav">grids_club.wav</a><span class="sub" style="display:block;margin-top:6px">Four-to-the-floor, breakbeat and half-time, picked out of the Lakh dataset by rhythmic signature.</span></p></section><p style="margin-top:22px"><a href="https://github.com/Eight4aWish/eurorack_daisy_patch_init/tree/main/daisy_grids/tools/grids_firmware">Source and tooling on GitHub →</a></p></main><footer class="site"><div class="wrap"><span>© Eight4aWish</span><a href="https://github.com/Eight4aWish">GitHub</a><a href="mailto:info@eight4awish.com">info@eight4awish.com</a><a href="https://buymeacoffee.com/eight4awish">Buy me a coffee</a></div></footer></body></html>

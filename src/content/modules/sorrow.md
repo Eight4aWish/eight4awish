@@ -3,7 +3,7 @@ title: Sorrow
 date: 2026-06-28
 summary: >-
   A Mutable Instruments Grids based drum machine for the Daisy patch.Init() —
-  with its own drum voices, a pool of models to roll between, and three pattern
+  with its own drum voices, a pool of models to roll between, and four pattern
   banks.
 platform: Patch Submodule
 tags:
@@ -15,9 +15,9 @@ photoCaption: Sorrow in the rack.
 status: built
 firmware: https://github.com/Eight4aWish/eurorack_daisy_patch_init
 binary: >-
-  https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/sorrow-v2.0.0/sorrow-v2.0.0.bin
+  https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/sorrow-v2.1.0/sorrow-v2.1.0.bin
 extraBinaries: []
-firmwareVersion: v2.0.0
+firmwareVersion: v2.1.0
 flash:
   intro: >-
     Sorrow runs from SRAM via the Daisy bootloader, so there is a one-time
@@ -58,17 +58,22 @@ Each of the three slots is filled from a pool of ten DaisySP models rather than 
 
 Don't like the kit — randomise.
 
-## Three pattern banks
+## Four pattern banks
 
 Grids is a morphing lookup table — 25 hand-authored patterns, where X/Y controls interpolate between four of them at a time. All the musicality is in about 2.4 KB of data. The Grids classics are here but fresh banks have been added for extra variation. **Hold B7** to cycle banks. The module — synthetic Dan — lets you know which has been selected.
 
 - **Original** — Émilie's Grids map, derived from electronic music
 - **Club** — derived here from the Lakh MIDI Dataset, selected by *rhythmic signature* rather than by genre: four-to-the-floor with offbeat hats, breakbeats and half-time patterns, regardless of who played them
 - **Traditional** — derived from the Groove MIDI Dataset: human drummers, rock through jazz
+- **Latin** — the same dataset filtered to latin, jazz, afro-cuban, afrobeat, New Orleans, reggae and highlife. The most coherent of the four, so X/Y morphs most smoothly, and the one that sounds least like a drum machine
 
-The additional banks come from a 5×5 self-organising map trained on more than ten thousand two-bar
-patterns each, so neighbouring points on the map are musically related and X/Y morphs smoothly between patterns. The bank maker [tooling is in the repo](https://github.com/Eight4aWish/eurorack_daisy_patch_init/tree/main/daisy_grids/tools/groove_nodes),
+The additional banks each come from a 5×5 self-organising map trained on a few thousand two-bar
+patterns — past about three thousand, more source material stops making a better map — so neighbouring points are musically related and X/Y morphs smoothly between patterns. The bank maker [tooling is in the repo](https://github.com/Eight4aWish/eurorack_daisy_patch_init/tree/main/daisy_grids/tools/groove_nodes),
 so you can point it at your own MIDI library and derive a bank of your own genres.
+
+Real Grids hardware uses the same 25 nodes of the same 96 bytes, so these banks drop into it
+unchanged. There is [firmware for that too](/notes/grids-patterns/) — built and checked as far
+as it can be without a module, and looking for someone with the hardware to try it.
 
 ## Controls
 

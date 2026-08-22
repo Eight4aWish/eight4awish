@@ -1,7 +1,7 @@
 ---
-// The two card shapes, in one place — change here, every grid follows.
+// The three card shapes, in one place — change here, every grid follows.
 import { opt } from '../lib/img'
-const { modules = [], tutorials = [] } = Astro.props
+const { modules = [], tutorials = [], notes = [] } = Astro.props
 ---
 {modules.length > 0 && (
   <div class="grid">
@@ -32,6 +32,26 @@ const { modules = [], tutorials = [] } = Astro.props
           <p>{t.data.summary}</p>
           <div class="chips">
             {t.data.chips.map((c, i) => <span class={i === 0 ? 'chip acc' : 'chip'}>{c}</span>)}
+          </div>
+        </div>
+      </a>
+    ))}
+  </div>
+)}
+
+{notes.length > 0 && (
+  <div class="grid tut">
+    {notes.map((n) => (
+      <a class="card" href={`/notes/${n.id}/`}>
+        {n.data.graphic && (
+          <div class="thumb"><img src={opt(n.data.graphic)} alt={n.data.title} loading="lazy" decoding="async" /></div>
+        )}
+        <div class="body">
+          <p class="eyebrow">{n.data.eyebrow}</p>
+          <h3>{n.data.title}</h3>
+          <p>{n.data.summary}</p>
+          <div class="chips">
+            {n.data.chips.map((c, i) => <span class={i === 0 ? 'chip acc' : 'chip'}>{c}</span>)}
           </div>
         </div>
       </a>

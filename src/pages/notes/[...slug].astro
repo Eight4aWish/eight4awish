@@ -1,0 +1,56 @@
+---
+import { getCollection, render } from 'astro:content'
+import Base from '../../layouts/Base.astro'
+
+export async function getStaticPaths() {
+  // Drafts are previewable locally but never published.
+  const notes = (await getCollection('notes'))
+    .filter((n) => import.meta.env.DEV || !n.data.draft)
+  return notes.map((n) => ({ params: { slug: n.id }, props: { note: n } }))
+}
+
+const { note } = Astro.props
+const { Content } = await render(note)
+const d = note.data
+const when = d.date.toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' })
+---
+<Base title={`${d.title} — Eight4aWish`} description={d.summary} image={d.graphic} nav="notes">
+  <div class="crumb"><a href="/notes/">Notes</a> / {d.title}</div>
+
+  <p class="eyebrow" style="margin-top:14px">{d.eyebrow} · {when}</p>
+  <h1 style="margin:0 0 6px">{d.title}</h1>
+  <p class="sub">{d.summary}</p>
+
+  {d.chips.length > 0 && (
+    <div class="chips" style="margin:14px 0 0">
+      {d.chips.map((c, i) => <span class={i === 0 ? 'chip acc' : 'chip'}>{c}</span>)}
+    </div>
+  )}
+
+  {/* The ask leads — this is a call for testers, so it goes above the story rather
+      than after it. */}
+  {d.ask && (
+    <section class="note">
+      <h2 class="sec">Can you help?</h2>
+      <p style="margin:0">{d.ask}</p>
+    </section>
+  )}
+
+  <div class="prose"><Content /></div>
+
+  {d.downloads.length > 0 && (
+    <section style="margin-top:26px">
+      <h2 class="sec">Downloads</h2>
+      {d.downloads.map((f) => (
+        <p style="margin:0 0 14px">
+          <a class="btn" href={f.url}>{f.label}</a>
+          {f.note && <span class="sub" style="display:block;margin-top:6px">{f.note}</span>}
+        </p>
+      ))}
+    </section>
+  )}
+
+  {d.repo && (
+    <p style="margin-top:22px"><a href={d.repo}>Source and tooling on GitHub →</a></p>
+  )}
+</Base>
