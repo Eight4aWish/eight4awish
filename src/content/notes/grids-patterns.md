@@ -74,9 +74,13 @@ programmer, no opening the case.
 1. Play the `.wav` at **full volume**, no EQ, no effects, no Bluetooth. It runs about thirty seconds.
 1. The LEDs march along as pages are written, then flash, and the module boots into the new bank.
 
-It is Mutable's own official update path, which means **it is reversible**: the stock
-firmware WAV puts the module back exactly as it was, by exactly the same steps. There is a
-`.hex` of each build alongside the audio if you would rather use a programmer.
+It is Mutable's own official update path, which means **it is reversible**. Mutable still
+publish the stock firmware as an audio file —
+[grids_1.0.wav](https://pichenettes.github.io/mutable-instruments-documentation/modules/grids/downloads/grids_1.0.wav) —
+and playing that in by exactly the same steps puts the module back as it was. Worth
+downloading it before you start, so getting back is not conditional on a website still
+being up. There is a `.hex` of each build alongside the audio here if you would rather use
+a programmer.
 
 ## What I could check without a module
 
