@@ -6,6 +6,9 @@
 <p>Then, somewhere near the end of video planning, I realised the obvious thing: <strong>the real Grids uses exactly the same</strong>
 <strong>structure.</strong> Same 25 nodes, same 96 bytes, same <code>drum_map[5][5]</code>. Which means these banks
 are <em>portable</em> to real hardware — they are a byte-for-byte data substitution. Same size, no code change, nothing to fit into the flash budget. I just don’t own the real hardware to test it out.</p>
+<p><strong>Others have been here.</strong> <a href="https://github.com/rheslip/2HPico-Sketches/tree/master/Grids_Drums">Rich Heslip’s MIDI2Drums</a>
+does the same job for his Pico drum machine, and <a href="https://github.com/djphazer/O_C-Phazerville">Phazerville’s</a>
+DrumMap applet for Ornament &amp; Crime already runs a non-Mutable map.</p>
 <h2 id="the-three-banks">The three banks</h2>
 <p>Coherence below is how alike neighbouring cells on the map are, which is what decides
 whether X and Y morph smoothly or jump. The tighter the family of rhythms, the higher it
