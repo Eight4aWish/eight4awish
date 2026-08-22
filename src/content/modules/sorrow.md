@@ -15,9 +15,9 @@ photoCaption: Sorrow in the rack.
 status: built
 firmware: https://github.com/Eight4aWish/eurorack_daisy_patch_init
 binary: >-
-  https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/sorrow-v2.1.0/sorrow-v2.1.0.bin
+  https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/sorrow-v2.2.0/sorrow-v2.2.0.bin
 extraBinaries: []
-firmwareVersion: v2.1.0
+firmwareVersion: v2.2.0
 flash:
   intro: >-
     Sorrow runs from SRAM via the Daisy bootloader, so there is a one-time
@@ -85,7 +85,7 @@ as it can be without a module, and looking for someone with the hardware to try 
 
 **Kit page** (short press B7) — the first three pots adjust the density per drum, the fourth dials in some wildness. The sequencer keeps running while you set them, so you hear the change as you make it.
 
-**Clock** — feed it anything. Sorrow measures the incoming pulse and works out whether you're most likely sending 24, 8, 4, 2 or 1 ppqn, so it locks to a MIDI clock divider, a Pam's output or a quarter-note trigger without being told which. Unpatched it runs at 120 BPM. Reset on the second gate input.
+**Clock** — send it 16th notes. One pulse, one step, and nothing in between interpreting the timing, so it holds at any tempo and **swing passes straight through**: a swung clock from Pam's gives you a swung pattern. A 32-step pattern is two bars. Unpatched it runs at 120 BPM. Reset on the second gate input.
 
 **Outputs** — the internal kit plays the audio outs while kick, snare and hat triggers fire from the
 gate outputs and CV out, from the same pattern, all the time.
