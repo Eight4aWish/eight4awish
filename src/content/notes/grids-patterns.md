@@ -17,16 +17,16 @@ downloads:
   - label: grids_latin.wav
     url: /firmware/grids/grids_latin.wav
     note: >-
-      Latin, jazz, afro-cuban, afrobeat, New Orleans. The most coherent map of
-      the three, and the furthest from anything Grids does out of the box.
+      Latin, jazz, afro-cuban, afrobeat, New Orleans. The furthest of the
+      three from anything Grids does out of the box.
   - label: grids_groove.wav
     url: /firmware/grids/grids_groove.wav
     note: Human drummers, rock through jazz, from the Groove MIDI Dataset.
   - label: grids_club.wav
     url: /firmware/grids/grids_club.wav
     note: >-
-      Four-to-the-floor, breakbeat and half-time, picked out of the Lakh dataset
-      by rhythmic signature.
+      Four-to-the-floor, breakbeat and half-time, picked out of the Groove MIDI
+      Dataset by rhythmic signature rather than by genre label.
 ask: >-
   I do not own a Grids, and I have not run any of this on real hardware. If you
   have one — or a clone that accepts Grids firmware updates — I would love to
@@ -39,11 +39,14 @@ draft: false
 
 [**Sorrow**](/modules/sorrow/) is a Grids port for the Daisy patch.Init(), with its own drum voices and drum patterns. In developing the port I learnt that Grids' patterns are a lookup table — machine-learned from a big pile of drum loops, then arranged by hand. Twenty-five hand-selected patterns, 96 bytes each, and X/Y interpolates between the four nearest. All the musicality lives in about 2.4 KB of data. But if you change the data you can have a different instrument running the same engine.
 
-So I built a pipeline that derives a bank from any folder of MIDI: quantises to 16ths, cuts two-bar windows, boils the result down to 25 patterns arranged on a 5×5 grid, then matches each lane's loudness distribution back onto Grids' own so that density and accent behave exactly as they did before.
+So I built a pipeline that derives a bank from any folder of MIDI: quantises to 16ths, cuts one-bar windows, picks 25 of them and arranges them on a 5×5 grid, then matches each lane's loudness distribution back onto Grids' own so that density and accent behave exactly as they did before.
 
-The arranging is the interesting part, and it is why this uses a **self-organising map** rather than ordinary clustering. Clustering would give you 25 sensible piles of patterns in arbitrary order — so pile 3 might be nothing like pile 4. A self-organising map sorts *and* arranges at once: it finds the cell closest to each pattern, nudges that cell towards it, and nudges its neighbours a little too. Do that a few thousand times and neighbouring cells end up genuinely alike.
+**The first version of this was wrong, and it is worth saying how.** It used a self-organising map — an algorithm that sorts patterns into 25 piles *and* arranges the piles so neighbours are alike. That sounds exactly right for Grids, because X and Y slide between adjacent cells. It is exactly wrong, for two reasons I did not see until I listened to it properly:
 
-Which is exactly what Grids needs, because X and Y slide *between* adjacent cells. Arbitrary order and the knobs jump between unrelated beats; a proper map and they morph.
+- A self-organising map's whole objective is to *minimise the difference between neighbouring cells*. An algorithm that makes neighbours similar is an algorithm that makes the knob boring.
+- Its 25 cells are averages of thousands of patterns, and averages regress toward one another. Twenty-five averages are less distinctive than twenty-five archetypes.
+
+So the banks are now real patterns, which is what Émilie did by hand. Twenty-five are chosen by **farthest-point sampling** — each pick the one least like everything picked so far, measured on which steps fire rather than on raw velocity — and then *arranged* on the 5×5 by swapping cells until neighbours are as related as they can be. Choosing and arranging are separate steps, and only the second one wants similarity.
 
 Then, somewhere near the end of video planning, I realised the obvious thing: **the real Grids uses exactly the same**
 **structure.** Same 25 nodes, same 96 bytes, same `drum_map[5][5]`. Which means these banks
@@ -51,21 +54,24 @@ are *portable* to real hardware — they are a byte-for-byte data substitution. 
 
 ## The three banks
 
-Coherence below is a *ratio*: how far apart neighbouring cells are, against how far apart
-any two cells are. It says the map is ordered rather than scrambled — the same twenty-five
-patterns in a random arrangement score far lower.
+The number that matters is how much the pattern actually changes when you move X or Y by
+one cell. Measured as steps that flip between silent and sounding, at mid density:
 
-It does **not** mean the knob morphs more smoothly, which is what I first assumed and it is
-worth stating plainly. That is governed by the neighbour distance on its own, and all four
-of them sit within a few per cent of each other there. A high ratio mostly means the far
-corners of the map are far apart — more ground covered, not a smoother path across it.
+| bank | corpus | one-bar patterns | steps changed per cell move |
+| --- | --- | ---: | ---: |
+| **Latin** | Groove MIDI, filtered to latin, jazz and afro styles | 9,458 | 17.0 |
+| **Traditional (Rock, Blues etc)** | Groove MIDI, all styles | 21,945 | 18.1 |
+| **Club** | Groove MIDI, by rhythmic signature | 3,663 | 16.4 |
+| *Grids' own factory map, for scale* | *hand-made* | — | *15.5* |
 
-| bank | corpus | patterns | coherence |
-| --- | --- | --- | --- |
-| **Latin** | Groove MIDI, filtered to latin, jazz and afro styles | 4,793 | **41.9%** |
-| **Traditional (Rock, Blues etc)** | Groove MIDI, all styles | 11,155 | 38.8% |
-| **Club** | Lakh, by rhythmic signature | 60,000 | 34.9% |
+None of the three has a **dead edge** — a neighbour pair so alike that the knob move is
+inaudible. The self-organising map versions these replace scored 9.4 to 10.9, which is
+where "not much seems to be happening" comes from.
 
+I used to publish a *coherence* figure here instead. It was a ratio — neighbour distance
+against any-pair distance — and I had been reading it as "how smoothly X/Y morphs", which
+it is not. Worse, a map of 25 identical patterns scores near 100% on it. It measured the
+thing I should have been trying to avoid.
 
 ## Getting it onto a module
 
@@ -99,8 +105,8 @@ None of which proves it flashes and plays on a real module. That is the ask.
 ## What is not done
 
 What is missing is somebody to try it on a module that actually exists. I would also like
-to know whether the jazz/latin bank is as good to play as it measures — coherence is a
-number, and a number is not a groove.
+to know whether these are as good to play as they now measure. A number is not a groove,
+and the last time I trusted one over my ears it took a rebuild to find out.
 
 Grids is GPL-3.0, so anything I distribute ships with complete corresponding source. The
 tooling, the tables and the derivation scripts are all in the repo linked below — point
