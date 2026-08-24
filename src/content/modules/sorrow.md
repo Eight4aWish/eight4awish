@@ -15,9 +15,9 @@ photoCaption: Sorrow in the rack.
 status: built
 firmware: https://github.com/Eight4aWish/eurorack_daisy_patch_init
 binary: >-
-  https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/sorrow-v2.3.0/sorrow-v2.3.0.bin
+  https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/sorrow-v2.3.1/sorrow-v2.3.1.bin
 extraBinaries: []
-firmwareVersion: v2.3.0
+firmwareVersion: v2.3.1
 flash:
   intro: >-
     Sorrow runs from SRAM via the Daisy bootloader, so there is a one-time
