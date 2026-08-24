@@ -65,7 +65,7 @@ Grids is a morphing lookup table — 25 hand-authored patterns, where X/Y contro
 - **Original** — Émilie's Grids map, derived from electronic music
 - **Club** — derived here from the Lakh MIDI Dataset, selected by *rhythmic signature* rather than by genre: four-to-the-floor with offbeat hats, breakbeats and half-time patterns, regardless of who played them
 - **Traditional** — derived from the Groove MIDI Dataset: human drummers, rock through jazz
-- **Latin** — the same dataset filtered to latin, jazz, afro-cuban, afrobeat, New Orleans, reggae and highlife. The most coherent of the four, so X/Y morphs most smoothly, and the one that sounds least like a drum machine
+- **Latin** — the same dataset filtered to latin, jazz, afro-cuban, afrobeat, New Orleans, reggae and highlife. The widest-ranging of the four — its far corners are furthest apart — and the one that sounds least like a drum machine
 
 The additional banks each come from a 5×5 self-organising map trained on a few thousand two-bar
 patterns — past about three thousand, more source material stops making a better map — so neighbouring points are musically related and X/Y morphs smoothly between patterns. The bank maker [tooling is in the repo](https://github.com/Eight4aWish/eurorack_daisy_patch_init/tree/main/daisy_grids/tools/groove_nodes),

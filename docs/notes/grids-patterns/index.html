@@ -7,11 +7,13 @@
 <strong>structure.</strong> Same 25 nodes, same 96 bytes, same <code>drum_map[5][5]</code>. Which means these banks
 are <em>portable</em> to real hardware — they are a byte-for-byte data substitution. Same size, no code change, nothing to fit into the flash budget. I just don’t own the real hardware to test it out.</p>
 <h2 id="the-three-banks">The three banks</h2>
-<p>Coherence below is how alike neighbouring cells on the map are, which is what decides
-whether X and Y morph smoothly or jump. The tighter the family of rhythms, the higher it
-goes — so Latin, the most focused of the three, comes top; Traditional spans rock
-through blues to jazz across the same twenty-five cells; and Club has to cover
-four-to-the-floor, breakbeat and half-time all at once.</p>
+<p>Coherence below is a <em>ratio</em>: how far apart neighbouring cells are, against how far apart
+any two cells are. It says the map is ordered rather than scrambled — the same twenty-five
+patterns in a random arrangement score far lower.</p>
+<p>It does <strong>not</strong> mean the knob morphs more smoothly, which is what I first assumed and it is
+worth stating plainly. That is governed by the neighbour distance on its own, and all four
+banks sit within a few per cent of each other there. A high ratio mostly means the far
+corners of the map are far apart — more ground covered, not a smoother path across it.</p>
 <table>
 <thead>
 <tr>
@@ -40,8 +42,22 @@ four-to-the-floor, breakbeat and half-time all at once.</p>
 <td>60,000</td>
 <td>34.9%</td>
 </tr>
+<tr>
+<td><em>Grids’ own, for comparison</em></td>
+<td>Émilie’s 25 hand-authored patterns</td>
+<td>—</td>
+<td>14.8%</td>
+</tr>
 </tbody>
 </table>
+<p>Émilie’s map scoring lowest is not a defect and not something to beat. Her twenty-five
+patterns are a tight family — any two of them differ by 42 where any two of Latin’s differ
+by 59 — so the denominator is small and the ratio comes out low. Her <em>neighbours</em> are 36
+apart against Latin’s 34, which is to say her map covers slightly more ground per turn of
+the knob, not less.</p>
+<p>Her hand-ordering is worth 9.6 points on its own: the same patterns in declaration order
+score 5.2%, arranged on her 5×5 they score 14.8%. She ordered it by ear and it measurably
+works.</p>
 <h2 id="getting-it-onto-a-module">Getting it onto a module</h2>
 <p>Grids’ bootloader accepts firmware as <strong>FSK-encoded audio through the CLOCK input</strong> — no
 programmer, no opening the case.</p>

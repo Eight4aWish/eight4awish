@@ -51,17 +51,31 @@ are *portable* to real hardware — they are a byte-for-byte data substitution. 
 
 ## The three banks
 
-Coherence below is how alike neighbouring cells on the map are, which is what decides
-whether X and Y morph smoothly or jump. The tighter the family of rhythms, the higher it
-goes — so Latin, the most focused of the three, comes top; Traditional spans rock
-through blues to jazz across the same twenty-five cells; and Club has to cover
-four-to-the-floor, breakbeat and half-time all at once.
+Coherence below is a *ratio*: how far apart neighbouring cells are, against how far apart
+any two cells are. It says the map is ordered rather than scrambled — the same twenty-five
+patterns in a random arrangement score far lower.
+
+It does **not** mean the knob morphs more smoothly, which is what I first assumed and it is
+worth stating plainly. That is governed by the neighbour distance on its own, and all four
+banks sit within a few per cent of each other there. A high ratio mostly means the far
+corners of the map are far apart — more ground covered, not a smoother path across it.
 
 | bank | corpus | patterns | coherence |
 | --- | --- | --- | --- |
 | **Latin** | Groove MIDI, filtered to latin, jazz and afro styles | 4,793 | **41.9%** |
 | **Traditional (Rock, Blues etc)** | Groove MIDI, all styles | 11,155 | 38.8% |
 | **Club** | Lakh, by rhythmic signature | 60,000 | 34.9% |
+| *Grids' own, for comparison* | Émilie's 25 hand-authored patterns | — | 14.8% |
+
+Émilie's map scoring lowest is not a defect and not something to beat. Her twenty-five
+patterns are a tight family — any two of them differ by 42 where any two of Latin's differ
+by 59 — so the denominator is small and the ratio comes out low. Her *neighbours* are 36
+apart against Latin's 34, which is to say her map covers slightly more ground per turn of
+the knob, not less.
+
+Her hand-ordering is worth 9.6 points on its own: the same patterns in declaration order
+score 5.2%, arranged on her 5×5 they score 14.8%. She ordered it by ear and it measurably
+works.
 
 
 ## Getting it onto a module
