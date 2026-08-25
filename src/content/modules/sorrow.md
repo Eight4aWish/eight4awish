@@ -15,9 +15,9 @@ photoCaption: Sorrow in the rack.
 status: built
 firmware: https://github.com/Eight4aWish/eurorack_daisy_patch_init
 binary: >-
-  https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/sorrow-v2.3.1/sorrow-v2.3.1.bin
+  https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/sorrow-v2.4.1/sorrow-v2.4.1.bin
 extraBinaries: []
-firmwareVersion: v2.3.1
+firmwareVersion: v2.4.1
 flash:
   intro: >-
     Sorrow runs from SRAM via the Daisy bootloader, so there is a one-time
@@ -54,7 +54,7 @@ draft: false
 
 Sorrow is a randomised drum machine. **Flip the B8 toggle down and up and you get a new kit** — that gesture is the instrument, and it's the main way you change the sound.
 
-Each of the three slots is filled from a pool of ten DaisySP models rather than one fixed voice: based on Mutable's synthetic and 808-lineage drum models, the metallic hi-hats, and physical-modelling voices for something stranger. **Wildness** is the single control over how far the randomiser may go — which models are eligible, how far their parameters roam, and whether the three slots agree on a family or clash. Low, and you get a coherent, safe kit from tame ranges. High, and an analog kick can sit under a modal snare and a ring-mod hat.
+Each of the three slots is filled from a pool of ten DaisySP models rather than one fixed voice: based on Mutable's synthetic and 808-lineage drum models, the metallic hi-hats, and physical-modelling voices for something stranger. **Wildness** is the single control over how far the randomiser may go, and it is two knobs in one. Below noon it opens each parameter's range and lets the three slots disagree about which family they come from — fully counter-clockwise is a coherent, safe kit; noon is genuinely random and is as far as the ranges ever open. Past noon the ranges stop growing and the *odds* change instead: values get pushed toward the ends of their ranges rather than the middle, and both the family and the model choice tilt toward the strange ones. An analog kick under a modal snare and a ring-mod hat is a noon result. Past noon it stops being polite.
 
 Don't like the kit — randomise.
 
@@ -62,16 +62,22 @@ Don't like the kit — randomise.
 
 Grids is a morphing lookup table — 25 hand-authored patterns, where X/Y controls interpolate between four of them at a time. All the musicality is in about 2.4 KB of data. The Grids classics are here but fresh banks have been added for extra variation. **Hold B7** to cycle banks. The module — synthetic Dan — lets you know which has been selected.
 
-- **Original** — Émilie's Grids map, derived from electronic music
+- **Original** — Émilie's Grids map, rendered onto Sorrow's grid. Hers is one bar of 32nds and Sorrow steps in 16ths, so each 32nd pair is merged onto one 16th and the bar repeats — it plays at her tempo rather than half of it, keeping 409 of her 415 hits
 - **Club** — derived here from the Groove MIDI Dataset, selected by *rhythmic signature* rather than by genre: four-to-the-floor with offbeat hats, breakbeats and half-time patterns, regardless of what the drummer was told they were playing
 - **Traditional** — derived from the Groove MIDI Dataset: human drummers, rock through jazz
 - **Latin** — the same dataset filtered to latin, jazz, afro-cuban, afrobeat, New Orleans, reggae and highlife. The one that sounds least like a drum machine
 
 All three derived banks are **real patterns, not averages**. Twenty-five are picked out of a
 few thousand two-bar windows by farthest-point sampling — each one the least like everything
-already picked — and then arranged on the 5×5 so that neighbours are related and X/Y has
-somewhere to travel. Choosing and arranging are deliberately separate: only the arranging
-wants things to be alike.
+already picked — then fitted to Grids' own loudness distribution, then arranged on the 5×5 so
+neighbours are related and X/Y has somewhere to travel. Choosing and arranging are
+deliberately separate: only the arranging wants things to be alike, and it has to happen
+last, or the map ends up laid out for values the nodes no longer hold.
+
+Each node is fitted against one of Émilie's rather than a lane at a time across the whole
+map, which is what stops a node losing a drum: 62% of her values are zero, so a node quieter
+than its neighbours used to collect the bottom of that distribution and fall silent in one
+voice. She never leaves a drum out, in any of her 75 node-lanes.
 
 An earlier version used a self-organising map, whose nodes are averages of thousands of
 patterns and whose objective is literally to make neighbours similar. It measured well and

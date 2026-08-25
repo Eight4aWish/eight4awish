@@ -57,16 +57,31 @@ are *portable* to real hardware — they are a byte-for-byte data substitution. 
 The number that matters is how much the pattern actually changes when you move X or Y by
 one cell. Measured as steps that flip between silent and sounding, at mid density:
 
-| bank | corpus | one-bar patterns | steps changed per cell move |
-| --- | --- | ---: | ---: |
-| **Latin** | Groove MIDI, filtered to latin, jazz and afro styles | 9,458 | 17.0 |
-| **Traditional (Rock, Blues etc)** | Groove MIDI, all styles | 21,945 | 18.1 |
-| **Club** | Groove MIDI, by rhythmic signature | 3,663 | 16.4 |
-| *Grids' own factory map, for scale* | *hand-made* | — | *15.5* |
+| bank | corpus | one-bar patterns | steps changed per cell move | map ratio |
+| --- | --- | ---: | ---: | ---: |
+| **Latin** | Groove MIDI, filtered to latin, jazz and afro styles | 9,458 | 17.9 | 84% |
+| **Traditional (Rock, Blues etc)** | Groove MIDI, all styles | 21,945 | 17.5 | 83% |
+| **Club** | Groove MIDI, by rhythmic signature | 3,663 | 16.8 | 81% |
+| *Grids' own factory map, for scale* | *hand-made* | — | *15.5* | *91%* |
 
 None of the three has a **dead edge** — a neighbour pair so alike that the knob move is
 inaudible. The self-organising map versions these replace scored 9.4 to 10.9, which is
 where "not much seems to be happening" comes from.
+
+The second column is the one I got wrong for a while. It compares how much *neighbours*
+differ against how much *distant cells* differ, and it wants to be well under 100%. At 100%
+neighbouring cells differ as much as opposite corners — which is a shuffle, not a map:
+every knob move jumps to something unrelated, and since X/Y blends the four cells around
+you, blending four unrelated patterns averages to much the same mush wherever you stand.
+The banks were at 86–89% because the arranging step ran *before* the values were fitted to
+Grids' distribution, so the map had been laid out for numbers the nodes no longer held.
+
+**Every node now plays all three drums.** Fitting our patterns onto Grids' value
+distribution used to be done a lane at a time across the whole map, and 62% of Grids' values
+are zero — so a node quieter than its 24 neighbours collected the bottom of that
+distribution and lost a drum outright. Three, five and four of 25 nodes were missing a
+voice. Émilie loses none in 75 node-lanes; she does not leave a drum out. Fitting each node
+against one of hers instead fixes it by construction.
 
 I used to publish a *coherence* figure here instead. It was a ratio — neighbour distance
 against any-pair distance — and I had been reading it as "how smoothly X/Y morphs", which

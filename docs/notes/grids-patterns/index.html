@@ -20,6 +20,7 @@ one cell. Measured as steps that flip between silent and sounding, at mid densit
 <th>corpus</th>
 <th style="text-align: right">one-bar patterns</th>
 <th style="text-align: right">steps changed per cell move</th>
+<th style="text-align: right">map ratio</th>
 </tr>
 </thead>
 <tbody>
@@ -27,31 +28,48 @@ one cell. Measured as steps that flip between silent and sounding, at mid densit
 <td><strong>Latin</strong></td>
 <td>Groove MIDI, filtered to latin, jazz and afro styles</td>
 <td style="text-align: right">9,458</td>
-<td style="text-align: right">17.0</td>
+<td style="text-align: right">17.9</td>
+<td style="text-align: right">84%</td>
 </tr>
 <tr>
 <td><strong>Traditional (Rock, Blues etc)</strong></td>
 <td>Groove MIDI, all styles</td>
 <td style="text-align: right">21,945</td>
-<td style="text-align: right">18.1</td>
+<td style="text-align: right">17.5</td>
+<td style="text-align: right">83%</td>
 </tr>
 <tr>
 <td><strong>Club</strong></td>
 <td>Groove MIDI, by rhythmic signature</td>
 <td style="text-align: right">3,663</td>
-<td style="text-align: right">16.4</td>
+<td style="text-align: right">16.8</td>
+<td style="text-align: right">81%</td>
 </tr>
 <tr>
 <td><em>Grids’ own factory map, for scale</em></td>
 <td><em>hand-made</em></td>
 <td style="text-align: right">—</td>
 <td style="text-align: right"><em>15.5</em></td>
+<td style="text-align: right"><em>91%</em></td>
 </tr>
 </tbody>
 </table>
 <p>None of the three has a <strong>dead edge</strong> — a neighbour pair so alike that the knob move is
 inaudible. The self-organising map versions these replace scored 9.4 to 10.9, which is
 where “not much seems to be happening” comes from.</p>
+<p>The second column is the one I got wrong for a while. It compares how much <em>neighbours</em>
+differ against how much <em>distant cells</em> differ, and it wants to be well under 100%. At 100%
+neighbouring cells differ as much as opposite corners — which is a shuffle, not a map:
+every knob move jumps to something unrelated, and since X/Y blends the four cells around
+you, blending four unrelated patterns averages to much the same mush wherever you stand.
+The banks were at 86–89% because the arranging step ran <em>before</em> the values were fitted to
+Grids’ distribution, so the map had been laid out for numbers the nodes no longer held.</p>
+<p><strong>Every node now plays all three drums.</strong> Fitting our patterns onto Grids’ value
+distribution used to be done a lane at a time across the whole map, and 62% of Grids’ values
+are zero — so a node quieter than its 24 neighbours collected the bottom of that
+distribution and lost a drum outright. Three, five and four of 25 nodes were missing a
+voice. Émilie loses none in 75 node-lanes; she does not leave a drum out. Fitting each node
+against one of hers instead fixes it by construction.</p>
 <p>I used to publish a <em>coherence</em> figure here instead. It was a ratio — neighbour distance
 against any-pair distance — and I had been reading it as “how smoothly X/Y morphs”, which
 it is not. Worse, a map of 25 identical patterns scores near 100% on it. It measured the
