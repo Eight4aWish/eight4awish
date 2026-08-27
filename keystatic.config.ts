@@ -28,6 +28,11 @@ export default config({
           description: 'The rest are behind "See all modules".',
           defaultValue: 4,
         }),
+        notesCount: fields.integer({
+          label: 'Notes shown on the home page',
+          description: 'Listed as a compact strip under the modules, newest first.',
+          defaultValue: 3,
+        }),
       },
     }),
     modulesIndex: singleton({

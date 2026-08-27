@@ -10,6 +10,12 @@ const allModules = live(await getCollection('modules'))
 const tutorials = live(await getCollection('tutorials'))
   .sort((a, b) => a.data.order - b.data.order)
 const latest = allModules.slice(0, home.latestCount)
+// Notes get a strip rather than cards. They are short form and there are few of
+// them; a row of 220px thumbnails would give them more of the page than the
+// modules, which are the point of the site.
+const notes = live(await getCollection('notes'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, home.notesCount ?? 3)
 ---
 <Base title="Eight4aWish — DIY Eurorack">
 
@@ -36,6 +42,26 @@ const latest = allModules.slice(0, home.latestCount)
     <div class="morerow">
       <a class="btn ghost" href="/modules/">See all {allModules.length} modules →</a>
     </div>
+  )}
+
+  {notes.length > 0 && (
+    <>
+      <div class="sechead">
+        <h2 class="sec">Notes</h2>
+        <a class="seeall" href="/notes/">All notes →</a>
+      </div>
+      <ul class="notestrip">
+        {notes.map((n) => (
+          <li>
+            <a href={`/notes/${n.id}/`}>
+              {n.data.eyebrow && <span class="chip acc">{n.data.eyebrow}</span>}
+              <strong>{n.data.title}</strong>
+              <span class="sum">{n.data.summary}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </>
   )}
 
 </Base>
