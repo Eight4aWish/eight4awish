@@ -9,8 +9,6 @@ tags:
   - Resonator
   - Ksoloti
 panel: /renders/ksoloti_biggenes_flat.png
-photo: /images/elements.jpeg
-photoCaption: Girl running on the Ksoloti Big Genes.
 status: built
 firmware: https://github.com/Eight4aWish/eurorack_modules
 binary: >-

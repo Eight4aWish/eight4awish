@@ -9,6 +9,4 @@ tags:
 panel: /renders/esp32_clklinkrec_flat.png
 status: built
 draft: true   # post-launch: needs write-up + video
-photo: /images/clklinkrec.jpeg
-photoCaption: "ClkLinkRec, syncing the rack to Ableton Link."
 ---

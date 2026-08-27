@@ -9,6 +9,4 @@ tags:
 panel: /renders/nanoesp32_corthex_flat.png
 status: built
 draft: true   # post-launch: needs write-up + video
-photo: /images/corthex.jpeg
-photoCaption: "CortHex, the LLM patch generator."
 ---

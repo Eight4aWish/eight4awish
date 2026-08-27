@@ -24,7 +24,7 @@ const liveTutorial = new Set(
   (await getCollection('tutorials')).filter((t) => !t.data.draft).map((t) => t.id),
 )
 ---
-<Base title={`${d.title} — Eight4aWish`} description={d.summary} image={d.photo ?? d.panel} nav="modules">
+<Base title={`${d.title} — Eight4aWish`} description={d.summary} image={d.panel} nav="modules">
 
   <div class="crumb"><a href="/modules/">Modules</a> / {d.title}</div>
 

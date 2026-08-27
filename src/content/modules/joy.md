@@ -9,8 +9,6 @@ tags:
   - Oscillator
   - Daisy Patch Init
 panel: /renders/daisy_braids_flat.png
-photo: /images/daisypibraids.jpeg
-photoCaption: The Joy build, with the OLED fitted for patch selection.
 status: built
 firmware: https://github.com/Eight4aWish/eurorack_daisy_patch_init
 binary: >-

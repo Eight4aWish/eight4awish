@@ -10,8 +10,6 @@ tags:
   - Drums
   - Daisy Patch Init
 panel: /renders/daisy_grids_flat.png
-photo: /images/daisypigrids.jpeg
-photoCaption: Sorrow in the rack.
 status: built
 firmware: https://github.com/Eight4aWish/eurorack_daisy_patch_init
 binary: >-

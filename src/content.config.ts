@@ -14,8 +14,6 @@ const modules = defineCollection({
     platform: z.string(),                        // red chip: Patch.Init, ESP32, Ksoloti...
     tags: z.array(z.string()).default([]),       // grey chips: oscillator, drums...
     panel: z.string(),                           // /renders/daisy_braids_flat.png
-    photo: z.string().optional(),                // the built module, in the flesh
-    photoCaption: z.string().optional(),
     status: z.enum(['built', 'in progress', 'planned']).default('built'),
     firmware: z.string().optional(),             // repo URL (for people who build it themselves)
     binary: z.string().optional(),               // compiled release asset — the no-compiler path

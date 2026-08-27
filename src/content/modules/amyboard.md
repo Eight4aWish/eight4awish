@@ -8,6 +8,4 @@ tags:
 panel: /renders/amyboard_flat.png
 status: built
 draft: true   # post-launch: needs write-up + video
-photo: /images/amyboardpatchbank.jpeg
-photoCaption: "The AMYboard PatchBank browser."
 ---

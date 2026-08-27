@@ -20,7 +20,12 @@ const img = Astro.site ? new URL(social, Astro.site) : social
 <meta name="description" content={description}>
 <link rel="canonical" href={url}>
 
-<!-- so a link pasted into YouTube, Reddit or Discord shows the artwork -->
+<!-- so a link pasted into YouTube, Reddit or Discord shows the artwork.
+     Module pages pass their PANEL RENDER, not the photo, and the two are not
+     interchangeable: a photo is of the module in a rack, and where a module runs
+     on someone else's board the photo is of THEIR panel. Girl runs on a Ksoloti
+     Big Genes, so its photo is a Big Genes front panel - which is what Discord
+     was showing for /modules/girl. The render is always the module's own. -->
 <meta property="og:type" content="website">
 <meta property="og:title" content={title}>
 <meta property="og:description" content={description}>

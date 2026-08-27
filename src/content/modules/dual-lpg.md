@@ -6,8 +6,6 @@ platform: analog
 tags:
   - LPG
 panel: /renders/duallpg_flat.png
-photo: /images/duallpg.jpeg
-photoCaption: The dual pingable low-pass gate.
 status: built
 draft: true
 ---
