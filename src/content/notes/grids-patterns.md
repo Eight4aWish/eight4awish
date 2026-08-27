@@ -1,6 +1,6 @@
 ---
 title: New pattern banks for Mutable Grids
-date: 2026-08-22
+date: 2026-08-27
 eyebrow: Call for testers
 summary: >-
   Sorrow's derived drum maps are the same data structure Grids uses, so they
