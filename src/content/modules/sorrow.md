@@ -42,6 +42,7 @@ flash:
   note: >-
     Needs Chrome or Edge for the bootloader step — it uses WebUSB, which Safari
     and Firefox do not support. The card must be FAT32, not exFAT.
+video: O400BdPY1MU
 draft: false
 ---
 ## **Overview**

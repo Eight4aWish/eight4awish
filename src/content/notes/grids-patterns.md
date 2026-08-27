@@ -35,7 +35,7 @@ ask: >-
   result and send it back refreshed with the original firmware.
 draft: false
 ---
-## In making the Sorrow video, I had an idea
+## In making the [Sorrow video](https://youtu.be/O400BdPY1MU), I had an idea
 
 [**Sorrow**](/modules/sorrow/) is a Grids port for the Daisy patch.Init(), with its own drum voices and drum patterns. In developing the port I learnt that Grids' patterns are a lookup table — machine-learned from a big pile of drum loops, then arranged by hand. Twenty-five hand-selected patterns, 96 bytes each, and X/Y interpolates between the four nearest. All the musicality lives in about 2.4 KB of data. But if you change the data you can have a different instrument running the same engine.
 
