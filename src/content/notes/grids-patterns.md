@@ -6,7 +6,7 @@ summary: >-
   Sorrow's derived drum maps are the same data structure Grids uses, so they
   drop straight into the real module. Three new banks, but no hardware to test
   them on.
-graphic: /renders/daisy_grids_flat.png
+graphic: /renders/grids_pattern_map.png
 chips:
   - Call for testers
   - Mutable Grids
