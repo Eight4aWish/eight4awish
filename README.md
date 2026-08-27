@@ -9,13 +9,13 @@ Welcome! This is where I'm documenting my journey with Eurorack modules and othe
 Hardware and software for Eurorack modules based around Teensy 4.1, Raspberry Pi Pico 2W, Electrosmith Daisy Seed and Ksoloti Core microcontrollers.
 
 <p>
-  <img src="docs/images/teensymove.jpeg" alt="Teensy Move" height="200">
-  <img src="docs/images/corthex.jpeg" alt="CortHex" height="200"> 
+  <img src="docs/renders/teensy_move_flat.png" alt="Teensy Move" height="200">
+  <img src="docs/renders/nanoesp32_corthex_flat.png" alt="CortHex" height="200"> 
   <img src="docs/images/corthex.png" alt="CortHex Web App" height="200">  
-  <img src="docs/images/pico2wonclite.jpeg" alt="Pico2W Oncl Lite" height="200">
-  <img src="docs/images/elements.jpeg" alt="Ksoloti Elements" height="200">
-  <img src="docs/images/clklinkrec.jpeg" alt="ESP32 ClkLinkRec" height="200">
-  <img src="docs/images/amyboardpatchbank.jpeg" alt="AMYboard PatchBank" height="200">
+  <img src="docs/renders/pico2w_onclite_flat.png" alt="Pico2W OnC Lite" height="200">
+  <img src="docs/renders/ksoloti_biggenes_flat.png" alt="Girl — Elements on a Ksoloti Big Genes" height="200">
+  <img src="docs/renders/esp32_clklinkrec_flat.png" alt="ESP32 ClkLinkRec" height="200">
+  <img src="docs/renders/amyboard_flat.png" alt="AMYboard PatchBank" height="200">
 </p>
 
 The TeensyMove is designed as a Eurorack interface for the Ableton Move controller featuring four channels of USB midi to CV, 4 channel midi drum triggers, midi clock/reset and audio processing for the Move audio line out. A chord pattern based drone synth is a bonus.
@@ -35,7 +35,7 @@ The AMYboard PatchBank is a MicroPython/Tulip app for the shorepine AMYboard (ES
 Analog Eurorack breadboard layouts, drum-voice schematics, and a browser-based layout visualiser. Includes netlists and breadboard layout for a **dual pingable LPG** design built around the canonical Buchla 292 audio path (derived from the NLC, AI017, Aalto/DAFx 2013, Bergmann and Thomas White references).
 
 <p>
-  <img src="docs/images/duallpg.jpeg" alt="DualLPG" height="200">
+  <img src="docs/renders/duallpg_flat.png" alt="Dual Pingable LPG" height="200">
 </p>
 
 ### [eurorack_daisy_patch_init](https://github.com/Eight4aWish/eurorack_daisy_patch_init)
@@ -43,9 +43,9 @@ Analog Eurorack breadboard layouts, drum-voice schematics, and a browser-based l
 Software for Electrosmith Daisy Patch Init based Eurorack modules including versions of the Mutable Instruments Braids and Grids modules.
 
 <p>
-  <img src="docs/images/daisypibraids.jpeg" alt="Daisy Braids" height="200">
-  <img src="docs/images/daisypigrids.jpeg" alt="Daisy Grids" height="200">
-  <img src="docs/images/daisypimfx.jpeg" alt="Daisy Patch Init MFX" height="200">
+  <img src="docs/renders/daisy_braids_flat.png" alt="Joy — Braids on a Daisy patch.Init()" height="200">
+  <img src="docs/renders/daisy_grids_flat.png" alt="Sorrow — Grids on a Daisy patch.Init()" height="200">
+  <img src="docs/renders/daisy_mfx_flat.png" alt="Daisy MultiFX" height="200">
 </p>
 
 Small screens have been added to the Braids and MFX modules to enable easy patch selection and parameter editing. The Grids module features an internal drum sounds mode as well as external trigger and CV/pot adjustments for X, Y, density and chaos. 

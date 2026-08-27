@@ -15,7 +15,8 @@ dist/
 .env.production
 
 # not public
-CONTENT_ROADMAP.md
-CHANNEL_PLAN.md
-MODULE_IDEAS.md
-VIDEO_IDEAS.md
+# Planning notes to self, not published content. Consolidated 2026-08-27 from
+# CHANNEL_PLAN / CONTENT_ROADMAP / VIDEO_IDEAS / MODULE_IDEAS, which overlapped
+# badly - the launch order lived in two of them and disagreed.
+STRATEGY.md
+ROADMAP.md
