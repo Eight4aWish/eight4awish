@@ -12,12 +12,12 @@ live in the repo linked at the foot of the page.</p>
 </div><section class="song" id="song1"><div class="songhead"><h2 class="sec">1 · Basic</h2><div class="songlinks"><a class="dl-link" href="/lessons/simple_song.js" download>↓ simple_song.js</a></div></div><p class="sub">Parts, drums and CC42 movement, arranged into a song — the whole track on one screen.</p><div class="block"><div class="lbl">Devices</div><pre><code>const WS = &#39;Workshop System MIDI&#39;
 const OC = &#39;Phazerville&#39;</code></pre><div class="annot">Two MIDI destinations, named once: the <b>Workshop System</b> and the <b>O&amp;C</b> (its firmware reports as *Phazerville*). Every part below is aimed at one with <code>.midi(WS)</code> or <code>.midi(OC)</code>.</div></div><div class="block"><div class="lbl">Parts</div><pre><code>const prog = &quot;&lt;0 0 3 5 0 0 5 4&gt;&quot;
 
-const lead = n(&quot;0 3 5 3 0 3 5 3&quot;.add(prog))
-  .scale(&quot;A5:minor&quot;).midichan(1).midi(WS)
+const bass = n(&quot;0 _ ~ ~ 0 ~ 3 ~&quot;.add(prog))
+  .scale(&quot;A2:minor&quot;).midichan(3).midi(OC)
 const pad  = n(&quot;0 ~&quot;.add(prog))
   .scale(&quot;A4:minor&quot;).midichan(2).midi(WS)
-const bass = n(&quot;0 _ ~ ~ 0 ~ 3 ~&quot;.add(prog))
-  .scale(&quot;A2:minor&quot;).midichan(3).midi(OC)</code></pre><div class="annot"><code>n()</code> plays <b>scale degrees</b>, not fixed notes — <code>0</code> is the root, so with <code>.scale("A…:minor")</code> every number lands in key. <code>prog</code> is a chord move in <code>&lt; &gt;</code> (one per cycle) and <code>.add(prog)</code> walks all three voices through it together. Lead, pad and bass sit in octaves A5 / A4 / A2 on channels 1 / 2 / 3 to stay clear of each other. (<code>~</code> rest, <code>_</code> hold.)</div></div><div class="block"><div class="lbl">Drums</div><pre><code>const kick=36, snare=38, closedHat=40, openHat=41
+const lead = n(&quot;0 3 5 3 0 3 5 3&quot;.add(prog))
+  .scale(&quot;A5:minor&quot;).midichan(1).midi(WS)</code></pre><div class="annot"><code>n()</code> plays <b>scale degrees</b>, not fixed notes — <code>0</code> is the root, so with <code>.scale("A…:minor")</code> every number lands in key. <code>prog</code> is a chord move in <code>&lt; &gt;</code> (one per cycle) and <code>.add(prog)</code> walks all three voices through it together. Bass, pad and lead sit in octaves A2 / A4 / A5 on channels 3 / 2 / 1 to stay clear of each other — low to high, the order everything below keeps. (<code>~</code> rest, <code>_</code> hold.)</div></div><div class="block"><div class="lbl">Drums</div><pre><code>const kick=36, snare=38, closedHat=40, openHat=41
 const drums = stack(
   note(kick     ).struct(&quot;x ~ ~ ~ x ~ ~ ~&quot;),
   note(snare    ).struct(&quot;~ ~ ~ ~ x ~ ~ ~&quot;),
@@ -25,20 +25,24 @@ const drums = stack(
 const drums2 = stack(
   drums,
   note(closedHat).struct(&quot;x x x*2 ~ x*2 x x ~&quot;),
-  note(openHat).struct(&quot;~ ~ ~ x ~ ~ ~ x*2&quot;),
-).midichan(10).midi(OC)</code></pre><div class="annot">Drums use raw note numbers and <code>.struct()</code> — a <b>step grid</b> where <code>x</code> is a hit, <code>~</code> a rest, <code>x*2</code> two hits in one step. <code>drums</code> is the kick+snare backbone; <code>drums2</code> layers hats on top for the busier sections. All on channel 10, the O&amp;C's drum bus.</div></div><div class="block"><div class="lbl">Movement</div><pre><code>const modLead = v =&gt; ccn(42).ccv(v).midichan(1) .midi(WS)
-const modPad  = v =&gt; ccn(42).ccv(v).midichan(2) .midi(WS)
-const modBass = v =&gt; ccn(42).ccv(v).midichan(3) .midi(OC)
+  note(openHat  ).struct(&quot;~ ~ ~ x ~ ~ ~ x*2&quot;),
+).midichan(10).midi(OC)</code></pre><div class="annot">Drums use raw note numbers and <code>.struct()</code> — a <b>step grid</b> where <code>x</code> is a hit, <code>~</code> a rest, <code>x*2</code> two hits in one step. <code>drums</code> is the kick+snare backbone; <code>drums2</code> layers hats on top for the busier sections. All on channel 10, the O&amp;C's drum bus.</div></div><div class="block"><div class="lbl">Movement</div><pre><code>const lfoBass = isaw  .slow(8)
+const lfoPad  = sine  .slow(4)
+const lfoLead = isaw  .slow(4)
+
+const modBass = v =&gt; ccn(42).ccv(v).midichan(3).midi(OC)
+const modPad  = v =&gt; ccn(42).ccv(v).midichan(2).midi(WS)
+const modLead = v =&gt; ccn(42).ccv(v).midichan(1).midi(WS)
 
 const mods = stack(
-  modLead(isaw.range(1,0)  .slow(4).segment(32)), // filter changes
-  modPad (sine .range(0,1)  .slow(4).segment(32)), // adjusts reverb mix
-  modBass(isaw.range(1,0).slow(8).segment(32)),   // bass filter opening
-)</code></pre><div class="annot">The CC42 movement. Each helper sends <b>CC42</b> on a voice's channel — on the rig that becomes a control voltage (a filter, a reverb mix). Feed it a signal shaped by <code>.range()</code> (depth), <code>.slow()</code> (speed) and <code>.segment(32)</code> (CC messages per cycle). One helper per destination — two CCs on one channel would just overwrite each other.</div></div><div class="block"><div class="lbl">Sections &amp; arrange</div><pre><code>const intro  = stack(pad, mods)
+  modBass(lfoBass.range(1,0).segment(32)),
+  modPad (lfoPad .range(0,1).segment(32)),
+  modLead(lfoLead.range(1,0).segment(32)),
+)</code></pre><div class="annot">The CC42 movement, in two halves. <b>Name each LFO once</b> — a shape (<code>isaw</code> ramps down, <code>sine</code> swells) and a speed (<code>.slow()</code>); these names are reused unchanged for the rest of the lesson. Then one <b>helper per destination</b>, each sending CC42 on a voice's channel, which on the rig becomes a control voltage — a filter, a reverb mix. <code>.range()</code> sets depth, <code>.segment(32)</code> how many CC messages a cycle. Two CCs on one channel would just overwrite each other, hence one helper each.</div></div><div class="block"><div class="lbl">Sections &amp; arrange</div><pre><code>const intro  = stack(pad, mods)
 const verse  = stack(drums, bass, pad, mods)
 const chorus = stack(drums2, bass, pad, lead, mods)
-const bridge = stack(drums,pad, mods)
-const outro  = stack(pad, bass, mods)
+const bridge = stack(drums, pad, mods)
+const outro  = stack(bass, pad, mods)
 
 arrange(
   [4, intro],
@@ -47,29 +51,21 @@ arrange(
   [4, bridge],
   [8, chorus],
   [4, outro],
-).cpm(30)</code></pre><div class="annot"><code>stack()</code> layers parts into sections, and <code>mods</code> rides inside every one so the movement plays throughout. <code>arrange()</code> runs the sections in order as <code>[bars, section]</code>. <code>cpm(30)</code> sets the tempo — 30 cycles/min, about 120 bpm at eight steps.</div></div></section><section class="song" id="song2"><div class="songhead"><h2 class="sec">2 · Generative</h2><div class="songlinks"><a class="dl-link" href="/lessons/simple_song_generative.js" download>↓ simple_song_generative.js</a></div></div><p class="sub">The same track, now it never plays the same way twice. Only the pieces that change are shown — everything else is the basic song.</p><div class="block"><div class="lbl">Parts — now they mutate</div><pre><code>const lead = n(&quot;0 3 5 3 0 3 5 3 | 0 3 4 5 3 2 1 5&quot;.add(prog)
+).cpm(30)</code></pre><div class="annot"><code>stack()</code> layers parts into sections — drums first, then bass, pad, lead, with <code>mods</code> riding inside every one so the movement plays throughout. <code>arrange()</code> runs the sections in order as <code>[bars, section]</code>. <code>cpm(30)</code> sets the tempo — 30 cycles/min, about 120 bpm at eight steps.</div></div></section><section class="song" id="song2"><div class="songhead"><h2 class="sec">2 · Generative</h2><div class="songlinks"><a class="dl-link" href="/lessons/simple_song_generative.js" download>↓ simple_song_generative.js</a></div></div><p class="sub">The same track, now it never plays the same way twice. Everything here is an addition to the basic song — nothing is rewritten.</p><div class="block"><div class="lbl">Parts — now they mutate</div><pre><code>const bass = n(&quot;0 _ ~ ~ 0 ~ 3 ~ | 0 _ ~ ~ 3 ~ ~ 5&quot;.add(prog))
+  .scale(&quot;A2:minor&quot;).midichan(3).midi(OC)
+  ._pianoroll()
+const lead = n(&quot;0 3 5 3 0 3 5 3 | 0 3 4 5 3 2 1 5&quot;.add(prog)
   .sometimesBy(0.4, x =&gt; x.add(choose(5,7))))
   .scale(&quot;A5:minor&quot;).degradeBy(slider(0, 0, 1)).midichan(1).midi(WS)
   ._pianoroll()
 const lead2 = n(irand(8).segment(16)).degradeBy(0.6)
   .scale(&quot;A4:minor&quot;).midichan(1).midi(WS)
-  ._pianoroll()</code></pre><div class="annot">The lead grows a second bar (<code>|</code> = one per cycle) and mutates: <code>sometimesBy(0.4, …choose(5,7))</code> leaps about 40% of notes up a 5th or 7th, and <code>degradeBy(slider(0,0,1))</code> drops notes by an amount you <b>drag live</b> — the slider appears in the editor. <code>lead2</code> is pure chance, <code>irand(8)</code> picking random degrees, held back for the bridge. <code>._pianoroll()</code> draws the notes as they play.</div></div><div class="block"><div class="lbl">Movement — perlin drift</div><pre><code>const mods = stack(
-  modPad (sine .range(0,1)  .slow(4).segment(32)), // adjusts reverb mix
-  modLead(perlin.range(1,0)  .slow(4).segment(32)), // smoothed random filter changes
-  modBass(isaw.range(1,0).slow(8).segment(32)), // bass filter opening
-)</code></pre><div class="annot">One change from the basic song: the lead's filter mod swaps its <code>isaw</code> shape for <b><code>perlin</code></b>, a smooth random signal — so the filter now wanders instead of repeating. Same CC42 slot, different character; <code>sine</code> and <code>isaw</code> still drive the pad and bass to a plan.</div></div><div class="block"><div class="lbl">A generative bridge</div><pre><code>const bridge = stack(lead2, drums,pad, mods)</code></pre><div class="annot">The only section that changes: the bridge trades the written lead for <b><code>lead2</code></b>, the random line, so that lift is different every pass. Drums, bass, pad and <code>arrange()</code> are exactly the basic song.</div></div></section><section class="song" id="song3"><div class="songhead"><h2 class="sec">3 · Visual</h2><div class="songlinks"><a class="dl-link" href="/lessons/simple_song_visual.js" download>↓ simple_song_visual.js</a></div></div><p class="sub">The generative song, plus a Hydra picture driven by the very same signals that move the filters.</p><div class="block"><div class="lbl">Define each LFO once</div><pre><code>await initHydra()   // starts Hydra (background canvas)
+  ._pianoroll()</code></pre><div class="annot">Bass and lead each grow a second bar (<code>|</code> = one per cycle). The lead also mutates: <code>sometimesBy(0.4, …choose(5,7))</code> leaps about 40% of notes up a 5th or 7th, and <code>degradeBy(slider(0,0,1))</code> drops notes by an amount you <b>drag live</b> — the slider appears in the editor. <code>lead2</code> is pure chance, <code>irand(8)</code> picking random degrees, held back for the bridge. <code>._pianoroll()</code> draws the notes as they play.</div></div><div class="block"><div class="lbl">Movement — one word</div><pre><code>const lfoLead = perlin.slow(4)</code></pre><div class="annot">That is the whole change. <code>lfoLead</code> was <code>isaw</code>, a ramp that repeats; <b><code>perlin</code></b> is smooth random, so the lead's filter now wanders instead of marching. Because the LFO was named once in the basic song, nothing downstream is touched — <code>mods</code> still reads <code>modLead(lfoLead.range(1,0)…)</code> and simply carries the new shape.</div></div><div class="block"><div class="lbl">A generative bridge</div><pre><code>const bridge = stack(drums, pad, lead2, mods)</code></pre><div class="annot">The only section that changes: the bridge trades the written lead for <b><code>lead2</code></b>, the random line, so that lift is different every pass. Drums, bass, pad and <code>arrange()</code> are exactly the basic song.</div></div></section><section class="song" id="song3"><div class="songhead"><h2 class="sec">3 · Visual</h2><div class="songlinks"><a class="dl-link" href="/lessons/simple_song_visual.js" download>↓ simple_song_visual.js</a></div></div><p class="sub">The generative song, plus a Hydra picture driven by the very same signals that move the filters.</p><div class="block"><div class="lbl">Start Hydra, add one signal</div><pre><code>await initHydra()
 
-// define each LFO ONCE, then use it in TWO places
-const lfoPad  = sine  .slow(4)   // 0..1
-const lfoLead = perlin.slow(4)   // ~0..1, wanders (the random one)
-const lfoBass = isaw  .slow(8)   // 1..0</code></pre><div class="annot"><code>initHydra()</code> starts Hydra, a visual layer behind the code. The trick of this version: define each LFO <b>once</b> as a named signal, so the same movement can drive both the sound and the picture. <code>lfoLead</code> is <code>perlin</code> (smooth random); the others are plain shape LFOs.</div></div><div class="block"><div class="lbl">The mods use them</div><pre><code>const mods = stack(
-  modPad (lfoPad .range(0,1).segment(32)), // reverb mix
-  modLead(lfoLead.range(1,0).segment(32)), // smoothed random filter
-  modBass(lfoBass.range(1,0).segment(32)), // bass filter opening
-)</code></pre><div class="annot">The CC42 mods are the generative song's — but written in terms of the named LFOs. <code>.range()</code> and <code>.segment()</code> still set depth and message rate. (Parts, drums and <code>arrange()</code> are the generative song, run with <code>$:</code> so they play alongside the visual.)</div></div><div class="block"><div class="lbl">The same signals drive the picture</div><pre><code>osc(18, 0.08, 0.6)
-  .color(H(lfoPad), 0.25, H(lfoLead))     // pad + lead mods tint it
-  .rotate(H(lfoBass.range(0, 6.28)))      // the bass filter sweep spins the whole frame
-  .kaleid(H(lfoLead.range(3, 7)))         // perlin (random) opens/closes the kaleidoscope
+const lfoZoom = sine  .slow(4)</code></pre><div class="annot"><code>initHydra()</code> starts Hydra, a visual layer behind the code. Nothing else about the song moves: <code>lfoBass</code>, <code>lfoPad</code> and <code>lfoLead</code> are the ones you already named, and they are about to drive the picture as well as the rack. <code>lfoZoom</code> is the one addition — a signal that drives only the image. The arrangement gains a <code>$:</code> prefix, which names the pattern so the picture can play alongside it.</div></div><div class="block"><div class="lbl">The same signals drive the picture</div><pre><code>osc(18, 0.08, 0.6)
+  .color(H(lfoPad), 0.25, H(lfoLead))
+  .rotate(H(lfoBass.range(0, 6.28)))
+  .kaleid(H(lfoLead.range(3, 7)))
   .modulate(noise(3))
-  .scale(H(sine.range(1, 1.4).slow(4)))   // a steady zoom pulse
-  .out()</code></pre><div class="annot"><code>H()</code> pipes a Strudel signal into a Hydra parameter, so the <b>same</b> <code>lfoPad</code> / <code>lfoLead</code> / <code>lfoBass</code> that move your filters now move the image: pad and lead tint the colour, the bass sweep spins the frame, and the random <code>lfoLead</code> opens the kaleidoscope. Sound and picture breathe together because they share one set of signals.</div></div></section><div class="dl" style="margin-top:26px"><a class="btn ghost" href="https://github.com/Eight4aWish" target="_blank" rel="noopener">Source on GitHub</a></div></main><footer class="site"><div class="wrap"><span>© Eight4aWish</span><a href="https://github.com/Eight4aWish">GitHub</a><a href="mailto:info@eight4awish.com">info@eight4awish.com</a><a href="https://buymeacoffee.com/eight4awish">Buy me a coffee</a></div></footer></body></html>
+  .scale(H(lfoZoom.range(1, 1.4)))
+  .out()</code></pre><div class="annot"><code>H()</code> pipes a Strudel signal into a Hydra parameter, so the <b>same</b> <code>lfoPad</code> / <code>lfoLead</code> / <code>lfoBass</code> that move your filters now move the image: pad and lead tint the colour, the bass sweep spins the frame, and the wandering <code>lfoLead</code> opens the kaleidoscope. <code>.scale()</code> zooms — driven by <code>lfoZoom</code>, the one signal the rack never hears. Sound and picture breathe together because they share one set of signals.</div></div></section><div class="dl" style="margin-top:26px"><a class="btn ghost" href="https://github.com/Eight4aWish" target="_blank" rel="noopener">Source on GitHub</a></div></main><footer class="site"><div class="wrap"><span>© Eight4aWish</span><a href="https://github.com/Eight4aWish">GitHub</a><a href="mailto:info@eight4awish.com">info@eight4awish.com</a><a href="https://buymeacoffee.com/eight4awish">Buy me a coffee</a></div></footer></body></html>
