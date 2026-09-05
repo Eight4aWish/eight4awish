@@ -1,0 +1,31 @@
+{
+	"folders": [
+		{
+			"name": "site",
+			"path": "."
+		},
+		{
+			"name": "video",
+			"path": "../eight4awish-video"
+		},
+		{
+			"name": "panels (build123d)",
+			"path": "../build123d"
+		},
+		{
+			"name": "private notes",
+			"path": "../eight4awish_private"
+		}
+	],
+	"settings": {
+		"files.exclude": {
+			"**/.DS_Store": true
+		},
+		"search.exclude": {
+			"**/node_modules/**": true,
+			"**/docs/**": true,
+			"**/.venv/**": true,
+			"**/render/out/**": true
+		}
+	}
+}
