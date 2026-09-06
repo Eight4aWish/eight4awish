@@ -165,8 +165,7 @@ the ring sits directly above the sample it produced.
 
 ## The module itself
 
-Tiliqua is 6HP, built around a Lattice ECP5 with 25K LUTs and 28 DSP slices (56 18×18
-multipliers),
+Tiliqua is 6HP, built around a Lattice ECP5 with 25K LUTs and 28 18×18 multipliers,
 32 MB of PSRAM and a GPDI video socket. Two things about it matter more than the numbers.
 
 **There is no separate CV path.** All four inputs and four outputs are channels on one
