@@ -40,7 +40,7 @@ flash:
     If you build rather than download, pin the placer seed. These designs sit
     close enough to the ECP5's routing limit that identical source places very
     differently run to run.
-draft: true   # needs the panel render, the video, and the first-hand review notes
+draft: true   # needs the video and the first-hand review notes
 ---
 
 ## Overview
@@ -48,14 +48,17 @@ draft: true   # needs the panel render, the video, and the first-hand review not
 **LACUNA** and **ORBITA** are two bitstreams for the [apf.audio
 Tiliqua](https://apf.audio/), an open-hardware FPGA module for Eurorack. They are the same
 32×32 finite-difference membrane — the same file, under three hundred lines of gateware —
-and they sound nothing alike. One is a drum head you hit. The other runs the same mesh a
-hundred times too slowly to hear and reads a circle through it as a wavetable. Not
-affiliated with, or endorsed by, apf.audio.
+and they sound nothing alike. One is a drum head you hit. The other updates the same mesh
+once every 64 samples instead of every one, and reads a circle through it as a wavetable.
+Not affiliated with, or endorsed by, apf.audio.
 
-An FPGA is not a microcontroller with more headroom. There is no program running on a
-chip: you describe a circuit and the chip becomes that circuit, so every node of the mesh
-has its own arithmetic and they all step together. That is the whole reason both of these
-exist, and it is also why they draw themselves on a screen for free.
+An FPGA is not a microcontroller with more headroom — and the difference is not that
+everything happens at once. The membrane is walked one node at a time here too: 1024 nodes
+in 1037 of the 1250 cycles a 48 kHz sample allows, in raster order. What changes is what a
+single tick buys. The four neighbours, the Laplacian, the tension multiply, the boundary
+test and the clamp all resolve together, so a node costs **one** tick where a processor
+needs a couple of dozen. Spend that saving and you get the two things below: geometry you
+can modulate at audio rate, and a screen that costs no time at all.
 
 ## The membrane, and why the hole matters
 
@@ -66,8 +69,10 @@ every sample. That much is textbook. The part that is not is the boundary.
 you rebuild whenever it changes, so shape is a control-rate parameter at best and usually a
 setting you pick once. Here it is two comparisons re-evaluated for every node of every
 scan — the geometry costs the same whether it is still or moving. So the hole in the middle
-of the drum becomes a **modulation destination**, patchable at audio rate, which is the one
-thing a microcontroller module in the same rack cannot follow.
+of the drum becomes a **modulation destination**, patchable at audio rate. A CPU can run
+the same two comparisons inline rather than rebuilding an array, so this is a question of
+what it costs rather than what is possible — but the cost lands on a per-node budget that
+is already the tight thing.
 
 It is not free. Geometry FM uses a hard mask, and the discontinuity is broadband noise. An
 energy-conserving moving boundary is an open problem rather than a coding task.
@@ -89,8 +94,8 @@ Strike position is the timbre control, and it is doing something physical rather
 filtering: where you hit a drum decides which modes get energy. Hit a node sitting on a
 mode's antinode and that mode rings; hit its nodal line and it stays silent.
 
-**It is stereo, and the second pickup's position is the whole trick.** It sits a quarter
-turn round from the first, at the same radius, and the two obvious alternatives are both
+**It is stereo, and the second pickup's position is the whole trick.** It sits 45° round
+from the first, at the same radius, and the two obvious alternatives are both
 wrong: a *mirrored* point reads identically on every symmetric preset — correlation 1.00,
 which is mono with extra steps — and +x sits inside the slit on the slit preset, where it
 would be silent. At 45° the angular modes differ between the channels while the radially
@@ -103,17 +108,18 @@ brighter and slightly harsher, which suits something heard through a pickup.
 
 ## ORBITA — the same mesh, as a wavetable
 
-Slow the membrane to **750 Hz** — an order of magnitude below hearing — and it stops being
-a sound and becomes a surface. Read a circular path around it at audio rate and the scan is
+Update the membrane once every 64 samples — **750 Hz**, against LACUNA's 48 kHz — and its
+own fundamental drops to about **1 Hz**, far below hearing. It stops being a sound and
+becomes a surface. Read a circular path around it at audio rate and the scan is
 the oscillator. Pitch is the scan rate, not the tension.
 
 | jack | |
 | --- | --- |
 | in 0 | drive — a gate edge plucks, a held level drones |
 | in 1 | pitch — 1 V/oct, 0 V is 55 Hz, eight octaves to 7040 Hz |
-| in 2 | radius — the scan circle, inner edge to outer edge, 256 steps |
+| in 2 | radius — the left scan circle, inner edge to outer edge, 256 steps |
 | in 3 | geometry — audio-rate modulation of the hole radius |
-| out 0 | scan |
+| out 0 / out 1 | scan L, and scan R a quarter of the annulus further out |
 
 The scan path is a circle rather than a line, which turns out to decide the whole
 instrument. A concentric circle never crosses a concentric hole, so the **asymmetric**
@@ -136,9 +142,9 @@ There is no tension control either — λ² is a per-preset constant, and all fo
 spoken for.
 
 **The two panels are the argument.** Every input is the same kind of thing on both — a
-gate, 1 V/oct from 55 Hz, a radial position hub to rim, and the hole — so both read
-`GTE V/O RAD GEO` and differ only in how many outputs they use. Same membrane, same four
-controls, two instruments that sound nothing alike.
+gate, 1 V/oct from 55 Hz, a radial position hub to rim, and the hole — and both are stereo,
+so the two panels read `GTE V/O RAD GEO` over two outputs and are identical. Same membrane,
+same four controls, two instruments that sound nothing alike.
 
 ## The screen, which costs almost nothing
 
@@ -159,7 +165,8 @@ the ring sits directly above the sample it produced.
 
 ## The module itself
 
-Tiliqua is 6HP, built around a Lattice ECP5 with 25K LUTs and 56 hardware multipliers,
+Tiliqua is 6HP, built around a Lattice ECP5 with 25K LUTs and 28 DSP slices (56 18×18
+multipliers),
 32 MB of PSRAM and a GPDI video socket. Two things about it matter more than the numbers.
 
 **There is no separate CV path.** All four inputs and four outputs are channels on one
