@@ -1,0 +1,85 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Orbita/Lacuna — Eight4aWish</title><meta name="description" content="Two bitstream instruments for the apf.audio Tiliqua — a stereo struck drum head and stereo scanned wavetable which share a 2D mesh base."><link rel="canonical" href="https://eight4awish.com/modules/tiliqua/"><!-- so a link pasted into YouTube, Reddit or Discord shows the artwork.
+     Module pages pass their PANEL RENDER, not the photo, and the two are not
+     interchangeable: a photo is of the module in a rack, and where a module runs
+     on someone else's board the photo is of THEIR panel. Girl runs on a Ksoloti
+     Big Genes, so its photo is a Big Genes front panel - which is what Discord
+     was showing for /modules/girl. The render is always the module's own. --><meta property="og:type" content="website"><meta property="og:title" content="Orbita/Lacuna — Eight4aWish"><meta property="og:description" content="Two bitstream instruments for the apf.audio Tiliqua — a stereo struck drum head and stereo scanned wavetable which share a 2D mesh base."><meta property="og:image" content="https://eight4awish.com/opt/tiliqua_orbita_flat.og.jpg"><meta property="og:url" content="https://eight4awish.com/modules/tiliqua/"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Orbita/Lacuna — Eight4aWish"><meta name="twitter:description" content="Two bitstream instruments for the apf.audio Tiliqua — a stereo struck drum head and stereo scanned wavetable which share a 2D mesh base."><meta name="twitter:image" content="https://eight4awish.com/opt/tiliqua_orbita_flat.og.jpg"><link rel="stylesheet" href="/_astro/Base.DnzspGpn.css"></head><body><header class="site"><div class="wrap"><a class="brand" href="/">Home</a><nav class="site"><a href="/modules/" class="on">Modules</a><a href="/tutorials/">Tutorials</a><a href="/notes/">Notes</a><a href="/about/">About</a></nav></div></header><main class="wrap"><div class="crumb"><a href="/modules/">Modules</a> / Orbita/Lacuna</div><h1 style="margin:6px 0 4px">Orbita/Lacuna</h1><div class="chips" style="margin-bottom:14px"><span class="chip acc">Tiliqua</span><span class="chip">FPGA</span><span class="chip">Physical modelling</span><span class="chip">Scanned synthesis</span></div><p class="sub">Two bitstream instruments for the apf.audio Tiliqua — a stereo struck drum head and stereo scanned wavetable which share a 2D mesh base.</p><div class="hero-video pending"><img src="/opt/tiliqua_orbita_flat.med.webp" alt="" loading="lazy" decoding="async"><span class="badge">Video coming soon</span></div><div class="dl" style="margin-top:22px"><a class="btn" href="https://github.com/Eight4aWish/tiliqua/releases/download/mesh-0.4/lacuna-48x48-1280x720p60.tar.gz">Download firmware — LACUNA, 1280×720</a><a class="btn" href="https://github.com/Eight4aWish/tiliqua/releases/download/mesh-0.4/orbita-48x48-1280x720p60.tar.gz">Download ORBITA, 1280×720</a><a class="btn" href="https://github.com/Eight4aWish/tiliqua/releases/download/mesh-0.4/lacuna-48x48-720x720p60r2.tar.gz">Download LACUNA, 720×720 round panel</a><a class="btn" href="https://github.com/Eight4aWish/tiliqua/releases/download/mesh-0.4/orbita-48x48-720x720p60r2.tar.gz">Download ORBITA, 720×720 round panel</a><a class="btn ghost" href="https://github.com/Eight4aWish/tiliqua" target="_blank" rel="noopener">Source on GitHub</a></div><p class="tiny">Sequence it with <a href="/tutorials/strudel/">Strudel</a>.</p><div class="prose"><h2 id="overview">Overview</h2>
+<p><strong>LACUNA</strong> and <strong>ORBITA</strong> are two bitstreams for the <a href="https://apf.audio/">apf.audio</a>
+<a href="https://apf.audio/">Tiliqua</a>, an open-hardware FPGA module for Eurorack. They are based on the same 48×48 finite-difference membrane — the same shared source code file of under four hundred lines of gateware. They sound nothing alike. One is a drum head you hit. The other reads circles through the mesh as wavetables. Not affiliated with, or endorsed by, apf.audio.</p>
+<p>The bitstreams share a family of 2D mesh designs based on a drum head but with holes or slits. These modifications add to the range and complexity of the vibration modes established when the membrane is excited.</p>
+<h2 id="lacuna--a-struck-membrane">LACUNA — a struck membrane</h2>
+<p>The mesh runs at 48 kHz and you listen to the sound at two nodes, the way contact pickups sit on a drum head. The tension of the mesh sets the pitch which tracks 1 V/oct.</p>
+<table>
+<thead>
+<tr>
+<th>jack</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>in 0</td>
+<td>strike — rising edge above ~1 V</td>
+</tr>
+<tr>
+<td>in 1</td>
+<td>tension — 1 V/oct, 27.5–440 Hz</td>
+</tr>
+<tr>
+<td>in 2</td>
+<td>position — strike position, hub to rim</td>
+</tr>
+<tr>
+<td>in 3</td>
+<td>geometry — modulation of the hole radius</td>
+</tr>
+<tr>
+<td>out 0 / out 1</td>
+<td>mesh L and R</td>
+</tr>
+</tbody>
+</table>
+<p>Strike position is the timbre control and where you hit a drum decides which modes get energy. Hit a node sitting on a mode’s antinode and that mode rings; hit its nodal line and it stays silent. LACUNA is stereo, with the pickups positioned to ensure that the angular modes differ between the channels while the radially symmetric ones stay common.</p>
+<h2 id="orbita--the-same-mesh-as-a-wavetable">ORBITA — the same mesh, as a wavetable</h2>
+<p>Update the membrane once every 64 samples — <strong>750 Hz</strong>, against LACUNA’s 48 kHz — and its
+own fundamental drops to about <strong>1 Hz</strong>, far below hearing. It stops being a sound and becomes a surface. Read a circular path around it at audio rate and the scan is an oscillation. In this case pitch is the scan rate, not the tension.</p>
+<table>
+<thead>
+<tr>
+<th>jack</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>in 0</td>
+<td>drive — a gate edge plucks, a held level drones</td>
+</tr>
+<tr>
+<td>in 1</td>
+<td>pitch — 1 V/oct, 0 V is 27.5 Hz, eight octaves to 7040 Hz</td>
+</tr>
+<tr>
+<td>in 2</td>
+<td>radius — the left scan circle, inner edge to outer edge, 256 steps</td>
+</tr>
+<tr>
+<td>in 3</td>
+<td>damping — how long the surface holds its shape; a 0–5 V slider takes it from ringing for ever to a thud</td>
+</tr>
+<tr>
+<td>out 0 / out 1</td>
+<td>scan L, and scan R a quarter of the annulus further out</td>
+</tr>
+</tbody>
+</table>
+<p>The scan path is a circle or depending on radius, a broken circle. Asymmetric geometries like the slit provide one notch per revolution and a full harmonic series. Alternatively, a square hole gives four notches and a fourth-harmonic emphasis. The symmetry order of the hole picks the harmonics.</p>
+<h2 id="visualisation">Visualisation</h2>
+<p>Node status is piped directly to the video socket so you can watch a 2D map showing current node status and the strike, scan position and/or geometry adjusted through CV controls. Blue and red are the two signs of positive and negative displacement. The mesh’s most characteristic behaviour is mode beating between near-degenerate pairs, and it appears as pattern <strong>precessing</strong>.</p>
+<h2 id="the-module-itself">The module itself</h2>
+<p>Tiliqua is 6HP, built around a Lattice ECP5 with 25K LUTs and 28 18×18 multipliers, 32 MB of PSRAM and a GPDI video socket. All four inputs and four outputs are channels on one four-channel audio codec, so CV arrives at the audio rate, sample by sample, and there is no difference between a CV and a signal — patch an oscillator into a CV input and it is just audio. The onboard bootloader holds eight bitstreams at once, chosen from the front panel, and apf.audio ships eleven of their own.</p>
+<h2 id="provenance">Provenance</h2>
+<p>Both bitstreams were built in about five days, in heavy collaboration with an AI assistant. The design decisions, the musical judgements and the testing on hardware are mine; much of the gateware, the tests and the documentation were written with assistance.</p>
+<p>Everything, upstream’s and mine, is CERN-OHL-S-2.0 — the strongly reciprocal open hardware
+licence, which applies to bitstreams as much as to boards.</p>
+</div><section class="flash"><h2 class="sec">Flash it — no compiler needed</h2><p class="sub">Tiliqua ships with its bootloader already loaded, so there is no additional install. A bitstream archive is uploaded into one of eight slots and then chosen from the front panel — no compiler needed if you take a release archive.</p><div class="warn"><b>Read this first —</b> Two video modes are built. Take `720x720p60r2` for a round Waveshare or Tiliqua screen and `1280x720p60` for a capture card or monitor that favours this screen resolution.</div><div class="dl"><a class="btn" href="https://github.com/Eight4aWish/tiliqua/releases/download/mesh-0.4/lacuna-48x48-1280x720p60.tar.gz">Download firmware — LACUNA, 1280×720</a><a class="btn" href="https://github.com/Eight4aWish/tiliqua/releases/download/mesh-0.4/orbita-48x48-1280x720p60.tar.gz">Download ORBITA, 1280×720</a><a class="btn" href="https://github.com/Eight4aWish/tiliqua/releases/download/mesh-0.4/lacuna-48x48-720x720p60r2.tar.gz">Download LACUNA, 720×720 round panel</a><a class="btn" href="https://github.com/Eight4aWish/tiliqua/releases/download/mesh-0.4/orbita-48x48-720x720p60r2.tar.gz">Download ORBITA, 720×720 round panel</a><a class="btn ghost" href="https://github.com/Eight4aWish/tiliqua/releases" target="_blank" rel="noopener">All releases</a><a class="btn ghost" href="https://apfaudio.github.io/tiliqua/" target="_blank" rel="noopener">Tiliqua documentation</a></div><p class="tiny">These builds flash exactly the same way — the steps below apply to all of them. The only difference is which <code>.bin</code> you download and put on the card.</p><ol class="flashsteps"><li>Take the archive for the instrument you want and the screen you have.</li><li>Connect the module to your computer with the debug USB-C port.</li><li>Run `pdm flash archive &lt;archive&gt;.tar.gz --slot [YOUR CHOICE HERE]`, picking any free slot. `pdm flash status` shows what is in the slots already.</li><li>Power-cycle, then turn the encoder to the slot and push to boot it.</li></ol><div class="note">If you build rather than download, pin the placer seed. These designs sit close enough to the ECP5&#39;s routing limit that identical source places very differently run to run.</div></section><p class="tiny" style="margin-top:30px">Updated September 2026</p></main><footer class="site"><div class="wrap"><span>© Eight4aWish</span><a href="https://github.com/Eight4aWish">GitHub</a><a href="mailto:info@eight4awish.com">info@eight4awish.com</a><a href="https://buymeacoffee.com/eight4awish">Buy me a coffee</a></div></footer></body></html>
