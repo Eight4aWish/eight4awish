@@ -3,7 +3,7 @@ title: Tiliqua
 date: 2026-09-04
 summary: >-
   Two instruments on one membrane for the apf.audio Tiliqua — a stereo struck
-  drum head and a scanned wavetable, sharing under three hundred lines of
+  drum head and a scanned wavetable, sharing under four hundred lines of
   gateware, with the mesh drawn live on the screen.
 platform: Tiliqua
 tags:
@@ -13,13 +13,22 @@ tags:
 panel: /renders/tiliqua_orbita_flat.png
 status: built
 firmware: https://github.com/Eight4aWish/tiliqua
+binary: https://github.com/Eight4aWish/tiliqua/releases/download/mesh-0.4/lacuna-48x48-1280x720p60.tar.gz
+firmwareVersion: "— LACUNA, 1280×720"
+extraBinaries:
+  - label: ORBITA, 1280×720
+    url: https://github.com/Eight4aWish/tiliqua/releases/download/mesh-0.4/orbita-48x48-1280x720p60.tar.gz
+  - label: LACUNA, 720×720 round panel
+    url: https://github.com/Eight4aWish/tiliqua/releases/download/mesh-0.4/lacuna-48x48-720x720p60r2.tar.gz
+  - label: ORBITA, 720×720 round panel
+    url: https://github.com/Eight4aWish/tiliqua/releases/download/mesh-0.4/orbita-48x48-720x720p60r2.tar.gz
 flash:
   intro: >-
     Tiliqua ships with its bootloader already on, so there is nothing to install
     once. A bitstream archive goes into one of eight slots and is chosen from the
     front panel — no compiler needed if you take a release archive.
   steps:
-    - Download the bitstream archive for LACUNA or ORBITA.
+    - Take the archive for the instrument you want and the screen you have.
     - Connect the module to your computer with the debug USB-C port.
     - >-
       Run `pdm flash archive <archive>.tar.gz --slot 3`, picking any free slot.
@@ -32,8 +41,8 @@ flash:
     monitor, and `720x720p60r2` only for the round Waveshare panel — a cheap
     HDMI dongle will not lock to 720×720, because it is not a standard timing.
   links:
-    - label: Bitstreams and source
-      url: https://github.com/Eight4aWish/tiliqua
+    - label: All releases
+      url: https://github.com/Eight4aWish/tiliqua/releases
     - label: Tiliqua documentation
       url: https://apfaudio.github.io/tiliqua/
   note: >-
@@ -47,25 +56,29 @@ draft: true   # needs the video and the first-hand review notes
 
 **LACUNA** and **ORBITA** are two bitstreams for the [apf.audio
 Tiliqua](https://apf.audio/), an open-hardware FPGA module for Eurorack. They are the same
-32×32 finite-difference membrane — the same file, under three hundred lines of gateware —
+48×48 finite-difference membrane — the same file, under four hundred lines of gateware —
 and they sound nothing alike. One is a drum head you hit. The other updates the same mesh
 once every 64 samples instead of every one, and reads a circle through it as a wavetable.
 Not affiliated with, or endorsed by, apf.audio.
 
 An FPGA is not a microcontroller with more headroom — and the difference is not that
-everything happens at once. The membrane is walked one node at a time here too: 1024 nodes
-in 1037 of the 1250 cycles a 48 kHz sample allows, in raster order. What changes is what a
-single tick buys. The four neighbours, the Laplacian, the tension multiply, the boundary
+everything happens at once. The membrane is walked in raster order here too: 2304 nodes in
+1165 of the 1250 cycles a 48 kHz sample allows. What changes is what a single tick buys. The four neighbours, the Laplacian, the tension multiply, the boundary
 test and the clamp all resolve together, so a node costs **one** tick where a processor
 needs a couple of dozen. Spend that saving and you get the two things below: geometry you
 can modulate at audio rate, and a screen that costs no time at all.
+
+At 48×48 it buys one thing more. 2304 nodes will not fit in 1250 cycles one at a time, so
+the update retires **two per tick** — two cells packed into each memory word, the delay
+line shifting by a word, two lanes of identical arithmetic. That is the step with no
+equivalent on a processor: you cannot ask a CPU for a second copy of its own datapath.
 
 ## The membrane, and why the hole matters
 
 Each node's next position comes from its four neighbours' current ones, for every node,
 every sample. That much is textbook. The part that is not is the boundary.
 
-**The mask is a comparator, not an array.** On a CPU the shape of the drum is 1024 elements
+**The mask is a comparator, not an array.** On a CPU the shape of the drum is 2304 elements
 you rebuild whenever it changes, so shape is a control-rate parameter at best and usually a
 setting you pick once. Here it is two comparisons re-evaluated for every node of every
 scan — the geometry costs the same whether it is still or moving. So the hole in the middle
@@ -85,7 +98,7 @@ drum head. Tension is pitch and it tracks 1 V/oct.
 | jack | |
 | --- | --- |
 | in 0 | strike — rising edge above ~1 V |
-| in 1 | tension — 1 V/oct, 55–880 Hz |
+| in 1 | tension — 1 V/oct, 27.5–440 Hz |
 | in 2 | position — strike position, hub to rim |
 | in 3 | geometry — audio-rate modulation of the hole radius |
 | out 0 / out 1 | mesh L and R |
@@ -116,9 +129,9 @@ the oscillator. Pitch is the scan rate, not the tension.
 | jack | |
 | --- | --- |
 | in 0 | drive — a gate edge plucks, a held level drones |
-| in 1 | pitch — 1 V/oct, 0 V is 55 Hz, eight octaves to 7040 Hz |
+| in 1 | pitch — 1 V/oct, 0 V is 27.5 Hz, eight octaves to 7040 Hz |
 | in 2 | radius — the left scan circle, inner edge to outer edge, 256 steps |
-| in 3 | geometry — audio-rate modulation of the hole radius |
+| in 3 | damping — how long the surface holds its shape; a 0–5 V slider takes it from ringing for ever to a thud |
 | out 0 / out 1 | scan L, and scan R a quarter of the annulus further out |
 
 The scan path is a circle rather than a line, which turns out to decide the whole
@@ -136,15 +149,22 @@ the difference between an instrument that wants reverb over it and one that does
 Because the circle no longer has to land on a cell, the radius CV also gets 256 steps
 across the membrane instead of sixteen.
 
-What is left is a real limit rather than a defect: sixty-four points per revolution, so
-above roughly 2 kHz the table's own harmonics begin to fold. It is audible as character.
-There is no tension control either — λ² is a per-preset constant, and all four jacks are
-spoken for.
+What is left is a real limit rather than a defect: a finite table per revolution — 64
+points at 32×32, 128 at 48×48 — so above a few kHz the table's own harmonics begin to
+fold. It is audible as character. There is no tension control either — λ² is a per-preset
+constant, and all four jacks are spoken for.
 
-**The two panels are the argument.** Every input is the same kind of thing on both — a
-gate, 1 V/oct from 55 Hz, a radial position hub to rim, and the hole — and both are stereo,
-so the two panels read `GTE V/O RAD GEO` over two outputs and are identical. Same membrane,
-same four controls, two instruments that sound nothing alike.
+**The two panels are the argument, and so is the one place they differ.** The first three
+inputs are the same kind of thing on both — a gate, 1 V/oct, a radial position hub to rim —
+and both are stereo, so the panels read `GTE V/O RAD` over two outputs either way.
+
+The fourth is where the shared membrane stops being shared. On LACUNA the hole is the
+instrument, so in3 opens and closes it at audio rate: `GEO`. On ORBITA a concentric scan
+circle never crosses a concentric hole, so that same control did nothing at all on five of
+the eight presets; in3 became damping instead — how long the surface holds its shape, which
+is the control scanned synthesis has had since Verplank: `DCY`. Same membrane, same three
+controls, and a fourth that had to become a different parameter because of how each
+instrument reads the surface.
 
 ## The screen, which costs almost nothing
 
