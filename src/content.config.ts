@@ -17,6 +17,10 @@ const modules = defineCollection({
     status: z.enum(['built', 'in progress', 'planned']).default('built'),
     firmware: z.string().optional(),             // repo URL (for people who build it themselves)
     binary: z.string().optional(),               // compiled release asset — the no-compiler path
+    // What the download button calls the thing, after the word "Download". Defaults to
+    // "firmware", which is wrong for anything that is not firmware — an FPGA bitstream
+    // is configuration for the fabric, not code a processor runs.
+    binaryLabel: z.string().optional(),
     firmwareVersion: z.string().optional(),      // so people know what they're flashing
     // extra builds of the same module (e.g. a screenless variant) — each gets its own button
     extraBinaries: z.array(z.object({
@@ -38,6 +42,9 @@ const modules = defineCollection({
       command: z.string().optional(),
       // Extra buttons beside the download - a web flasher, a vendor page. The template has
       // no idea what platform this is; if a page wants a link, it says so here.
+      // Shown above the steps when there is more than one download. The default talks
+      // about a .bin on a card, which is true for a Daisy and not for an FPGA.
+      extrasNote: z.string().optional(),
       links: z.array(z.object({ label: z.string(), url: z.string() })).default([]),
       note: z.string().optional(),
     }).optional(),

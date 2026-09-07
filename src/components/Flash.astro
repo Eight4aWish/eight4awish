@@ -3,7 +3,7 @@
 // just on the platform — a Daisy BOOT_NONE build fits internal flash and flashes
 // directly, while a BOOT_QSPI build runs from the QSPI chip via the Daisy bootloader
 // and needs that installed once first.
-const { binary, version, extras = [], flash = {} } = Astro.props
+const { binary, version, binaryLabel, extras = [], flash = {} } = Astro.props
 
 
 // Every word of this section comes from the page's own frontmatter - there is no wording
@@ -22,7 +22,7 @@ const bootSteps = g.bootSteps ?? []
     {g.warn && <div class="warn"><b>Read this first —</b> {g.warn}</div>}
 
     <div class="dl">
-      <a class="btn" href={binary}>Download firmware{version ? ` ${version}` : ''}</a>
+      <a class="btn" href={binary}>Download {binaryLabel ?? 'firmware'}{version ? ` ${version}` : ''}</a>
       {extras.map((b) => (
         <a class="btn" href={b.url}>Download {b.label}{b.version ? ` ${b.version}` : ''}</a>
       ))}
@@ -32,8 +32,7 @@ const bootSteps = g.bootSteps ?? []
     </div>
 
     {extras.length > 0 && (
-      <p class="tiny">These builds flash exactly the same way — the steps below apply to all of
-         them. The only difference is which <code>.bin</code> you download and put on the card.</p>
+      <p class="tiny">{g.extrasNote ?? 'These builds flash exactly the same way — the steps below apply to all of them. The only difference is which .bin you download and put on the card.'}</p>
     )}
 
     {bootSteps.length > 0 && (

@@ -15,16 +15,17 @@ firmware: https://github.com/Eight4aWish/tiliqua
 binary: >-
   https://github.com/Eight4aWish/tiliqua/releases/download/mesh-0.4/lacuna-48x48-1280x720p60.tar.gz
 extraBinaries:
-  - label: ORBITA, 1280×720
+  - label: ORBITA bitstream, 1280×720
     url: >-
       https://github.com/Eight4aWish/tiliqua/releases/download/mesh-0.4/orbita-48x48-1280x720p60.tar.gz
-  - label: LACUNA, 720×720 round panel
+  - label: LACUNA bitstream, 720×720 round panel
     url: >-
       https://github.com/Eight4aWish/tiliqua/releases/download/mesh-0.4/lacuna-48x48-720x720p60r2.tar.gz
-  - label: ORBITA, 720×720 round panel
+  - label: ORBITA bitstream, 720×720 round panel
     url: >-
       https://github.com/Eight4aWish/tiliqua/releases/download/mesh-0.4/orbita-48x48-720x720p60r2.tar.gz
-firmwareVersion: — LACUNA, 1280×720
+firmwareVersion: ""
+binaryLabel: LACUNA bitstream, 1280×720
 flash:
   intro: >-
     Tiliqua ships with its bootloader already loaded, so there is no additional
@@ -44,6 +45,10 @@ flash:
       picking any free slot. `pdm flash status` shows what is in the slots
       already.
     - Power-cycle, then turn the encoder to the slot and push to boot it.
+  extrasNote: >-
+    All four flash exactly the same way — the steps below apply to every one of them.
+    The only difference is which archive you pick: the instrument you want, and the
+    screen you have.
   links:
     - label: All releases
       url: https://github.com/Eight4aWish/tiliqua/releases
@@ -89,7 +94,7 @@ own fundamental drops to about **1 Hz**, far below hearing. It stops being a sou
 | in 3 | damping — how long the surface holds its shape; a 0–5 V slider takes it from ringing for ever to a thud |
 | out 0 / out 1 | scan L, and scan R a quarter of the annulus further out |
 
-The scan path is a circle or depending on radius, a broken circle. Asymmetric geometries like the slit provide one notch per revolution and a full harmonic series. Alternatively, a square hole gives four notches and a fourth-harmonic emphasis. The symmetry order of the hole picks the harmonics.
+The scan path is a circle or, depending on radius, a broken circle. Asymmetric geometries like the slit provide one notch per revolution and a full harmonic series. Alternatively, a square hole gives four notches and a fourth-harmonic emphasis. The symmetry order of the hole picks the harmonics.
 
 ## Visualisation
 

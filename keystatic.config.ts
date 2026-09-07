@@ -111,6 +111,12 @@ export default config({
           label: 'Compiled binary (release asset URL)',
           description: 'The .bin from GitHub Releases — the download for people who will not compile.',
         }),
+        binaryLabel: fields.text({
+          label: 'What the download button calls it',
+          description:
+            "Goes after the word Download. Blank means \"firmware\", which is wrong for an "
+            + 'FPGA bitstream — that is configuration for the fabric, not code a processor runs.',
+        }),
         extraBinaries: fields.array(
           fields.object({
             label: fields.text({ label: 'Button label', description: 'e.g. Joy Lite' }),
@@ -134,6 +140,13 @@ export default config({
               itemLabel: (p) => p.value || 'Step',
             }),
             command: fields.text({ label: 'Terminal command' }),
+            extrasNote: fields.text({
+              label: 'Note above the steps when there is more than one download',
+              multiline: true,
+              description:
+                'Blank falls back to wording about a .bin on a card, which suits a Daisy and '
+                + 'not an FPGA.',
+            }),
             links: fields.array(
               fields.object({
                 label: fields.text({ label: 'Button label' }),
