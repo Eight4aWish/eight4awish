@@ -1,5 +1,5 @@
 ---
-title: Orbita/Lacuna
+title: Silver/Gold
 date: 2026-09-04
 summary: >-
   Two bitstream instruments for the apf.audio Tiliqua — a stereo struck drum
@@ -9,23 +9,23 @@ tags:
   - FPGA
   - Physical modelling
   - Scanned synthesis
-panel: /renders/tiliqua_orbita_flat.png
+panel: /renders/tiliqua_gold_flat.png
 status: built
 firmware: https://github.com/Eight4aWish/tiliqua
 binary: >-
-  https://github.com/Eight4aWish/tiliqua/releases/download/mesh-0.4/lacuna-48x48-1280x720p60.tar.gz
+  https://github.com/Eight4aWish/tiliqua/releases/download/mesh-0.5/silver-48x48-1280x720p60.tar.gz
 extraBinaries:
-  - label: ORBITA bitstream, 1280×720
+  - label: Gold bitstream, 1280×720
     url: >-
-      https://github.com/Eight4aWish/tiliqua/releases/download/mesh-0.4/orbita-48x48-1280x720p60.tar.gz
-  - label: LACUNA bitstream, 720×720 round panel
+      https://github.com/Eight4aWish/tiliqua/releases/download/mesh-0.5/gold-48x48-1280x720p60.tar.gz
+  - label: Silver bitstream, 720×720 round panel
     url: >-
-      https://github.com/Eight4aWish/tiliqua/releases/download/mesh-0.4/lacuna-48x48-720x720p60r2.tar.gz
-  - label: ORBITA bitstream, 720×720 round panel
+      https://github.com/Eight4aWish/tiliqua/releases/download/mesh-0.5/silver-48x48-720x720p60r2.tar.gz
+  - label: Gold bitstream, 720×720 round panel
     url: >-
-      https://github.com/Eight4aWish/tiliqua/releases/download/mesh-0.4/orbita-48x48-720x720p60r2.tar.gz
+      https://github.com/Eight4aWish/tiliqua/releases/download/mesh-0.5/gold-48x48-720x720p60r2.tar.gz
 firmwareVersion: ""
-binaryLabel: LACUNA bitstream, 1280×720
+binaryLabel: Silver bitstream, 1280×720
 flash:
   intro: >-
     Tiliqua ships with its bootloader already loaded, so there is no additional
@@ -62,12 +62,12 @@ draft: false
 ---
 ## Overview
 
-**LACUNA** and **ORBITA** are two bitstreams for the [apf.audio](https://apf.audio/)
+**Silver** and **Gold** are two bitstreams for the [apf.audio](https://apf.audio/)
 [Tiliqua](https://apf.audio/), an open-hardware FPGA module for Eurorack. They are based on the same 48×48 finite-difference membrane — the same shared source code file of under four hundred lines of gateware. They sound nothing alike. One is a drum head you hit. The other reads circles through the mesh as wavetables. Not affiliated with, or endorsed by, apf.audio.
 
 The bitstreams share a family of 2D mesh designs based on a drum head but with holes or slits. These modifications add to the range and complexity of the vibration modes established when the membrane is excited.
 
-## LACUNA — a struck membrane
+## Silver — a struck membrane
 
 The mesh runs at 48 kHz and you listen to the sound at two nodes, the way contact pickups sit on a drum head. The tension of the mesh sets the pitch which tracks 1 V/oct.
 
@@ -79,11 +79,11 @@ The mesh runs at 48 kHz and you listen to the sound at two nodes, the way contac
 | in 3 | geometry — modulation of the hole radius |
 | out 0 / out 1 | mesh L and R |
 
-Strike position is the timbre control and where you hit a drum decides which modes get energy. Hit a node sitting on a mode's antinode and that mode rings; hit its nodal line and it stays silent. LACUNA is stereo, with the pickups positioned to ensure that the angular modes differ between the channels while the radially symmetric ones stay common.
+Strike position is the timbre control and where you hit a drum decides which modes get energy. Hit a node sitting on a mode's antinode and that mode rings; hit its nodal line and it stays silent. Silver is stereo, with the pickups positioned to ensure that the angular modes differ between the channels while the radially symmetric ones stay common.
 
-## ORBITA — the same mesh, as a wavetable
+## Gold — the same mesh, as a wavetable
 
-Update the membrane once every 64 samples — **750 Hz**, against LACUNA's 48 kHz — and its
+Update the membrane once every 64 samples — **750 Hz**, against Silver's 48 kHz — and its
 own fundamental drops to about **1 Hz**, far below hearing. It stops being a sound and becomes a surface. Read a circular path around it at audio rate and the scan is an oscillation. In this case pitch is the scan rate, not the tension.
 
 | jack |  |
