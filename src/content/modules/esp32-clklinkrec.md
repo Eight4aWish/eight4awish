@@ -6,7 +6,7 @@ platform: ESP32
 tags:
   - clock
   - Ableton Link
-panel: /renders/esp32_clklinkrec_flat.png
+panel: /renders/clklinkrec_flat.png
 status: built
 draft: true   # post-launch: needs write-up + video
 ---
