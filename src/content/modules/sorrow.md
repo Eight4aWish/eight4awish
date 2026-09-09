@@ -11,7 +11,7 @@ tags:
   - Daisy Patch Init
 panel: /renders/daisy_grids_flat.png
 status: built
-firmware: https://github.com/Eight4aWish/eurorack_daisy_patch_init
+firmware: https://github.com/Eight4aWish/eurorack_daisy_patch_init/tree/main/daisy_grids
 binary: >-
   https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/sorrow-v2.4.1/sorrow-v2.4.1.bin
 extraBinaries: []

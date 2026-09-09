@@ -10,7 +10,7 @@ tags:
   - Ksoloti
 panel: /renders/ksoloti_biggenes_flat.png
 status: built
-firmware: https://github.com/Eight4aWish/eurorack_modules
+firmware: https://github.com/Eight4aWish/eurorack_modules/tree/main/src/ksoloti_elements
 binary: >-
   https://github.com/Eight4aWish/eurorack_modules/releases/download/girl-v1.2.3/girl.bin
 extraBinaries: []

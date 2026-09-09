@@ -10,7 +10,7 @@ tags:
   - Daisy Patch Init
 panel: /renders/daisy_braids_flat.png
 status: built
-firmware: https://github.com/Eight4aWish/eurorack_daisy_patch_init
+firmware: https://github.com/Eight4aWish/eurorack_daisy_patch_init/tree/main/daisy_braids_oled
 binary: >-
   https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/joy-v1.4.0/joy.bin
 extraBinaries:
