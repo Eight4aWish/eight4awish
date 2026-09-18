@@ -67,7 +67,7 @@ Nothing in `src/content/modules/` covers these.
 | Module | Repo | Firmware / docs | Platform | What it is |
 |---|---|---|---|---|
 | **Daisy MultiFX (Seed)** | `eurorack_daisy_patch_init` | `daisy_multifx_seed/` | bare Daisy Seed + home-built Eurorack front end | Sibling of Daisy MultiFX on different hardware. Same `multifx_core` DSP/UI, 16 effects in 4×4. Migrated off DaisyDuino onto libDaisy + current DaisySP. |
-| **Seeed Recorder (RP2040)** | `seeed-recorder` | `firmware/` | Seeed Xiao RP2040 | Capture trigger for the Retrospective Mac app over **USB-MIDI** (button → Note On; Note On → LED). Momentary switch on `D5`, LED on `D0`. **USB-powered — no Eurorack bus power in v1.** Built with arduino-pico + Adafruit TinyUSB. Any MIDI controller sending the same Note triggers it too. |
+| **Seeed Recorder (RP2040)** | `seeed-recorder` | `firmware/` | Seeed Xiao RP2040, **1U tile** | Capture trigger for the Retrospective Mac app over **USB-MIDI** (button → Note On; Note On → LED). Momentary switch on `D5`, LED on `D0`. **USB-powered — no Eurorack bus power in v1.** Built with arduino-pico + Adafruit TinyUSB. Any MIDI controller sending the same Note triggers it too. |
 | **ESP32 ClkLink** | `eurorack_modules` | `src/esp32_clklink/` | ESP32-Dev + MCP4728 | The original Ableton Link clock/reset generator; predecessor to ClkLinkRec. OFF / INTERNAL / LINK switch. **GPL-2.0-or-later** (links Ableton Link). |
 | **MOD2 / Melon** | `eurorack_electronics` | `docs/mod2_*` | mixed-signal, n8synth 6HP | Dual-firmware-compatible board running 25 published HAGIWO voices — every MOD2 *and* Melon firmware unmodified. 7805 from +12V, both indicator types populated, JP1/JP2 promoted to panel switches. |
 
@@ -178,16 +178,22 @@ panels modelled against the real hardware, so those are the most trustworthy of 
 
 ### 1U tiles
 
-Three modules sit in a 1U row rather than the 3U rows, all **Intellijel 1U format** —
-which is not interchangeable with the Pulp Logic / Synthrotek 1U "tile" format. **76HP
-of 1U in total.** Note that a module's 1U width is not its 3U width: Mutes mounts
-sideways on its 1U panel and goes from 4HP to 24HP.
+Four modules sit in a 1U row rather than the 3U rows, all **Intellijel 1U format** —
+which is not interchangeable with the Pulp Logic / Synthrotek 1U "tile" format. Note that
+a module's 1U width is not its 3U width: Mutes mounts sideways on its 1U panel and goes
+from 4HP to 24HP.
 
 | Module | HP (1U) |
 |---|---|
 | **Steppy 1U** (Intellijel) | 28 |
 | **FX Aid 1U** (Happy Nerding) | 24 |
 | **Mutes MK2** (Befaco / DivKid) | 24 |
+| **Seeed Recorder** (own build) | fills the rest of the row |
+
+The three bought tiles are 76HP between them; the Seeed Recorder takes the remainder. Its
+width is not recorded anywhere — `seeed-recorder/hardware/` does not exist yet, so there
+is no panel manifest to read it from. It is also the one tile drawing no bus power: it
+runs off the USB cable to the Mac.
 
 ## Kit and home builds in the rack
 
