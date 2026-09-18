@@ -125,7 +125,7 @@ Everything here is bought, not built. **The list of modules is David's own, give
 2026-09-18** — that is the authority for *what is owned*. Maker and function are
 verified or high-confidence; **HP is the weak column** and is marked per row.
 
-HP key: **✓** verified against manufacturer or retailer · **◆** confirmed by David directly · **~** retailers disagree, range given.
+HP key: **✓** verified against manufacturer or retailer · **◆** confirmed by David directly.
 Sizes for the ten modules marked ✓ from `eight4awish-video/src/rigModules.ts` come from
 panels modelled against the real hardware, so those are the most trustworthy of all.
 
@@ -140,7 +140,7 @@ panels modelled against the real hardware, so those are the most trustworthy of 
 | **Swords** | Behringer | 18 ◆ | dual multimode filter | **Mutable Blades clone.** Two 12 dB state-variable filters, Mode morphs LP→BP→HP, Routing blends single/parallel/series, plus drive and a two-stage wavefolder. Self-oscillates above ~+3 V. The filter in the CortHex voice. |
 | **Steps** ×2 | Behringer | 14 ✓ | function generator / sequencer | **Mutable Stages clone.** Six stages each; two units chain to 36 segments, which is presumably why there are two. |
 | **Four Play** | Behringer | 12 ✓ | quad VCA + mixer | Coolaudio V2164A. DC-coupled, cascaded outs so Mix alone makes it a 4-in VC mixer. **See the CV6 note below.** |
-| **Four LFO** | Behringer | 12–14 ~ | quad LFO | **Xaoc Batumi clone.** Fader per LFO, assignable waveforms, 500 Hz down to ~28 hours. |
+| **Four LFO** | Behringer | 12 ◆ | quad LFO | **Xaoc Batumi clone.** Fader per LFO, assignable waveforms, 500 Hz down to ~28 hours. |
 | **Chaos** | Behringer | 18 ✓ | random gates + random CV | Analog random sampler, two chained sub-sections. **Name collides with your own Chaos**, the Teensy 4.1 attractor voice — unrelated modules, both in the rack. |
 | **Abacus** | Behringer | 20 ✓ | function generator / CV maths | Modelled on Buchla 257 + 281. Four CV ins with depth and direction; lag / slew / portamento. |
 | **Waves** | Behringer | 14 ✓ | function generator / tidal modulator | **Mutable Tides clone** — three generator modes, AR and AD envelopes, looping VC-LFO and VCDO, morphing waveforms. Its **Smoothness** control is a wavefolder clockwise of centre (and a 2-pole low-pass counter-clockwise), so `ROADMAP.md:48` is right to count it alongside Chopping Kinky as West-Coast folding. |
