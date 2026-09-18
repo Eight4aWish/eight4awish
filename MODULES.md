@@ -137,7 +137,7 @@ panels modelled against the real hardware, so those are the most trustworthy of 
 | **Plaits** | CCTV | 12 ✓ | macro oscillator | Mutable clone on **Plaits 1.2 alt firmware**. The oscillator in the CortHex voice. |
 | **Rings** | CCTV | 14 ✓ | resonator | Mutable clone (Immutable Rings), Thonk DIY kit. Why no Rings engine was written for MultiOsc. |
 | **Peaks** | CCTV | 8 ✓ | envelope / LFO / drum | Mutable clone (Immutable Peaks). Four functions in 8HP: ADSR, LFO, tap-tempo LFO, drum synth. |
-| **Swords** | Behringer | 16–18 ~ | dual multimode filter | **Mutable Blades clone.** Two 12 dB state-variable filters, Mode morphs LP→BP→HP, Routing blends single/parallel/series, plus drive and a two-stage wavefolder. Self-oscillates above ~+3 V. The filter in the CortHex voice. |
+| **Swords** | Behringer | 18 ◆ | dual multimode filter | **Mutable Blades clone.** Two 12 dB state-variable filters, Mode morphs LP→BP→HP, Routing blends single/parallel/series, plus drive and a two-stage wavefolder. Self-oscillates above ~+3 V. The filter in the CortHex voice. |
 | **Steps** ×2 | Behringer | 14 ✓ | function generator / sequencer | **Mutable Stages clone.** Six stages each; two units chain to 36 segments, which is presumably why there are two. |
 | **Four Play** | Behringer | 12 ✓ | quad VCA + mixer | Coolaudio V2164A. DC-coupled, cascaded outs so Mix alone makes it a 4-in VC mixer. **See the CV6 note below.** |
 | **Four LFO** | Behringer | 12–14 ~ | quad LFO | **Xaoc Batumi clone.** Fader per LFO, assignable waveforms, 500 Hz down to ~28 hours. |
@@ -168,11 +168,11 @@ panels modelled against the real hardware, so those are the most trustworthy of 
 | **Beatsi** | Omni-tone | 8 ✓ | drum voice | Six trigger ins. Fed by O&C outs e/f/g/h → KICK / SNARE / HI-HAT / CRASH. |
 | **Rhythmi** | Omni-tone | 14 ✓ | generative drum sequencer | Built-in generative algorithm driving up to five voices. Designed to pair with Beatsi. |
 | **DivSkip** | Making Sound Machines / DivKid | 8 ✓ | trigger / gate processor | Four channels, eight modes: Bernoulli, clock divider, Turing, Euclidean (split + classic), ramp/gate length, retrigger, 64-step patterns. |
-| **FX Aid** | Happy Nerding | 4 ✓ | DSP effects | |
+| **FX Aid 1U** | Happy Nerding | 24 ◆ | DSP effects | **Intellijel-format 1U tile**, not a 3U module — it lives in a 1U row. Spin FV-1 based: 32 effects in 4 banks of 8, three controls plus analog dry/wet with CV, four storable presets, reflashable. |
 | **Alchemy Lab** | Hermetic Modular | 12 ✓ | open DSP platform | **Electrosmith Daisy inside** (STM32H750, 64 MB SDRAM), MIT-licensed SDK, six firmware-controllable CV jacks, microSD, 102 addressable LEDs. |
 | **Monsoon** | Jakplugg | 12 ✓ | granular / texture | Clouds redesigned to 12HP with bi-colour illuminated faders for the four granular parameters. **Typhoon is Jakplugg's *expanded* Monsoon**, so `ROADMAP.md:49`'s "Typhoon = Clouds" is the same family, not a different module. |
 | **Ogham** | Keeos | 10 ✓ | dual bytebeat oscillator | Two formulas from a pool of 100, CV over the A and B parameters plus sync and timing. **You own the module whose code became your BYTEBEAT engine** — `daisy_bytebeat` is ported from keeos-io/ogham (MIT), and the 100-formula bank is the same one. |
-| **EuroPi** | Allen Synthesis | 8 ✓ | clock / CV (programmable) | **Built with a Pico 2 W (RP2350 + wifi)** per David. Reprogrammable in MicroPython; config lives at `/config/EuroPiConfig.json` on the Pico. Runs a Pamela's-style firmware; the repos call it "Pam's clone". One of four clock sources — a swung clock from it gives a swung Sorrow pattern. |
+| **EuroPi** | Allen Synthesis | 8 ✓ | clock / CV (programmable) | **Built with a Pico 2 W** (RP2350 + wifi). Reprogrammable in MicroPython; config lives at `/config/EuroPiConfig.json` on the Pico. Runs a Pamela's-style firmware; the repos call it "Pam's clone". One of four clock sources — a swung clock from it gives a swung Sorrow pattern. |
 | **ES-10** | Expert Sleepers | 12 ✓ | audio interface | 8-channel DC-coupled ADAT. End of the chain; every audio out terminates here. |
 | **ADSR** | N8Synth | 4 ✓ | envelope | Single column: IN, A, D, S, R, OUT. |
 
@@ -201,6 +201,14 @@ Purchased, but the platform rather than the instrument.
 | **Patch Init / Patch Submodule** | Electrosmith | — | Sorrow, Joy, Joy Lite, MultiOsc, MultiFX |
 | **AMYboard** | shorepine | — | AMYboard PatchBank |
 | **Solderable breadboard platform** (4/6/10HP + 10HPS) | N8Synth | 4–10 | Dual LPG, MOD2/Melon, and the board geometry the layout visualiser validates against |
+
+## Case and power
+
+| Item | Maker | Notes |
+|---|---|---|
+| **Cases** | home build | Built on **Tiptop Audio Z-Rails**. |
+| **Zeus** ×2 | Tiptop Audio | Bus power. |
+| **CP1A** | Behringer | Bus power. |
 
 ## Outside the rack
 
