@@ -52,10 +52,10 @@ Have a `src/content/modules/*.md` entry with `draft: true` — awaiting write-up
 |---|---|---|---|---|
 | **Boy** | `eurorack_modules` | `src/teensy_move/` | Teensy 4.1 | `boy.md` |
 | **Chaos** | `eurorack_modules` | `src/teensy_chaos/` | Teensy 4.1 | `chaos.md` |
-| **CortHex** | `eurorack_modules` | `src/nanoesp32_corthex/` | Arduino Nano ESP32 (NORA-W106 / ESP32-S3) | `corthex.md` |
+| **CortHex** | `eurorack_modules` | `src/nanoesp32_corthex/` | Arduino Nano ESP32 (NORA-W106 / ESP32-S3) | `corthex.md`. CV6 is a 0–5 V gain CV that drives **either** the Behringer Four Play or a Thonk T03, whichever is patched — `main.cpp:1048` and `proxy.py` name different ones and both are valid. |
 | **Daisy MultiOsc** | `eurorack_daisy_patch_init` | `daisy_multiosc/` | Daisy Patch Submodule | `daisy-multiosc.md` |
 | **Daisy MultiFX** | `eurorack_daisy_patch_init` | `daisy_multifx_oled/` | Daisy Patch Submodule | `daisy-multifx.md` |
-| **Pico2W OnC Lite** | `eurorack_modules` | `src/pico2w_oc/` | Pico 2 W | `pico2w-onclite.md` |
+| **Pico2W OnC Lite** | `eurorack_modules` | `src/pico2w_oc/` | Pico 2 W | `pico2w-onclite.md`. Same board as the EuroPi, so board-level findings transfer between them. |
 | **ESP32 ClkLinkRec** | `eurorack_modules` | `src/esp32_clklinkrec/` | XIAO ESP32-C5 | `esp32-clklinkrec.md` — the **HTTP/WiFi** trigger path into Seeed Recorder, for a rig that moves. Protocol v2.0, mDNS `_recorder._tcp.local.` on port 8765, with a `RECORDER_HOST` fallback in `secrets.h`. |
 | **AMYboard PatchBank** | `eurorack_modules` | `src/amyboard_patchbank/` | shorepine AMYboard (ESP32-S3) | `amyboard.md` |
 | **Dual Pingable LPG** | `eurorack_electronics` | `docs/lpg_*` | analog (Buchla 292 path) | `dual-lpg.md` |
@@ -141,7 +141,7 @@ panels modelled against the real hardware, so those are the most trustworthy of 
 | **Steps** ×2 | Behringer | 14 ✓ | function generator / sequencer | **Mutable Stages clone.** Six stages each; two units chain to 36 segments, which is presumably why there are two. |
 | **Four Play** | Behringer | 12 ✓ | quad VCA + mixer | Coolaudio V2164A. DC-coupled, cascaded outs so Mix alone makes it a 4-in VC mixer. **See the CV6 note below.** |
 | **Four LFO** | Behringer | 12–14 ~ | quad LFO | **Xaoc Batumi clone.** Fader per LFO, assignable waveforms, 500 Hz down to ~28 hours. |
-| **Chaos** | Behringer | 18 ✓ | random gates + random CV | Analog random sampler, two chained sub-sections. **Name collides with your own Chaos** — see below. |
+| **Chaos** | Behringer | 18 ✓ | random gates + random CV | Analog random sampler, two chained sub-sections. **Name collides with your own Chaos**, the Teensy 4.1 attractor voice — unrelated modules, both in the rack. |
 | **Abacus** | Behringer | 20 ✓ | function generator / CV maths | Modelled on Buchla 257 + 281. Four CV ins with depth and direction; lag / slew / portamento. |
 | **Waves** | Behringer | 14 ✓ | function generator / tidal modulator | **Mutable Tides clone** — three generator modes, AR and AD envelopes, looping VC-LFO and VCDO, morphing waveforms. Its **Smoothness** control is a wavefolder clockwise of centre (and a 2-pole low-pass counter-clockwise), so `ROADMAP.md:48` is right to count it alongside Chopping Kinky as West-Coast folding. |
 | **Workshop Computer** | Music Thing Modular | 8 ✓ | programmable CV / MIDI | Runs the **Simple MIDI** program card for two fixed voices. MIDI port `Workshop System MIDI`. |
@@ -216,55 +216,12 @@ Purchased, but the platform rather than the instrument.
 | **Move** | Ableton | Groovebox. Boy is its Eurorack bridge — MIDI-to-CV plus audio FX on the Move's output. |
 | **Scarlett 16i16** | Focusrite | USB interface, Mac default input. Rack patches to inputs 1&2. The capture source in the recorder protocol. |
 
-## Things this list settles
+---
 
-- **The Behringer clone lineage.** Swords = Blades, Steps = Stages, Four LFO = Batumi,
-  Abacus = Buchla 257/281. Worth knowing when `ROADMAP.md` reasons about what the rack
-  "already covers in hardware" — several of those are Mutable designs, which is the same
-  family the own-builds port from.
-- **Two modules named Chaos.** Behringer's Chaos is an analog random sampler (random
-  gates + random CV). Your own **Chaos** is the Teensy 4.1 strange-attractor voice. They
-  are unrelated and both in play — worth disambiguating in any write-up or video.
-- **CV6 in CortHex feeds either VCA.** `main.cpp:1048` logs `4Play VCA` where `proxy.py`
-  and the docs say `T03 VCA`. Per David, **CV6 can drive either** — the Behringer Four Play
-  or a Thonk T03, whichever is patched. Neither reference is wrong; they name two valid
-  destinations for one unipolar 0–5 V gain CV. Nothing to fix.
-- **A complete Turing Machine set.** The Mk II plus all three expanders — Pulses (4HP),
-  Volts (4HP) and Voltages (12HP) — 30HP of shift-register sequencing in total. Worth
-  knowing when reasoning about clock and CV sources: that is a fourth one alongside the
-  O&C, the EuroPi and Boy.
-- **The EuroPi and Pico2W OnC Lite are the same board.** Not merely the same family —
-  both are Pico 2 W. Anything learned about that board on one applies directly to the
-  other: wifi behaviour, the overclock bug, clock speed, pin availability. The
-  **Alchemy Lab** is the Daisy equivalent, an MIT SDK over the same STM32H750 as the
-  Patch Init builds. Two chips, four programmable modules, no new hardware needed.
-- **Ogham.** The bytebeat module is owned *and* its code is the BYTEBEAT engine in
-  MultiOsc. That is a nice provenance story rather than a coincidence.
+Open questions and to-dos about this rack are **not** kept here — they live in
+`eight4awish_private/MODULES-TODO.md`, so this file stays a list of what is true rather
+than a mix of facts and actions.
 
-## Still open
-
-1. **EuroPi on Pico 2 W — three things to check**, in `/config/EuroPiConfig.json`.
-   Upstream is actively maintained: latest is **v0.23.1, 18 July 2026**, so the v0.20.0
-   floor below is long since cleared by any recent install. Worth updating for its own
-   sake — **v0.23.0 added external clock mode for Pam's Workout** and v0.23.1 fixed a
-   Pam's bug, which is exactly the firmware this module runs as a clock source.
-   - **`PICO_MODEL`** defaults to `"pico"`, so it must be set or the firmware runs
-     configured for the wrong board — silently. The docs list the value as `"pico 2w"`;
-     the firmware constant is `MODEL_PICO_2W`. The same docs are inconsistent elsewhere
-     (`"pico 2"` with a space in the table vs `"pico2"` without in the prose), so confirm
-     against the version actually installed rather than trusting either spelling.
-   - **Firmware must be v0.20.0 or later.** Pico 2 W UF2 builds did not exist before
-     that — v0.19.2 explicitly says "Pico 2 W isn't available yet". An older release has
-     no build that matches this board.
-   - **`CPU_FREQ`** — there is a known MicroPython bug where the Pico 2 W's wireless card
-     is unreliable when the CPU is overclocked. If wifi misbehaves, set it to `normal`.
-2. **HP for 7 modules** — still `?`: A-121d, Steppy, BUF T06, CCTV Rings, CCTV Peaks,
-   Behringer Waves, Keeos Ogham.
-5. **Swords** — 16HP (B&H) vs 18HP (most retailers).
-4. **Four LFO** — 12HP vs 14HP across retailers.
-5. **FX Aid variant** — standard 4HP, XL 6HP, Pro 14HP or 1U 24HP?
-6. **No case or PSU** recorded anywhere.
-
-Sources: manufacturer pages and retailer listings, checked 2026-09-18. doepfer.de and
-modulargrid.net are both blocked by this session's network proxy, so Doepfer figures come
-from retailers rather than the manufacturer and are the least certain of the verified set.
+Sources: manufacturer and retailer pages, checked 2026-09-18. doepfer.de and
+modulargrid.net are blocked by this session's proxy, so Doepfer figures come from
+retailers and are the least certain of the ✓ set.
