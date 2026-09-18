@@ -188,12 +188,12 @@ from 4HP to 24HP.
 | **Steppy 1U** (Intellijel) | 28 |
 | **FX Aid 1U** (Happy Nerding) | 24 |
 | **Mutes MK2** (Befaco / DivKid) | 24 |
-| **Seeed Recorder** (own build) | fills the rest of the row |
+| **Seeed Recorder** (own build) | 8 ◆ |
 
-The three bought tiles are 76HP between them; the Seeed Recorder takes the remainder. Its
-width is not recorded anywhere — `seeed-recorder/hardware/` does not exist yet, so there
-is no panel manifest to read it from. It is also the one tile drawing no bus power: it
-runs off the USB cable to the Mac.
+**84HP in total**, which fills a standard row exactly. The Seeed Recorder's 8HP is not
+recorded in its repo — `seeed-recorder/hardware/` does not exist yet, so there is no panel
+manifest behind it. It is also the one tile drawing no bus power: it runs off the USB
+cable to the Mac, so the row is three powered tiles, not four.
 
 ## Kit and home builds in the rack
 
