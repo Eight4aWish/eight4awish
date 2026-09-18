@@ -2,7 +2,7 @@
 title: Chaos
 date: 2026-07-27
 summary: "A Teensy strange-attractor source — chaotic X/Y CV from Lorenz and friends, with V/oct, gate and audio in/out."
-platform: Teensy
+platform: Teensy 4.1
 tags:
   - chaos
   - CV source

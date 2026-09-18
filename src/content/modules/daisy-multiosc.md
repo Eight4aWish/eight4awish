@@ -2,7 +2,7 @@
 title: "Daisy MultiOsc"
 date: 2026-06-12
 summary: "A multi-voice oscillator for the Patch.Init."
-platform: Patch.Init
+platform: Patch Submodule
 tags:
   - oscillator
 panel: /renders/daisy_multiosc_flat.png

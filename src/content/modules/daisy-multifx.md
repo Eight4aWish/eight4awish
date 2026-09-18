@@ -2,7 +2,7 @@
 title: "Daisy MultiFX"
 date: 2026-06-04
 summary: "Multi-effects with an OLED for patch and parameter editing."
-platform: Patch.Init
+platform: Patch Submodule
 tags:
   - effects
 panel: /renders/daisy_mfx_flat.png

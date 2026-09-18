@@ -2,7 +2,7 @@
 title: "ESP32 ClkLinkRec"
 date: 2026-04-28
 summary: "A clock and reset generator that syncs to Ableton Link, with a capture trigger."
-platform: ESP32
+platform: XIAO ESP32-C5
 tags:
   - clock
   - Ableton Link
