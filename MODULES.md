@@ -31,8 +31,8 @@ tagged release and a downloadable binary.
 | **Joy** | `eurorack_daisy_patch_init` | `daisy_braids_oled/` | Daisy Patch Submodule | v1.4.0 | MI Braids | MIT |
 | **Joy Lite** | `eurorack_daisy_patch_init` | `daisy_joy_lite/` | Daisy Patch Submodule | v1.4.0 | MI Braids | MIT |
 | **Girl** | `eurorack_modules` | `src/ksoloti_elements/` | Ksoloti Big Genes | v1.2.3 | MI Elements | MIT |
-| **Silver** | `tiliqua` | `gateware/src/top/silver/` | Tiliqua (FPGA) | mesh-0.5 | original | — |
-| **Gold** | `tiliqua` | `gateware/src/top/gold/` | Tiliqua (FPGA) | mesh-0.5 | original | — |
+| **Silver** | `tiliqua` | `gateware/src/top/silver/` | Tiliqua (FPGA) | mesh-0.5 | original | CERN-OHL-S-2.0 |
+| **Gold** | `tiliqua` | `gateware/src/top/gold/` | Tiliqua (FPGA) | mesh-0.5 | original | CERN-OHL-S-2.0 |
 
 Notes:
 - **Joy / Joy Lite** are one macro-oscillator generation on shared DSP and calibration,
@@ -42,6 +42,10 @@ Notes:
 - **Silver / Gold** share the `mesh/` 2D-mesh base and ship as one site page
   (`tiliqua.md`, titled "Silver/Gold"). Silver is a stereo struck drum head, Gold a
   stereo scanned wavetable. Working names during development were LACUNA and ORBITA.
+  They are **bitstreams, not firmware**, licensed CERN-OHL-S-2.0 like the upstream they
+  sit in (`mesh.py` carries the SPDX header), and the exception to "a panel STL" above:
+  they run on the Tiliqua's own panel. `build123d` holds a model of that panel for the
+  site renders, not a panel to print. Released 2026-09-04 (page), video 2026-09-17.
 - **Sorrow is GPL-3.0-or-later** (Grids is copyleft, unlike most MI sources) and runs
   `BOOT_SRAM`, so it needs the Daisy bootloader.
 
