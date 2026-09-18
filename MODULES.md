@@ -230,6 +230,7 @@ sit between the two halves of this file.
 |---|---|---|
 | **mkikick** | home build | kick drum |
 | **Hi-Hat** | MKI x es.edu (Erica Synths / es.edu DIY) | hi-hat |
+| **Oneiroi** | Befaco full DIY kit, bought 2026-09-18 from Exploding Shed — **unbuilt** | stereo synth voice: sine, supersaw and a wavetable oscillator that reads the looper buffer, multimode filter, 3-band resonator, 2-tap echo, reverb, 5 s looper, randomizer. 30HP ✓, +12 V 200 mA. Also a firmware target — see Host hardware below. |
 
 Working material for the kick lives in **`eurorack_electronics_private`** under
 `docs/refs/mki_x_es/` — netlists, breadboard placements and visualiser layouts
@@ -245,6 +246,7 @@ Purchased, but the platform rather than the instrument.
 | **Tiliqua** | apf.audio | 6 ✓ | Silver, Gold |
 | **Patch Init / Patch Submodule** | Electrosmith | — | Sorrow, Joy, Joy Lite, MultiOsc, MultiFX |
 | **AMYboard** | shorepine | — | AMYboard PatchBank |
+| **Oneiroi** (Rebel Technology OWL mk3 inside) | Befaco | 30 ✓ | Nothing yet. The stock firmware is GPL-3 C++ built with OwlProgram, one model per header, with a VCV Rack build for laptop testing and make targets that load to RAM, store to a slot, or emit a sysex file. A modified Oneiroi is on the roadmap; the kit is unbuilt. |
 | **Solderable breadboard platform** (4/6/10HP + 10HPS) | N8Synth | 4–10 | Dual LPG, MOD2/Melon, and the board geometry the layout visualiser validates against |
 
 ## Case and power
