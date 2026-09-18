@@ -58,6 +58,7 @@ flash:
     If you build rather than download, pin the placer seed. These designs sit
     close enough to the ECP5's routing limit that identical source places very
     differently run to run.
+video: 0Uw-6slgKLg
 draft: false
 ---
 ## Overview
