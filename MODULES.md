@@ -154,7 +154,7 @@ panels modelled against the real hardware, so those are the most trustworthy of 
 | **Chopping Kinky** | Befaco | 8 ✓ | dual wavefolder | Voltage-controllable, two channels, with a chop output that picks between them via zero-cross detector or external gate. Almost certainly the unnamed "Befaco folder" of `ROADMAP.md:48`. |
 | **A*B+C** | Befaco | 6 ✓ | dual four-quadrant multiplier | Multiply, offset, invert; works as a VCA for CV or audio. |
 | **Instrument Interface (I4)** | Befaco | 8 ✓ | preamp / envelope follower | Mic (with +48 V phantom), instrument and line up to modular level. Envelope follower and gate/trigger extractor with positive and inverted outs. |
-| **Mutes (MK2)** | Befaco / DivKid | 4 ✓ | mute / routing utility | VCA-based, click-free, with performable 3-way switches. |
+| **Mutes (MK2)** | Befaco / DivKid | 4 ✓ | mute / routing utility | **Fitted with its Intellijel-format 1U panel** — the mk2 kit ships both a 3U and a 1U panel for the same 4HP board. VCA-based, click-free, with performable 3-way switches. |
 | **T01 VCO** | Thonk | 4 ✓ | oscillator | SQR → T03 VCA A. |
 | **T03 Dual VCA** ×2 | Thonk | 6 ✓ | dual VCA | A left, B right. One is the VCA in the CortHex voice. |
 | **BUF (T06)** | Thonk | 4 ◆ | buffered multiple | Precision multiple: three channels of 1-in / 3-out. |
@@ -164,7 +164,7 @@ panels modelled against the real hardware, so those are the most trustworthy of 
 | **A-148** | Doepfer | 4 ✓ | dual sample & hold | S/H or T/H per sub-module by jumper. |
 | **A-138a** | Doepfer | 8 ✓ | 4-channel linear mixer | |
 | **Scales** | Intellijel | 8 ✓ | dual quantizer + sequencer | 35 factory scales, 35 storable sequences up to 128 steps, one-octave keyboard for live scale selection. Shift/Interval on output 2 for harmonies. |
-| **Steppy (3U)** | Intellijel | 8 ✓ | gate sequencer | Four tracks, 64 gates, eight memory slots. Per-track length, gate length, clock divider, swing, delay offset and probability. |
+| **Steppy 1U** | Intellijel | 28 ✓ | gate sequencer | **Intellijel-format 1U tile.** Four tracks, 64 gates, eight memory slots. Per-track length, gate length, clock divider, swing, delay offset and probability. (The 3U Steppy is a different module at 8HP.) |
 | **Beatsi** | Omni-tone | 8 ✓ | drum voice | Six trigger ins. Fed by O&C outs e/f/g/h → KICK / SNARE / HI-HAT / CRASH. |
 | **Rhythmi** | Omni-tone | 14 ✓ | generative drum sequencer | Built-in generative algorithm driving up to five voices. Designed to pair with Beatsi. |
 | **DivSkip** | Making Sound Machines / DivKid | 8 ✓ | trigger / gate processor | Four channels, eight modes: Bernoulli, clock divider, Turing, Euclidean (split + classic), ramp/gate length, retrigger, 64-step patterns. |
@@ -175,6 +175,17 @@ panels modelled against the real hardware, so those are the most trustworthy of 
 | **EuroPi** | Allen Synthesis | 8 ✓ | clock / CV (programmable) | **Built with a Pico 2 W** (RP2350 + wifi). Reprogrammable in MicroPython; config lives at `/config/EuroPiConfig.json` on the Pico. Runs a Pamela's-style firmware; the repos call it "Pam's clone". One of four clock sources — a swung clock from it gives a swung Sorrow pattern. |
 | **ES-10** | Expert Sleepers | 12 ✓ | audio interface | 8-channel DC-coupled ADAT. End of the chain; every audio out terminates here. |
 | **ADSR** | N8Synth | 4 ✓ | envelope | Single column: IN, A, D, S, R, OUT. |
+
+### 1U tiles
+
+Three modules sit in a 1U row rather than the 3U rows, all **Intellijel 1U format** —
+which is not interchangeable with the Pulp Logic / Synthrotek 1U "tile" format:
+
+| Module | HP |
+|---|---|
+| **Steppy 1U** (Intellijel) | 28 |
+| **FX Aid 1U** (Happy Nerding) | 24 |
+| **Mutes MK2** (Befaco / DivKid) | 4 |
 
 ## Kit and home builds in the rack
 
