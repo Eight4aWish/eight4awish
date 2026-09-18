@@ -168,8 +168,8 @@ panels modelled against the real hardware, so those are the most trustworthy of 
 | **Beatsi** | Omni-tone | 8 ✓ | drum voice | Six trigger ins. Fed by O&C outs e/f/g/h → KICK / SNARE / HI-HAT / CRASH. |
 | **Rhythmi** | Omni-tone | 14 ✓ | generative drum sequencer | Built-in generative algorithm driving up to five voices. Designed to pair with Beatsi. |
 | **DivSkip** | Making Sound Machines / DivKid | 8 ✓ | trigger / gate processor | Four channels, eight modes: Bernoulli, clock divider, Turing, Euclidean (split + classic), ramp/gate length, retrigger, 64-step patterns. |
-| **FX Aid** | Happy Nerding | 4 ✓ | DSP effects | **Which variant?** Standard FX Aid is 4HP; XL is 6HP, Pro 14HP, 1U 24HP. Recorded as the standard until confirmed. |
-| **Alchemy Lab** | Hermetic Modular | 12 ✓ | open DSP platform | **Electrosmith Daisy inside** (STM32H750, 64 MB SDRAM), MIT-licensed SDK, six firmware-controllable CV jacks, microSD, 102 addressable LEDs. A third-party module you could write your own firmware for — see below. |
+| **FX Aid** | Happy Nerding | 4 ✓ | DSP effects | |
+| **Alchemy Lab** | Hermetic Modular | 12 ✓ | open DSP platform | **Electrosmith Daisy inside** (STM32H750, 64 MB SDRAM), MIT-licensed SDK, six firmware-controllable CV jacks, microSD, 102 addressable LEDs. |
 | **Monsoon** | Jakplugg | 12 ✓ | granular / texture | Clouds redesigned to 12HP with bi-colour illuminated faders for the four granular parameters. **Typhoon is Jakplugg's *expanded* Monsoon**, so `ROADMAP.md:49`'s "Typhoon = Clouds" is the same family, not a different module. |
 | **Ogham** | Keeos | 10 ✓ | dual bytebeat oscillator | Two formulas from a pool of 100, CV over the A and B parameters plus sync and timing. **You own the module whose code became your BYTEBEAT engine** — `daisy_bytebeat` is ported from keeos-io/ogham (MIT), and the 100-formula bank is the same one. |
 | **EuroPi** | Allen Synthesis | 8 ✓ | clock / CV (programmable) | **Built with a Pico 2 W (RP2350 + wifi)** per David. Reprogrammable in MicroPython; config lives at `/config/EuroPiConfig.json` on the Pico. Runs a Pamela's-style firmware; the repos call it "Pam's clone". One of four clock sources — a swung clock from it gives a swung Sorrow pattern. |
@@ -186,13 +186,9 @@ sit between the two halves of this file.
 | **mkikick** | home build | kick drum |
 | **Hi-Hat** | MKI x es.edu (Erica Synths / es.edu DIY) | hi-hat |
 
-Working material for these lives in **`eurorack_electronics_private`** under
+Working material for the kick lives in **`eurorack_electronics_private`** under
 `docs/refs/mki_x_es/` — netlists, breadboard placements and visualiser layouts
-transcribed from the *MKI x ES EDU DIY Modular* book. That repo holds **kick, snare and
-FM drum**, but only the kick was built — the snare and FM drum are research that stopped
-at the netlist, and the FM drum notes are still open questions against the book's
-schematic. The snare brief ("build a snare for a spare 6HP slot") became **MOD2/Melon**
-instead. There is no hi-hat material in that repo; the hi-hat came from elsewhere.
+transcribed from the *MKI x ES EDU DIY Modular* book.
 
 ## Host hardware for own firmware
 
@@ -205,7 +201,6 @@ Purchased, but the platform rather than the instrument.
 | **Patch Init / Patch Submodule** | Electrosmith | — | Sorrow, Joy, Joy Lite, MultiOsc, MultiFX |
 | **AMYboard** | shorepine | — | AMYboard PatchBank |
 | **Solderable breadboard platform** (4/6/10HP + 10HPS) | N8Synth | 4–10 | Dual LPG, MOD2/Melon, and the board geometry the layout visualiser validates against |
-| **Alchemy Lab** | Hermetic Modular | 12 ✓ | *nothing yet* — Daisy-based with an MIT SDK, so it is a candidate |
 
 ## Outside the rack
 
@@ -217,10 +212,6 @@ Purchased, but the platform rather than the instrument.
 | **Scarlett 16i16** | Focusrite | USB interface, Mac default input. Rack patches to inputs 1&2. The capture source in the recorder protocol. |
 
 ---
-
-Open questions and to-dos about this rack are **not** kept here — they live in
-`eight4awish_private/MODULES-TODO.md`, so this file stays a list of what is true rather
-than a mix of facts and actions.
 
 Sources: manufacturer and retailer pages, checked 2026-09-18. doepfer.de and
 modulargrid.net are blocked by this session's proxy, so Doepfer figures come from
