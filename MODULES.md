@@ -14,8 +14,9 @@ does not record.
 **Repos:** `eurorack_modules` (firmware monorepo) · `eurorack_daisy_patch_init` (Daisy) ·
 `eurorack_electronics` (analog + layout tooling) · `tiliqua` (FPGA, fork of apfaudio) ·
 `eight4awish` (site) · `eight4awish-video` (Remotion motion graphics) ·
-`seeed-recorder` (RP2040 module + Mac app) · `eurorack_electronics_private` (third-party
-reference material only) · `eight4awish_private` (strategy/roadmap, private)
+`seeed-recorder` (RP2040 module + Mac app) · `build123d` (panels as code — the authority
+on every own-build panel width) · `eurorack_electronics_private` (third-party reference
+material only) · `eight4awish_private` (strategy/roadmap, private)
 
 ---
 
@@ -67,9 +68,29 @@ Nothing in `src/content/modules/` covers these.
 | Module | Repo | Firmware / docs | Platform | What it is |
 |---|---|---|---|---|
 | **Daisy MultiFX (Seed)** | `eurorack_daisy_patch_init` | `daisy_multifx_seed/` | bare Daisy Seed + home-built Eurorack front end | Sibling of Daisy MultiFX on different hardware. Same `multifx_core` DSP/UI, 16 effects in 4×4. Migrated off DaisyDuino onto libDaisy + current DaisySP. |
+| **Teensy Expander** | `eurorack_modules` | `src/teensy_move/` | Teensy 4.1 companion, 6HP | Expander for **Boy**: a 74HC595 latch plus inverter driving four drum triggers and two extra CV/gate channels via two MCP4822 DACs. Drum outs idle LOW with a 500 µs HIGH pulse (`DRUM_TRIG_US[]`), tuned so gate-sensitive hats do not read them as gates. |
 | **Seeed Recorder (RP2040)** | `seeed-recorder` | `firmware/` | Seeed Xiao RP2040, **1U tile** | Capture trigger for the Retrospective Mac app over **USB-MIDI** (button → Note On; Note On → LED). Momentary switch on `D5`, LED on `D0`. **USB-powered — no Eurorack bus power in v1.** Built with arduino-pico + Adafruit TinyUSB. Any MIDI controller sending the same Note triggers it too. |
 | **ESP32 ClkLink** | `eurorack_modules` | `src/esp32_clklink/` | ESP32-Dev + MCP4728 | The original Ableton Link clock/reset generator; predecessor to ClkLinkRec. OFF / INTERNAL / LINK switch. **GPL-2.0-or-later** (links Ableton Link). |
 | **MOD2 / Melon** | `eurorack_electronics` | `docs/mod2_*` | mixed-signal, n8synth 6HP | Dual-firmware-compatible board running 25 published HAGIWO voices — every MOD2 *and* Melon firmware unmodified. 7805 from +12V, both indicator types populated, JP1/JP2 promoted to panel switches. |
+
+## Panel widths
+
+Every own-build panel is generated from [`build123d`](https://github.com/Eight4aWish/build123d);
+`render/out/<module>/manifest.json` carries `panel_w` / `panel_h` in mm and is the authority
+here. HP is `panel_w / 5.08`; panels are cut a little under nominal for clearance (50.5 mm
+reads as 9.94HP and means 10HP).
+
+| Module | HP | Format |
+|---|---|---|
+| **Girl** | 20 | 3U |
+| **Sorrow** · **Joy** · **Boy** · **Chaos** · **CortHex** · **Daisy MultiOsc** · **Daisy MultiFX** · **AMYboard PatchBank** · **Dual LPG** | 10 | 3U |
+| **Silver** · **Gold** · **Pico2W OnC Lite** · **Teensy Expander** · **Daisy MultiFX (Seed)** · **MOD2/Melon** · **mkikick** | 6 | 3U |
+| **ESP32 ClkLinkRec** | 4 | 3U |
+| **Seeed Recorder** | 8 | **1U** |
+
+The two MultiFX differ in width as well as hardware: the Patch.Init one is 10HP, the bare
+Seed one 6HP on an n8synth panel. MOD2/Melon and mkikick take their 6HP from the n8synth
+platform rather than a build123d manifest, and the Seed MultiFX from the rig model.
 
 ## Companion software
 
@@ -190,10 +211,11 @@ from 4HP to 24HP.
 | **Mutes MK2** (Befaco / DivKid) | 24 |
 | **Seeed Recorder** (own build) | 8 ◆ |
 
-**84HP in total**, which fills a standard row exactly. The Seeed Recorder's 8HP is not
-recorded in its repo — `seeed-recorder/hardware/` does not exist yet, so there is no panel
-manifest behind it. It is also the one tile drawing no bus power: it runs off the USB
-cable to the Mac, so the row is three powered tiles, not four.
+**84HP in total**, which fills a standard row exactly. The Seeed Recorder's panel is
+`build123d/panels/seed_panel.py` — 40.64 × 39.3 mm, four M3 corner holes for Tiptop rails
+— not in the `seeed-recorder` repo, which is why it looked unrecorded. It is also the one
+tile drawing no bus power: it runs off the USB cable to the Mac, so the row is three
+powered tiles, not four.
 
 ## Kit and home builds in the rack
 
