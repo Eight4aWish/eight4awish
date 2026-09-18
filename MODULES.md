@@ -187,6 +187,7 @@ panels modelled against the real hardware, so those are the most trustworthy of 
 | **A*B+C** | Befaco | 6 ✓ | dual four-quadrant multiplier | Multiply, offset, invert; works as a VCA for CV or audio. |
 | **Instrument Interface (I4)** | Befaco | 8 ✓ | preamp / envelope follower | Mic (with +48 V phantom), instrument and line up to modular level. Envelope follower and gate/trigger extractor with positive and inverted outs. |
 | **Mutes (MK2)** | Befaco / DivKid | 24 ✓ | mute / routing utility | **Fitted with its Intellijel-format 1U panel**, which mounts the board sideways — so it is 24HP in 1U, where the same module on its 3U panel is 4HP. VCA-based, click-free, with performable 3-way switches and cascading normalled inputs. |
+| **Oneiroi** | Befaco | 30 ✓ | stereo synth voice | **Full DIY kit, bought 2026-09-18 from Exploding Shed — still unbuilt.** Sine, supersaw and a wavetable oscillator that reads the looper buffer, multimode filter, 3-band resonator, 2-tap echo, reverb, 5 s looper, randomizer. +12 V 200 mA. **Rebel Technology OWL mk3 inside** (STM32H7 / Cortex-M7, same MCU family as Daisy, so the same ARM toolchain builds for it) — also a firmware target, see Host hardware below. |
 | **T01 VCO** | Thonk | 4 ✓ | oscillator | SQR → T03 VCA A. |
 | **T03 Dual VCA** ×2 | Thonk | 6 ✓ | dual VCA | A left, B right. One is the VCA in the CortHex voice. |
 | **BUF (T06)** | Thonk | 4 ◆ | buffered multiple | Precision multiple: three channels of 1-in / 3-out. |
@@ -203,10 +204,11 @@ panels modelled against the real hardware, so those are the most trustworthy of 
 | **FX Aid 1U** | Happy Nerding | 24 ◆ | DSP effects | **Intellijel-format 1U tile**, not a 3U module — it lives in a 1U row. Spin FV-1 based: 32 effects in 4 banks of 8, three controls plus analog dry/wet with CV, four storable presets, reflashable. |
 | **Alchemy Lab** | Hermetic Modular | 12 ✓ | open DSP platform | **Electrosmith Daisy inside** (STM32H750, 64 MB SDRAM), MIT-licensed SDK, six firmware-controllable CV jacks, microSD, 102 addressable LEDs. |
 | **Monsoon** | Jakplugg | 12 ✓ | granular / texture | Clouds redesigned to 12HP with bi-colour illuminated faders for the four granular parameters. **Typhoon is Jakplugg's *expanded* Monsoon**, so `ROADMAP.md:49`'s "Typhoon = Clouds" is the same family, not a different module. |
-| **Ogham** | Keeos | 10 ✓ | dual bytebeat oscillator | Two formulas from a pool of 100, CV over the A and B parameters plus sync and timing. **You own the module whose code became your BYTEBEAT engine** — `daisy_bytebeat` is ported from keeos-io/ogham (MIT), and the 100-formula bank is the same one. |
+| **Ogham** | Keeos | 10 ✓ | dual bytebeat oscillator | Two formulas from a pool of 100, CV over the A and B parameters plus sync and timing. **You own the module whose code became your BYTEBEAT engine** — `daisy_bytebeat` is ported from keeos-io/ogham (MIT), and the 100-formula bank is the same one. **Built 2026-09-18** from Steve's PCB and panel, panel hardware from stock and AliExpress. Runs **patched, non-stock firmware** — v1.18 plus an encoder fix for the substitute EC11, on branch `encoder-credit-partial-detent` at [`Eight4aWish/ogham`](https://github.com/Eight4aWish/ogham). **Do not reflash from keeos.io**: the web flasher would silently revert it. |
 | **EuroPi** | Allen Synthesis | 8 ✓ | clock / CV (programmable) | **Built with a Pico 2 W** (RP2350 + wifi). Reprogrammable in MicroPython; config lives at `/config/EuroPiConfig.json` on the Pico. Runs a Pamela's-style firmware; the repos call it "Pam's clone". One of four clock sources — a swung clock from it gives a swung Sorrow pattern. |
 | **ES-10** | Expert Sleepers | 12 ✓ | audio interface | 8-channel DC-coupled ADAT. End of the chain; every audio out terminates here. |
 | **ADSR** | N8Synth | 4 ✓ | envelope | Single column: IN, A, D, S, R, OUT. |
+| **Hi-Hat** | Erica Synths / Moritz Klein | 8 ✓ | drum voice (hi-hat) | **mki x es.EDU full DIY kit.** Analogue 808-style hi-hat: Tune, Tone, Decay. Same book series as mkikick, but bought as a kit and built to its own panel — mkikick was laid out from the schematic, which is why only that one sits under Home builds. |
 
 ### 1U tiles
 
@@ -228,16 +230,16 @@ from 4HP to 24HP.
 tile drawing no bus power: it runs off the USB cable to the Mac, so the row is three
 powered tiles, not four.
 
-## Kit and home builds in the rack
+## Home builds in the rack
 
-Bought as kits or built from published designs rather than as finished modules, so they
-sit between the two halves of this file.
+Laid out from a schematic rather than bought as a kit. The line that matters here is who
+did the **layout**, not who did the soldering — a DIY kit is a purchased module you
+happen to assemble yourself, so kits live in **In the rack** with everything else
+(Rings, the Thonk and CCTV modules, Hi-Hat, Oneiroi, Ogham).
 
 | Module | Source | Function |
 |---|---|---|
-| **mkikick** | home build | kick drum |
-| **Hi-Hat** | MKI x es.edu (Erica Synths / es.edu DIY) | hi-hat |
-| **Oneiroi** | Befaco full DIY kit, bought 2026-09-18 from Exploding Shed — **unbuilt** | stereo synth voice: sine, supersaw and a wavetable oscillator that reads the looper buffer, multimode filter, 3-band resonator, 2-tap echo, reverb, 5 s looper, randomizer. 30HP ✓, +12 V 200 mA. Also a firmware target — see Host hardware below. |
+| **mkikick** | home build — laid out on the N8Synth solderable breadboard, with an extra amp stage | kick drum |
 
 Working material for the kick lives in **`eurorack_electronics_private`** under
 `docs/refs/mki_x_es/` — netlists, breadboard placements and visualiser layouts
