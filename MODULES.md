@@ -1,0 +1,270 @@
+# Module inventory
+
+Every module across every repo, in one place — the reference to hand to Claude at the
+start of a session, since no single repo sees them all.
+
+**This file is the canonical copy.** It lives here, at the top of the tree, because this
+is the site repo the other repos hang off. Every repo's `CLAUDE.md` points at it.
+
+Source of truth for anything published is `eight4awish/src/content/modules/*.md`
+(that collection drives the website). This file is the superset: it also carries the
+modules that have no page yet, and the repo/firmware mapping that the site frontmatter
+does not record.
+
+**Repos:** `eurorack_modules` (firmware monorepo) · `eurorack_daisy_patch_init` (Daisy) ·
+`eurorack_electronics` (analog + layout tooling) · `tiliqua` (FPGA, fork of apfaudio) ·
+`eight4awish` (site) · `eight4awish-video` (Remotion motion graphics) ·
+`seeed-recorder` (RP2040 module + Mac app) · `eurorack_electronics_private` (third-party
+reference material only) · `eight4awish_private` (strategy/roadmap, private)
+
+---
+
+## Released — the rhyme-named family
+
+Named after *"one for sorrow, two for joy…"*. These have a site page, a panel STL, a
+tagged release and a downloadable binary.
+
+| Module | Repo | Firmware | Platform | Version | Based on | Licence |
+|---|---|---|---|---|---|---|
+| **Sorrow** | `eurorack_daisy_patch_init` | `daisy_grids/` | Daisy Patch Submodule | v2.4.1 | MI Grids | GPL-3.0-or-later |
+| **Joy** | `eurorack_daisy_patch_init` | `daisy_braids_oled/` | Daisy Patch Submodule | v1.4.0 | MI Braids | MIT |
+| **Joy Lite** | `eurorack_daisy_patch_init` | `daisy_joy_lite/` | Daisy Patch Submodule | v1.4.0 | MI Braids | MIT |
+| **Girl** | `eurorack_modules` | `src/ksoloti_elements/` | Ksoloti Big Genes | v1.2.3 | MI Elements | MIT |
+| **Silver** | `tiliqua` | `gateware/src/top/silver/` | Tiliqua (FPGA) | mesh-0.5 | original | — |
+| **Gold** | `tiliqua` | `gateware/src/top/gold/` | Tiliqua (FPGA) | mesh-0.5 | original | — |
+
+Notes:
+- **Joy / Joy Lite** are one macro-oscillator generation on shared DSP and calibration,
+  so they carry the same version. Joy is the 48-model OLED version; Joy Lite is
+  screenless, a curated 16 models. Joy Lite has no page of its own — it ships as an
+  extra binary on Joy's page.
+- **Silver / Gold** share the `mesh/` 2D-mesh base and ship as one site page
+  (`tiliqua.md`, titled "Silver/Gold"). Silver is a stereo struck drum head, Gold a
+  stereo scanned wavetable. Working names during development were LACUNA and ORBITA.
+- **Sorrow is GPL-3.0-or-later** (Grids is copyleft, unlike most MI sources) and runs
+  `BOOT_SRAM`, so it needs the Daisy bootloader.
+
+## Built, page drafted
+
+Have a `src/content/modules/*.md` entry with `draft: true` — awaiting write-up + video.
+
+| Module | Repo | Firmware | Platform | Page |
+|---|---|---|---|---|
+| **Boy** | `eurorack_modules` | `src/teensy_move/` | Teensy 4.1 | `boy.md` |
+| **Chaos** | `eurorack_modules` | `src/teensy_chaos/` | Teensy 4.1 | `chaos.md` |
+| **CortHex** | `eurorack_modules` | `src/nanoesp32_corthex/` | Arduino Nano ESP32 (NORA-W106 / ESP32-S3) | `corthex.md` |
+| **Daisy MultiOsc** | `eurorack_daisy_patch_init` | `daisy_multiosc/` | Daisy Patch Submodule | `daisy-multiosc.md` |
+| **Daisy MultiFX** | `eurorack_daisy_patch_init` | `daisy_multifx_oled/` | Daisy Patch Submodule | `daisy-multifx.md` |
+| **Pico2W OnC Lite** | `eurorack_modules` | `src/pico2w_oc/` | Pico 2 W | `pico2w-onclite.md` |
+| **ESP32 ClkLinkRec** | `eurorack_modules` | `src/esp32_clklinkrec/` | XIAO ESP32-C5 | `esp32-clklinkrec.md` — the **HTTP/WiFi** trigger path into Seeed Recorder, for a rig that moves. Protocol v2.0, mDNS `_recorder._tcp.local.` on port 8765, with a `RECORDER_HOST` fallback in `secrets.h`. |
+| **AMYboard PatchBank** | `eurorack_modules` | `src/amyboard_patchbank/` | shorepine AMYboard (ESP32-S3) | `amyboard.md` |
+| **Dual Pingable LPG** | `eurorack_electronics` | `docs/lpg_*` | analog (Buchla 292 path) | `dual-lpg.md` |
+
+## Built, no page yet
+
+Nothing in `src/content/modules/` covers these.
+
+| Module | Repo | Firmware / docs | Platform | What it is |
+|---|---|---|---|---|
+| **Daisy MultiFX (Seed)** | `eurorack_daisy_patch_init` | `daisy_multifx_seed/` | bare Daisy Seed + home-built Eurorack front end | Sibling of Daisy MultiFX on different hardware. Same `multifx_core` DSP/UI, 16 effects in 4×4. Migrated off DaisyDuino onto libDaisy + current DaisySP. |
+| **Seeed Recorder (RP2040)** | `seeed-recorder` | `firmware/` | Seeed Xiao RP2040 | Capture trigger for the Retrospective Mac app over **USB-MIDI** (button → Note On; Note On → LED). Momentary switch on `D5`, LED on `D0`. **USB-powered — no Eurorack bus power in v1.** Built with arduino-pico + Adafruit TinyUSB. Any MIDI controller sending the same Note triggers it too. |
+| **ESP32 ClkLink** | `eurorack_modules` | `src/esp32_clklink/` | ESP32-Dev + MCP4728 | The original Ableton Link clock/reset generator; predecessor to ClkLinkRec. OFF / INTERNAL / LINK switch. **GPL-2.0-or-later** (links Ableton Link). |
+| **MOD2 / Melon** | `eurorack_electronics` | `docs/mod2_*` | mixed-signal, n8synth 6HP | Dual-firmware-compatible board running 25 published HAGIWO voices — every MOD2 *and* Melon firmware unmodified. 7805 from +12V, both indicator types populated, JP1/JP2 promoted to panel switches. |
+
+## Companion software
+
+Not modules, but first-party and part of how the modules are used.
+
+| Software | Repo | What it is |
+|---|---|---|
+| **Retrospective** | `seeed-recorder` (`mac-app/`) | Menu-bar Mac app (SwiftUI `MenuBarExtra`, macOS 14+). Continuously buffers **every channel** of the CoreAudio input to per-channel circular files, so a capture writes the last 30 s – 30 min (default 60 s) as 32-bit float WAVs — for when the best take just happened and nothing was recording. Joins Ableton Link as a **follower**, baking the live tempo into filenames and WAV metadata: `YYYY-MM-DD_HH-MM-SS[_<bpm>bpm]_ch<NN>.wav`. |
+| **LLM proxy** | `eurorack_modules` (`tools/llm-proxy/`) | FastAPI service translating prompts into six named patches for CortHex. |
+
+**Three trigger paths, one capture engine** — the RP2040 module over USB-MIDI, ClkLinkRec
+over HTTP/WiFi, and the menu bar itself. Identical output from all three.
+
+## Not modules
+
+Worth recording so they don't get re-counted:
+
+- **`daisy_fm4op` / `daisy_interval_osc` / `daisy_scanned` / `daisy_bytebeat`** — these are
+  *engines inside* Daisy MultiOsc, not separate modules. MultiOsc boots a chooser and
+  hosts FM4OP, INTVL, SCAN, BYTEBEAT and a SINE test voice behind one universal panel.
+  `daisy_fm4op` and `daisy_interval_osc` also have standalone builds; `daisy_scanned` and
+  `daisy_bytebeat` are engine source only.
+- **`tiliqua` `beamrace/`, `xbeam/`, `polysyn/`, `macro_osc/`, `sid/`, `sampler/`, etc.** —
+  upstream apf.audio gateware (Seb Holzapfel, CERN-OHL-S-2.0), inherited by the fork.
+  Only `mesh/`, `silver/` and `gold/` are original work.
+- **`eight4awish-video`** — Remotion motion graphics for the channel, not a module.
+- **`seeed-recorder/mac-app/`** — the Retrospective Mac app; see Companion software above.
+  The repo *does* also hold a real module in `firmware/`, so the repo as a whole is not
+  software-only.
+- **`eurorack_electronics` `tools/`** — n8layout templates, the layout visualiser and the
+  schematic generator. Tooling that produced the LPG and MOD2, not modules themselves.
+- **`eurorack_electronics_private`** — third-party reference only: published schematics
+  (DAFx Buchla 292, AI017, NLC LPG, Doepfer A-101-2, Bergmann's redrawn 292), photographs
+  of the assembled Dual LPG boards, and the MKI x ES drum material. Private because it
+  redistributes other people's work, not because it is secret. **No original designs and
+  no modules of its own** — it was checked, and it adds none.
+
+## Platform vocabulary
+
+The site's `platform:` frontmatter field. Keep these spellings consistent:
+
+`Daisy Patch Submodule` · `Teensy 4.1` · `Arduino Nano ESP32` · `Pico 2W` · `XIAO ESP32-C5` ·
+`AMYboard` · `Ksoloti` · `Tiliqua` · `analog`
+
+Note the site currently writes the Daisy platform as `Patch Submodule` (no "Daisy"
+prefix) — that is the string in the frontmatter today.
+
+---
+
+# Purchased gear
+
+Everything here is bought, not built. **The list of modules is David's own, given
+2026-09-18** — that is the authority for *what is owned*. Maker and function are
+verified or high-confidence; **HP is the weak column** and is marked per row.
+
+HP key: **✓** verified against manufacturer or retailer · **◆** confirmed by David directly · **~** retailers disagree, range given.
+Sizes for the ten modules marked ✓ from `eight4awish-video/src/rigModules.ts` come from
+panels modelled against the real hardware, so those are the most trustworthy of all.
+
+## In the rack
+
+| Module | Maker | HP | Function | Notes |
+|---|---|---|---|---|
+| **Ornament & Crime v4.1** ("O.R.N.8") | CCTV | 12 ✓ | sequencer / quantizer / CV / MIDI-to-CV | Teensy 4.1. Runs **Phazerville 2.0**; four MIDI-In quadrants programmed. One of three clock sources. |
+| **Plaits** | CCTV | 12 ✓ | macro oscillator | Mutable clone on **Plaits 1.2 alt firmware**. The oscillator in the CortHex voice. |
+| **Rings** | CCTV | 14 ✓ | resonator | Mutable clone (Immutable Rings), Thonk DIY kit. Why no Rings engine was written for MultiOsc. |
+| **Peaks** | CCTV | 8 ✓ | envelope / LFO / drum | Mutable clone (Immutable Peaks). Four functions in 8HP: ADSR, LFO, tap-tempo LFO, drum synth. |
+| **Swords** | Behringer | 16–18 ~ | dual multimode filter | **Mutable Blades clone.** Two 12 dB state-variable filters, Mode morphs LP→BP→HP, Routing blends single/parallel/series, plus drive and a two-stage wavefolder. Self-oscillates above ~+3 V. The filter in the CortHex voice. |
+| **Steps** ×2 | Behringer | 14 ✓ | function generator / sequencer | **Mutable Stages clone.** Six stages each; two units chain to 36 segments, which is presumably why there are two. |
+| **Four Play** | Behringer | 12 ✓ | quad VCA + mixer | Coolaudio V2164A. DC-coupled, cascaded outs so Mix alone makes it a 4-in VC mixer. **See the CV6 note below.** |
+| **Four LFO** | Behringer | 12–14 ~ | quad LFO | **Xaoc Batumi clone.** Fader per LFO, assignable waveforms, 500 Hz down to ~28 hours. |
+| **Chaos** | Behringer | 18 ✓ | random gates + random CV | Analog random sampler, two chained sub-sections. **Name collides with your own Chaos** — see below. |
+| **Abacus** | Behringer | 20 ✓ | function generator / CV maths | Modelled on Buchla 257 + 281. Four CV ins with depth and direction; lag / slew / portamento. |
+| **Waves** | Behringer | 14 ✓ | function generator / tidal modulator | **Mutable Tides clone** — three generator modes, AR and AD envelopes, looping VC-LFO and VCDO, morphing waveforms. Its **Smoothness** control is a wavefolder clockwise of centre (and a 2-pole low-pass counter-clockwise), so `ROADMAP.md:48` is right to count it alongside Chopping Kinky as West-Coast folding. |
+| **Workshop Computer** | Music Thing Modular | 8 ✓ | programmable CV / MIDI | Runs the **Simple MIDI** program card for two fixed voices. MIDI port `Workshop System MIDI`. |
+| **Turing Machine Mk II** | Music Thing Modular | 10 ✓ | random looping sequencer | A 16-bit shift register producing clocked random CV that can be locked into repeating loops by the Length control. Steerable, not programmable — sequences cannot be saved or returned to once changed. Host for the three expanders below. |
+| **Turing Pulses** | Music Thing Modular | 4 ✓ | trigger / gate expander | Eleven rhythmic pulse-train outputs derived from the sequence. Connects at the back by 16-way ribbon; works with Mk2, or Mk1 with the backpack. |
+| **Turing Volts** | Music Thing Modular | 4 ✓ | CV expander | A variable 5-bit DAC: five bits off the GATES expansion port through five pots to one summed CV out. |
+| **Turing Voltages** | Music Thing Modular | 12 ✓ | CV expander | Two CV outputs set by 8 faders. |
+| **Random8** | Befaco / Mylar Melodies | 8 ✓ | random CV | Eight channels (PRESET / DIVIDR / PROB / STYLE / OFFSET / SCALE / SLIDE / STEPS). Three wander Girl's resonator: P2 brightness, P3 damping, P4 position. |
+| **Output Bus** | Befaco / DivKid | 8 ✓ | stereo output mixer | The 8HP mixing version, **not** the 4HP "OUT". Everything lands here except Joy. |
+| **Chopping Kinky** | Befaco | 8 ✓ | dual wavefolder | Voltage-controllable, two channels, with a chop output that picks between them via zero-cross detector or external gate. Almost certainly the unnamed "Befaco folder" of `ROADMAP.md:48`. |
+| **A*B+C** | Befaco | 6 ✓ | dual four-quadrant multiplier | Multiply, offset, invert; works as a VCA for CV or audio. |
+| **Instrument Interface (I4)** | Befaco | 8 ✓ | preamp / envelope follower | Mic (with +48 V phantom), instrument and line up to modular level. Envelope follower and gate/trigger extractor with positive and inverted outs. |
+| **Mutes (MK2)** | Befaco / DivKid | 4 ✓ | mute / routing utility | VCA-based, click-free, with performable 3-way switches. |
+| **T01 VCO** | Thonk | 4 ✓ | oscillator | SQR → T03 VCA A. |
+| **T03 Dual VCA** ×2 | Thonk | 6 ✓ | dual VCA | A left, B right. One is the VCA in the CortHex voice. |
+| **BUF (T06)** | Thonk | 4 ◆ | buffered multiple | Precision multiple: three channels of 1-in / 3-out. |
+| **A-121d** | Doepfer | 8 ◆ | dual multimode filter | Shared Frequency with a Delta spread control; VCF1 has HP, VCF2 has LP, both have BP. Series or parallel. |
+| **A-124** | Doepfer | 8 ✓ | multimode filter (Wasp) | VCF 5, after the EDP Wasp. Note the variants: A-124 SE, and the A-124-2 SE mini at 4HP. |
+| **A-142-3** | Doepfer | 4 ✓ | AD/AR envelope + VCA | Toggle picks A/D or A/R, a second toggle picks envelope or free-running LFO. Envelope drives a linear VCA. 555 timer + CEM3381. |
+| **A-148** | Doepfer | 4 ✓ | dual sample & hold | S/H or T/H per sub-module by jumper. |
+| **A-138a** | Doepfer | 8 ✓ | 4-channel linear mixer | |
+| **Scales** | Intellijel | 8 ✓ | dual quantizer + sequencer | 35 factory scales, 35 storable sequences up to 128 steps, one-octave keyboard for live scale selection. Shift/Interval on output 2 for harmonies. |
+| **Steppy (3U)** | Intellijel | 8 ✓ | gate sequencer | Four tracks, 64 gates, eight memory slots. Per-track length, gate length, clock divider, swing, delay offset and probability. |
+| **Beatsi** | Omni-tone | 8 ✓ | drum voice | Six trigger ins. Fed by O&C outs e/f/g/h → KICK / SNARE / HI-HAT / CRASH. |
+| **Rhythmi** | Omni-tone | 14 ✓ | generative drum sequencer | Built-in generative algorithm driving up to five voices. Designed to pair with Beatsi. |
+| **DivSkip** | Making Sound Machines / DivKid | 8 ✓ | trigger / gate processor | Four channels, eight modes: Bernoulli, clock divider, Turing, Euclidean (split + classic), ramp/gate length, retrigger, 64-step patterns. |
+| **FX Aid** | Happy Nerding | 4 ✓ | DSP effects | **Which variant?** Standard FX Aid is 4HP; XL is 6HP, Pro 14HP, 1U 24HP. Recorded as the standard until confirmed. |
+| **Alchemy Lab** | Hermetic Modular | 12 ✓ | open DSP platform | **Electrosmith Daisy inside** (STM32H750, 64 MB SDRAM), MIT-licensed SDK, six firmware-controllable CV jacks, microSD, 102 addressable LEDs. A third-party module you could write your own firmware for — see below. |
+| **Monsoon** | Jakplugg | 12 ✓ | granular / texture | Clouds redesigned to 12HP with bi-colour illuminated faders for the four granular parameters. **Typhoon is Jakplugg's *expanded* Monsoon**, so `ROADMAP.md:49`'s "Typhoon = Clouds" is the same family, not a different module. |
+| **Ogham** | Keeos | 10 ✓ | dual bytebeat oscillator | Two formulas from a pool of 100, CV over the A and B parameters plus sync and timing. **You own the module whose code became your BYTEBEAT engine** — `daisy_bytebeat` is ported from keeos-io/ogham (MIT), and the 100-formula bank is the same one. |
+| **EuroPi** | Allen Synthesis | 8 ✓ | clock / CV (programmable) | **Built with a Pico 2 W (RP2350 + wifi)** per David. Reprogrammable in MicroPython; config lives at `/config/EuroPiConfig.json` on the Pico. Runs a Pamela's-style firmware; the repos call it "Pam's clone". One of four clock sources — a swung clock from it gives a swung Sorrow pattern. |
+| **ES-10** | Expert Sleepers | 12 ✓ | audio interface | 8-channel DC-coupled ADAT. End of the chain; every audio out terminates here. |
+| **ADSR** | N8Synth | 4 ✓ | envelope | Single column: IN, A, D, S, R, OUT. |
+
+## Kit and home builds in the rack
+
+Bought as kits or built from published designs rather than as finished modules, so they
+sit between the two halves of this file.
+
+| Module | Source | Function |
+|---|---|---|
+| **mkikick** | home build | kick drum |
+| **Hi-Hat** | MKI x es.edu (Erica Synths / es.edu DIY) | hi-hat |
+
+Working material for these lives in **`eurorack_electronics_private`** under
+`docs/refs/mki_x_es/` — netlists, breadboard placements and visualiser layouts
+transcribed from the *MKI x ES EDU DIY Modular* book. That repo holds **kick, snare and
+FM drum**, but only the kick was built — the snare and FM drum are research that stopped
+at the netlist, and the FM drum notes are still open questions against the book's
+schematic. The snare brief ("build a snare for a spare 6HP slot") became **MOD2/Melon**
+instead. There is no hi-hat material in that repo; the hi-hat came from elsewhere.
+
+## Host hardware for own firmware
+
+Purchased, but the platform rather than the instrument.
+
+| Hardware | Maker | HP | Hosts |
+|---|---|---|---|
+| **Big Genes** | Ksoloti | 20 ✓ | Girl |
+| **Tiliqua** | apf.audio | 6 ✓ | Silver, Gold |
+| **Patch Init / Patch Submodule** | Electrosmith | — | Sorrow, Joy, Joy Lite, MultiOsc, MultiFX |
+| **AMYboard** | shorepine | — | AMYboard PatchBank |
+| **Solderable breadboard platform** (4/6/10HP + 10HPS) | N8Synth | 4–10 | Dual LPG, MOD2/Melon, and the board geometry the layout visualiser validates against |
+| **Alchemy Lab** | Hermetic Modular | 12 ✓ | *nothing yet* — Daisy-based with an MIT SDK, so it is a candidate |
+
+## Outside the rack
+
+| Gear | Maker | What it does |
+|---|---|---|
+| **Proton** | Behringer | Semi-modular. Dual VCF, dual LFO, 2 ADSR + 2 ASR, wavefolder, 40-in/24-out patchbay. Reference: `eurorack_modules/docs/PROTON_SIGNAL_ROUTING.md`. |
+| **Neutron** | Behringer | Semi-modular. One VCF (dual output tap), one LFO, 2 ADSR, BBD delay, overdrive, 32-in/24-out patchbay. Reference: `NEUTRON_SIGNAL_ROUTING.md`. **Do not infer Proton routing from Neutron or vice versa.** |
+| **Move** | Ableton | Groovebox. Boy is its Eurorack bridge — MIDI-to-CV plus audio FX on the Move's output. |
+| **Scarlett 16i16** | Focusrite | USB interface, Mac default input. Rack patches to inputs 1&2. The capture source in the recorder protocol. |
+
+## Things this list settles
+
+- **The Behringer clone lineage.** Swords = Blades, Steps = Stages, Four LFO = Batumi,
+  Abacus = Buchla 257/281. Worth knowing when `ROADMAP.md` reasons about what the rack
+  "already covers in hardware" — several of those are Mutable designs, which is the same
+  family the own-builds port from.
+- **Two modules named Chaos.** Behringer's Chaos is an analog random sampler (random
+  gates + random CV). Your own **Chaos** is the Teensy 4.1 strange-attractor voice. They
+  are unrelated and both in play — worth disambiguating in any write-up or video.
+- **CV6 in CortHex feeds either VCA.** `main.cpp:1048` logs `4Play VCA` where `proxy.py`
+  and the docs say `T03 VCA`. Per David, **CV6 can drive either** — the Behringer Four Play
+  or a Thonk T03, whichever is patched. Neither reference is wrong; they name two valid
+  destinations for one unipolar 0–5 V gain CV. Nothing to fix.
+- **A complete Turing Machine set.** The Mk II plus all three expanders — Pulses (4HP),
+  Volts (4HP) and Voltages (12HP) — 30HP of shift-register sequencing in total. Worth
+  knowing when reasoning about clock and CV sources: that is a fourth one alongside the
+  O&C, the EuroPi and Boy.
+- **The EuroPi and Pico2W OnC Lite are the same board.** Not merely the same family —
+  both are Pico 2 W. Anything learned about that board on one applies directly to the
+  other: wifi behaviour, the overclock bug, clock speed, pin availability. The
+  **Alchemy Lab** is the Daisy equivalent, an MIT SDK over the same STM32H750 as the
+  Patch Init builds. Two chips, four programmable modules, no new hardware needed.
+- **Ogham.** The bytebeat module is owned *and* its code is the BYTEBEAT engine in
+  MultiOsc. That is a nice provenance story rather than a coincidence.
+
+## Still open
+
+1. **EuroPi on Pico 2 W — three things to check**, in `/config/EuroPiConfig.json`.
+   Upstream is actively maintained: latest is **v0.23.1, 18 July 2026**, so the v0.20.0
+   floor below is long since cleared by any recent install. Worth updating for its own
+   sake — **v0.23.0 added external clock mode for Pam's Workout** and v0.23.1 fixed a
+   Pam's bug, which is exactly the firmware this module runs as a clock source.
+   - **`PICO_MODEL`** defaults to `"pico"`, so it must be set or the firmware runs
+     configured for the wrong board — silently. The docs list the value as `"pico 2w"`;
+     the firmware constant is `MODEL_PICO_2W`. The same docs are inconsistent elsewhere
+     (`"pico 2"` with a space in the table vs `"pico2"` without in the prose), so confirm
+     against the version actually installed rather than trusting either spelling.
+   - **Firmware must be v0.20.0 or later.** Pico 2 W UF2 builds did not exist before
+     that — v0.19.2 explicitly says "Pico 2 W isn't available yet". An older release has
+     no build that matches this board.
+   - **`CPU_FREQ`** — there is a known MicroPython bug where the Pico 2 W's wireless card
+     is unreliable when the CPU is overclocked. If wifi misbehaves, set it to `normal`.
+2. **HP for 7 modules** — still `?`: A-121d, Steppy, BUF T06, CCTV Rings, CCTV Peaks,
+   Behringer Waves, Keeos Ogham.
+5. **Swords** — 16HP (B&H) vs 18HP (most retailers).
+4. **Four LFO** — 12HP vs 14HP across retailers.
+5. **FX Aid variant** — standard 4HP, XL 6HP, Pro 14HP or 1U 24HP?
+6. **No case or PSU** recorded anywhere.
+
+Sources: manufacturer pages and retailer listings, checked 2026-09-18. doepfer.de and
+modulargrid.net are both blocked by this session's network proxy, so Doepfer figures come
+from retailers rather than the manufacturer and are the least certain of the verified set.
