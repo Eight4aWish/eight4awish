@@ -12,6 +12,7 @@
 //   CC42 ch1  → Joy CV_6           (Timbre — which on ZLPF *is* the cutoff)
 //   CC42 ch2  → Plaits TIMBRE
 //   CC42 ch3  → Ogham CV_A         (timbre, 0–255, sums with the knob)
+//                                   CV_B stays unpatched on purpose — see below
 //   CC42 ch10 → Alchemy Lab        (echo feedback, across the whole mix)
 //
 // Three voices that need no help. Joy, Plaits and Ogham each carry their own envelope,
@@ -30,6 +31,11 @@
 // its own pitch ceiling, above which it falls silent. 31 of the 101 are silent at every
 // playable pitch (the free-running drones), so pick a melodic one and check it sounds at
 // the top of the part. "Hidden Melody" holds to 4 kHz, which covers this lead twice over.
+//
+// Only one of Ogham's two parameters is driven from here, because moving one of A or B is
+// enough to get somewhere good — Steve's own demo of the module is the source of that, and
+// it is his module. So A takes the LFO and B is left on the knob, which turns the one
+// parameter the sequence never touches into the thing your hand does on camera.
 //
 // The T01 VCO and the A-121d are spare now. Joy does both jobs in one module.
 
@@ -121,5 +127,7 @@ osc(18, 0.08, 0.6)
 // * Swap `sine` for `perlin` in `lfoEcho` and the echo drifts instead of swelling.
 // * Move a line in `arrange()` with Opt+↑/↓ to reorder the song.
 // * Swap Joy from ZLPF to ZHPF. Same notes, same CV, and the bass becomes a hi-hat.
+// * Turn Ogham's B knob while the A sweep runs. Nothing in the code moves and the lead
+//   still changes character — that is the half of the module the sequencer never touches.
 // * Comment out `modBass(...)` (Cmd+/) and the filter stops moving — and the frame stops
 //   spinning, because the picture is reading the very same signal.
