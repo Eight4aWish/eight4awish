@@ -32,6 +32,22 @@
 // playable pitch (the free-running drones), so pick a melodic one and check it sounds at
 // the top of the part. "Hidden Melody" holds to 4 kHz, which covers this lead twice over.
 //
+// Ogham's envelope has one control, and it is not on a knob. In the FX menu, the `Lp`
+// field is the internal LPG: `Lp.oF` is off (the voice runs continuously), `Lp.01`–`Lp.99`
+// is on with that decay. The curve has a knee at field 40 so the useful range is spread
+// out — 0–30 covers 2 ms to 126 ms, 30–50 covers 126 ms to 934 ms, 50–99 covers 934 ms to
+// 20 s. At cpm(30) a step of this lead is 250 ms, so **Lp.37** makes each note last about
+// one step. Lower for a pluck, higher to let the line blur into itself.
+//
+// There is no attack setting. It is derived — 15% of the decay, clamped to 1 ms — so every
+// note starts inside a millisecond and Ogham cannot fade in. It is a struck voice.
+//
+// The GATE jack does both jobs at once: each rising edge hard-syncs the formula *and*
+// plucks the LPG, off the same interrupt. That is also why the gate is a trigger and not a
+// gate — note length is ignored, so `_` lengthens the MIDI gate but not the sound. Use the
+// Lp field for note length, not the pattern. (The same is true of Joy: an AD envelope is
+// struck, not sustained, so its Decay knob is what holds a note.)
+//
 // Only one of Ogham's two parameters is driven from here, because moving one of A or B is
 // enough to get somewhere good — Steve's own demo of the module is the source of that, and
 // it is his module. So A takes the LFO and B is left on the knob, which turns the one
