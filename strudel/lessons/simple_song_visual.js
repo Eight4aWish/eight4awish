@@ -15,10 +15,19 @@
 //                                   CV_B stays unpatched on purpose — see below
 //   CC42 ch10 → Alchemy Lab        (echo feedback, across the whole mix)
 //
-// Ogham is a stereo pair, not a mono voice — Out1 is L and Out2 is R, one bytebeat voice
-// each. Patch both into the Alchemy Lab's J1/J2 rather than multing one. Neither Echoa nor
-// Spagyros will widen a mono signal for you: Echoa's four routings all keep each line to
-// its own channel, and the jacks are plain codec inputs with no normalling.
+// Ogham is a stereo pair, not a mono voice — Out1 is L and Out2 is R, a separately chosen
+// formula each. A and B are not the two voices; they are two timbre params that BOTH
+// formulas read. Patch both outs into the Alchemy Lab's J1/J2 rather than multing one.
+// Neither Echoa nor Spagyros will widen a mono signal for you: Echoa's four routings all
+// keep each line to its own channel, and the jacks are plain codec inputs with no normalling.
+//
+// One FX field decides what that pair is. Coupled (the default) Out2 rides the same master
+// phase as Out1, reads the same live A/B, follows V/oct, Rate and gate, and is gated by the
+// same LPG envelope — two formulas plucked in lockstep, which is the stereo pair. Turn the
+// drone field clockwise and Out2 forks: it snapshots phase, rate and A/B at that instant,
+// then free-runs, ignoring Clock, V/oct, Rate, gate and live A/B, and bypassing Lo-Fi, FX
+// and the LPG. The source is blunt about why — "it stays a free-run drone under a plucked
+// Out1". Frozen state survives a power cycle, so a drone you like is a patch you keep.
 //
 // Three voices that need no help. Joy, Plaits and Ogham each carry their own envelope,
 // so nothing here needs an external VCA — which is the whole reason the bass line below
