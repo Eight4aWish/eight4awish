@@ -2,72 +2,13 @@
 // The generative song, plus a Hydra picture driven by the very same signals.
 // Paste into strudel.cc in Chrome. MIDI out only — the sound is the rack.
 //
-// The rack, and what each channel wants:
+//   ch1  Workshop voice 1  → Joy      the bass      CC42 → its filter cutoff
+//   ch2  Workshop voice 2  → Plaits   the pad       CC42 → its timbre
+//   ch3  O&C quadrant NW   → Ogham    the lead      CC42 → its timbre
+//   ch10 O&C quadrants SW/SE → Beatsi  kick 36, snare 38, hat 40, crash 41
 //
-//   ch1  Workshop v1  pitch + gate → Joy  on ZLPF    — the bass
-//   ch2  Workshop v2  pitch + gate → Plaits          — the pad
-//   ch3  O&C NW       pitch + gate → Ogham           — the lead
-//   ch10 O&C SW/SE    gates        → Beatsi  kick snare hat crash
-//
-//   CC42 ch1  → Joy CV_6           (Timbre — which on ZLPF *is* the cutoff)
-//   CC42 ch2  → Plaits TIMBRE
-//   CC42 ch3  → Ogham CV_A         (timbre, 0–255, sums with the knob)
-//                                   CV_B stays unpatched on purpose — see below
-//   CC42 ch10 → Alchemy Lab        (echo feedback, across the whole mix)
-//
-// Ogham is a stereo pair, not a mono voice — Out1 is L and Out2 is R, a separately chosen
-// formula each. A and B are not the two voices; they are two timbre params that BOTH
-// formulas read. Patch both outs into the Alchemy Lab's J1/J2 rather than multing one.
-// Neither Echoa nor Spagyros will widen a mono signal for you: Echoa's four routings all
-// keep each line to its own channel, and the jacks are plain codec inputs with no normalling.
-//
-// One FX field decides what that pair is. Coupled (the default) Out2 rides the same master
-// phase as Out1, reads the same live A/B, follows V/oct, Rate and gate, and is gated by the
-// same LPG envelope — two formulas plucked in lockstep, which is the stereo pair. Turn the
-// drone field clockwise and Out2 forks: it snapshots phase, rate and A/B at that instant,
-// then free-runs, ignoring Clock, V/oct, Rate, gate and live A/B, and bypassing Lo-Fi, FX
-// and the LPG. The source is blunt about why — "it stays a free-run drone under a plucked
-// Out1". Frozen state survives a power cycle, so a drone you like is a patch you keep.
-//
-// Three voices that need no help. Joy, Plaits and Ogham each carry their own envelope,
-// so nothing here needs an external VCA — which is the whole reason the bass line below
-// can use rests.
-//
-// Joy on ZLPF (bank 4, FLT+VOX) is a filter you play notes on: Timbre is cutoff
-// frequency, Color is waveshape. So `modBass` is a real filter sweep happening inside
-// the oscillator, not a separate module. Two things to set on the module first — patch
-// a gate to GATE IN 1, because unpatched it drones and the rests do nothing; and leave
-// the Timbre knob near the middle, because CV_6 modulates ±50% around wherever it sits.
-// Knobs 3 and 4 are the attack and decay: short decay for a plucked bass, long for a pad.
-//
-// Ogham needs its Clock jack switched to V/oct. In that mode the engine hard-syncs, so
-// the formula restarts every cycle and the thing plays in tune — but each formula has
-// its own pitch ceiling, above which it falls silent. 31 of the 101 are silent at every
-// playable pitch (the free-running drones), so pick a melodic one and check it sounds at
-// the top of the part. "Hidden Melody" holds to 4 kHz, which covers this lead twice over.
-//
-// Ogham's envelope has one control, and it is not on a knob. In the FX menu, the `Lp`
-// field is the internal LPG: `Lp.oF` is off (the voice runs continuously), `Lp.01`–`Lp.99`
-// is on with that decay. The curve has a knee at field 40 so the useful range is spread
-// out — 0–30 covers 2 ms to 126 ms, 30–50 covers 126 ms to 934 ms, 50–99 covers 934 ms to
-// 20 s. At cpm(30) a step of this lead is 250 ms, so **Lp.37** makes each note last about
-// one step. Lower for a pluck, higher to let the line blur into itself.
-//
-// There is no attack setting. It is derived — 15% of the decay, clamped to 1 ms — so every
-// note starts inside a millisecond and Ogham cannot fade in. It is a struck voice.
-//
-// The GATE jack does both jobs at once: each rising edge hard-syncs the formula *and*
-// plucks the LPG, off the same interrupt. That is also why the gate is a trigger and not a
-// gate — note length is ignored, so `_` lengthens the MIDI gate but not the sound. Use the
-// Lp field for note length, not the pattern. (The same is true of Joy: an AD envelope is
-// struck, not sustained, so its Decay knob is what holds a note.)
-//
-// Only one of Ogham's two parameters is driven from here, because moving one of A or B is
-// enough to get somewhere good — Steve's own demo of the module is the source of that, and
-// it is his module. So A takes the LFO and B is left on the knob, which turns the one
-// parameter the sequence never touches into the thing your hand does on camera.
-//
-// The T01 VCO and the A-121d are spare now. Joy does both jobs in one module.
+// Three voices that need no help: each carries its own envelope, so nothing here wants
+// an external VCA — which is why the bass line below can use rests.
 
 await initHydra()
 
@@ -158,6 +99,6 @@ osc(18, 0.08, 0.6)
 // * Move a line in `arrange()` with Opt+↑/↓ to reorder the song.
 // * Swap Joy from ZLPF to ZHPF. Same notes, same CV, and the bass becomes a hi-hat.
 // * Turn Ogham's B knob while the A sweep runs. Nothing in the code moves and the lead
-//   still changes character — that is the half of the module the sequencer never touches.
+//   still changes character — B is the one parameter the sequence never reaches for.
 // * Comment out `modBass(...)` (Cmd+/) and the filter stops moving — and the frame stops
 //   spinning, because the picture is reading the very same signal.
