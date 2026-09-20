@@ -1,6 +1,18 @@
 // LESSON 3 — Visual
 // The generative song, plus a Hydra picture driven by the very same signals.
 // Paste into strudel.cc in Chrome. MIDI out only — the sound is the rack.
+//
+// The rig, and what each channel wants:
+//
+//   ch1  Workshop voice 1   lead      pitch + gate   (tracks 1V/oct)
+//   ch2  Workshop voice 2   pad       pitch + gate   (tracks 1V/oct)
+//   ch3  O&C quadrant NW    bass      pitch + gate   (tracks 1V/oct)
+//   ch10 O&C quadrants SW/SE  drums   gates only     36/38/40/41
+//
+//   CC42 on ch1 / ch2 / ch3 / ch10 → four independent CVs. The first three open
+//   a filter on their own voice. The fourth belongs to no pitched voice at all:
+//   it drives a timbre knob on a free-running oscillator (here an Ogham bytebeat,
+//   which is why it is never sent a note — it does not track pitch).
 
 await initHydra()
 
@@ -37,21 +49,24 @@ const drums2 = stack(
   note(openHat  ).struct("~ ~ ~ x ~ ~ ~ x*2 | ~ ~ ~ x ~ ~ ~ x*4"),
 ).midichan(10).midi(OC)
 
-// ---- Movement                       one LFO each, named once
+// ---- Movement                       name each shape once, reuse it everywhere
 
-const lfoBass = isaw  .slow(8)         // 1..0
-const lfoPad  = sine  .slow(4)         // 0..1
-const lfoLead = perlin.slow(4)         // 0..1, wandering
-const lfoZoom = sine  .slow(4)         // 0..1, picture only
+const lfoBass = isaw  .slow(8)
+const lfoPad  = sine  .slow(4)
+const lfoLead = perlin.slow(4)
+const lfoText = sine  .slow(16)        // the slowest one — a timbre that swells across the song
+const lfoZoom = sine  .slow(4)         // the one signal the rack never hears — picture only
 
 const modBass = v => ccn(42).ccv(v).midichan(3).midi(OC)
 const modPad  = v => ccn(42).ccv(v).midichan(2).midi(WS)
 const modLead = v => ccn(42).ccv(v).midichan(1).midi(WS)
+const modText = v => ccn(42).ccv(v).midichan(10).midi(OC)
 
 const mods = stack(
   modBass(lfoBass.range(1,0).segment(32)),   // bass filter opens
   modPad (lfoPad .range(0,1).segment(32)),   // pad reverb mix
   modLead(lfoLead.range(1,0).segment(32)),   // lead filter wanders
+  modText(lfoText.range(0,1).segment(16)),   // the bytebeat formula bends
 )
 
 // ---- Sections
@@ -75,8 +90,15 @@ $: arrange(                            // $: names the pattern, so the picture c
 
 osc(18, 0.08, 0.6)
   .color(H(lfoPad), 0.25, H(lfoLead))
-  .rotate(H(lfoBass.range(0, 6.28)))   // the bass sweep spins the frame
-  .kaleid(H(lfoLead.range(3, 7)))      // the wandering one opens the kaleidoscope
-  .modulate(noise(3))
-  .scale(H(lfoZoom.range(1, 1.4)))     // a steady zoom pulse
+  .rotate(H(lfoBass.range(0, 6.28)))          // the bass sweep spins the frame
+  .kaleid(H(lfoLead.range(3, 7)))             // the wandering one opens the kaleidoscope
+  .modulate(noise(3), H(lfoText.range(0.1, 0.6)))  // the bytebeat's swell warps the image
+  .scale(H(lfoZoom.range(1, 1.4)))            // a steady zoom pulse
   .out()
+
+// ---- Try this
+//
+// * Drag the `slider` in `lead` from 0 up to 1 while it plays — the melody thins out.
+// * Swap `sine` for `perlin` in `lfoText` and the bytebeat drifts instead of swelling.
+// * Move a line in `arrange()` with Opt+↑/↓ to reorder the song.
+// * Comment out `modText(...)` (Cmd+/) and the picture stops warping too — one signal, two places.
