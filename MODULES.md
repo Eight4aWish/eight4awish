@@ -11,6 +11,13 @@ Source of truth for anything published is `eight4awish/src/content/modules/*.md`
 modules that have no page yet, and the repo/firmware mapping that the site frontmatter
 does not record.
 
+**Hardware detail lives in [`MCU_MODULES.xlsx`](MCU_MODULES.xlsx)**, alongside this file —
+every module carrying a microcontroller, set out by MCU part, memory, Wi-Fi and SD, CV and
+audio I/O, display and panel controls, with a confidence level and a source on every row.
+This file says what exists; that one says what is inside it. It also records what is
+deliberately *not* on it — the analog modules, the FPGA-based Silver/Gold, the Teensy
+Expander and the Turing family — so none of them gets re-checked.
+
 **Repos:** `eurorack_modules` (firmware monorepo) · `eurorack_daisy_patch_init` (Daisy) ·
 `eurorack_electronics` (analog + layout tooling) · `tiliqua` (FPGA, fork of apfaudio) ·
 `eight4awish` (site) · `eight4awish-video` (Remotion motion graphics) ·
