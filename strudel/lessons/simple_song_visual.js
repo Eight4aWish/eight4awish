@@ -4,32 +4,34 @@
 //
 // The rack, and what each channel wants:
 //
-//   ch3  O&C NW       pitch        → Thonk T01 VCO → A-121d  — the bass
-//   ch2  Workshop v2  pitch + gate → Plaits                  — the pad
-//   ch1  Workshop v1  pitch + gate → Ogham                   — the lead
+//   ch1  Workshop v1  pitch + gate → Joy  on ZLPF    — the bass
+//   ch2  Workshop v2  pitch + gate → Plaits          — the pad
+//   ch3  O&C NW       pitch + gate → Ogham           — the lead
 //   ch10 O&C SW/SE    gates        → Beatsi  kick snare hat crash
 //
-//   CC42 ch3  → A-121d cutoff      (the bass has no VCA — this is its articulation)
+//   CC42 ch1  → Joy CV_6           (Timbre — which on ZLPF *is* the cutoff)
 //   CC42 ch2  → Plaits TIMBRE
-//   CC42 ch1  → Ogham CV_A         (timbre, 0–255, sums with the knob)
+//   CC42 ch3  → Ogham CV_A         (timbre, 0–255, sums with the knob)
 //   CC42 ch10 → Alchemy Lab        (echo feedback, across the whole mix)
 //
-// Two things about this rack shape the parts below.
+// Three voices that need no help. Joy, Plaits and Ogham each carry their own envelope,
+// so nothing here needs an external VCA — which is the whole reason the bass line below
+// can use rests.
 //
-// The bass drones. A bare T01 VCO has no VCA and no envelope in this patch, so a rest
-// in the bass line would just hold the previous pitch. It is written as a continuous
-// stepped line instead, and the A-121d opening and closing on CC42 is what articulates
-// it. Put a VCA and an envelope in front of it and the rests come back for free.
-//
-// Note 41 is a CRASH, not an open hat — Beatsi's four are kick / snare / hi-hat / crash.
-// So it is placed once per chorus rather than played as a rhythm part.
+// Joy on ZLPF (bank 4, FLT+VOX) is a filter you play notes on: Timbre is cutoff
+// frequency, Color is waveshape. So `modBass` is a real filter sweep happening inside
+// the oscillator, not a separate module. Two things to set on the module first — patch
+// a gate to GATE IN 1, because unpatched it drones and the rests do nothing; and leave
+// the Timbre knob near the middle, because CV_6 modulates ±50% around wherever it sits.
+// Knobs 3 and 4 are the attack and decay: short decay for a plucked bass, long for a pad.
 //
 // Ogham needs its Clock jack switched to V/oct. In that mode the engine hard-syncs, so
 // the formula restarts every cycle and the thing plays in tune — but each formula has
 // its own pitch ceiling, above which it falls silent. 31 of the 101 are silent at every
 // playable pitch (the free-running drones), so pick a melodic one and check it sounds at
 // the top of the part. "Hidden Melody" holds to 4 kHz, which covers this lead twice over.
-// If Ogham is more trouble than it is worth on the day, Joy drops onto ch1 unchanged.
+//
+// The T01 VCO and the A-121d are spare now. Joy does both jobs in one module.
 
 await initHydra()
 
@@ -40,18 +42,18 @@ const OC = 'Phazerville'
 
 const prog = "<0 0 3 5 0 0 5 4>"
 
-const bass = n("0 _ _ _ 5 _ 3 _".add(prog))
-  .scale("A2:minor").midichan(3).midi(OC)
+const bass = n("0 _ ~ ~ 0 ~ 3 ~".add(prog))
+  .scale("A2:minor").midichan(1).midi(WS)
   ._pianoroll()
 const pad  = n("0 ~".add(prog))
   .scale("A3:minor").midichan(2).midi(WS)
   ._pianoroll()
 const lead = n("0 3 5 3 0 3 5 3 | 0 3 4 5 3 2 1 5".add(prog)
   .sometimesBy(0.4, x => x.add(choose(5,7))))
-  .scale("A4:minor").degradeBy(slider(0, 0, 1)).midichan(1).midi(WS)
+  .scale("A4:minor").degradeBy(slider(0, 0, 1)).midichan(3).midi(OC)
   ._pianoroll()
 const lead2 = n(irand(8).segment(16)).degradeBy(0.6)
-  .scale("A4:minor").midichan(1).midi(WS)
+  .scale("A4:minor").midichan(3).midi(OC)
   ._pianoroll()
 
 const kick=36, snare=38, hat=40, crash=41
@@ -74,13 +76,13 @@ const lfoLead = perlin.slow(4)
 const lfoEcho = sine  .slow(16)        // the slowest one — the echo swells across the song
 const lfoZoom = sine  .slow(4)         // the one signal the rack never hears — picture only
 
-const modBass = v => ccn(42).ccv(v).midichan(3).midi(OC)
+const modBass = v => ccn(42).ccv(v).midichan(1).midi(WS)
 const modPad  = v => ccn(42).ccv(v).midichan(2).midi(WS)
-const modLead = v => ccn(42).ccv(v).midichan(1).midi(WS)
+const modLead = v => ccn(42).ccv(v).midichan(3).midi(OC)
 const modEcho = v => ccn(42).ccv(v).midichan(10).midi(OC)
 
 const mods = stack(
-  modBass(lfoBass.range(1,0).segment(32)),   // the A-121d opens and closes on the bass
+  modBass(lfoBass.range(1,0).segment(32)),   // ZLPF's cutoff closes across each phrase
   modPad (lfoPad .range(0,1).segment(32)),   // Plaits' timbre moves
   modLead(lfoLead.range(1,0).segment(32)),   // Ogham's formula param wanders
   modEcho(lfoEcho.range(0,1).segment(16)),   // the echo feedback swells
@@ -118,6 +120,6 @@ osc(18, 0.08, 0.6)
 // * Drag the `slider` in `lead` from 0 up to 1 while it plays — the melody thins out.
 // * Swap `sine` for `perlin` in `lfoEcho` and the echo drifts instead of swelling.
 // * Move a line in `arrange()` with Opt+↑/↓ to reorder the song.
-// * Turn Ogham's Func knob mid-take. The part keeps its rhythm and changes instrument.
-// * Comment out `modBass(...)` (Cmd+/) and the bass stops breathing — and the frame
-//   stops spinning, because the picture is reading the very same signal.
+// * Swap Joy from ZLPF to ZHPF. Same notes, same CV, and the bass becomes a hi-hat.
+// * Comment out `modBass(...)` (Cmd+/) and the filter stops moving — and the frame stops
+//   spinning, because the picture is reading the very same signal.
