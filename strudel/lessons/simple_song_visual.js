@@ -15,6 +15,11 @@
 //                                   CV_B stays unpatched on purpose — see below
 //   CC42 ch10 → Alchemy Lab        (echo feedback, across the whole mix)
 //
+// Ogham is a stereo pair, not a mono voice — Out1 is L and Out2 is R, one bytebeat voice
+// each. Patch both into the Alchemy Lab's J1/J2 rather than multing one. Neither Echoa nor
+// Spagyros will widen a mono signal for you: Echoa's four routings all keep each line to
+// its own channel, and the jacks are plain codec inputs with no normalling.
+//
 // Three voices that need no help. Joy, Plaits and Ogham each carry their own envelope,
 // so nothing here needs an external VCA — which is the whole reason the bass line below
 // can use rests.
