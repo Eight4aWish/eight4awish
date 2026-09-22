@@ -3,8 +3,8 @@ title: Strudel — live-code your rack
 eyebrow: Music as code
 date: 2026-07-10
 summary: >-
-  Sequence your rack by typing. One track, built three ways — a basic song, a
-  generative one, and a visual one that shares its signals with the picture.
+  Sequence your rack by typing. One track, built twice — a song, then the same
+  song made to wander while it moves the filters.
 graphic: /renders/tut_music.png
 chips:
   - Strudel
@@ -14,178 +14,154 @@ cta: /tutorials/strudel/
 order: 1
 draft: false
 songs:
-  - title: 1 · Basic
+  - title: 1 · The song
     blurb: >-
-      Parts, drums and CC42 movement, arranged into a song — the whole track on
-      one screen.
-    download: /lessons/simple_song.js
+      Three voices, a drum kit and an arrangement — the whole track on one
+      screen, and not a note of it made in the browser.
+    download: /lessons/recorded_short.js
     blocks:
       - label: Devices
         code: |-
           const WS = 'Workshop System MIDI'
           const OC = 'Phazerville'
         note: >-
-          Two MIDI destinations, named once: the **Workshop System** and the
-          **O&C** (its firmware reports as *Phazerville*). Every part below is
-          aimed at one with `.midi(WS)` or `.midi(OC)`.
-      - label: Parts
+          Two MIDI destinations, named once: the **Workshop Computer** and the
+          **O&C** (its firmware reports as *Phazerville*). Every part below aims
+          at one of them with `.midi(WS)` or `.midi(OC)`.
+      - label: The progression, and the first voice
         code: |-
           const prog = "<0 0 3 5 0 0 5 4>"
 
-          const bass = n("0 _ ~ ~ 0 ~ 3 ~".add(prog))
-            .scale("A2:minor").midichan(3).midi(OC)
-          const pad  = n("0 ~".add(prog))
-            .scale("A4:minor").midichan(2).midi(WS)
+          const bass = n("0 ~ ~ ~ 0 ~ 3 ~".add(prog))
+            .scale("A2:minor").midichan(4).midi(OC)
+        note: >-
+          `n()` plays **scale degrees**, not fixed notes — `0` is the root, so
+          with `.scale("A…:minor")` everything lands in key. `prog` is a chord
+          move in `< >`, one per cycle, and `.add(prog)` walks the part through
+          it. That is the difference between a song and a loop, and it costs one
+          word.
+      - label: Pad and lead
+        code: |-
+          const pad  = n("0 ~ ".add(prog))
+            .scale("A3:minor").midichan(3).midi(OC)
+
           const lead = n("0 3 5 3 0 3 5 3".add(prog))
             .scale("A5:minor").midichan(1).midi(WS)
         note: >-
-          `n()` plays **scale degrees**, not fixed notes — `0` is the root, so
-          with `.scale("A…:minor")` every number lands in key. `prog` is a chord
-          move in `< >` (one per cycle) and `.add(prog)` walks all three voices
-          through it together. Bass, pad and lead sit in octaves A2 / A4 / A5 on
-          channels 3 / 2 / 1 to stay clear of each other — low to high, the
-          order everything below keeps. (`~` rest, `_` hold.)
+          The same idea twice more — same notation, an octave apart each time.
+          Note where they go: the pad joins the bass on the O&C, but the lead is
+          addressed to the Workshop Computer. Strudel drives both boxes at once
+          and does not care that they are different machines.
       - label: Drums
         code: |-
-          const kick=36, snare=38, closedHat=40, openHat=41
+          const kick=36, snare=37, closedHat=38, openHat=39
           const drums = stack(
-            note(kick     ).struct("x ~ ~ ~ x ~ ~ ~"),
-            note(snare    ).struct("~ ~ ~ ~ x ~ ~ ~"),
-          ).midichan(10).midi(OC)
-          const drums2 = stack(
-            drums,
-            note(closedHat).struct("x x x*2 ~ x*2 x x ~"),
-            note(openHat  ).struct("~ ~ ~ x ~ ~ ~ x*2"),
+            note(kick     ).struct("x x"),
+            note(snare    ).struct("~ x"),
+            note(closedHat).struct("x x x ~ x x x ~"),
+            note(openHat  ).struct("~ ~ ~ ~ ~ ~ ~ x")
           ).midichan(10).midi(OC)
         note: >-
-          Drums use raw note numbers and `.struct()` — a **step grid** where `x`
-          is a hit, `~` a rest, `x*2` two hits in one step. `drums` is the
-          kick+snare backbone; `drums2` layers hats on top for the busier
-          sections. All on channel 10, the O&C's drum bus.
-      - label: Movement
-        code: |-
-          const lfoBass = isaw  .slow(8)
-          const lfoPad  = sine  .slow(4)
-          const lfoLead = isaw  .slow(4)
-
-          const modBass = v => ccn(42).ccv(v).midichan(3).midi(OC)
-          const modPad  = v => ccn(42).ccv(v).midichan(2).midi(WS)
-          const modLead = v => ccn(42).ccv(v).midichan(1).midi(WS)
-
-          const mods = stack(
-            modBass(lfoBass.range(1,0).segment(32)),
-            modPad (lfoPad .range(0,1).segment(32)),
-            modLead(lfoLead.range(1,0).segment(32)),
-          )
-        note: >-
-          The CC42 movement, in two halves. **Name each LFO once** — a shape
-          (`isaw` ramps down, `sine` swells) and a speed (`.slow()`); these
-          names are reused unchanged for the rest of the lesson. Then one
-          **helper per destination**, each sending CC42 on a voice's channel,
-          which on the rig becomes a control voltage — a filter, a reverb mix.
-          `.range()` sets depth, `.segment(32)` how many CC messages a cycle.
-          Two CCs on one channel would just overwrite each other, hence one
-          helper each.
+          Drums are the exception to the scale-degree rule: these are raw MIDI
+          notes, because a kick is not a pitch, it is a jack. `.struct()` is a
+          **step grid** — `x` a hit, `~` a rest — which reads like a drum machine
+          and keeps the rhythm separate from the sound. All on channel 10, into
+          Beatsi.
       - label: Sections & arrange
         code: |-
-          const intro  = stack(pad, mods)
-          const verse  = stack(drums, bass, pad, mods)
-          const chorus = stack(drums2, bass, pad, lead, mods)
-          const bridge = stack(drums, pad, mods)
-          const outro  = stack(bass, pad, mods)
+          const intro  = stack(drums, pad)
+          const verse  = stack(drums, bass, pad)
+          const chorus = stack(drums, bass, pad, lead)
+          const outro  = stack(bass, pad)
 
           arrange(
             [4, intro],
             [8, verse],
             [8, chorus],
-            [4, bridge],
-            [8, chorus],
             [4, outro],
-          ).cpm(30)
+          ).cpm(35)
         note: >-
-          `stack()` layers parts into sections — drums first, then bass, pad,
-          lead, with `mods` riding inside every one so the movement plays
-          throughout. `arrange()` runs the sections in order as
-          `[bars, section]`. `cpm(30)` sets the tempo — 30 cycles/min, about
-          120 bpm at eight steps.
-  - title: 2 · Generative
+          `stack()` layers parts into sections, and `arrange()` plays the
+          sections in order as `[bars, section]`. `cpm(35)` sets the tempo — 35
+          cycles a minute. Twenty-four bars, and the track is finished.
+  - title: 2 · Movement
     blurb: >-
-      The same track, now it never plays the same way twice. Everything here is
-      an addition to the basic song — nothing is rewritten.
-    download: /lessons/simple_song_generative.js
+      The same song, now it never plays the same way twice — and the filters on
+      the rack move while it does.
+    download: /lessons/recorded_long.js
     blocks:
-      - label: Parts — now they mutate
+      - label: The bass gains a second bar
         code: |-
           const bass = n("0 _ ~ ~ 0 ~ 3 ~ | 0 _ ~ ~ 3 ~ ~ 5".add(prog))
-            .scale("A2:minor").midichan(3).midi(OC)
-            ._pianoroll()
+            .scale("A2:minor").midichan(4).midi(OC)
+        note: >-
+          `|` means **pick one of these each cycle**, so the bass stops repeating
+          exactly. `_` holds the note before it for another step — which only
+          sounds different if the voice reads gate *length*, so on this rig it
+          depends which way the A-142-3's AD/AR toggle is set.
+      - label: The lead mutates
+        code: |-
           const lead = n("0 3 5 3 0 3 5 3 | 0 3 4 5 3 2 1 5".add(prog)
             .sometimesBy(0.4, x => x.add(choose(5,7))))
-            .scale("A5:minor").degradeBy(slider(0, 0, 1)).midichan(1).midi(WS)
-            ._pianoroll()
-          const lead2 = n(irand(8).segment(16)).degradeBy(0.6)
-            .scale("A4:minor").midichan(1).midi(WS)
-            ._pianoroll()
+            .scale("A5:minor").degradeBy(slider(0.313, 0, 1)).midichan(1).midi(WS)
         note: >-
-          Bass and lead each grow a second bar (`|` = one per cycle). The lead
-          also mutates: `sometimesBy(0.4, …choose(5,7))` leaps about 40% of
-          notes up a 5th or 7th, and `degradeBy(slider(0,0,1))` drops notes by
-          an amount you **drag live** — the slider appears in the editor.
-          `lead2` is pure chance, `irand(8)` picking random degrees, held back
-          for the bridge. `._pianoroll()` draws the notes as they play.
-      - label: Movement — one word
-        code: const lfoLead = perlin.slow(4)
-        note: >-
-          That is the whole change. `lfoLead` was `isaw`, a ramp that repeats;
-          **`perlin`** is smooth random, so the lead's filter now wanders
-          instead of marching. Because the LFO was named once in the basic song,
-          nothing downstream is touched — `mods` still reads
-          `modLead(lfoLead.range(1,0)…)` and simply carries the new shape.
-      - label: A generative bridge
-        code: const bridge = stack(drums, pad, lead2, mods)
-        note: >-
-          The only section that changes: the bridge trades the written lead for
-          **`lead2`**, the random line, so that lift is different every pass.
-          Drums, bass, pad and `arrange()` are exactly the basic song.
-  - title: 3 · Visual
-    blurb: >-
-      The generative song, plus a Hydra picture driven by the very same signals
-      that move the filters.
-    download: /lessons/simple_song_visual.js
-    blocks:
-      - label: Start Hydra, add one signal
+          `.sometimesBy(0.4, …)` takes a chance on each note — about 40% of them
+          jump up a 5th or a 7th, whichever `choose()` picks. `.degradeBy()`
+          drops notes entirely, and `slider()` puts a **fader in the code** so
+          you can thin the melody out by hand while it plays.
+      - label: A busier kit
         code: |-
-          await initHydra()
+          const drums2 = stack(
+            note(kick     ).struct("x x x x"),
+            note(snare    ).struct("x x"),
+            note(closedHat).struct("x x x*2 ~ x*2 x x ~"),
+            note(openHat  ).struct("~ ~ ~ x ~ ~ ~ x*2 | ~ ~ ~ x ~ ~ ~ x*4"),
+          ).midichan(10).midi(OC)
+        note: >-
+          A second kit for the chorus. `x*2` fits two hits into one step, which
+          is how the hats get their double-time feel without a second grid.
+      - label: Name the shapes
+        code: |-
+          const lfo1 = isaw  .slow(4)
+          const lfo2 = perlin.slow(4)
+        note: >-
+          A **signal** is a value that is always moving. There are no brackets
+          after `isaw` because you are not calling it — you are naming a shape: a
+          ramp that falls from 1 to 0. `.slow(4)` stretches one fall over four
+          cycles. `perlin` is smooth random, so it wanders instead of marching.
+      - label: Send them as CC
+        code: |-
+          const mod1 = v => ccn(42).ccv(v).midichan(2).midi(WS)
+          const mod2 = v => ccn(42).ccv(v).midichan(1).midi(WS)
 
-          const lfoZoom = sine  .slow(4)
+          const mods = stack(
+            mod1(lfo1.range(1,0).segment(32)),
+            mod2(lfo2.range(0,1).segment(32)),
+          )
         note: >-
-          `initHydra()` starts Hydra, a visual layer behind the code. Nothing
-          else about the song moves: `lfoBass`, `lfoPad` and `lfoLead` are the
-          ones you already named, and they are about to drive the picture as
-          well as the rack. `lfoZoom` is the one addition — a signal that drives
-          only the image. The arrangement gains a `$:` prefix, which names the
-          pattern so the picture can play alongside it.
-      - label: The same signals drive the picture
+          **Nothing here makes a voltage.** Strudel sends a MIDI message and the
+          module turns it into volts. `v => …` is a small function — a recipe
+          with a hole in it — and everything after the arrow is an address that
+          never changes: controller 42, a channel, a device. Then `.range()`
+          sets depth and direction, and `.segment(32)` takes 32 snapshots a
+          cycle, because a continuously moving value has to be chopped up before
+          MIDI can carry it. At `cpm(35)` that is about 19 messages a second.
+      - label: The bridge
         code: |-
-          osc(18, 0.08, 0.6)
-            .color(H(lfoPad), 0.25, H(lfoLead))
-            .rotate(H(lfoBass.range(0, 6.28)))
-            .kaleid(H(lfoLead.range(3, 7)))
-            .modulate(noise(3))
-            .scale(H(lfoZoom.range(1, 1.4)))
-            .out()
+          const lead2 = n(irand(8).segment(16)).degradeBy(0.6)
+            .scale("A5:minor").midichan(1).midi(WS)
+
+          const bridge = stack(drums2, pad, lead2, mods)
         note: >-
-          `H()` pipes a Strudel signal into a Hydra parameter, so the **same**
-          `lfoPad` / `lfoLead` / `lfoBass` that move your filters now move the
-          image: pad and lead tint the colour, the bass sweep spins the frame,
-          and the wandering `lfoLead` opens the kaleidoscope. `.scale()` zooms —
-          driven by `lfoZoom`, the one signal the rack never hears. Sound and
-          picture breathe together because they share one set of signals.
+          `irand(8)` is pure chance and `.segment(16)` takes sixteen of them a
+          cycle — the same idea as the LFOs above, sampling something continuous
+          into countable events. It only plays in the bridge, so that lift is
+          different every pass.
 ---
 Strudel is a live-coding language that runs in a browser. Here it is **not** making the sound — your
 modules are. Strudel sends MIDI notes and CC; the rack does the rest.
 
-Below is the actual code from the video: **one track, three passes**. The **basic** song lays down
-parts, drums and CC42 movement, arranged into a shape. The **generative** pass lets the notes and
-filters wander. The **visual** pass shares those same signals with a Hydra graphic. The full files
-live in the repo linked at the foot of the page.
+Below is the actual code from the video: **one track, two passes**. The first lays down three voices,
+a drum kit and an arrangement. The second lets the notes wander and sends CC42 out to sweep real
+filters on the rack. Both files are downloadable above — paste one into [strudel.cc](https://strudel.cc)
+in Chrome, point the device names at your own gear, and it will play.
