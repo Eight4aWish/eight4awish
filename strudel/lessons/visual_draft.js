@@ -13,8 +13,14 @@
 //    kick pumps the zoom and the hats flicker the edge, which no LFO can fake because no
 //    LFO knows when the kick landed.
 //
-// Untested: this needs the rack playing into the interface to do anything at all, and the
-// fft bins want trimming by ear once it is.
+// The two halves are independent, which matters with the rig dismantled. The sectional half
+// runs off Strudel's own clock and needs no audio and no hardware — open this, press play,
+// and the picture moves through the song on its own. The fft half needs sound arriving at
+// the browser's audio input; with none it reads 0 and does nothing, harmlessly.
+//
+// To feed it the rack without the rack: route a recorded take's audio to an input with a
+// loopback device (BlackHole is the usual free one), pick that as the browser's microphone,
+// and play the take. Hydra is then reacting to the real rack, just recorded rather than live.
 
 await initHydra({ detectAudio: true })
 
@@ -91,6 +97,11 @@ const vHue   = "<  0.6@4   0.5@8  0.05@8  0.75@4  0.05@8 0.6@4>"  // blue → re
 const vBlend = "<  0@4     0.1@8  0.55@8  0.8@4   0.55@8 0@4  >"  // how much voronoi bleeds in
 const vSpin  = "<  0.02@4  0.05@8 0.2@8   -0.3@4  0.2@8  0.02@4>" // the bridge turns back
 
+// Audio reactivity, if there is any audio. With no input a.fft reads 0 and every one of
+// these collapses to 1, which is a no-op rather than a crash — so the sectional picture
+// above works with nothing patched in, and the rack (or a recording of it) only ever adds.
+const amp = (bin, depth) => () => 1 + (((typeof a !== 'undefined' && a.fft) ? a.fft[bin] : 0) || 0) * depth
+
 // ---- The picture
 
 osc(18, 0.08, 0.6)
@@ -99,8 +110,8 @@ osc(18, 0.08, 0.6)
   .blend(voronoi(6, 0.3, 0.2), H(vBlend))        // a different SHAPE per section, not a tweak
   .kaleid(H(vKal))
   .modulate(noise(3), H(lfo2.range(0.05, 0.4)))  // the one place the old slow drift survives
-  .scale(() => 1 + a.fft[0] * 0.45)              // the kick pumps the zoom
-  .contrast(() => 1 + a.fft[2] * 2)              // the hats flicker the edges
+  .scale(amp(0, 0.45))                           // the kick pumps the zoom
+  .contrast(amp(2, 2))                           // the hats flicker the edges
   .out()
 
 // ---- Try this
