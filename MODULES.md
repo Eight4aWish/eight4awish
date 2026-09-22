@@ -103,6 +103,31 @@ The two MultiFX differ in width as well as hardware: the Patch.Init one is 10HP,
 Seed one 6HP on an n8synth panel. MOD2/Melon and mkikick take their 6HP from the n8synth
 platform rather than a build123d manifest, and the Seed MultiFX from the rig model.
 
+## Panel layouts — where to get one
+
+`panel_w` above is the width. For the *layout* — which knobs, which jacks, what they are
+labelled and roughly where they sit — work down this list and stop at the first hit. It
+exists because a session once invented three panels rather than admit it had no source.
+
+1. **`MCU_MODULES.xlsx`** — the `CV & gate in`, `CV & gate out`, `Audio in`, `Audio out`,
+   `Display` and `Panel controls` columns. Covers every module with a microcontroller,
+   purchased ones included, and carries a confidence level per row.
+2. **The module's own repo**, for anything open — `hardware/panel/` in
+   [`ogham`](https://github.com/Eight4aWish/ogham) has the real silkscreen as SVG and KiCad.
+   Labels come out of these; coordinates usually do not, because the text is outlined paths.
+3. **`build123d`** — own-builds only. `render/out/<module>/manifest.json`.
+4. **A vendor image.** When 1–3 draw a blank, take the product photo from the maker's site
+   and read the panel off it. This is the normal ending, not a failure: most purchased
+   modules are not in any of the repos.
+
+**A blank is a finding.** `MCU_MODULES.xlsx` says "Not recorded in the repos" where it means
+it, and that sentence is an instruction to go to step 4 — not permission to guess. Whatever
+step 4 turns up gets written back into the xlsx so the next session starts at step 1.
+
+`eight4awish-video/src/rigModules.ts` marks each panel with the source it came from —
+`photo`, `descr`, `inventory` or a build123d manifest. Keep that marker honest; it is how
+anyone tells a measured panel from a remembered one.
+
 ## Companion software
 
 Not modules, but first-party and part of how the modules are used.
