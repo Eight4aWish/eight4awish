@@ -60,6 +60,11 @@ Notes:
 
 Have a `src/content/modules/*.md` entry with `draft: true` — awaiting write-up + video.
 
+**These names are internal.** Nothing here is released, so the names are working
+titles and will often change before a page goes live. Do not treat a clash with a
+commercial module as a problem, and do not raise one: it is only worth a thought at
+release, for the name actually chosen then.
+
 | Module | Repo | Firmware | Platform | Page |
 |---|---|---|---|---|
 | **Boy** | `eurorack_modules` | `src/teensy_move/` | Teensy 4.1 | `boy.md` |
@@ -198,7 +203,7 @@ panels modelled against the real hardware, so those are the most trustworthy of 
 | **Steps** ×2 | Behringer | 14 ✓ | function generator / sequencer | **Mutable Stages clone.** Six stages each; two units chain to 36 segments, which is presumably why there are two. |
 | **Four Play** | Behringer | 12 ✓ | quad VCA + mixer | Coolaudio V2164A. DC-coupled, cascaded outs so Mix alone makes it a 4-in VC mixer. **See the CV6 note below.** |
 | **Four LFO** | Behringer | 12 ◆ | quad LFO | **Xaoc Batumi clone.** Fader per LFO, assignable waveforms, 500 Hz down to ~28 hours. |
-| **Chaos** | Behringer | 18 ✓ | random gates + random CV | Analog random sampler, two chained sub-sections. **Name collides with your own Chaos**, the Teensy 4.1 attractor voice — unrelated modules, both in the rack. |
+| **Chaos** | Behringer | 18 ✓ | random gates + random CV | Analog random sampler, two chained sub-sections. |
 | **Abacus** | Behringer | 20 ✓ | function generator / CV maths | Modelled on Buchla 257 + 281. Four CV ins with depth and direction; lag / slew / portamento. |
 | **Waves** | Behringer | 14 ✓ | function generator / tidal modulator | **Mutable Tides clone** — three generator modes, AR and AD envelopes, looping VC-LFO and VCDO, morphing waveforms. Its **Smoothness** control is a wavefolder clockwise of centre (and a 2-pole low-pass counter-clockwise), so `ROADMAP.md:48` is right to count it alongside Chopping Kinky as West-Coast folding. |
 | **Workshop Computer** | Music Thing Modular | 8 ✓ | programmable CV / MIDI | Runs the **Simple MIDI** program card for two fixed voices. MIDI port `Workshop System MIDI`. |
