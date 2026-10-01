@@ -68,7 +68,9 @@ release, for the name actually chosen then.
 | Module | Repo | Firmware | Platform | Page |
 |---|---|---|---|---|
 | **Boy** | `eurorack_modules` | `src/teensy_move/` | Teensy 4.1 | `boy.md` |
-| **Chaos** | `eurorack_modules` | `src/teensy_chaos/` | Teensy 4.1 | `chaos.md`. **Frozen 2026-09-30, to be retired**: the Teensy hardware will be repurposed. Its successor is **Secret** (*seven for a secret*) on the Alchemy Lab, in `eurorack_daisy_patch_init` at `daisy_chaos/`, planning only. `chaos_core` moved there to `common/chaos_core/`, and the plan is `docs/SECRET.md`. Not the Behringer **Chaos** in the rack, which is a random sampler. |
+| **Chaos** | `eurorack_modules` | `src/teensy_chaos/` | Teensy 4.1 | No page: its draft became `secret.md`. **Frozen 2026-09-30, to be retired** — the Teensy hardware will be repurposed, and **Secret** is its successor. Not the Behringer **Chaos** in the rack, which is a random sampler. |
+| **Secret** | `eurorack_daisy_patch_init` | `daisy_chaos/` | Alchemy Lab | `secret.md`. *Seven for a secret.* Chaotic-attractor oscillator, twelve models, V/oct and TAME; MIT, on the Alchemy SDK. **On the bench** since 2026-09-30: flashed and played, bench steps 3, 4 and 6 (TAME listening, V/oct, scope) still open. Runs on the Alchemy Lab's own panel, so no panel STL — like Silver/Gold. The DSP is `common/chaos_core/`; the plan and measurements are `docs/SECRET.md`. |
+| **Mirth** | `eurorack_daisy_patch_init` | `daisy_neural/` | Daisy Patch Submodule | `mirth.md`. *Two for mirth*, the rhyme's other second line. NAM A2-Lite captures off the card (AMPS) and nine bent captures with one steer control each (NOT-AMPS), OLED as on Joy. AMPS run on hardware 2026-09-28 at 64% CPU; NOT-AMPS **not yet run on hardware**. Release blocked on the captures: the five used are third-party with no stated licence, and NOT-AMPS is built from them by name. A screenless **Mirth Lite** would follow the Joy Lite pattern. The firmware still calls itself `daisy_neural` / NEURAL. |
 | **CortHex** | `eurorack_modules` | `src/nanoesp32_corthex/` | Arduino Nano ESP32 (NORA-W106 / ESP32-S3) | `corthex.md`. CV6 is a 0–5 V gain CV that drives **either** the Behringer Four Play or a Thonk T03, whichever is patched — `main.cpp:1048` and `proxy.py` name different ones and both are valid. |
 | **Daisy MultiOsc** | `eurorack_daisy_patch_init` | `daisy_multiosc/` | Daisy Patch Submodule | `daisy-multiosc.md` |
 | **Daisy MultiFX** | `eurorack_daisy_patch_init` | `daisy_multifx_oled/` | Daisy Patch Submodule | `daisy-multifx.md`. ~~Repurposed for the neural experiment~~ — **not any more**: the Patch SM came back in stock on 2026-09-25, so `daisy_neural/` gets a fresh patch.init() and this unit is untouched. |
@@ -99,7 +101,7 @@ reads as 9.94HP and means 10HP).
 | Module | HP | Format |
 |---|---|---|
 | **Girl** | 20 | 3U |
-| **Sorrow** · **Joy** · **Boy** · **Chaos** · **CortHex** · **Daisy MultiOsc** · **Daisy MultiFX** · **AMYboard PatchBank** · **Dual LPG** | 10 | 3U |
+| **Sorrow** · **Joy** · **Mirth** · **Boy** · **Chaos** · **CortHex** · **Daisy MultiOsc** · **Daisy MultiFX** · **AMYboard PatchBank** · **Dual LPG** | 10 | 3U |
 | **Silver** · **Gold** · **Pico2W OnC Lite** · **Teensy Expander** · **Daisy MultiFX (Seed)** · **MOD2/Melon** · **mkikick** | 6 | 3U |
 | **ESP32 ClkLinkRec** | 4 | 3U |
 | **Seeed Recorder** | 8 | **1U** |
@@ -174,7 +176,7 @@ Worth recording so they don't get re-counted:
 The site's `platform:` frontmatter field. Keep these spellings consistent:
 
 `Daisy Patch Submodule` · `Teensy 4.1` · `Arduino Nano ESP32` · `Pico 2W` · `XIAO ESP32-C5` ·
-`AMYboard` · `Ksoloti` · `Tiliqua` · `analog`
+`AMYboard` · `Ksoloti` · `Tiliqua` · `Alchemy Lab` · `analog`
 
 Note the site currently writes the Daisy platform as `Patch Submodule` (no "Daisy"
 prefix) — that is the string in the frontmatter today.
@@ -283,7 +285,8 @@ Purchased, but the platform rather than the instrument.
 |---|---|---|---|
 | **Big Genes** | Ksoloti | 20 ✓ | Girl |
 | **Tiliqua** | apf.audio | 6 ✓ | Silver, Gold |
-| **Patch Init / Patch Submodule** | Electrosmith | — | Sorrow, Joy, Joy Lite, MultiOsc, MultiFX |
+| **Alchemy Lab** | Hermetic Modular | 12 ✓ | Secret. Also listed under In the rack, where it runs Hermetic's own firmwares too. |
+| **Patch Init / Patch Submodule** | Electrosmith | — | Sorrow, Joy, Joy Lite, Mirth, MultiOsc, MultiFX |
 | **AMYboard** | shorepine | — | AMYboard PatchBank |
 | **Oneiroi** (Rebel Technology OWL mk3 inside) | Befaco | 30 ✓ | Nothing yet. The stock firmware is GPL-3 C++ built with OwlProgram, one model per header, with a VCV Rack build for laptop testing and make targets that load to RAM, store to a slot, or emit a sysex file. A modified Oneiroi is on the roadmap; the kit is unbuilt. |
 | **Solderable breadboard platform** (4/6/10HP + 10HPS) | N8Synth | 4–10 | Dual LPG, MOD2/Melon, and the board geometry the layout visualiser validates against |
