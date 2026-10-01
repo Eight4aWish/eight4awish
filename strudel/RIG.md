@@ -5,27 +5,36 @@ learner-facing; the lesson files stay clean per drafting rule 3 in `COURSE.md`.
 
 ## Channel map
 
+The rig as recorded for the video (21 Sep take), read off `recorded_*.js` and the patch in
+`eight4awish-video/src/cables.ts`, which is the cable-by-cable authority.
+
 | Ch | From | To | Carries |
 |---|---|---|---|
-| 1 | Workshop voice 1 | Joy on `ZLPF` | pitch + gate — the bass |
-| 2 | Workshop voice 2 | Plaits | pitch + gate — the pad |
-| 3 | O&C quadrant NW | Ogham | pitch + gate — the lead |
-| 10 | O&C quadrants SW/SE | Beatsi | gates: kick 36, snare 38, hat 40, crash 41 |
+| 1 | Workshop `CO1` / `PO1` | Ogham `CLK/VOCT` / `SYNC` | pitch + trigger — the lead |
+| 3 | O&C `g` / `h` | Plaits `TRIG` / `V/OCT` | gate + pitch — the pad |
+| 4 | O&C `e` / `f` | A-142-3 `GATE` / T01 `V/OCT` | gate + pitch — the bass (T01 saw through the A-142-3's VCA) |
+| 10 | O&C `a`–`d` | Beatsi `KICK` / `SNARE` / `HI-HAT` / `CRASH` | notes 36 / 37 / 38 / 39 |
 
-| CC42 on | Goes to | Does |
-|---|---|---|
-| ch1 | Joy `CV_6` | Timbre — which on `ZLPF` *is* the cutoff |
-| ch2 | Plaits `TIMBRE` | |
-| ch3 | Ogham `CV_A` | shared timbre param, 0–255, sums with the knob |
-| ch10 | Alchemy Lab | echo feedback, across the whole mix |
+| CC42 on | Out of | Goes to | Does |
+|---|---|---|---|
+| ch2 | Workshop `AO2` | Ogham `CV_A` | shared timbre param, 0–255, sums with the knob |
+| ch1 | Workshop `AO1` | Alchemy Lab `CV1` | the effect Ogham plays through |
 
 Ogham's two audio outs go to the Alchemy Lab's `J1`/`J2` as a stereo pair —
 `Out1 = L`, `Out2 = R`. Do not mult one: neither Echoa nor Spagyros will widen a
 mono signal, and the jacks are plain codec inputs with no normalling.
 
-The T01 VCO and the A-121d are spare. Joy does both jobs in one module.
+Every output on both brains is in use: the O&C spends all eight, the Workshop Computer
+spends four on one voice and its spare mod. The A-121d is spare.
+
+The A-142-3's AD/AR toggle decides whether `_` in the bass pattern is audible: on AR the
+longer MIDI gate holds the note; on AD the envelope is struck and ignores it.
 
 ## Joy
+
+**Not in the recorded rig.** Joy on `ZLPF` played the bass, from Workshop ch1 with CC42 on
+`CV_6` as the cutoff, until the September rebuild swapped it for the T01 and A-142-3. The
+settings below are kept for that patch.
 
 - Model **`ZLPF`** (bank 4, FLT+VOX). Timbre = cutoff frequency, Color = waveshape.
   `ZPKF` / `ZBPF` / `ZHPF` are the same filter in peaking / band / high-pass.
@@ -71,7 +80,8 @@ field 50..99 : 934 ms .. 20 s      6.5% / step
 ```
 
 The figure is the real length of the note — the envelope reaches true zero at the set
-time rather than trailing off. At `cpm(30)` a step of the lead is 250 ms, hence `Lp.37`.
+time rather than trailing off. At `cpm(30)` a step of the lead is 250 ms, hence `Lp.37`;
+the recorded songs run at `cpm(35)`, where a step is 214 ms — `Lp.35`.
 
 **There is no attack setting.** It is derived — 15% of the decay, clamped to 1 ms — so
 Ogham cannot fade in. It is a struck voice.

@@ -86,8 +86,8 @@ songs:
           cycles a minute. Twenty-four bars, and the track is finished.
   - title: 2 · Movement
     blurb: >-
-      The same song, now it never plays the same way twice — and the filters on
-      the rack move while it does.
+      The same song, now it never plays the same way twice — and the lead's
+      tone and the effect it plays through move while it does.
     download: /lessons/recorded_long.js
     blocks:
       - label: The bass gains a second bar
@@ -106,7 +106,8 @@ songs:
             .scale("A5:minor").degradeBy(slider(0.313, 0, 1)).midichan(1).midi(WS)
         note: >-
           `.sometimesBy(0.4, …)` takes a chance on each note — about 40% of them
-          jump up a 5th or a 7th, whichever `choose()` picks. `.degradeBy()`
+          jump up 5 or 7 scale degrees, whichever `choose()` picks: a sixth or
+          a full octave, because degree `0` is the root. `.degradeBy()`
           drops notes entirely, and `slider()` puts a **fader in the code** so
           you can thin the melody out by hand while it plays.
       - label: A busier kit
@@ -156,12 +157,14 @@ songs:
           `irand(8)` is pure chance and `.segment(16)` takes sixteen of them a
           cycle — the same idea as the LFOs above, sampling something continuous
           into countable events. It only plays in the bridge, so that lift is
-          different every pass.
+          different every pass. The arrangement grows to fit: the bridge, then
+          the chorus again, with `mods` running from the verse on — the full
+          order is in the download.
 ---
 Strudel is a live-coding language that runs in a browser. Here it is **not** making the sound — your
 modules are. Strudel sends MIDI notes and CC; the rack does the rest.
 
 Below is the actual code from the video: **one track, two passes**. The first lays down three voices,
-a drum kit and an arrangement. The second lets the notes wander and sends CC42 out to sweep real
-filters on the rack. Both files are downloadable above — paste one into [strudel.cc](https://strudel.cc)
+a drum kit and an arrangement. The second lets the notes wander and sends CC42 out to move the
+lead's timbre on Ogham and the Alchemy Lab effect it plays through. Both files are downloadable above — paste one into [strudel.cc](https://strudel.cc)
 in Chrome, point the device names at your own gear, and it will play.
