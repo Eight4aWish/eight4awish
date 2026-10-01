@@ -121,5 +121,6 @@ Download A2 captures from TONE3000 — filter by architecture — and convert th
 32 on a card.
 
 <!-- TO DECIDE before release: which captures ship. The five used in development are
-other people's work with no stated licence, and NOT-AMPS is built from exactly those
+other people's work under TONE3000's T3K licence (no redistribution without the
+author's permission), and NOT-AMPS is built from exactly those
 five, by name. -->
