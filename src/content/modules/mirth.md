@@ -41,8 +41,8 @@ flash:
       disk number with `diskutil list external` first — this erases it — then
       `diskutil partitionDisk /dev/diskN MBR "MS-DOS FAT32" DAISY 2G "Free Space" REST R`.
     - >-
-      Copy the .bin above to the root of the card, with `cp -X` on a Mac. It must
-      be the only .bin on the card.
+      Copy the .bin above to the root of the card. It must be the only .bin on
+      the card.
     - Copy your `.a2nb` captures to the root as well.
     - >-
       Insert the card and power-cycle. The bootloader flashes the firmware if it
@@ -50,7 +50,8 @@ flash:
   note: >-
     On a Mac, Finder writes a hidden twin of every file — ._mirth.bin, ._0_JCM800.a2nb.
     The .bin twin confuses the bootloader and the capture twins fail their checksum.
-    Copy with `cp -X`, or run `dot_clean /Volumes/DAISY` afterwards.
+    After copying, delete them in Terminal with `rm -f /Volumes/DAISY/._*` — the
+    usual `cp -X` no longer prevents them on current macOS.
   links:
     - label: Daisy Web Programmer
       url: https://flash.daisy.audio
