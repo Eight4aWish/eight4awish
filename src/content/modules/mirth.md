@@ -43,12 +43,14 @@ flash:
     - >-
       Copy the .bin above to the root of the card. It must be the only .bin on
       the card.
-    - Copy your `.a2nb` captures to the root as well.
+    - >-
+      Unzip the captures download and copy the twelve `.a2nb` files to the root
+      as well. The not-amps are built from them, by name.
     - >-
       Insert the card and power-cycle. The bootloader flashes the firmware if it
       differs from what is installed, and boots.
   note: >-
-    On a Mac, Finder writes a hidden twin of every file — ._mirth.bin, ._0_JCM800.a2nb.
+    On a Mac, Finder writes a hidden twin of every file — ._mirth.bin, ._n02_ORANGE_TH.a2nb.
     The .bin twin confuses the bootloader and the capture twins fail their checksum.
     After copying, delete them in Terminal with `rm -f /Volumes/DAISY/._*` — the
     usual `cp -X` no longer prevents them on current macOS.
@@ -116,13 +118,23 @@ Audio in on IN_L; the same mixed signal on both outputs.
 wires · the printed panel. The same screen and wiring as Joy: it goes where the B8
 toggle was.
 
-## Getting captures
+## Captures
 
-Download A2 captures from TONE3000 — filter by architecture — and convert them with
-`tools/nam_to_a2nb.py`. Straight from download to card: no rebuild, no reflash. Up to
-32 on a card.
+Mirth comes with twelve captures, the **starter set**, in a download beside the
+firmware: eight CC BY and four CC0, by their creators on TONE3000. Each is credited —
+creator, source and licence — in `STARTER_CAPTURES.md`, which is in the download and in
+the firmware repo. The not-amps are built from them, so copy all twelve to the card. The
+Orange TH100 is also built into the firmware, so a module with no card still plays.
 
-<!-- TO DECIDE before release: which captures ship. The five used in development are
-other people's work under TONE3000's T3K licence (no redistribution without the
-author's permission), and NOT-AMPS is built from exactly those
-five, by name. -->
+**More captures:** download A2 captures from TONE3000 — filter by architecture — and
+convert them with `tools/nam_to_a2nb.py`. Straight from download to card: no rebuild, no
+reflash. Up to 32 on a card. Most captures on TONE3000 are licensed for your own use, so
+they can go on your card but not be passed on.
+
+## Credits
+
+The A2 engine is Keith Shepherd's, from
+[DaisySeedProjects](https://github.com/bkshepherd/DaisySeedProjects) (MIT), based on code
+nadavb shared on the Daisy forum. The twelve captures are their creators', credited in
+[`STARTER_CAPTURES.md`](https://github.com/Eight4aWish/eurorack_daisy_patch_init/blob/main/daisy_neural/STARTER_CAPTURES.md).
+Built on Electrosmith's libDaisy. Mirth itself is MIT.
