@@ -63,8 +63,10 @@ Notes:
   USB-C through Hermetic's own bootloader. The site image is a series-style render
   (`build123d/panels/alchemy_secret.py`). `daisy_chaos/panel/` has an optional PCB
   faceplate made from Hermetic's KiCad template, with gerbers for JLCPCB. The DSP is in
-  `common/chaos_core/`; the plan and measurements are in `docs/SECRET.md`. At release,
-  bench steps 3, 4 and 6 (TAME listening, V/oct, scope) were still open.
+  `common/chaos_core/`; the plan and measurements are in `docs/SECRET.md`. Bench on
+  2026-10-02: X/Y draws on Tiliqua's `xbeam` from both the CV and the audio outs. Pitch
+  follows V/oct; strict 1 V/oct was judged not to matter, so there is no calibration of
+  our own.
 
 ## Built, page drafted
 
