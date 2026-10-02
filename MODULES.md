@@ -40,6 +40,7 @@ tagged release and a downloadable binary.
 | **Girl** | `eurorack_modules` | `src/ksoloti_elements/` | Ksoloti Big Genes | v1.2.3 | MI Elements | MIT |
 | **Silver** | `tiliqua` | `gateware/src/top/silver/` | Tiliqua (FPGA) | mesh-0.5 | original | CERN-OHL-S-2.0 |
 | **Gold** | `tiliqua` | `gateware/src/top/gold/` | Tiliqua (FPGA) | mesh-0.5 | original | CERN-OHL-S-2.0 |
+| **Secret** | `eurorack_daisy_patch_init` | `daisy_chaos/` | Alchemy Lab | v1.0.0 | original (the Teensy Chaos) | MIT |
 
 Notes:
 - **Joy / Joy Lite** are one macro-oscillator generation on shared DSP and calibration,
@@ -55,6 +56,15 @@ Notes:
   site renders, not a panel to print. Released 2026-09-04 (page), video 2026-09-17.
 - **Sorrow is GPL-3.0-or-later** (Grids is copyleft, unlike most MI sources) and runs
   `BOOT_SRAM`, so it needs the Daisy bootloader.
+- **Secret** (*seven for a secret*) is a chaotic-attractor oscillator: twelve models, V/oct
+  and TAME, on the Alchemy SDK. It succeeds the Teensy **Chaos**, whose six attractors are
+  its first bank. Released 2026-10-02 (page, tag `secret-v1.0.0`); the video is to follow.
+  It is the other exception to "a panel STL": it runs on the Alchemy Lab, flashed over
+  USB-C through Hermetic's own bootloader. The site image is a series-style render
+  (`build123d/panels/alchemy_secret.py`). `daisy_chaos/panel/` has an optional PCB
+  faceplate made from Hermetic's KiCad template, with gerbers for JLCPCB. The DSP is in
+  `common/chaos_core/`; the plan and measurements are in `docs/SECRET.md`. At release,
+  bench steps 3, 4 and 6 (TAME listening, V/oct, scope) were still open.
 
 ## Built, page drafted
 
@@ -69,8 +79,7 @@ release, for the name actually chosen then.
 |---|---|---|---|---|
 | **Boy** | `eurorack_modules` | `src/teensy_move/` | Teensy 4.1 | `boy.md` |
 | **Chaos** | `eurorack_modules` | `src/teensy_chaos/` | Teensy 4.1 | No page: its draft became `secret.md`. **Frozen 2026-09-30, to be retired** — the Teensy hardware will be repurposed, and **Secret** is its successor. Not the Behringer **Chaos** in the rack, which is a random sampler. |
-| **Secret** | `eurorack_daisy_patch_init` | `daisy_chaos/` | Alchemy Lab | `secret.md`. *Seven for a secret.* Chaotic-attractor oscillator, twelve models, V/oct and TAME; MIT, on the Alchemy SDK. **On the bench** since 2026-09-30: flashed and played, bench steps 3, 4 and 6 (TAME listening, V/oct, scope) still open. No panel STL. It runs on the Alchemy Lab, but `daisy_chaos/panel/` has an optional PCB faceplate made from Hermetic's KiCad template (gerbers for JLCPCB). The site's panel image is a series-style render, `build123d/panels/alchemy_secret.py`. The DSP is `common/chaos_core/`; the plan and measurements are `docs/SECRET.md`. |
-| **Mirth** | `eurorack_daisy_patch_init` | `daisy_neural/` | Daisy Patch Submodule | `mirth.md`. *Two for mirth*, the rhyme's other second line. NAM A2-Lite captures off the card (AMPS) and nine bent captures with one steer control each (NOT-AMPS), OLED as on Joy. AMPS run on hardware 2026-09-28 at 64% CPU; NOT-AMPS **not yet run on hardware**. Release blocked on the captures: the five used are on TONE3000 under its T3K licence, which forbids redistributing the file without the author's permission, and NOT-AMPS is built from them by name. Sources in `daisy_neural/README.md`. A screenless **Mirth Lite** would follow the Joy Lite pattern. The firmware still calls itself `daisy_neural` / NEURAL. |
+| **Mirth** | `eurorack_daisy_patch_init` | `daisy_neural/` | Daisy Patch Submodule | `mirth.md`. *Two for mirth*, the rhyme's other second line. NAM A2-Lite captures off the card (AMPS) and twelve *not-amps* (NOT-AMPS): the starter captures, each with one transform measured to move it out of the region where real amps sit. Knob 2 / CV_6 is a dry/wet mix; OLED as on Joy. 2026-10-02: after four bench sessions, the sets were declared final and the firmware good enough for the video and sharing. Built as `mirth.bin`. **Mirth Lite** (`make LITE=1`) is screenless, with B8 toggling AMPS/NOT-AMPS; not yet run on hardware. Captures ship as a twelve-capture CC0/CC BY starter set, credited in `STARTER_CAPTURES.md`. The compiled-in fallback is the CC BY Orange TH100. T3K-licensed captures are never committed or shipped. Release (packages, tag) not yet done. |
 | **CortHex** | `eurorack_modules` | `src/nanoesp32_corthex/` | Arduino Nano ESP32 (NORA-W106 / ESP32-S3) | `corthex.md`. CV6 is a 0–5 V gain CV that drives **either** the Behringer Four Play or a Thonk T03, whichever is patched — `main.cpp:1048` and `proxy.py` name different ones and both are valid. |
 | **Daisy MultiOsc** | `eurorack_daisy_patch_init` | `daisy_multiosc/` | Daisy Patch Submodule | `daisy-multiosc.md` |
 | **Daisy MultiFX** | `eurorack_daisy_patch_init` | `daisy_multifx_oled/` | Daisy Patch Submodule | `daisy-multifx.md`. ~~Repurposed for the neural experiment~~ — **not any more**: the Patch SM came back in stock on 2026-09-25, so `daisy_neural/` gets a fresh patch.init() and this unit is untouched. |
@@ -101,6 +110,7 @@ reads as 9.94HP and means 10HP).
 | Module | HP | Format |
 |---|---|---|
 | **Girl** | 20 | 3U |
+| **Secret** (the Alchemy Lab's panel) | 12 | 3U |
 | **Sorrow** · **Joy** · **Mirth** · **Boy** · **Chaos** · **CortHex** · **Daisy MultiOsc** · **Daisy MultiFX** · **AMYboard PatchBank** · **Dual LPG** | 10 | 3U |
 | **Silver** · **Gold** · **Pico2W OnC Lite** · **Teensy Expander** · **Daisy MultiFX (Seed)** · **MOD2/Melon** · **mkikick** | 6 | 3U |
 | **ESP32 ClkLinkRec** | 4 | 3U |
