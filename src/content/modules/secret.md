@@ -1,6 +1,6 @@
 ---
 title: Secret
-date: 2026-10-01
+date: 2026-10-02
 summary: >-
   A chaotic oscillator for the Alchemy Lab — twelve strange attractors, with
   V/oct and one knob from free chaos to a locked note.
@@ -12,7 +12,10 @@ tags:
 panel: /renders/alchemy_lab_secret_flat.png
 status: built
 firmware: https://github.com/Eight4aWish/eurorack_daisy_patch_init/tree/main/daisy_chaos
+binary: >-
+  https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/secret-v1.0.0/secret-v1.0.0.bin
 extraBinaries: []
+firmwareVersion: v1.0.0
 flash:
   intro: >-
     The Alchemy Lab ships with Hermetic Modular's own bootloader, so there is
@@ -40,7 +43,7 @@ flash:
     Building from source? `make program-live` reflashes a running Secret over
     USB with no buttons at all. It needs node and dfu-util 0.11 or later; the
     firmware README has the rest.
-draft: true
+draft: false
 ---
 ## Overview
 
@@ -81,42 +84,14 @@ The twelve systems fall into three families, and each needs taming differently:
 
 **B1** steps through all twelve. Both its LEDs show the current model's colour.
 
-{% table %}
-- 
-- First six
-- 
-- Second six
----
-- orange
-- Rössler
-- red
-- Driven pendulum
----
-- yellow
-- Van der Pol
-- cyan
-- Lorenz–Lü–Chen
----
-- blue
-- Lorenz
-- violet
-- Moore–Spiegel
----
-- magenta
-- Chua
-- lime
-- Forced Brusselator
----
-- green
-- Duffing
-- pink
-- Chaotic Colpitts
----
-- white
-- Coupled Rössler
-- teal
-- Hindmarsh–Rose
-{% /table %}
+|  | First six |  | Second six |
+| --- | --- | --- | --- |
+| orange | Rössler | red | Driven pendulum |
+| yellow | Van der Pol | cyan | Lorenz–Lü–Chen |
+| blue | Lorenz | violet | Moore–Spiegel |
+| magenta | Chua | lime | Forced Brusselator |
+| green | Duffing | pink | Chaotic Colpitts |
+| white | Coupled Rössler | teal | Hindmarsh–Rose |
 
 The first six came from the Teensy. The second six were picked by ear from nine
 measured candidates — and none of them, as far as I could find, has been played
@@ -124,54 +99,24 @@ as a V/oct voice in Eurorack hardware before.
 
 ## Controls
 
-{% table %}
-- Control
-- Job
----
-- **TUNE**
-- 27.5–880 Hz, plus V/oct on J3
----
-- **CHAOS**
-- the main parameter — how chaotic; plus CV on J5
----
-- **CHAR**
-- the second parameter — the character within it
----
-- **TAME**
-- free chaos (0) to a locked note (1); plus CV on J6
----
-- **AD** / **SR**
-- envelope: attack and decay / sustain and release
----
-- **B1**
-- model
----
-- **B2**
-- TAME mode: Auto, Force or Sync
----
-- **B3**
-- Drone (always open) or Gated by J4
-{% /table %}
+| Control | Job |
+| --- | --- |
+| **TUNE** | 27.5–880 Hz, plus V/oct on J3 |
+| **CHAOS** | the main parameter — how chaotic; plus CV on J5 |
+| **CHAR** | the second parameter — the character within it |
+| **TAME** | free chaos (0) to a locked note (1); plus CV on J6 |
+| **AD** / **SR** | envelope: attack and decay / sustain and release |
+| **B1** | model |
+| **B2** | TAME mode: Auto, Force or Sync |
+| **B3** | Drone (always open) or Gated by J4 |
 
-{% table %}
-- Jack
-- Job
----
-- J3
-- V/oct in
----
-- J4
-- Gate in. In Gated mode a new gate opens the envelope and restarts the attractor
----
-- J5 / J6
-- CHAOS / TAME CV, ±5 V across the knob's travel
----
-- J7 / J8
-- X / Y CV out — the raw attractor, for a scope
----
-- J9 / J10
-- audio L (X) / R (Y)
-{% /table %}
+| Jack | Job |
+| --- | --- |
+| J3 | V/oct in |
+| J4 | Gate in. In Gated mode a new gate opens the envelope and restarts the attractor |
+| J5 / J6 | CHAOS / TAME CV, ±5 V across the knob's travel |
+| J7 / J8 | X / Y CV out — the raw attractor, for a scope |
+| J9 / J10 | audio L (X) / R (Y) |
 
 The rings show each knob plus its CV.
 
