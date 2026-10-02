@@ -141,6 +141,17 @@ a.brand:hover{text-decoration:none}
 .prose td{padding:8px 14px 8px 0;border-bottom:1px solid var(--line);vertical-align:top;
   color:var(--mut)}
 .prose td:first-child{color:var(--tx);font-weight:700;white-space:nowrap;width:1%}
+/* Paired tables: two name + job pairs side by side (Secret's models, controls, jacks),
+   marked by a bold name in the third column. That column names things too, so it looks
+   like the first; and on a wide screen every paired table splits the same way, so tables
+   stacked one under another line up. */
+.prose table:has(td:nth-child(3) > strong) td:nth-child(3){color:var(--tx);font-weight:700;white-space:nowrap}
+@media(min-width:721px){
+  .prose table:has(td:nth-child(3) > strong){table-layout:fixed}
+  .prose table:has(td:nth-child(3) > strong) th:nth-child(odd){width:96px}
+  .prose table:has(td:nth-child(3) > strong) th:nth-child(3),
+  .prose table:has(td:nth-child(3) > strong) td:nth-child(3){padding-left:18px}
+}
 .vidwrap{aspect-ratio:16/9;max-width:640px;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line)}
 .vidwrap iframe{width:100%;height:100%;border:0}
 

@@ -8,7 +8,6 @@ platform: Alchemy Lab
 tags:
   - Oscillator
   - Chaos
-  - Alchemy Lab
 panel: /renders/alchemy_lab_secret_flat.png
 status: built
 firmware: https://github.com/Eight4aWish/eurorack_daisy_patch_init/tree/main/daisy_chaos
@@ -64,7 +63,7 @@ Named — like everything here — after the nursery rhyme: *seven for a secret,
 *be told*. A system that is completely determined, and still can't be predicted. Not
 affiliated with, or endorsed by, Hermetic Modular.
 
-## TAME — from noise to a note
+## Tame — from noise to a note
 
 The twelve systems fall into three families, and each needs taming differently:
 
@@ -86,12 +85,12 @@ The twelve systems fall into three families, and each needs taming differently:
 
 |  | First six |  | Second six |
 | --- | --- | --- | --- |
-| orange | Rössler | red | Driven pendulum |
-| yellow | Van der Pol | cyan | Lorenz–Lü–Chen |
-| blue | Lorenz | violet | Moore–Spiegel |
-| magenta | Chua | lime | Forced Brusselator |
-| green | Duffing | pink | Chaotic Colpitts |
-| white | Coupled Rössler | teal | Hindmarsh–Rose |
+| **orange** | Rössler | **red** | Driven pendulum |
+| **yellow** | Van der Pol | **cyan** | Lorenz–Lü–Chen |
+| **blue** | Lorenz | **violet** | Moore–Spiegel |
+| **magenta** | Chua | **lime** | Forced Brusselator |
+| **green** | Duffing | **pink** | Chaotic Colpitts |
+| **white** | Coupled Rössler | **teal** | Hindmarsh–Rose |
 
 The first six came from the Teensy. The second six were picked by ear from nine
 measured candidates — and none of them, as far as I could find, has been played
@@ -99,24 +98,20 @@ as a V/oct voice in Eurorack hardware before.
 
 ## Controls
 
-| Control | Job |
-| --- | --- |
-| **TUNE** | 27.5–880 Hz, plus V/oct on J3 |
-| **CHAOS** | the main parameter — how chaotic; plus CV on J5 |
-| **CHAR** | the second parameter — the character within it |
-| **TAME** | free chaos (0) to a locked note (1); plus CV on J6 |
-| **AD** / **SR** | envelope: attack and decay / sustain and release |
-| **B1** | model |
-| **B2** | TAME mode: Auto, Force or Sync |
-| **B3** | Drone (always open) or Gated by J4 |
+| Control | Job | Control | Job |
+| --- | --- | --- | --- |
+| **TUNE** | 27.5–880 Hz, plus V/oct on J3 | **CHAOS** | the main parameter — how chaotic; plus CV on J5 |
+| **CHAR** | the second parameter — the character within it | **TAME** | free chaos (0) to a locked note (1); plus CV on J6 |
+| **AD** | envelope attack and decay | **SR** | envelope sustain and release |
+| **B1** | model | **B2** | TAME mode: Auto, Force or Sync |
+| **B3** | Drone (always open) or Gated by J4 |  |  |
 
-| Jack | Job |
-| --- | --- |
-| J3 | V/oct in |
-| J4 | Gate in. In Gated mode a new gate opens the envelope and restarts the attractor |
-| J5 / J6 | CHAOS / TAME CV, ±5 V across the knob's travel |
-| J7 / J8 | X / Y CV out — the raw attractor, for a scope |
-| J9 / J10 | audio L (X) / R (Y) |
+| In | Job | Out | Job |
+| --- | --- | --- | --- |
+| **J3** | V/oct | **J7** | X CV — the raw attractor, for a scope |
+| **J4** | gate: in Gated mode it opens the envelope and restarts the attractor | **J8** | Y CV |
+| **J5** | CHAOS CV, ±5 V across the knob's travel | **J9** | audio L (X) |
+| **J6** | TAME CV, ±5 V across the knob's travel | **J10** | audio R (Y) |
 
 The rings show each knob plus its CV.
 
