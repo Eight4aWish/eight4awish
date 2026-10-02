@@ -66,7 +66,7 @@ Notes:
   `common/chaos_core/`; the plan and measurements are in `docs/SECRET.md`. Bench on
   2026-10-02: X/Y draws on Tiliqua's `xbeam` from both the CV and the audio outs. Pitch
   follows V/oct; strict 1 V/oct was judged not to matter, so there is no calibration of
-  our own.
+  our own. TAME brings every model under some form of control.
 
 ## Built, page drafted
 
