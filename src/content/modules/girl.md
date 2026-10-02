@@ -7,7 +7,6 @@ summary: >-
 platform: Ksoloti
 tags:
   - Resonator
-  - Ksoloti
 panel: /renders/ksoloti_biggenes_flat.png
 status: built
 firmware: https://github.com/Eight4aWish/eurorack_modules/tree/main/src/ksoloti_elements
@@ -74,7 +73,7 @@ the Girl pot that drives each parameter](/images/girl-signal-flow.webp)
 Everything the diagram doesn't cover:
 
 | Control |  |
-|---|---|
+| --- | --- |
 | Gate | CV-D — voltage also sets strength |
 | Pitch | CV-X — 1V/oct, centred on middle C |
 | Model | S1 — modal, string, chords |

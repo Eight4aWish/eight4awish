@@ -7,10 +7,11 @@ summary: >-
 platform: Patch Submodule
 tags:
   - Oscillator
-  - Daisy Patch Init
+  - Daisy patch.Init()
 panel: /renders/daisy_braids_flat.png
 status: built
-firmware: https://github.com/Eight4aWish/eurorack_daisy_patch_init/tree/main/daisy_braids_oled
+firmware: >-
+  https://github.com/Eight4aWish/eurorack_daisy_patch_init/tree/main/daisy_braids_oled
 binary: >-
   https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/joy-v1.4.0/joy.bin
 extraBinaries:
@@ -21,33 +22,35 @@ extraBinaries:
 firmwareVersion: v1.4.0
 flash:
   intro: >-
-    This firmware is too big for the Daisy’s internal flash, so it runs from the QSPI chip
-    via the Daisy bootloader. That means a one-time bootloader install, then the firmware
-    itself goes on with an SD card. Still no compiler needed.
+    This firmware is too big for the Daisy’s internal flash, so it runs from the
+    QSPI chip via the Daisy bootloader. That means a one-time bootloader
+    install, then the firmware itself goes on with an SD card. Still no compiler
+    needed.
   stepsTitle: One time per module — install the bootloader
   bootSteps:
     - Plug the Daisy Patch.Init in with a USB-C data cable.
     - Hold BOOT, tap RESET, then release BOOT.
     - Open the Daisy Web Programmer and go to its Bootloader section.
-    - >-
-      Click Flash. That is the bootloader on — you never have to do this again.
+    - Click Flash. That is the bootloader on — you never have to do this again.
   steps:
     - Download the .bin above.
     - >-
-      Copy it to the root of a FAT32 SD card. It must be the only .bin file on the card.
+      Copy it to the root of a FAT32 SD card. It must be the only .bin file on
+      the card.
     - Insert the card and power-cycle the module.
     - >-
-      The bootloader spots the file, compares it with what is already in QSPI, flashes it if
-      it differs, and boots. Watch the LED.
-  note: >-
-    On a Mac, copying to the card also writes a hidden twin of your file — ._joy.bin. That
-    also ends in .bin, and it confuses the bootloader’s scanner, so it has to go. Either
-    press Cmd-Shift-. (period) in Finder to reveal hidden files and drag ._joy.bin to the
-    Trash, or if you are happy in Terminal run dot_clean /Volumes/YOURCARD, which clears them
-    in one go. Windows and Linux are unaffected.
+      The bootloader spots the file, compares it with what is already in QSPI,
+      flashes it if it differs, and boots. Watch the LED.
   links:
     - label: Daisy Web Programmer
       url: https://flash.daisy.audio
+  note: >-
+    On a Mac, copying to the card also writes a hidden twin of your file —
+    ._joy.bin. That also ends in .bin, and it confuses the bootloader’s scanner,
+    so it has to go. Either press Cmd-Shift-. (period) in Finder to reveal
+    hidden files and drag ._joy.bin to the Trash, or if you are happy in
+    Terminal run dot_clean /Volumes/YOURCARD, which clears them in one go.
+    Windows and Linux are unaffected.
 video: qR6oma1cY7w
 draft: false
 ---

@@ -8,7 +8,7 @@ summary: >-
 platform: Patch Submodule
 tags:
   - Drums
-  - Daisy Patch Init
+  - Daisy patch.Init()
 panel: /renders/daisy_grids_flat.png
 status: built
 firmware: https://github.com/Eight4aWish/eurorack_daisy_patch_init/tree/main/daisy_grids
