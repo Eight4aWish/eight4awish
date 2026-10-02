@@ -84,8 +84,8 @@ and only those that leave the region where amps sit were kept — then by ear.
 
 | Screen | Built from | What changes | The control |
 |---|---|---|---|
-| `SINE PLX` · `SINE BUG` | pLEXI-LORE · Bugera G5 | every neuron becomes a sine — a wavefolder inside the network | how hard it folds |
-| `LINEAR TR` | Two Rock | every neuron loses its bend, toward a straight line | trained → linear |
+| `SINE BUG` | Bugera G5 | every neuron becomes a sine — a wavefolder inside the network | how hard it folds |
+| `LINEAR TR` · `LINEAR TRY` | Two Rock · Traynor TS 120 B | every neuron loses its bend, toward a straight line | trained → linear |
 | `RECT ORG` | Orange TH100 | every neuron bends the other way, toward a full-wave rectifier | trained → rectified |
 | `FB100 F57` | Fender 57 | its output fed back into its input, at 100 Hz | loop gain |
 | `FB PCH PLX` | pLEXI-LORE | the same loop, at a fixed gain | the loop's pitch |
