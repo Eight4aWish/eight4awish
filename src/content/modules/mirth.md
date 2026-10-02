@@ -88,11 +88,10 @@ and only those that leave the region where amps sit were kept — then by ear.
 | `LINEAR TR` · `LINEAR TRY` | Two Rock · Traynor TS 120 B | every neuron loses its bend, toward a straight line | trained → linear |
 | `RECT ORG` | Orange TH100 | every neuron bends the other way, toward a full-wave rectifier | trained → rectified |
 | `FB100 F57` | Fender 57 | its output fed back into its input, at 100 Hz | loop gain |
-| `FB PCH PLX` | pLEXI-LORE | the same loop, at a fixed gain | the loop's pitch |
 | `FRZ E TR` · `FRZ M F57` · `FRZ M KAY` | Two Rock · Fender 57 · Kay 703 | one layer's output held, early or mid-network | how long it holds |
 | `FOLD ORG` | Orange TH100 | a wavefolder inside the network | how hard it folds |
 | `RATE SVT` | SVT-2 Pro | the network run at a fraction of the sample rate | ÷1, 2, 3, 4, 6 |
-| `PAST BLU` | Bluesbreaker | pushed past itself, away from the Bugera | how far past |
+| `PAST BLU` · `PAST PLX` | Bluesbreaker · pLEXI-LORE | pushed past itself, away from another amp | how far past |
 
 Each has its own level correction, so the control changes the sound rather than the
 volume.
