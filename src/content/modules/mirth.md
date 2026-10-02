@@ -86,10 +86,12 @@ and only those that leave the region where amps sit were kept — then by ear.
 |---|---|---|---|
 | `SINE PLX` · `SINE BUG` | pLEXI-LORE · Bugera G5 | every neuron becomes a sine — a wavefolder inside the network | how hard it folds |
 | `LINEAR TR` | Two Rock | every neuron loses its bend, toward a straight line | trained → linear |
+| `RECT ORG` | Orange TH100 | every neuron bends the other way, toward a full-wave rectifier | trained → rectified |
 | `FB100 F57` | Fender 57 | its output fed back into its input, at 100 Hz | loop gain |
-| `FB PCH PLX` · `FB PCH KAY` | pLEXI-LORE · Kay 703 | the same loop, at a fixed gain | the loop's pitch |
+| `FB PCH PLX` | pLEXI-LORE | the same loop, at a fixed gain | the loop's pitch |
 | `FRZ E TR` · `FRZ M F57` · `FRZ M KAY` | Two Rock · Fender 57 · Kay 703 | one layer's output held, early or mid-network | how long it holds |
-| `RATE SVT` · `RATE BUG` | SVT-2 Pro · Bugera G5 | the network run at a fraction of the sample rate | ÷1, 2, 3, 4, 6 |
+| `FOLD ORG` | Orange TH100 | a wavefolder inside the network | how hard it folds |
+| `RATE SVT` | SVT-2 Pro | the network run at a fraction of the sample rate | ÷1, 2, 3, 4, 6 |
 | `PAST BLU` | Bluesbreaker | pushed past itself, away from the Bugera | how far past |
 
 Each has its own level correction, so the control changes the sound rather than the
