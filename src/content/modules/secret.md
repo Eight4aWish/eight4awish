@@ -9,14 +9,10 @@ tags:
   - Oscillator
   - Chaos
   - Alchemy Lab
-# TO MAKE: no Alchemy Lab render exists yet. Like Silver/Gold this runs on someone
-# else's panel, so the image is the module itself, not a panel to print.
 panel: /renders/alchemy_lab_secret_flat.png
 status: built
 firmware: https://github.com/Eight4aWish/eurorack_daisy_patch_init/tree/main/daisy_chaos
-# At release (asset name Sorrow-style, so the URL carries the version):
-# binary: https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/secret-v1.0.0/secret-v1.0.0.bin
-# firmwareVersion: v1.0.0
+extraBinaries: []
 flash:
   intro: >-
     The Alchemy Lab ships with Hermetic Modular's own bootloader, so there is
@@ -34,15 +30,16 @@ flash:
       Power on while holding B3. The rings spin a warm-white comet, then breathe
       slowly: the module is waiting for firmware.
     - Open the Hermetic Modular Web Programmer and load the .bin.
-    - When it finishes, power-cycle. B1's LED lights orange — Rössler, the first model.
+    - >-
+      When it finishes, power-cycle. B1's LED lights orange — Rössler, the first
+      model.
   links:
     - label: Hermetic Modular Web Programmer
       url: https://hermeticmodular.com/program
   note: >-
-    Building from source? `make program-live` reflashes a running Secret over USB
-    with no buttons at all. It needs node and dfu-util 0.11 or later; the
+    Building from source? `make program-live` reflashes a running Secret over
+    USB with no buttons at all. It needs node and dfu-util 0.11 or later; the
     firmware README has the rest.
-# video: (YouTube id, once it is up)
 draft: true
 ---
 ## Overview
@@ -58,12 +55,10 @@ the attractor towards the note — gently at first, so it locks to the pitch but
 grit, then all the way to a clean, periodic tone. The interesting part is the middle.
 
 It runs on the **Hermetic Modular Alchemy Lab**, an open DSP platform with a Daisy
-inside, six knobs with LED rings, three buttons and six CV jacks. It started life as
-a Teensy 4.1 module of my own, called Chaos; the Alchemy Lab gave it more controls,
-and better CV, than the Teensy build ever had.
+inside, six knobs with LED rings, three buttons and six CV jacks.
 
-Named — like everything here — after the nursery rhyme: *seven for a secret, never to
-be told*. A system that is completely determined, and still can't be predicted. Not
+Named — like everything here — after the nursery rhyme: *seven for a secret, never to*
+*be told*. A system that is completely determined, and still can't be predicted. Not
 affiliated with, or endorsed by, Hermetic Modular.
 
 ## TAME — from noise to a note
@@ -79,21 +74,49 @@ The twelve systems fall into three families, and each needs taming differently:
   point on the attractor once every cycle, so the pitch is imposed but everything
   inside each cycle stays as rough as it was.
 
-**B3** chooses how TAME works: **Auto** uses each model's own choice, or force
+**B2** chooses how TAME works: **Auto** uses each model's own choice, or force
 **Force** or **Sync** on any model to hear the difference.
 
 ## Twelve models
 
 **B1** steps through all twelve. Both its LEDs show the current model's colour.
 
-| | First six | | Second six |
-| --- | --- | --- | --- |
-| orange | Rössler | red | Driven pendulum |
-| yellow | Van der Pol | cyan | Lorenz–Lü–Chen |
-| blue | Lorenz | violet | Moore–Spiegel |
-| magenta | Chua | lime | Forced Brusselator |
-| green | Duffing | pink | Chaotic Colpitts |
-| white | Coupled Rössler | teal | Hindmarsh–Rose |
+{% table %}
+- 
+- First six
+- 
+- Second six
+---
+- orange
+- Rössler
+- red
+- Driven pendulum
+---
+- yellow
+- Van der Pol
+- cyan
+- Lorenz–Lü–Chen
+---
+- blue
+- Lorenz
+- violet
+- Moore–Spiegel
+---
+- magenta
+- Chua
+- lime
+- Forced Brusselator
+---
+- green
+- Duffing
+- pink
+- Chaotic Colpitts
+---
+- white
+- Coupled Rössler
+- teal
+- Hindmarsh–Rose
+{% /table %}
 
 The first six came from the Teensy. The second six were picked by ear from nine
 measured candidates — and none of them, as far as I could find, has been played
@@ -101,24 +124,54 @@ as a V/oct voice in Eurorack hardware before.
 
 ## Controls
 
-| Control | Job |
-| --- | --- |
-| **TUNE** | 27.5–880 Hz, plus V/oct on J3 |
-| **CHAOS** | the main parameter — how chaotic; plus CV on J5 |
-| **CHAR** | the second parameter — the character within it |
-| **TAME** | free chaos (0) to a locked note (1); plus CV on J6 |
-| **AD** / **SR** | envelope: attack and decay / sustain and release |
-| **B1** | model |
-| **B2** | Drone (always open) or Gated by J4 |
-| **B3** | TAME mode: Auto, Force or Sync |
+{% table %}
+- Control
+- Job
+---
+- **TUNE**
+- 27.5–880 Hz, plus V/oct on J3
+---
+- **CHAOS**
+- the main parameter — how chaotic; plus CV on J5
+---
+- **CHAR**
+- the second parameter — the character within it
+---
+- **TAME**
+- free chaos (0) to a locked note (1); plus CV on J6
+---
+- **AD** / **SR**
+- envelope: attack and decay / sustain and release
+---
+- **B1**
+- model
+---
+- **B2**
+- TAME mode: Auto, Force or Sync
+---
+- **B3**
+- Drone (always open) or Gated by J4
+{% /table %}
 
-| Jack | Job |
-| --- | --- |
-| J3 | V/oct in |
-| J4 | Gate in. In Gated mode a new gate opens the envelope and restarts the attractor |
-| J5 / J6 | CHAOS / TAME CV, ±5 V across the knob's travel |
-| J7 / J8 | X / Y CV out — the raw attractor, for a scope |
-| J9 / J10 | audio L (X) / R (Y) |
+{% table %}
+- Jack
+- Job
+---
+- J3
+- V/oct in
+---
+- J4
+- Gate in. In Gated mode a new gate opens the envelope and restarts the attractor
+---
+- J5 / J6
+- CHAOS / TAME CV, ±5 V across the knob's travel
+---
+- J7 / J8
+- X / Y CV out — the raw attractor, for a scope
+---
+- J9 / J10
+- audio L (X) / R (Y)
+{% /table %}
 
 The rings show each knob plus its CV.
 
@@ -140,8 +193,7 @@ is — a locked note draws a figure that stands still, and a slipping one turns.
 
 ## Provenance
 
-Chaos was not the first attractor oscillator, and Secret is not either. Joranalogue's
-**Orbit 3** is an analogue double scroll with V/oct and a tame/wild switch, and there
+Joranalogue's **Orbit 3** is an analogue double scroll with V/oct and a tame/wild switch, and there
 is a long line of attractors as slow CV. What I have not found anywhere is TAME as one
 continuous control that ends with the attractor itself locked to the note.
 
