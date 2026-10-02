@@ -138,4 +138,4 @@ is a long line of attractors as slow CV. What I have not found anywhere is TAME 
 continuous control that ends with the attractor itself locked to the note.
 
 Built on Hermetic Modular's MIT-licensed Alchemy SDK and Electrosmith's libDaisy.
-Secret itself is MIT.
+Secret itself is MIT. Thanks to Luke Pendergrass at Hermetic Modular for the Alchemy SDK.
