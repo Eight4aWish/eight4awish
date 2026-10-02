@@ -77,20 +77,20 @@ TONE3000 or Electrosmith.
 
 ## The not-amps
 
-Nine real captures, bent inside the network while it plays, each with one control you
-can turn or patch:
+Twelve real captures, each changed in one way while it plays, with one control you can
+turn or patch. They were chosen by measurement first: every candidate was compared with
+236 real amp captures, by audio descriptors and by a neural model of how things sound,
+and only those that leave the region where amps sit were kept — then by ear.
 
-| Screen | Built from | The control |
-|---|---|---|
-| `FREEZE` | a JCM800, one layer's output held | how long it holds, 1 → 1,024 samples |
-| `FREEZE ERL` | the same, held earlier in the network | how long it holds |
-| `PAST JCM` | the Ampeg's parameters pushed past the JCM800's | how far past, 1.0 → 1.3× |
-| `PAST BJA` | the Ampeg pushed past the 1959BJA | how far past |
-| `PAST MESA` | the BE-100 pushed past the Mesa | how far past |
-| `NO LONG` | the JCM800 with its three longest-reaching layers faded out | how far faded |
-| `FOLDED` | the JCM800 with a wavefolder inside the network | the fold threshold |
-| `OFFSET` | the JCM800 with an offset on one lane | −2 → +2; the plain amp at noon |
-| `MUTATE` | the JCM800 plus a fixed noise vector | how much noise |
+| Screen | Built from | What changes | The control |
+|---|---|---|---|
+| `SINE PLX` · `SINE BUG` | pLEXI-LORE · Bugera G5 | every neuron becomes a sine — a wavefolder inside the network | how hard it folds |
+| `LINEAR TR` | Two Rock | every neuron loses its bend, toward a straight line | trained → linear |
+| `FB100 F57` | Fender 57 | its output fed back into its input, at 100 Hz | loop gain |
+| `FB PCH PLX` · `FB PCH KAY` | pLEXI-LORE · Kay 703 | the same loop, at a fixed gain | the loop's pitch |
+| `FRZ E TR` · `FRZ M F57` · `FRZ M KAY` | Two Rock · Fender 57 · Kay 703 | one layer's output held, early or mid-network | how long it holds |
+| `RATE SVT` · `RATE BUG` | SVT-2 Pro · Bugera G5 | the network run at a fraction of the sample rate | ÷1, 2, 3, 4, 6 |
+| `PAST BLU` | Bluesbreaker | pushed past itself, away from the Bugera | how far past |
 
 Each has its own level correction, so the control changes the sound rather than the
 volume.
@@ -100,14 +100,14 @@ volume.
 | Control | Job |
 |---|---|
 | **CV_1** (+ CV_5) | input trim, −20 to +20 dB, unity at noon |
-| **CV_2** (+ CV_6) | output level |
+| **CV_2** (+ CV_6) | MIX, dry to wet |
 | **CV_3** (+ CV_7) | which capture, within the bank |
 | **CV_4** (+ CV_8) | the not-amp's control. Does nothing on a real amp, on purpose |
-| **B7** short | bypass, to compare against the dry input at the same level |
+| **B7** short | bypass: the dry input alone |
 | **B7** held 1.5 s | change bank, AMPS ↔ NOT-AMPS |
 | **LED** | lit when the network is in circuit |
 
-Audio in on IN_L; the same signal on both outputs.
+Audio in on IN_L; the same mixed signal on both outputs.
 
 ## Hardware
 
