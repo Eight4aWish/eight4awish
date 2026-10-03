@@ -2,33 +2,42 @@
 title: Mirth
 date: 2026-10-01
 summary: >-
-  Neural amp captures on a Daisy patch.Init() — and nine not-amps, real
+  Neural amp modelling captures on a Daisy patch.Init() — and twelve not-amps,
   captures bent inside the network.
 platform: Patch Submodule
 tags:
   - Effect
-  - Neural
-  - Daisy Patch Init
-# TO MAKE: render from build123d's patch_init_oled template, as Joy's was.
+  - Neural Networks
+  - Daisy patch.Init()
 panel: /renders/daisy_neural_flat.png
 status: in progress
-firmware: https://github.com/Eight4aWish/eurorack_daisy_patch_init/tree/main/daisy_neural
-# At release, Joy-style: one release per binary, both sharing a version.
-# binary: https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/mirth-v1.0.0/mirth-v1.0.0.bin
-# firmwareVersion: v1.0.0
-# extraBinaries:
-#   - label: Mirth Lite
-#     url: https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/mirth_lite-v1.0.0/mirth_lite-v1.0.0.bin
-#     version: v1.0.0
+firmware: >-
+  https://github.com/Eight4aWish/eurorack_daisy_patch_init/tree/main/daisy_neural
+binary: >-
+  https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/mirth-v1.0.0/mirth-v1.0.0.bin
+extraBinaries:
+  - label: Mirth Lite
+    url: >-
+      https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/mirth_lite-v1.0.0/mirth_lite-v1.0.0.bin
+    version: v1.0.0
+  - label: starter captures
+    url: >-
+      https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/mirth-v1.0.0/mirth-v1.0.0-captures.zip
+firmwareVersion: v1.0.0
 flash:
   intro: >-
-    Mirth runs from the Daisy's QSPI chip through the Daisy bootloader: a one-time
-    bootloader install, then the firmware goes on with an SD card. The same card
-    then holds the captures. No compiler needed.
+    Mirth runs from the Daisy's QSPI chip through the Daisy bootloader: a
+    one-time bootloader install, then the firmware goes on with an SD card. The
+    same card then holds the captures. No compiler needed.
   warn: >-
-    The card must be one FAT32 partition of 2 GB or less, with the rest of the card
-    left unallocated. A full-size FAT32 volume on a big card fails at start-up, and
-    exFAT is not read at all.
+    The card must be one FAT32 partition of 2 GB or less, with the rest of the
+    card left unallocated. A full-size FAT32 volume on a big card fails at
+    start-up, and exFAT is not read at all.
+  extrasNote: >-
+    The firmware is for a patch.Init() with the OLED fitted; Mirth Lite is for a
+    stock patch.Init(), no screen. Both flash the same way and both need the
+    starter captures on the card — the zip holds all twelve, their credits, and
+    these card instructions.
   stepsTitle: One time per module — install the bootloader
   bootSteps:
     - Plug the Daisy Patch.Init in with a USB-C data cable.
@@ -39,42 +48,40 @@ flash:
     - >-
       Format the card: one FAT32 partition of 2 GB or less. On a Mac, check the
       disk number with `diskutil list external` first — this erases it — then
-      `diskutil partitionDisk /dev/diskN MBR "MS-DOS FAT32" DAISY 2G "Free Space" REST R`.
+      `diskutil partitionDisk /dev/diskN MBR "MS-DOS FAT32" DAISY 2G "Free
+      Space" REST R`.
     - >-
-      Copy the .bin above to the root of the card. It must be the only .bin on
-      the card.
+      Copy the Mirth or Mirth Lite .bin above to the root of the card. It must be
+      the only .bin on the card.
     - >-
-      Unzip the captures download and copy the twelve `.a2nb` files to the root
+      Unzip the starter captures and copy the twelve `.a2nb` files to the root
       as well. The not-amps are built from them, by name.
     - >-
       Insert the card and power-cycle. The bootloader flashes the firmware if it
       differs from what is installed, and boots.
-  note: >-
-    On a Mac, Finder writes a hidden twin of every file — ._mirth.bin, ._n02_ORANGE_TH.a2nb.
-    The .bin twin confuses the bootloader and the capture twins fail their checksum.
-    After copying, delete them in Terminal with `rm -f /Volumes/DAISY/._*` — the
-    usual `cp -X` no longer prevents them on current macOS.
   links:
     - label: Daisy Web Programmer
       url: https://flash.daisy.audio
     - label: TONE3000 (filter for A2)
       url: https://www.tone3000.com/
+  note: >-
+    On a Mac, Finder writes a hidden twin of every file — ._mirth.bin,
+    ._n02_ORANGE_TH.a2nb. The .bin twin confuses the bootloader and the capture twins
+    fail their checksum. After copying, delete them in Terminal with `rm -f
+    /Volumes/DAISY/._*` — the usual `cp -X` no longer prevents them on current
+    macOS.
 draft: true
 ---
 ## Overview
 
-**Mirth** runs neural amp captures on a Daisy patch.Init(), with the same OLED Joy
-added so you can see which one is playing.
+**Mirth** runs neural amp modelling captures on a Daisy patch.Init().
 
-A capture is a small neural network trained to behave like one particular amp. This
-one is NAM's A2-Lite: 23 layers, each a dilated causal convolution with a LeakyReLU
-activation, joined by residual and skip connections — 1,871 parameters in all. Small
-enough for a Eurorack module, and a format TONE3000's library lets you filter for.
+A capture is a small neural network trained to behave like one particular amp. For Mirth we use NAM's A2-Lite neural network: 23 layers, each a dilated causal convolution with a LeakyReLU activation, joined by residual and skip connections — 1,871 parameters in all. Small enough for a Eurorack module, and a format TONE3000's library lets you filter for.
 
-That is the first bank, **AMPS**. The second, **NOT-AMPS**, is the reason it exists.
+That is the first bank, **AMPS**. The second, **NOT-AMPS**, takes the same amps but messes with the parameters to create effects that are definitely not real amps.
 
-Named — like everything here — after the nursery rhyme, in the version that runs *one
-for sorrow, two for mirth*. Not affiliated with, or endorsed by, Neural Amp Modeler,
+Named — like everything here — after the nursery rhyme, in the version that runs *one*
+*for sorrow, two for mirth*. Not affiliated with, or endorsed by, Neural Amp Modeler,
 TONE3000 or Electrosmith.
 
 ## The not-amps
@@ -85,7 +92,7 @@ turn or patch. They were chosen by measurement first: every candidate was compar
 and only those that leave the region where amps sit were kept — then by ear.
 
 | Screen | Built from | What changes | The control |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | `SINE BUG` | Bugera G5 | every neuron becomes a sine — a wavefolder inside the network | how hard it folds |
 | `LINEAR TR` · `LINEAR TRY` | Two Rock · Traynor TS 120 B | every neuron loses its bend, toward a straight line | trained → linear |
 | `RECT ORG` | Orange TH100 | every neuron bends the other way, toward a full-wave rectifier | trained → rectified |
@@ -95,17 +102,14 @@ and only those that leave the region where amps sit were kept — then by ear.
 | `RATE SVT` | SVT-2 Pro | the network run at a fraction of the sample rate | ÷1, 2, 3, 4, 6 |
 | `PAST BLU` · `PAST PLX` | Bluesbreaker · pLEXI-LORE | pushed past itself, away from another amp | how far past |
 
-Each has its own level correction, so the control changes the sound rather than the
-volume.
-
 ## Controls
 
 | Control | Job |
-|---|---|
-| **CV_1** (+ CV_5) | input trim, −20 to +20 dB, unity at noon |
-| **CV_2** (+ CV_6) | MIX, dry to wet |
-| **CV_3** (+ CV_7) | which capture, within the bank |
-| **CV_4** (+ CV_8) | the not-amp's control. Does nothing on a real amp, on purpose |
+| --- | --- |
+| **CV\_1** (+ CV_5) | input trim, −20 to +20 dB, unity at noon |
+| **CV\_2** (+ CV_6) | MIX, dry to wet |
+| **CV\_3** (+ CV_7) | which capture, within the bank |
+| **CV\_4** (+ CV_8) | the not-amp's control. Does nothing on a real amp, on purpose |
 | **B7** short | bypass: the dry input alone |
 | **B7** held 1.5 s | change bank, AMPS ↔ NOT-AMPS |
 | **LED** | lit when the network is in circuit |
@@ -114,9 +118,7 @@ Audio in on IN_L; the same mixed signal on both outputs.
 
 ## Hardware
 
-**Bill of materials:** Daisy patch.Init() · 64×48 SSD1306 OLED (I²C) · a few hook-up
-wires · the printed panel. The same screen and wiring as Joy: it goes where the B8
-toggle was.
+**Bill of materials:** Mirth Lite runs on Daisy patch.Init(). For full Mirth add a 64×48 SSD1306 OLED (I²C) screen · a few hook-up wires · and a printed panel. The same screen and wiring as Joy: replacing the B8 toggle with the OLED for more feedback during use.
 
 ## Captures
 

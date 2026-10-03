@@ -4,11 +4,13 @@
 // a bullet list. This rewrites any such block into a GFM table, which both renderers
 // understand and which Keystatic reads back happily.
 //
-// Runs on prebuild, and on predev/preedit, so a table typed in the CMS is normalised
-// before it can reach a built page.
+// Runs on prebuild and on predev/preedit, and — while the dev server is up — on every save
+// (astro.config.mjs watches src/content and calls normaliseFile), so a table typed in the
+// CMS shows as a table on the dev server straight away rather than after a restart.
 
 import { readdirSync, readFileSync, writeFileSync, statSync } from 'node:fs'
 import { join } from 'node:path'
+import { pathToFileURL } from 'node:url'
 
 const ROOT = new URL('../src/content', import.meta.url).pathname
 
@@ -34,16 +36,23 @@ const toGfm = (block) => {
   ].join('\n')
 }
 
-let changed = 0
-for (const file of walk(ROOT)) {
+const TABLE = /\{%\s*table\s*%\}\n([\s\S]*?)\n\{%\s*\/table\s*%\}/g
+
+// One file. Returns true if it rewrote it. Writing only on a real change matters: the dev
+// watcher calls this on every save, and its own write is a save too.
+export const normaliseFile = (file) => {
   const src = readFileSync(file, 'utf8')
-  if (!src.includes('{% table %}')) continue
-  const out = src.replace(/\{%\s*table\s*%\}\n([\s\S]*?)\n\{%\s*\/table\s*%\}/g,
-    (whole, inner) => toGfm(inner) ?? whole)
-  if (out !== src) {
-    writeFileSync(file, out)
-    console.log(`normalised markdoc table: ${file.replace(ROOT, 'src/content')}`)
-    changed++
-  }
+  if (!src.includes('{% table %}')) return false
+  const out = src.replace(TABLE, (whole, inner) => toGfm(inner) ?? whole)
+  if (out === src) return false
+  writeFileSync(file, out)
+  console.log(`normalised markdoc table: ${file.replace(ROOT, 'src/content')}`)
+  return true
 }
-if (!changed) console.log('no markdoc tables to normalise')
+
+export const normaliseAll = () => walk(ROOT).filter(normaliseFile).length
+
+// Run as a script (npm run tables, and the pre* hooks): every file.
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  if (!normaliseAll()) console.log('no markdoc tables to normalise')
+}
