@@ -1,0 +1,179 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mirth — Eight4aWish</title><meta name="description" content="Neural network amp modelling on a Daisy patch.Init() — and twelve not-amps, captures bent inside the network to create unique effects."><link rel="canonical" href="https://eight4awish.com/modules/mirth/"><!-- so a link pasted into YouTube, Reddit or Discord shows the artwork.
+     Module pages pass their PANEL RENDER, not the photo, and the two are not
+     interchangeable: a photo is of the module in a rack, and where a module runs
+     on someone else's board the photo is of THEIR panel. Girl runs on a Ksoloti
+     Big Genes, so its photo is a Big Genes front panel - which is what Discord
+     was showing for /modules/girl. The render is always the module's own. --><meta property="og:type" content="website"><meta property="og:title" content="Mirth — Eight4aWish"><meta property="og:description" content="Neural network amp modelling on a Daisy patch.Init() — and twelve not-amps, captures bent inside the network to create unique effects."><meta property="og:image" content="https://eight4awish.com/opt/daisy_neural_flat.og.jpg"><meta property="og:url" content="https://eight4awish.com/modules/mirth/"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Mirth — Eight4aWish"><meta name="twitter:description" content="Neural network amp modelling on a Daisy patch.Init() — and twelve not-amps, captures bent inside the network to create unique effects."><meta name="twitter:image" content="https://eight4awish.com/opt/daisy_neural_flat.og.jpg"><link rel="stylesheet" href="/_astro/Base.0OhXl4fk.css"></head><body><header class="site"><div class="wrap"><a class="brand" href="/">Home</a><nav class="site"><a href="/modules/" class="on">Modules</a><a href="/tutorials/">Tutorials</a><a href="/notes/">Notes</a><a href="/about/">About</a></nav></div></header><main class="wrap"><div class="crumb"><a href="/modules/">Modules</a> / Mirth</div><h1 style="margin:6px 0 4px">Mirth</h1><div class="chips" style="margin-bottom:14px"><span class="chip acc">Patch Submodule</span><span class="chip">Effect</span><span class="chip">Neural Networks</span><span class="chip">Daisy patch.Init()</span></div><p class="sub">Neural network amp modelling on a Daisy patch.Init() — and twelve not-amps, captures bent inside the network to create unique effects.</p><div class="hero-video pending"><img src="/opt/daisy_neural_flat.med.webp" alt="" loading="lazy" decoding="async"><span class="badge">Video coming soon</span></div><div class="dl" style="margin-top:22px"><a class="btn" href="https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/mirth-v1.0.0/mirth-v1.0.0.bin">Download firmware v1.0.0</a><a class="btn" href="https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/mirth_lite-v1.0.0/mirth_lite-v1.0.0.bin">Download Mirth Lite v1.0.0</a><a class="btn" href="https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/mirth-v1.0.0/mirth-v1.0.0-captures.zip">Download starter captures</a><a class="btn ghost" href="https://github.com/Eight4aWish/eurorack_daisy_patch_init/tree/main/daisy_neural" target="_blank" rel="noopener">Source on GitHub</a></div><p class="tiny">Sequence it with <a href="/tutorials/strudel/">Strudel</a>.</p><div class="prose"><h2 id="overview">Overview</h2>
+<p><strong>Mirth</strong> runs neural amp modelling captures on a Daisy patch.Init(). It comes in two
+builds: <strong>Mirth Lite</strong>, for an unmodified patch.Init(), and <strong>Mirth</strong>, which adds a small
+screen (see Hardware).</p>
+<p>A capture is a small neural network trained to behave like one particular amp. For Mirth we use NAM’s A2-Lite neural network: 23 layers, each a dilated causal convolution with a LeakyReLU activation, joined by residual and skip connections — 1,871 parameters in all. Small enough for a Eurorack module, and a format TONE3000’s library lets you filter for.</p>
+<p>That is the first bank, <strong>AMPS</strong>. The second, <strong>NOT-AMPS</strong>, takes the same amps but messes with the parameters to create effects that are definitely not real amps.</p>
+<p>Named — like everything here — after the nursery rhyme, in the version that runs <em>one</em>
+<em>for sorrow, two for mirth</em>. Not affiliated with, or endorsed by, Neural Amp Modeler,
+TONE3000 or Electrosmith.</p>
+<h2 id="the-not-amps">The not-amps</h2>
+<p>Twelve not-amps, built from nine of the starter captures, each changed in one way while
+it plays, with one control you can turn or patch. They were chosen by measurement first: every candidate was compared with
+236 real amp captures, by audio descriptors and by a neural model of how things sound,
+and only those that leave the region where amps sit were kept — then by ear.</p>
+<table>
+<thead>
+<tr>
+<th>Screen</th>
+<th>Built from</th>
+<th>What changes</th>
+<th>The control</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SINE BUG</code></td>
+<td>Bugera G5</td>
+<td>every neuron becomes a sine — a wavefolder inside the network</td>
+<td>how hard it folds</td>
+</tr>
+<tr>
+<td><code>LINEAR TR</code> · <code>LINEAR TRY</code></td>
+<td>Two Rock · Traynor TS 120 B</td>
+<td>every neuron loses its bend, toward a straight line</td>
+<td>trained → linear</td>
+</tr>
+<tr>
+<td><code>RECT ORG</code></td>
+<td>Orange TH100</td>
+<td>every neuron bends the other way, toward a full-wave rectifier</td>
+<td>trained → rectified</td>
+</tr>
+<tr>
+<td><code>FB100 F57</code></td>
+<td>Fender 57</td>
+<td>its output fed back into its input, at 100 Hz</td>
+<td>loop gain</td>
+</tr>
+<tr>
+<td><code>FRZ E TR</code> · <code>FRZ M F57</code> · <code>FRZ M KAY</code></td>
+<td>Two Rock · Fender 57 · Kay 703</td>
+<td>one layer’s output held, early or mid-network</td>
+<td>how long it holds</td>
+</tr>
+<tr>
+<td><code>FOLD ORG</code></td>
+<td>Orange TH100</td>
+<td>a wavefolder inside the network</td>
+<td>how hard it folds</td>
+</tr>
+<tr>
+<td><code>RATE SVT</code></td>
+<td>SVT-2 Pro</td>
+<td>the network run at a fraction of the sample rate</td>
+<td>÷1, 2, 3, 4, 6</td>
+</tr>
+<tr>
+<td><code>PAST BLU</code> · <code>PAST PLX</code></td>
+<td>Bluesbreaker · pLEXI-LORE</td>
+<td>pushed past itself, away from another amp</td>
+<td>how far past</td>
+</tr>
+</tbody>
+</table>
+<h2 id="controls">Controls</h2>
+<p>The knobs and jacks are the same on both builds.</p>
+<table>
+<thead>
+<tr>
+<th>Control</th>
+<th>Job</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CV_1</strong> (+ CV_5)</td>
+<td>input trim, −20 to +20 dB, unity at noon</td>
+</tr>
+<tr>
+<td><strong>CV_2</strong> (+ CV_6)</td>
+<td>MIX, dry to wet</td>
+</tr>
+<tr>
+<td><strong>CV_3</strong> (+ CV_7)</td>
+<td>which capture, within the bank</td>
+</tr>
+<tr>
+<td><strong>CV_4</strong> (+ CV_8)</td>
+<td>the not-amp’s control. Does nothing on a real amp, on purpose</td>
+</tr>
+</tbody>
+</table>
+<p>Audio in on IN_L; the same mixed signal on both outputs.</p>
+<h3 id="mirth-lite--no-screen">Mirth Lite — no screen</h3>
+<table>
+<thead>
+<tr>
+<th>Control</th>
+<th>Job</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>B8</strong> toggle</td>
+<td>bank: up AMPS, down NOT-AMPS</td>
+</tr>
+<tr>
+<td><strong>B7</strong> short</td>
+<td>bypass: the dry input alone</td>
+</tr>
+<tr>
+<td><strong>B7</strong> held 0.6 s</td>
+<td>blink the capture number again</td>
+</tr>
+<tr>
+<td><strong>LED</strong></td>
+<td>blinks the capture number when it changes — a long blink is five, so 7 is long-short-short — then stays lit while the network is in circuit, dark in bypass. A fast flicker that never stops: no captures on the card</td>
+</tr>
+</tbody>
+</table>
+<h3 id="mirth--with-the-screen">Mirth — with the screen</h3>
+<table>
+<thead>
+<tr>
+<th>Control</th>
+<th>Job</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>B7</strong> short</td>
+<td>bypass: the dry input alone</td>
+</tr>
+<tr>
+<td><strong>B7</strong> held 1.5 s</td>
+<td>change bank, AMPS ↔ NOT-AMPS</td>
+</tr>
+<tr>
+<td><strong>LED</strong></td>
+<td>lit when the network is in circuit</td>
+</tr>
+</tbody>
+</table>
+<p>The screen shows the capture or not-amp playing, an input meter for setting the trim,
+the CPU load, and where the steer sits.</p>
+<h2 id="hardware">Hardware</h2>
+<p><strong>Bill of materials:</strong> Mirth Lite runs on Daisy patch.Init(). For full Mirth add a 64×48 SSD1306 OLED (I²C) screen · a few hook-up wires · and a printed panel. The same screen and wiring as Joy: replacing the B8 toggle with the OLED for more feedback during use.</p>
+<h2 id="captures">Captures</h2>
+<p>Mirth comes with twelve captures, the <strong>starter set</strong>, in a download beside the
+firmware: eight CC BY and four CC0, by their creators on TONE3000. Each is credited —
+creator, source and licence — in <code>STARTER_CAPTURES.md</code>, which is in the download and in
+the firmware repo. The not-amps are built from them, so copy all twelve to the card. The
+Orange TH100 is also built into the firmware, so a module with no card still plays.</p>
+<p><strong>More captures:</strong> download A2 captures from TONE3000 — filter by architecture — and
+convert them with <code>tools/nam_to_a2nb.py</code>. Straight from download to card: no rebuild, no
+reflash. Up to 32 on a card. Most captures on TONE3000 are licensed for your own use, so
+they can go on your card but not be passed on.</p>
+<h2 id="credits">Credits</h2>
+<p>The A2 engine is Keith Shepherd’s, from
+<a href="https://github.com/bkshepherd/DaisySeedProjects">DaisySeedProjects</a> (MIT), based on code
+nadavb shared on the Daisy forum. The twelve captures are their creators’, credited in
+<a href="https://github.com/Eight4aWish/eurorack_daisy_patch_init/blob/main/daisy_neural/STARTER_CAPTURES.md"><code>STARTER_CAPTURES.md</code></a>.
+Built on Electrosmith’s libDaisy. Mirth itself is MIT.</p>
+</div><section class="flash"><h2 class="sec">Flash it — no compiler needed</h2><p class="sub">Mirth runs from the Daisy&#39;s QSPI chip through the Daisy bootloader: a one-time bootloader install, then the firmware goes on with an SD card. The same card then holds the captures. No compiler needed.</p><div class="warn"><b>Read this first —</b> The card must be one FAT32 partition of 2 GB or less, with the rest of the card left unallocated. A full-size FAT32 volume on a big card fails at start-up, and exFAT is not read at all.</div><div class="dl"><a class="btn" href="https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/mirth-v1.0.0/mirth-v1.0.0.bin">Download firmware v1.0.0</a><a class="btn" href="https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/mirth_lite-v1.0.0/mirth_lite-v1.0.0.bin">Download Mirth Lite v1.0.0</a><a class="btn" href="https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/mirth-v1.0.0/mirth-v1.0.0-captures.zip">Download starter captures</a><a class="btn ghost" href="https://flash.daisy.audio" target="_blank" rel="noopener">Daisy Web Programmer</a><a class="btn ghost" href="https://www.tone3000.com/" target="_blank" rel="noopener">TONE3000 (filter for A2)</a></div><p class="tiny">The firmware is for a patch.Init() with the OLED fitted; Mirth Lite is for a stock patch.Init(), no screen. Both flash the same way and both need the starter captures on the card — the zip holds all twelve, their credits, and these card instructions.</p><h3 class="flashsub">One time per module — install the bootloader</h3><ol class="flashsteps"><li>Plug the Daisy Patch.Init in with a USB-C data cable.</li><li>Hold BOOT, tap RESET, then release BOOT.</li><li>Open the Daisy Web Programmer and go to its Bootloader section.</li><li>Click Flash. That is the bootloader on — you never have to do this again.</li></ol><h3 class="flashsub">Every time — load the firmware</h3><ol class="flashsteps"><li>Format the card: one FAT32 partition of 2 GB or less. On a Mac, check the disk number with `diskutil list external` first — this erases it — then `diskutil partitionDisk /dev/diskN MBR &quot;MS-DOS FAT32&quot; DAISY 2G &quot;Free Space&quot; REST R`.</li><li>Copy the Mirth or Mirth Lite .bin above to the root of the card. It must be the only .bin on the card.</li><li>Unzip the starter captures and copy the twelve `.a2nb` files to the root as well. The not-amps are built from them, by name.</li><li>Insert the card and power-cycle. The bootloader flashes the firmware if it differs from what is installed, and boots.</li></ol><div class="note">On a Mac, Finder writes a hidden twin of every file — ._mirth.bin, ._n02_ORANGE_TH.a2nb. The .bin twin confuses the bootloader and the capture twins fail their checksum. After copying, delete them in Terminal with `rm -f /Volumes/DAISY/._*` — the usual `cp -X` no longer prevents them on current macOS.</div></section><p class="tiny" style="margin-top:30px">Updated October 2026</p></main><footer class="site"><div class="wrap"><span>© Eight4aWish</span><a href="https://github.com/Eight4aWish">GitHub</a><a href="mailto:info@eight4awish.com">info@eight4awish.com</a><a href="https://buymeacoffee.com/eight4awish">Buy me a coffee</a></div></footer></body></html>

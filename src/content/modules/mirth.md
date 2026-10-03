@@ -1,6 +1,6 @@
 ---
 title: Mirth
-date: 2026-10-01
+date: 2026-10-03
 summary: >-
   Neural network amp modelling on a Daisy patch.Init() — and twelve not-amps,
   captures bent inside the network to create unique effects.
@@ -10,7 +10,7 @@ tags:
   - Neural Networks
   - Daisy patch.Init()
 panel: /renders/daisy_neural_flat.png
-status: in progress
+status: built
 firmware: >-
   https://github.com/Eight4aWish/eurorack_daisy_patch_init/tree/main/daisy_neural
 binary: >-
@@ -74,7 +74,9 @@ draft: false
 ---
 ## Overview
 
-**Mirth** runs neural amp modelling captures on a Daisy patch.Init().
+**Mirth** runs neural amp modelling captures on a Daisy patch.Init(). It comes in two
+builds: **Mirth Lite**, for an unmodified patch.Init(), and **Mirth**, which adds a small
+screen (see Hardware).
 
 A capture is a small neural network trained to behave like one particular amp. For Mirth we use NAM's A2-Lite neural network: 23 layers, each a dilated causal convolution with a LeakyReLU activation, joined by residual and skip connections — 1,871 parameters in all. Small enough for a Eurorack module, and a format TONE3000's library lets you filter for.
 
@@ -104,17 +106,36 @@ and only those that leave the region where amps sit were kept — then by ear.
 
 ## Controls
 
+The knobs and jacks are the same on both builds.
+
 | Control | Job |
 | --- | --- |
 | **CV\_1** (+ CV_5) | input trim, −20 to +20 dB, unity at noon |
 | **CV\_2** (+ CV_6) | MIX, dry to wet |
 | **CV\_3** (+ CV_7) | which capture, within the bank |
 | **CV\_4** (+ CV_8) | the not-amp's control. Does nothing on a real amp, on purpose |
+
+Audio in on IN_L; the same mixed signal on both outputs.
+
+### Mirth Lite — no screen
+
+| Control | Job |
+| --- | --- |
+| **B8** toggle | bank: up AMPS, down NOT-AMPS |
+| **B7** short | bypass: the dry input alone |
+| **B7** held 0.6 s | blink the capture number again |
+| **LED** | blinks the capture number when it changes — a long blink is five, so 7 is long-short-short — then stays lit while the network is in circuit, dark in bypass. A fast flicker that never stops: no captures on the card |
+
+### Mirth — with the screen
+
+| Control | Job |
+| --- | --- |
 | **B7** short | bypass: the dry input alone |
 | **B7** held 1.5 s | change bank, AMPS ↔ NOT-AMPS |
 | **LED** | lit when the network is in circuit |
 
-Audio in on IN_L; the same mixed signal on both outputs.
+The screen shows the capture or not-amp playing, an input meter for setting the trim,
+the CPU load, and where the steer sits.
 
 ## Hardware
 
