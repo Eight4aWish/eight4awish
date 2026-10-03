@@ -86,8 +86,8 @@ TONE3000 or Electrosmith.
 
 ## The not-amps
 
-Twelve real captures, each changed in one way while it plays, with one control you can
-turn or patch. They were chosen by measurement first: every candidate was compared with
+Twelve not-amps, built from nine of the starter captures, each changed in one way while
+it plays, with one control you can turn or patch. They were chosen by measurement first: every candidate was compared with
 236 real amp captures, by audio descriptors and by a neural model of how things sound,
 and only those that leave the region where amps sit were kept — then by ear.
 
