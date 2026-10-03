@@ -2,8 +2,8 @@
 title: Mirth
 date: 2026-10-01
 summary: >-
-  Neural amp modelling captures on a Daisy patch.Init() — and twelve not-amps,
-  captures bent inside the network.
+  Neural network amp modelling on a Daisy patch.Init() — and twelve not-amps,
+  captures bent inside the network to create unique effects.
 platform: Patch Submodule
 tags:
   - Effect
@@ -33,11 +33,6 @@ flash:
     The card must be one FAT32 partition of 2 GB or less, with the rest of the
     card left unallocated. A full-size FAT32 volume on a big card fails at
     start-up, and exFAT is not read at all.
-  extrasNote: >-
-    The firmware is for a patch.Init() with the OLED fitted; Mirth Lite is for a
-    stock patch.Init(), no screen. Both flash the same way and both need the
-    starter captures on the card — the zip holds all twelve, their credits, and
-    these card instructions.
   stepsTitle: One time per module — install the bootloader
   bootSteps:
     - Plug the Daisy Patch.Init in with a USB-C data cable.
@@ -51,14 +46,19 @@ flash:
       `diskutil partitionDisk /dev/diskN MBR "MS-DOS FAT32" DAISY 2G "Free
       Space" REST R`.
     - >-
-      Copy the Mirth or Mirth Lite .bin above to the root of the card. It must be
-      the only .bin on the card.
+      Copy the Mirth or Mirth Lite .bin above to the root of the card. It must
+      be the only .bin on the card.
     - >-
       Unzip the starter captures and copy the twelve `.a2nb` files to the root
       as well. The not-amps are built from them, by name.
     - >-
       Insert the card and power-cycle. The bootloader flashes the firmware if it
       differs from what is installed, and boots.
+  extrasNote: >-
+    The firmware is for a patch.Init() with the OLED fitted; Mirth Lite is for a
+    stock patch.Init(), no screen. Both flash the same way and both need the
+    starter captures on the card — the zip holds all twelve, their credits, and
+    these card instructions.
   links:
     - label: Daisy Web Programmer
       url: https://flash.daisy.audio
@@ -66,11 +66,11 @@ flash:
       url: https://www.tone3000.com/
   note: >-
     On a Mac, Finder writes a hidden twin of every file — ._mirth.bin,
-    ._n02_ORANGE_TH.a2nb. The .bin twin confuses the bootloader and the capture twins
-    fail their checksum. After copying, delete them in Terminal with `rm -f
-    /Volumes/DAISY/._*` — the usual `cp -X` no longer prevents them on current
-    macOS.
-draft: true
+    ._n02_ORANGE_TH.a2nb. The .bin twin confuses the bootloader and the capture
+    twins fail their checksum. After copying, delete them in Terminal with `rm
+    -f /Volumes/DAISY/._*` — the usual `cp -X` no longer prevents them on
+    current macOS.
+draft: false
 ---
 ## Overview
 
