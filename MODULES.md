@@ -41,6 +41,8 @@ tagged release and a downloadable binary.
 | **Silver** | `tiliqua` | `gateware/src/top/silver/` | Tiliqua (FPGA) | mesh-0.5 | original | CERN-OHL-S-2.0 |
 | **Gold** | `tiliqua` | `gateware/src/top/gold/` | Tiliqua (FPGA) | mesh-0.5 | original | CERN-OHL-S-2.0 |
 | **Secret** | `eurorack_daisy_patch_init` | `daisy_chaos/` | Alchemy Lab | v1.0.0 | original (the Teensy Chaos) | MIT |
+| **Mirth** | `eurorack_daisy_patch_init` | `daisy_neural/` | Daisy Patch Submodule | v1.0.0 | NAM A2-Lite (Keith Shepherd's engine, MIT) | MIT |
+| **Mirth Lite** | `eurorack_daisy_patch_init` | `daisy_neural/` (`make LITE=1`) | Daisy Patch Submodule | v1.0.0 | as Mirth | MIT |
 
 Notes:
 - **Joy / Joy Lite** are one macro-oscillator generation on shared DSP and calibration,
@@ -56,6 +58,13 @@ Notes:
   site renders, not a panel to print. Released 2026-09-04 (page), video 2026-09-17.
 - **Sorrow is GPL-3.0-or-later** (Grids is copyleft, unlike most MI sources) and runs
   `BOOT_SRAM`, so it needs the Daisy bootloader.
+- **Mirth / Mirth Lite** (*two for mirth*, the rhyme's other second line) are one generation,
+  like Joy and Joy Lite: NAM A2-Lite captures off the card (AMPS) and twelve not-amps built
+  from nine of the starter captures (NOT-AMPS), with a dry/wet mix. Mirth adds a 64×48 OLED
+  where the B8 toggle was; Lite runs on a stock patch.init(), B8 picking the bank (up AMPS).
+  Released 2026-10-03 (page, tags `mirth-v1.0.0` / `mirth_lite-v1.0.0`); the video is to
+  follow. Release assets: both `.bin`s, the twelve CC0/CC BY starter captures as a zip with
+  `STARTER_CAPTURES.md`, and a notices file each. Panel: `build123d/panels/daisy_neural.py`.
 - **Secret** (*seven for a secret*) is a chaotic-attractor oscillator: twelve models, V/oct
   and TAME, on the Alchemy SDK. It succeeds the Teensy **Chaos**, whose six attractors are
   its first bank. Released 2026-10-02 (page, tag `secret-v1.0.0`); the video is to follow.
@@ -81,7 +90,6 @@ release, for the name actually chosen then.
 |---|---|---|---|---|
 | **Boy** | `eurorack_modules` | `src/teensy_move/` | Teensy 4.1 | `boy.md` |
 | **Chaos** | `eurorack_modules` | `src/teensy_chaos/` | Teensy 4.1 | No page: its draft became `secret.md`. **Frozen 2026-09-30, to be retired** — the Teensy hardware will be repurposed, and **Secret** is its successor. Not the Behringer **Chaos** in the rack, which is a random sampler. |
-| **Mirth** | `eurorack_daisy_patch_init` | `daisy_neural/` | Daisy Patch Submodule | `mirth.md`. *Two for mirth*, the rhyme's other second line. NAM A2-Lite captures off the card (AMPS) and twelve *not-amps* (NOT-AMPS): the starter captures, each with one transform measured to move it out of the region where real amps sit. Knob 2 / CV_6 is a dry/wet mix; OLED as on Joy. 2026-10-02: after four bench sessions, the sets were declared final and the firmware good enough for the video and sharing. Built as `mirth.bin`. **Mirth Lite** (`make LITE=1`) is screenless, with B8 toggling AMPS (up) and NOT-AMPS (down); checked on a stock patch.init 2026-10-03. Captures ship as a twelve-capture CC0/CC BY starter set, credited in `STARTER_CAPTURES.md`. The compiled-in fallback is the CC BY Orange TH100. Captures are never committed; the starter set ships as release assets. Release (packages, tag) not yet done. |
 | **CortHex** | `eurorack_modules` | `src/nanoesp32_corthex/` | Arduino Nano ESP32 (NORA-W106 / ESP32-S3) | `corthex.md`. CV6 is a 0–5 V gain CV that drives **either** the Behringer Four Play or a Thonk T03, whichever is patched — `main.cpp:1048` and `proxy.py` name different ones and both are valid. |
 | **Daisy MultiOsc** | `eurorack_daisy_patch_init` | `daisy_multiosc/` | Daisy Patch Submodule | `daisy-multiosc.md` |
 | **Daisy MultiFX** | `eurorack_daisy_patch_init` | `daisy_multifx_oled/` | Daisy Patch Submodule | `daisy-multifx.md`. ~~Repurposed for the neural experiment~~ — **not any more**: the Patch SM came back in stock on 2026-09-25, so `daisy_neural/` gets a fresh patch.init() and this unit is untouched. |
