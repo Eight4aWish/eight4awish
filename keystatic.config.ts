@@ -204,7 +204,7 @@ export default config({
             }),
             download: fields.text({
               label: 'Download path',
-              description: 'The full runnable file, e.g. /lessons/simple_song.js (kept in sync from strudel/lessons).',
+              description: 'The full runnable file, e.g. /lessons/recorded_short.js (kept in sync from strudel/lessons).',
             }),
             blocks: fields.array(
               fields.object({

@@ -166,5 +166,6 @@ modules are. Strudel sends MIDI notes and CC; the rack does the rest.
 
 Below is the actual code from the video: **one track, two passes**. The first lays down three voices,
 a drum kit and an arrangement. The second lets the notes wander and sends CC42 out to move the
-lead's timbre on Ogham and the Alchemy Lab effect it plays through. Both files are downloadable above — paste one into [strudel.cc](https://strudel.cc)
-in Chrome, point the device names at your own gear, and it will play.
+lead's timbre on Ogham and the Alchemy Lab effect it plays through. Both files are downloadable below — paste one into [strudel.cc](https://strudel.cc)
+in Chrome, point the device names at your own gear, and it will play. The play-out from the end of
+the video, with its visuals, is [recorded_visual.js](/lessons/recorded_visual.js).

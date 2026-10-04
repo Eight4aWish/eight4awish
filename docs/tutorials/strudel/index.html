@@ -7,8 +7,9 @@
 modules are. Strudel sends MIDI notes and CC; the rack does the rest.</p>
 <p>Below is the actual code from the video: <strong>one track, two passes</strong>. The first lays down three voices,
 a drum kit and an arrangement. The second lets the notes wander and sends CC42 out to move the
-lead’s timbre on Ogham and the Alchemy Lab effect it plays through. Both files are downloadable above — paste one into <a href="https://strudel.cc">strudel.cc</a>
-in Chrome, point the device names at your own gear, and it will play.</p>
+lead’s timbre on Ogham and the Alchemy Lab effect it plays through. Both files are downloadable below — paste one into <a href="https://strudel.cc">strudel.cc</a>
+in Chrome, point the device names at your own gear, and it will play. The play-out from the end of
+the video, with its visuals, is <a href="/lessons/recorded_visual.js">recorded_visual.js</a>.</p>
 </div><section class="song" id="song1"><div class="songhead"><h2 class="sec">1 · The song</h2><div class="songlinks"><a class="dl-link" href="/lessons/recorded_short.js" download>↓ recorded_short.js</a></div></div><p class="sub">Three voices, a drum kit and an arrangement — the whole track on one screen, and not a note of it made in the browser.</p><div class="block"><div class="lbl">Devices</div><pre><code>const WS = &#39;Workshop System MIDI&#39;
 const OC = &#39;Phazerville&#39;</code></pre><div class="annot">Two MIDI destinations, named once: the <b>Workshop Computer</b> and the <b>O&amp;C</b> (its firmware reports as *Phazerville*). Every part below aims at one of them with <code>.midi(WS)</code> or <code>.midi(OC)</code>.</div></div><div class="block"><div class="lbl">The progression, and the first voice</div><pre><code>const prog = &quot;&lt;0 0 3 5 0 0 5 4&gt;&quot;
 

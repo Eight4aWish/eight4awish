@@ -1,4 +1,5 @@
-// DRAFT — the long song, with a picture that knows where it is in it.
+// The play-out from the end of the video: the long song, with a picture that knows where it
+// is in it.
 //
 // The old Hydra block was driven entirely by slow LFOs, so the intro and the chorus looked
 // the same: it breathed and nothing else. Two things change that.
