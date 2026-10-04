@@ -166,12 +166,8 @@ songs:
           const outro  = stack(bass, pad)
 
           arrange(
-            [4, intro],
-            [8, verse],
-            [8, chorus],
-            [4, bridge],
-            [8, chorus],
-            [4, outro],
+            [4, intro], [8, verse], [8, chorus],
+            [4, bridge], [8, chorus], [4, outro],
           ).cpm(35)
         note: >-
           The first song's arrangement with three changes: `mods` joins the verse
