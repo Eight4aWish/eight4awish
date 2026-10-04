@@ -157,9 +157,27 @@ songs:
           `irand(8)` is pure chance and `.segment(16)` takes sixteen of them a
           cycle — the same idea as the LFOs above, sampling something continuous
           into countable events. It only plays in the bridge, so that lift is
-          different every pass. The arrangement grows to fit: the bridge, then
-          the chorus again, with `mods` running from the verse on — the full
-          order is in the download.
+          different every pass.
+      - label: Sections & arrange
+        code: |-
+          const intro  = stack(drums, pad)
+          const verse  = stack(drums, bass, pad, mods)
+          const chorus = stack(drums2, bass, pad, lead, mods)
+          const outro  = stack(bass, pad)
+
+          arrange(
+            [4, intro],
+            [8, verse],
+            [8, chorus],
+            [4, bridge],
+            [8, chorus],
+            [4, outro],
+          ).cpm(35)
+        note: >-
+          The first song's arrangement with three changes: `mods` joins the verse
+          and the chorus, so the sweeps run from the verse on; the chorus takes
+          the busier kit; and four bars of `bridge` come before the chorus plays
+          again. Thirty-six bars in all.
 ---
 Strudel is a live-coding language that runs in a browser. Here it is **not** making the sound — your
 modules are. Strudel sends MIDI notes and CC; the rack does the rest.

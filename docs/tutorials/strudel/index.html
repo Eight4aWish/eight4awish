@@ -52,4 +52,16 @@ const mods = stack(
 )</code></pre><div class="annot"><b>Nothing here makes a voltage.</b> Strudel sends a MIDI message and the module turns it into volts. <code>v =&gt; …</code> is a small function — a recipe with a hole in it — and everything after the arrow is an address that never changes: controller 42, a channel, a device. Then <code>.range()</code> sets depth and direction, and <code>.segment(32)</code> takes 32 snapshots a cycle, because a continuously moving value has to be chopped up before MIDI can carry it. At <code>cpm(35)</code> that is about 19 messages a second.</div></div><div class="block"><div class="lbl">The bridge</div><pre><code>const lead2 = n(irand(8).segment(16)).degradeBy(0.6)
   .scale(&quot;A5:minor&quot;).midichan(1).midi(WS)
 
-const bridge = stack(drums2, pad, lead2, mods)</code></pre><div class="annot"><code>irand(8)</code> is pure chance and <code>.segment(16)</code> takes sixteen of them a cycle — the same idea as the LFOs above, sampling something continuous into countable events. It only plays in the bridge, so that lift is different every pass. The arrangement grows to fit: the bridge, then the chorus again, with <code>mods</code> running from the verse on — the full order is in the download.</div></div></section><div class="dl" style="margin-top:26px"><a class="btn ghost" href="https://github.com/Eight4aWish" target="_blank" rel="noopener">Source on GitHub</a></div></main><footer class="site"><div class="wrap"><span>© Eight4aWish</span><a href="https://github.com/Eight4aWish">GitHub</a><a href="mailto:info@eight4awish.com">info@eight4awish.com</a><a href="https://buymeacoffee.com/eight4awish">Buy me a coffee</a></div></footer></body></html>
+const bridge = stack(drums2, pad, lead2, mods)</code></pre><div class="annot"><code>irand(8)</code> is pure chance and <code>.segment(16)</code> takes sixteen of them a cycle — the same idea as the LFOs above, sampling something continuous into countable events. It only plays in the bridge, so that lift is different every pass.</div></div><div class="block"><div class="lbl">Sections &amp; arrange</div><pre><code>const intro  = stack(drums, pad)
+const verse  = stack(drums, bass, pad, mods)
+const chorus = stack(drums2, bass, pad, lead, mods)
+const outro  = stack(bass, pad)
+
+arrange(
+  [4, intro],
+  [8, verse],
+  [8, chorus],
+  [4, bridge],
+  [8, chorus],
+  [4, outro],
+).cpm(35)</code></pre><div class="annot">The first song's arrangement with three changes: <code>mods</code> joins the verse and the chorus, so the sweeps run from the verse on; the chorus takes the busier kit; and four bars of <code>bridge</code> come before the chorus plays again. Thirty-six bars in all.</div></div></section><div class="dl" style="margin-top:26px"><a class="btn ghost" href="https://github.com/Eight4aWish" target="_blank" rel="noopener">Source on GitHub</a></div></main><footer class="site"><div class="wrap"><span>© Eight4aWish</span><a href="https://github.com/Eight4aWish">GitHub</a><a href="mailto:info@eight4awish.com">info@eight4awish.com</a><a href="https://buymeacoffee.com/eight4awish">Buy me a coffee</a></div></footer></body></html>
