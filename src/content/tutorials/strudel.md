@@ -1,11 +1,9 @@
 ---
-title: Strudel — live-code your rack
+title: Strudel primer — live-code your rack
 eyebrow: Music as code
 date: 2026-07-10
-summary: >-
-  Sequence your rack by typing. One track, built twice — a song, then the same
-  song made to wander while it moves the filters.
-graphic: /renders/tut_music.png
+summary: Live-code your rack from a browser tab.
+graphic: /renders/strudel_repl.png
 chips:
   - Strudel
   - Live Coding
