@@ -13,6 +13,7 @@ repo: https://github.com/Eight4aWish
 cta: /tutorials/strudel/
 order: 1
 draft: false
+video: 9yNJnmZVlNY
 songs:
   - title: 1 · The song
     blurb: >-
