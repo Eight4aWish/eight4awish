@@ -2,7 +2,7 @@
 title: Strudel primer
 eyebrow: Music as code
 date: 2026-07-10
-summary: Live-code your rack from a browser tab.
+summary: Live-code your Eurorack from a browser tab.
 graphic: /renders/strudel_repl.png
 chips:
   - Strudel
