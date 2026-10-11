@@ -239,7 +239,7 @@ panels modelled against the real hardware, so those are the most trustworthy of 
 | **A*B+C** | Befaco | 6 ✓ | dual four-quadrant multiplier | Multiply, offset, invert; works as a VCA for CV or audio. |
 | **Instrument Interface (I4)** | Befaco | 8 ✓ | preamp / envelope follower | Mic (with +48 V phantom), instrument and line up to modular level. Envelope follower and gate/trigger extractor with positive and inverted outs. |
 | **Mutes (MK2)** | Befaco / DivKid | 24 ✓ | mute / routing utility | **Fitted with its Intellijel-format 1U panel**, which mounts the board sideways — so it is 24HP in 1U, where the same module on its 3U panel is 4HP. VCA-based, click-free, with performable 3-way switches and cascading normalled inputs. |
-| **Oneiroi** | Befaco | 30 ✓ | stereo synth voice | **Full DIY kit, bought 2026-09-18 from Exploding Shed — still unbuilt.** Sine, supersaw and a wavetable oscillator that reads the looper buffer, multimode filter, 3-band resonator, 2-tap echo, reverb, 5 s looper, randomizer. +12 V 200 mA. **Rebel Technology OWL mk3 inside** (STM32H7 / Cortex-M7, same MCU family as Daisy, so the same ARM toolchain builds for it) — also a firmware target, see Host hardware below. |
+| **Oneiroi** | Befaco | 30 ✓ | stereo synth voice | **Full DIY kit, bought 2026-09-18 from Exploding Shed — built and working.** Sine, supersaw and a wavetable oscillator that reads the looper buffer, multimode filter, 3-band resonator, 2-tap echo, reverb, 5 s looper, randomizer. +12 V 200 mA. **Rebel Technology OWL mk3 inside** (STM32H7 / Cortex-M7, same MCU family as Daisy, so the same ARM toolchain builds for it) — also a firmware target, see Host hardware below. |
 | **T01 VCO** | Thonk | 4 ✓ | oscillator | SQR → T03 VCA A. |
 | **T03 Dual VCA** ×2 | Thonk | 6 ✓ | dual VCA | A left, B right. One is the VCA in the CortHex voice. |
 | **BUF (T06)** | Thonk | 4 ◆ | buffered multiple | Precision multiple: three channels of 1-in / 3-out. |
@@ -308,7 +308,7 @@ Purchased, but the platform rather than the instrument.
 | **Alchemy Lab** | Hermetic Modular | 12 ✓ | Secret. Also listed under In the rack, where it runs Hermetic's own firmwares too. |
 | **Patch Init / Patch Submodule** | Electrosmith | — | Sorrow, Joy, Joy Lite, Mirth, MultiOsc, MultiFX |
 | **AMYboard** | shorepine | — | AMYboard PatchBank |
-| **Oneiroi** (Rebel Technology OWL mk3 inside) | Befaco | 30 ✓ | Nothing yet. The stock firmware is GPL-3 C++ built with OwlProgram, one model per header, with a VCV Rack build for laptop testing and make targets that load to RAM, store to a slot, or emit a sysex file. A modified Oneiroi is on the roadmap; the kit is unbuilt. |
+| **Oneiroi** (Rebel Technology OWL mk3 inside) | Befaco | 30 ✓ | Nothing yet. The stock firmware is GPL-3 C++ built with OwlProgram, one model per header, with a VCV Rack build for laptop testing and make targets that load to RAM, store to a slot, or emit a sysex file. A modified Oneiroi is on the roadmap; the kit is built and working on stock firmware, so the hardware is ready for it. |
 | **Solderable breadboard platform** (4/6/10HP + 10HPS) | N8Synth | 4–10 | Dual LPG, MOD2/Melon, and the board geometry the layout visualiser validates against |
 
 ## Case and power
