@@ -2,8 +2,8 @@
 title: Wish
 date: 2026-10-12
 summary: >-
-  Mutable Instruments Beads on the Alchemy Lab — granular textures, freeze
-  and seed.
+  Granular textures for the Alchemy Lab, based on Mutable Instruments Beads —
+  freeze and seed.
 platform: Alchemy Lab
 tags:
   - Granular
@@ -46,8 +46,8 @@ draft: true
 ---
 ## Overview
 
-**Wish** is Mutable Instruments **Beads** — Émilie Gillet's granular texture synthesiser,
-the successor to Clouds — running on the **Hermetic Modular Alchemy Lab**. Mutable
+**Wish** is a granular texture synthesiser for the **Hermetic Modular Alchemy Lab**, based on
+Mutable Instruments **Beads** — Émilie Gillet's successor to Clouds. Mutable
 published the Beads source on 11 October 2026; the DSP here is that code, with one
 build flag changed (see dirty tape, below). What is new is everything around it: the panel, the jacks, the buttons and
 the saved settings, rebuilt for a module with six knobs, three buttons and six CV jacks.
@@ -112,6 +112,9 @@ level, blinking while the automatic gain is still settling.
   without turning anything to restart it.
 - **Dirty tape runs at 48 kHz.** Beads slows its codec to 24 kHz for it; the Daisy's
   codec has no such rate, so it takes Beads' own 48 kHz path.
+- **The heaviest settings thin themselves.** Digital stereo with dense grains and random
+  pitch asks more of the Alchemy Lab than it has, so past that point fewer new grains
+  start, and the module stays responsive.
 - **A frozen buffer is not kept** through a power cycle.
 
 ## Provenance
