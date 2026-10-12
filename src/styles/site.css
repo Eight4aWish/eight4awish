@@ -164,9 +164,14 @@ figure.photo img{max-height:460px;width:auto;border-radius:6px}
   border:1px solid var(--line);background:var(--bg2);margin:16px 0 8px}
 .hero-video iframe{width:100%;height:100%;border:0;display:block}
 .hero-video.pending{position:relative;display:flex;align-items:center;justify-content:center}
-.hero-video.pending img{width:100%;height:100%;object-fit:cover;opacity:.28}
+/* No video yet: the whole panel, every control readable, rather than a faded crop of its
+   middle. The badge sits in a corner so it doesn't cover the controls. */
+.hero-video.pending img{width:100%;height:100%;object-fit:contain;padding:12px 0;
+  box-sizing:border-box;opacity:.7}
 .hero-video .badge{position:absolute;font-weight:600;font-size:13px;color:var(--mut);
   background:var(--bg);border:1px solid var(--line);border-radius:20px;padding:7px 16px}
+.hero-video.pending .badge{right:14px;bottom:14px}
+@media(max-width:560px){.hero-video.pending .badge{right:8px;bottom:8px;font-size:11px;padding:5px 10px}}
 .tiny{color:var(--mut);font-size:13px;margin:8px 0 0}
 
 /* ---- one video-led page; the real rig code annotated block by block ---- */
