@@ -88,6 +88,7 @@ release, for the name actually chosen then.
 
 | Module | Repo | Firmware | Platform | Page |
 |---|---|---|---|---|
+| **Wish** | `eurorack_daisy_patch_init` | `daisy_beads/` | Alchemy Lab | `wish.md`. **Mutable Instruments Beads** (*eight for a wish*), ported the day Mutable published the source, 2026-10-12 (`pichenettes/eurorack` `d8f4739`, MIT). Beads' DSP compiled from the submodule, one flag changed (no 24 kHz codec rate, so dirty tape takes the 48 kHz path); `src/wish.cpp` replaces its drivers and UI. Six knobs plus a B3-held layer (the four attenuverters as randomisers, FEEDBACK, REVERB); J3 V/OCT, J4 SEED, J5 FREEZE, J6–J8 TIME/SIZE/DENSITY CV. Page drafted with the expected release URL `wish-v1.0.0/wish-v1.0.0.bin`; render `build123d/panels/alchemy_wish.py`. |
 | **Boy** | `eurorack_modules` | `src/teensy_move/` | Teensy 4.1 | `boy.md` |
 | **Chaos** | `eurorack_modules` | `src/teensy_chaos/` | Teensy 4.1 | No page: its draft became `secret.md`. **Frozen 2026-09-30, to be retired** — the Teensy hardware will be repurposed, and **Secret** is its successor. Not the Behringer **Chaos** in the rack, which is a random sampler. |
 | **CortHex** | `eurorack_modules` | `src/nanoesp32_corthex/` | Arduino Nano ESP32 (NORA-W106 / ESP32-S3) | `corthex.md`. CV6 is a 0–5 V gain CV that drives **either** the Behringer Four Play or a Thonk T03, whichever is patched — `main.cpp:1048` and `proxy.py` name different ones and both are valid. |
@@ -120,7 +121,7 @@ reads as 9.94HP and means 10HP).
 | Module | HP | Format |
 |---|---|---|
 | **Girl** | 20 | 3U |
-| **Secret** (the Alchemy Lab's panel) | 12 | 3U |
+| **Secret** · **Wish** (the Alchemy Lab's panel) | 12 | 3U |
 | **Sorrow** · **Joy** · **Mirth** · **Boy** · **Chaos** · **CortHex** · **Daisy MultiOsc** · **Daisy MultiFX** · **AMYboard PatchBank** · **Dual LPG** | 10 | 3U |
 | **Silver** · **Gold** · **Pico2W OnC Lite** · **Teensy Expander** · **Daisy MultiFX (Seed)** · **MOD2/Melon** · **mkikick** | 6 | 3U |
 | **ESP32 ClkLinkRec** | 4 | 3U |
@@ -305,7 +306,7 @@ Purchased, but the platform rather than the instrument.
 |---|---|---|---|
 | **Big Genes** | Ksoloti | 20 ✓ | Girl |
 | **Tiliqua** | apf.audio | 6 ✓ | Silver, Gold |
-| **Alchemy Lab** | Hermetic Modular | 12 ✓ | Secret. Also listed under In the rack, where it runs Hermetic's own firmwares too. |
+| **Alchemy Lab** | Hermetic Modular | 12 ✓ | Secret, Wish. Also listed under In the rack, where it runs Hermetic's own firmwares too. |
 | **Patch Init / Patch Submodule** | Electrosmith | — | Sorrow, Joy, Joy Lite, Mirth, MultiOsc, MultiFX |
 | **AMYboard** | shorepine | — | AMYboard PatchBank |
 | **Oneiroi** (Rebel Technology OWL mk3 inside) | Befaco | 30 ✓ | Nothing yet. The stock firmware is GPL-3 C++ built with OwlProgram, one model per header, with a VCV Rack build for laptop testing and make targets that load to RAM, store to a slot, or emit a sysex file. A modified Oneiroi is on the roadmap; the kit is built and working on stock firmware, so the hardware is ready for it. |
