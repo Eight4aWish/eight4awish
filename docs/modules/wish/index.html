@@ -1,9 +1,11 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Wish — Eight4aWish</title><meta name="description" content="Granular textures for the Alchemy Lab, based on Mutable Instruments Beads — freeze and seed."><link rel="canonical" href="https://eight4awish.com/modules/wish/"><!-- so a link pasted into YouTube, Reddit or Discord shows the artwork.
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Wish on Alchemy Lab — Eight4aWish</title><meta name="description" content="Granular textures for the Alchemy Lab, based on Mutable Instruments Beads — freeze and seed."><link rel="canonical" href="https://eight4awish.com/modules/wish/"><!-- so a link pasted into YouTube, Reddit or Discord shows the artwork.
      Module pages pass their PANEL RENDER, not the photo, and the two are not
      interchangeable: a photo is of the module in a rack, and where a module runs
      on someone else's board the photo is of THEIR panel. Girl runs on a Ksoloti
      Big Genes, so its photo is a Big Genes front panel - which is what Discord
-     was showing for /modules/girl. The render is always the module's own. --><meta property="og:type" content="website"><meta property="og:title" content="Wish — Eight4aWish"><meta property="og:description" content="Granular textures for the Alchemy Lab, based on Mutable Instruments Beads — freeze and seed."><meta property="og:image" content="https://eight4awish.com/opt/alchemy_wish_flat.og.jpg"><meta property="og:url" content="https://eight4awish.com/modules/wish/"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Wish — Eight4aWish"><meta name="twitter:description" content="Granular textures for the Alchemy Lab, based on Mutable Instruments Beads — freeze and seed."><meta name="twitter:image" content="https://eight4awish.com/opt/alchemy_wish_flat.og.jpg"><link rel="stylesheet" href="/_astro/Base.0OhXl4fk.css"></head><body><header class="site"><div class="wrap"><a class="brand" href="/">Home</a><nav class="site"><a href="/modules/" class="on">Modules</a><a href="/tutorials/">Tutorials</a><a href="/notes/">Notes</a><a href="/about/">About</a></nav></div></header><main class="wrap"><div class="crumb"><a href="/modules/">Modules</a> / Wish</div><h1 style="margin:6px 0 4px">Wish</h1><div class="chips" style="margin-bottom:14px"><span class="chip acc">Alchemy Lab</span><span class="chip">Granular</span><span class="chip">Effect</span></div><p class="sub">Granular textures for the Alchemy Lab, based on Mutable Instruments Beads — freeze and seed.</p><div class="hero-video pending"><img src="/opt/alchemy_wish_flat.med.webp" alt="" loading="lazy" decoding="async"><span class="badge">Video coming soon</span></div><div class="dl" style="margin-top:22px"><a class="btn" href="https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/wish-v1.0.0/wish-v1.0.0.bin">Download firmware v1.0.0</a><a class="btn ghost" href="https://github.com/Eight4aWish/eurorack_daisy_patch_init/tree/main/daisy_beads" target="_blank" rel="noopener">Source on GitHub</a></div><p class="tiny">Sequence it with <a href="/tutorials/strudel/">Strudel</a>.</p><div class="prose"><h2 id="overview">Overview</h2>
+     was showing for /modules/girl. The render is always the module's own. --><meta property="og:type" content="website"><meta property="og:title" content="Wish on Alchemy Lab — Eight4aWish"><meta property="og:description" content="Granular textures for the Alchemy Lab, based on Mutable Instruments Beads — freeze and seed."><meta property="og:image" content="https://eight4awish.com/opt/alchemy_wish_flat.og.jpg"><meta property="og:url" content="https://eight4awish.com/modules/wish/"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Wish on Alchemy Lab — Eight4aWish"><meta name="twitter:description" content="Granular textures for the Alchemy Lab, based on Mutable Instruments Beads — freeze and seed."><meta name="twitter:image" content="https://eight4awish.com/opt/alchemy_wish_flat.og.jpg"><link rel="stylesheet" href="/_astro/Base.0OhXl4fk.css"></head><body><header class="site"><div class="wrap"><a class="brand" href="/">Home</a><nav class="site"><a href="/modules/" class="on">Modules</a><a href="/tutorials/">Tutorials</a><a href="/notes/">Notes</a><a href="/about/">About</a></nav></div></header><main class="wrap"><div class="crumb"><a href="/modules/">Modules</a> / Wish on Alchemy Lab</div><h1 style="margin:6px 0 4px">Wish on Alchemy Lab</h1><div class="chips" style="margin-bottom:14px"><span class="chip acc">Alchemy Lab</span><span class="chip">Granular</span><span class="chip">Effect</span></div><p class="sub">Granular textures for the Alchemy Lab, based on Mutable Instruments Beads — freeze and seed.</p><div class="hero-video pending"><img src="/opt/alchemy_wish_flat.med.webp" alt="" loading="lazy" decoding="async"><span class="badge">Video coming soon</span></div><div class="dl" style="margin-top:22px"><a class="btn" href="https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/wish-v1.0.0/wish-v1.0.0.bin">Download firmware v1.0.0</a><a class="btn ghost" href="https://github.com/Eight4aWish/eurorack_daisy_patch_init/tree/main/daisy_beads" target="_blank" rel="noopener">Source on GitHub</a></div><p class="tiny">Sequence it with <a href="/tutorials/strudel/">Strudel</a>.</p><div class="prose"><h2 id="overview">Overview</h2>
+<p><em>On a Daisy patch.Init()? The same Wish runs on a stock one:
+<a href="/modules/wish-patch-init/">Wish on Daisy patch.Init()</a>.</em></p>
 <p><strong>Wish</strong> is a granular texture synthesiser for the <strong>Hermetic Modular Alchemy Lab</strong>, based on
 Mutable Instruments <strong>Beads</strong> — Émilie Gillet’s successor to Clouds. Mutable
 published the Beads source on 11 October 2026; the DSP here is that code, with one
@@ -165,12 +167,28 @@ once you turn it past its saved value.</p>
 </table>
 <p>B3’s top LED shows the quality in Beads’ own colours; the one beneath it is the input
 level, blinking while the automatic gain is still settling.</p>
+<h2 id="making-a-capture-to-play">Making a capture to play</h2>
+<ol>
+<li>Patch a sound into <strong>J1</strong> and play the phrase you want.</li>
+<li><strong>Tap B1</strong> at the moment you want to keep it. Its LEDs light: the buffer now holds
+the audio just before the tap.</li>
+<li>Play it as a texture: DENSITY clockwise of noon for a cloud, TIME to choose where
+in the capture, SIZE for grain length, PITCH to transpose.</li>
+<li>Or play it from a sequencer: gates into <strong>J4</strong>, pitch into <strong>J3</strong>. Each trigger plays
+one grain at that pitch. DENSITY fully clockwise plays every trigger, noon none, and
+anticlockwise divides them.</li>
+</ol>
+<p>Turn DRY/WET fully clockwise to hear only the capture, and tap B1 again to record a new
+one.</p>
 <h2 id="differences-from-beads">Differences from Beads</h2>
 <ul>
 <li><strong>The input mode is a setting.</strong> Beads hears whether a cable is in its inputs; the
 Alchemy Lab cannot, so Mono, Stereo and Synth are chosen with B3 + B1.</li>
 <li><strong>SEED counts as patched while triggers arrive</strong>, and for a few seconds after. DENSITY
-then divides or thins them as on Beads, and the internal clock comes back once they stop.</li>
+then decides which of them play, as on Beads: fully clockwise every trigger, fewer at
+random towards noon, none at noon, and anticlockwise a clock division, from every
+trigger fully anticlockwise to one in sixteen near noon. The internal clock comes back
+once they stop.</li>
 <li><strong>CV is always added at full depth</strong>, so the randomisers stay randomisers whether a
 jack is patched or not. What is lost is Beads’ patched-and-anticlockwise case, where
 CV sets the amount of randomness.</li>

@@ -1,5 +1,5 @@
 ---
-title: Wish
+title: Wish on Alchemy Lab
 date: 2026-10-12
 summary: >-
   Granular textures for the Alchemy Lab, based on Mutable Instruments Beads —
@@ -45,6 +45,9 @@ flash:
 draft: false
 ---
 ## Overview
+
+*On a Daisy patch.Init()? The same Wish runs on a stock one:
+[Wish on Daisy patch.Init()](/modules/wish-patch-init/).*
 
 **Wish** is a granular texture synthesiser for the **Hermetic Modular Alchemy Lab**, based on
 Mutable Instruments **Beads** — Émilie Gillet's successor to Clouds. Mutable
@@ -109,12 +112,29 @@ once you turn it past its saved value.
 B3's top LED shows the quality in Beads' own colours; the one beneath it is the input
 level, blinking while the automatic gain is still settling.
 
+## Making a capture to play
+
+1. Patch a sound into **J1** and play the phrase you want.
+2. **Tap B1** at the moment you want to keep it. Its LEDs light: the buffer now holds
+   the audio just before the tap.
+3. Play it as a texture: DENSITY clockwise of noon for a cloud, TIME to choose where
+   in the capture, SIZE for grain length, PITCH to transpose.
+4. Or play it from a sequencer: gates into **J4**, pitch into **J3**. Each trigger plays
+   one grain at that pitch. DENSITY fully clockwise plays every trigger, noon none, and
+   anticlockwise divides them.
+
+Turn DRY/WET fully clockwise to hear only the capture, and tap B1 again to record a new
+one.
+
 ## Differences from Beads
 
 - **The input mode is a setting.** Beads hears whether a cable is in its inputs; the
   Alchemy Lab cannot, so Mono, Stereo and Synth are chosen with B3 + B1.
 - **SEED counts as patched while triggers arrive**, and for a few seconds after. DENSITY
-  then divides or thins them as on Beads, and the internal clock comes back once they stop.
+  then decides which of them play, as on Beads: fully clockwise every trigger, fewer at
+  random towards noon, none at noon, and anticlockwise a clock division, from every
+  trigger fully anticlockwise to one in sixteen near noon. The internal clock comes back
+  once they stop.
 - **CV is always added at full depth**, so the randomisers stay randomisers whether a
   jack is patched or not. What is lost is Beads' patched-and-anticlockwise case, where
   CV sets the amount of randomness.

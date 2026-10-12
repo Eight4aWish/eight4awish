@@ -1,6 +1,6 @@
 ---
-title: Wish patch.Init()
-date: 2026-10-12
+title: Wish on Daisy patch.Init()
+date: 2026-10-11
 summary: >-
   Granular textures for a stock Daisy patch.Init(), based on Mutable
   Instruments Beads.
@@ -54,14 +54,17 @@ flash:
     — and it confuses the bootloader. After copying, delete it in Terminal with
     `rm -f /Volumes/DAISY/._*`. Building from source? `make program-dfu` flashes
     over USB during the bootloader's two-second window after a reset.
-draft: true
+draft: false
 ---
 ## Overview
 
-**Wish patch.Init()** is [Wish](/modules/wish/) for a stock Daisy patch.Init(): a
-granular texture synthesiser based on Mutable Instruments **Beads** — Émilie Gillet's
-successor to Clouds. Mutable published the Beads source on 11 October 2026. The DSP
-here is that code, built exactly as Wish builds it for the Alchemy Lab. Same chip, same
+*On a Hermetic Modular Alchemy Lab? Wish started there:
+[Wish on Alchemy Lab](/modules/wish/).*
+
+**Wish** is a granular texture synthesiser for a stock Daisy patch.Init(), based on
+Mutable Instruments **Beads** — Émilie Gillet's successor to Clouds. Mutable published
+the Beads source on 11 October 2026. The DSP here is that code, built exactly as Wish
+builds it for the Alchemy Lab. Same chip, same
 clock: the Patch Submodule is the same STM32H750 at 480 MHz. What changes is the panel:
 four knobs, one button, one toggle and one LED in place of Beads' twelve knobs and four
 buttons.
@@ -180,4 +183,4 @@ patch 3 V and press. A flurry means done. Until then it uses a sensible default.
 
 The DSP is **Mutable Instruments Beads** by Émilie Gillet, MIT-licensed, from
 [pichenettes/eurorack](https://github.com/pichenettes/eurorack). Built on Electrosmith's
-libDaisy. Wish patch.Init() itself is MIT. Thanks to Émilie for opening the code up.
+libDaisy. Wish on Daisy patch.Init() itself is MIT. Thanks to Émilie for opening the code up.

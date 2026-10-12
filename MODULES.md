@@ -43,7 +43,8 @@ tagged release and a downloadable binary.
 | **Secret** | `eurorack_daisy_patch_init` | `daisy_chaos/` | Alchemy Lab | v1.1.0 | original (the Teensy Chaos) | MIT |
 | **Mirth** | `eurorack_daisy_patch_init` | `daisy_neural/` | Daisy Patch Submodule | v1.0.0 | NAM A2-Lite (Keith Shepherd's engine, MIT) | MIT |
 | **Mirth Lite** | `eurorack_daisy_patch_init` | `daisy_neural/` (`make LITE=1`) | Daisy Patch Submodule | v1.0.0 | as Mirth | MIT |
-| **Wish** | `eurorack_daisy_patch_init` | `daisy_beads/` | Alchemy Lab | v1.0.0 | MI Beads | MIT |
+| **Wish on Alchemy Lab** | `eurorack_daisy_patch_init` | `daisy_beads/` | Alchemy Lab | v1.0.0 | MI Beads | MIT |
+| **Wish on Daisy patch.Init()** | `eurorack_daisy_patch_init` | `daisy_beads_patch_init/` | Daisy Patch Submodule | v1.0.0 | MI Beads | MIT |
 
 Notes:
 - **Joy / Joy Lite** are one macro-oscillator generation on shared DSP and calibration,
@@ -93,6 +94,7 @@ Notes:
   default build, with `wish-v1.0.0-NOTICES.txt`); the video is to follow. Like Secret it
   runs on the Alchemy Lab's own panel; the site image is a series-style render
   (`build123d/panels/alchemy_wish.py`).
+- **Wish on Daisy patch.Init()** is Wish on a **stock** patch.init, no OLED (`daisy_beads_patch_init/`): the same Beads DSP, pot laws and load governor as `daisy_beads/`, `BOOT_SRAM` through the Daisy bootloader. Four knobs on three layers with catch (PLAY toggle down: TIME, SIZE, DENSITY, PITCH; TONE toggle up: SHAPE, DRY/WET, FEEDBACK, REVERB; RANDOM while B7 is held), B7 tap FREEZE, B7 held 2 s SETTINGS (quality, input, gate out), Joy's V/OCT calibration; settings at QSPI 0x7E0000, clear of Joy's 0x7F0000. Released 2026-10-12 (page `/modules/wish-patch-init/`, tag `wish_patch_init-v1.0.0`, bin + NOTICES). Bench 2026-10-12: steps 1–5 of its README checklist pass; load and saving not run. Panel and render `build123d/panels/daisy_wish_patch_init.py`. The two pages are titled **Wish on Alchemy Lab** (`/modules/wish/`, the promoted URL, kept) and **Wish on Daisy patch.Init()**; the Alchemy page is dated a day later so it leads the front page.
 
 ## Built, page drafted
 
@@ -105,7 +107,6 @@ release, for the name actually chosen then.
 
 | Module | Repo | Firmware | Platform | Page |
 |---|---|---|---|---|
-| **Wish patch.Init()** | `eurorack_daisy_patch_init` | `daisy_beads_patch_init/` | Daisy Patch Submodule (stock, no OLED) | `wish-patch-init.md`. **Released on GitHub 2026-10-12** as `wish_patch_init-v1.0.0` (bin + NOTICES); the page is drafted, ready to publish. Wish on a stock patch.init: the same Beads DSP, pot laws and load governor as `daisy_beads/`, `BOOT_SRAM`. Four knobs on three layers with catch (PLAY toggle down: TIME, SIZE, DENSITY, PITCH; TONE toggle up: SHAPE, DRY/WET, FEEDBACK, REVERB; RANDOM while B7 is held), B7 tap FREEZE, B7 held 2 s SETTINGS (quality, input, gate out), Joy's V/OCT calibration; settings at QSPI 0x7E0000, clear of Joy's 0x7F0000. Bench 2026-10-12: steps 1–5 pass, load and saving not run. Panel and render `build123d/panels/daisy_wish_patch_init.py`. On publishing, the live `/modules/wish/` is retitled Wish Alchemy; that URL stays. |
 | **Boy** | `eurorack_modules` | `src/teensy_move/` | Teensy 4.1 | `boy.md` |
 | **Chaos** | `eurorack_modules` | `src/teensy_chaos/` | Teensy 4.1 | No page: its draft became `secret.md`. **Frozen 2026-09-30, to be retired** — the Teensy hardware will be repurposed, and **Secret** is its successor. Not the Behringer **Chaos** in the rack, which is a random sampler. |
 | **CortHex** | `eurorack_modules` | `src/nanoesp32_corthex/` | Arduino Nano ESP32 (NORA-W106 / ESP32-S3) | `corthex.md`. CV6 is a 0–5 V gain CV that drives **either** the Behringer Four Play or a Thonk T03, whichever is patched — `main.cpp:1048` and `proxy.py` name different ones and both are valid. |

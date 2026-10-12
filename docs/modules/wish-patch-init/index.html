@@ -1,0 +1,253 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Wish on Daisy patch.Init() — Eight4aWish</title><meta name="description" content="Granular textures for a stock Daisy patch.Init(), based on Mutable Instruments Beads."><link rel="canonical" href="https://eight4awish.com/modules/wish-patch-init/"><!-- so a link pasted into YouTube, Reddit or Discord shows the artwork.
+     Module pages pass their PANEL RENDER, not the photo, and the two are not
+     interchangeable: a photo is of the module in a rack, and where a module runs
+     on someone else's board the photo is of THEIR panel. Girl runs on a Ksoloti
+     Big Genes, so its photo is a Big Genes front panel - which is what Discord
+     was showing for /modules/girl. The render is always the module's own. --><meta property="og:type" content="website"><meta property="og:title" content="Wish on Daisy patch.Init() — Eight4aWish"><meta property="og:description" content="Granular textures for a stock Daisy patch.Init(), based on Mutable Instruments Beads."><meta property="og:image" content="https://eight4awish.com/opt/daisy_wish_patch_init_flat.og.jpg"><meta property="og:url" content="https://eight4awish.com/modules/wish-patch-init/"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Wish on Daisy patch.Init() — Eight4aWish"><meta name="twitter:description" content="Granular textures for a stock Daisy patch.Init(), based on Mutable Instruments Beads."><meta name="twitter:image" content="https://eight4awish.com/opt/daisy_wish_patch_init_flat.og.jpg"><link rel="stylesheet" href="/_astro/Base.0OhXl4fk.css"></head><body><header class="site"><div class="wrap"><a class="brand" href="/">Home</a><nav class="site"><a href="/modules/" class="on">Modules</a><a href="/tutorials/">Tutorials</a><a href="/notes/">Notes</a><a href="/about/">About</a></nav></div></header><main class="wrap"><div class="crumb"><a href="/modules/">Modules</a> / Wish on Daisy patch.Init()</div><h1 style="margin:6px 0 4px">Wish on Daisy patch.Init()</h1><div class="chips" style="margin-bottom:14px"><span class="chip acc">Patch Submodule</span><span class="chip">Granular</span><span class="chip">Effect</span><span class="chip">Daisy patch.Init()</span></div><p class="sub">Granular textures for a stock Daisy patch.Init(), based on Mutable Instruments Beads.</p><div class="hero-video pending"><img src="/opt/daisy_wish_patch_init_flat.med.webp" alt="" loading="lazy" decoding="async"><span class="badge">Video coming soon</span></div><div class="dl" style="margin-top:22px"><a class="btn" href="https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/wish_patch_init-v1.0.0/wish_patch_init-v1.0.0.bin">Download firmware v1.0.0</a><a class="btn ghost" href="https://github.com/Eight4aWish/eurorack_daisy_patch_init/tree/main/daisy_beads_patch_init" target="_blank" rel="noopener">Source on GitHub</a></div><p class="tiny">Sequence it with <a href="/tutorials/strudel/">Strudel</a>.</p><div class="prose"><h2 id="overview">Overview</h2>
+<p><em>On a Hermetic Modular Alchemy Lab? Wish started there:
+<a href="/modules/wish/">Wish on Alchemy Lab</a>.</em></p>
+<p><strong>Wish</strong> is a granular texture synthesiser for a stock Daisy patch.Init(), based on
+Mutable Instruments <strong>Beads</strong> — Émilie Gillet’s successor to Clouds. Mutable published
+the Beads source on 11 October 2026. The DSP here is that code, built exactly as Wish
+builds it for the Alchemy Lab. Same chip, same
+clock: the Patch Submodule is the same STM32H750 at 480 MHz. What changes is the panel:
+four knobs, one button, one toggle and one LED in place of Beads’ twelve knobs and four
+buttons.</p>
+<p>Beads records whatever comes in, and plays it back as grains — short slices, each with
+its own pitch, length and envelope. <strong>FREEZE</strong> stops recording and holds the buffer.
+Grains come from the internal clock, or from triggers on the SEED jack. With no input
+selected, Beads plays grains from its own wavetables instead.</p>
+<p>Named — like everything here — after the nursery rhyme: <em>eight for a wish</em>, the line
+the channel takes its name from. Not affiliated with, or endorsed by, Mutable Instruments
+or Electrosmith.</p>
+<h2 id="controls">Controls</h2>
+<p>Four knobs, three layers. The toggle picks <strong>PLAY</strong> or <strong>TONE</strong>; holding <strong>B7</strong> gives
+<strong>RANDOM</strong>. The four PLAY knobs are the four with jacks.</p>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Knob 1</th>
+<th>Knob 2</th>
+<th>Knob 3</th>
+<th>Knob 4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>PLAY</strong> — toggle down</td>
+<td>TIME</td>
+<td>SIZE</td>
+<td>DENSITY</td>
+<td>PITCH</td>
+</tr>
+<tr>
+<td><strong>TONE</strong> — toggle up</td>
+<td>SHAPE</td>
+<td>DRY/WET</td>
+<td>FEEDBACK</td>
+<td>REVERB</td>
+</tr>
+<tr>
+<td><strong>RANDOM</strong> — B7 held</td>
+<td>TIME random</td>
+<td>SIZE random</td>
+<td>SHAPE random</td>
+<td>PITCH random</td>
+</tr>
+</tbody>
+</table>
+<p>A knob takes a parameter over only once it reaches the parameter’s value, so changing
+layer never makes anything jump.</p>
+<table>
+<thead>
+<tr>
+<th>Knob</th>
+<th>Job</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>TIME</strong></td>
+<td>where in the buffer grains start; plus CV on CV_6</td>
+</tr>
+<tr>
+<td><strong>SIZE</strong></td>
+<td>grain length; plus CV on CV_7</td>
+</tr>
+<tr>
+<td><strong>DENSITY</strong></td>
+<td>noon is no grains; anticlockwise regular, clockwise random; plus CV on CV_8</td>
+</tr>
+<tr>
+<td><strong>PITCH</strong></td>
+<td>grain pitch, snapping through 0, 1, 3, 4, 7, 12 and 24 semitones; plus V/oct on CV_5</td>
+</tr>
+<tr>
+<td><strong>SHAPE</strong></td>
+<td>grain envelope</td>
+</tr>
+<tr>
+<td><strong>DRY/WET</strong></td>
+<td>the mix</td>
+</tr>
+<tr>
+<td><strong>FEEDBACK</strong></td>
+<td>how much of the output goes back into the buffer</td>
+</tr>
+<tr>
+<td><strong>REVERB</strong></td>
+<td>reverb amount</td>
+</tr>
+<tr>
+<td><strong>randomisers</strong></td>
+<td>noon none; clockwise a smooth random walk; anticlockwise a fresh value for every grain</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Button</th>
+<th>Job</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>B7 tap</strong></td>
+<td><strong>FREEZE</strong>, on and off. The LED is lit while frozen</td>
+</tr>
+<tr>
+<td><strong>B7 held</strong></td>
+<td>the RANDOM layer, while held</td>
+</tr>
+<tr>
+<td><strong>B7 held 2 s</strong></td>
+<td>turning nothing: SETTINGS. The LED breathes; tap B7 to leave</td>
+</tr>
+<tr>
+<td><strong>B7 at power-on</strong></td>
+<td>V/oct calibration</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Jack</th>
+<th>Job</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CV_5</strong></td>
+<td>V/oct</td>
+</tr>
+<tr>
+<td><strong>CV_6</strong></td>
+<td>TIME CV</td>
+</tr>
+<tr>
+<td><strong>CV_7</strong></td>
+<td>SIZE CV</td>
+</tr>
+<tr>
+<td><strong>CV_8</strong></td>
+<td>DENSITY CV</td>
+</tr>
+<tr>
+<td><strong>Gate in 1</strong></td>
+<td>SEED: triggers start grains</td>
+</tr>
+<tr>
+<td><strong>Gate in 2</strong></td>
+<td>FREEZE, while high</td>
+</tr>
+<tr>
+<td><strong>Gate out 1</strong></td>
+<td>Beads’ grain gates, when turned on in SETTINGS</td>
+</tr>
+<tr>
+<td><strong>In L / In R</strong></td>
+<td>audio in. In R follows In L when unpatched</td>
+</tr>
+<tr>
+<td><strong>Out L / Out R</strong></td>
+<td>audio out</td>
+</tr>
+</tbody>
+</table>
+<p>The LED is lit while frozen, and flashes on each trigger at gate in 1.</p>
+<h2 id="settings">Settings</h2>
+<p>Hold B7 for two seconds without turning a knob. A knob changes its setting only once it
+is turned, and the LED blinks the new value’s number.</p>
+<table>
+<thead>
+<tr>
+<th>Knob</th>
+<th>Setting</th>
+<th>Anticlockwise to clockwise</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Knob 1</strong></td>
+<td>Quality</td>
+<td>1 digital · 2 vintage digital · 3 clean tape · 4 dirty tape</td>
+</tr>
+<tr>
+<td><strong>Knob 2</strong></td>
+<td>Input</td>
+<td>1 mono (In L, twice the buffer) · 2 stereo · 3 synth (no input: Beads’ wavetables)</td>
+</tr>
+<tr>
+<td><strong>Knob 3</strong></td>
+<td>Gate out</td>
+<td>1 off · 2 on: grain gates on gate out 1, and Beads’ mono mix on both audio outs</td>
+</tr>
+</tbody>
+</table>
+<p>A new quality or input waits while frozen, as on Beads. The settings, the knobs of the
+two layers not under the hand, and the calibration are saved, and come back at power-on.</p>
+<h2 id="making-a-capture-to-play">Making a capture to play</h2>
+<ol>
+<li>Patch a sound into <strong>In L</strong> and play the phrase you want.</li>
+<li><strong>Tap B7</strong> at the moment you want to keep it. The buffer now holds the audio just
+before the tap.</li>
+<li>Play it as a texture: DENSITY clockwise of noon for a cloud, TIME to choose where
+in the capture, SIZE for grain length, PITCH to transpose.</li>
+<li>Or play it from a sequencer: gates into <strong>gate in 1</strong>, pitch into <strong>CV_5</strong>. Each
+trigger plays one grain at that pitch. DENSITY fully clockwise plays every trigger,
+noon none, and anticlockwise divides them.</li>
+</ol>
+<p>Turn DRY/WET fully clockwise to hear only the capture, and tap B7 again to record a new
+one.</p>
+<h2 id="calibration">Calibration</h2>
+<p>Hold B7 through power-on. LED solid: patch 1 V into CV_5 and press B7. LED blinking:
+patch 3 V and press. A flurry means done. Until then it uses a sensible default.</p>
+<h2 id="differences-from-beads">Differences from Beads</h2>
+<ul>
+<li><strong>Twelve knobs become four on three layers</strong>, and four buttons become one.</li>
+<li><strong>There is no SEED button.</strong> The internal clock runs, and DENSITY sets it. Triggers
+on gate in 1 take over, as on Beads, and the internal clock comes back a few seconds
+after they stop.</li>
+<li><strong>The input mode is a setting.</strong> Beads hears whether a cable is in its inputs; the
+patch.Init() cannot.</li>
+<li><strong>CV is always added at full depth</strong>, so the randomisers stay randomisers whether a
+jack is patched or not. What is lost is Beads’ patched-and-anticlockwise case, where
+CV sets the amount of randomness.</li>
+<li><strong>The grain gates have their own jack</strong>, so they no longer take audio R. As on Beads,
+the audio is mono while the gate output is on.</li>
+<li><strong>No SHAPE CV and no ASSIGN jack</strong>, and input gain is automatic only.</li>
+<li><strong>Dirty tape runs at 48 kHz.</strong> Beads slows its codec to 24 kHz for it; the Daisy’s
+codec has no such rate, so it takes Beads’ own 48 kHz path.</li>
+<li><strong>The heaviest settings thin themselves.</strong> Digital stereo with dense grains and random
+pitch asks for more than the chip has, so past that point fewer new grains start, and
+the module stays responsive.</li>
+<li><strong>A frozen buffer is not kept</strong> through a power cycle.</li>
+</ul>
+<h2 id="provenance">Provenance</h2>
+<p>The DSP is <strong>Mutable Instruments Beads</strong> by Émilie Gillet, MIT-licensed, from
+<a href="https://github.com/pichenettes/eurorack">pichenettes/eurorack</a>. Built on Electrosmith’s
+libDaisy. Wish on Daisy patch.Init() itself is MIT. Thanks to Émilie for opening the code up.</p>
+</div><section class="flash"><h2 class="sec">Flash it — no compiler needed</h2><p class="sub">Wish runs from the Daisy's SRAM through the Daisy bootloader: a one-time bootloader install, then the firmware goes on with an SD card. No compiler needed, and no hardware changes — it runs on a stock patch.Init().</p><div class="warn"><b>Read this first —</b> The card must be one FAT32 partition of 2 GB or less, with the rest of the card left unallocated. A full-size FAT32 volume on a big card fails at start-up, and exFAT is not read at all.</div><div class="dl"><a class="btn" href="https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/wish_patch_init-v1.0.0/wish_patch_init-v1.0.0.bin">Download firmware v1.0.0</a><a class="btn ghost" href="https://flash.daisy.audio" target="_blank" rel="noopener">Daisy Web Programmer</a></div><h3 class="flashsub">One time per module — install the bootloader</h3><ol class="flashsteps"><li>Plug the Daisy Patch.Init in with a USB-C data cable.</li><li>Hold BOOT, tap RESET, then release BOOT.</li><li>Open the Daisy Web Programmer and go to its Bootloader section.</li><li>Click Flash. That is the bootloader on — you never have to do this again.</li></ol><h3 class="flashsub">Every time — load the firmware</h3><ol class="flashsteps"><li>Format the card: one FAT32 partition of 2 GB or less. On a Mac, check the disk number with <code>diskutil list external</code> first — this erases it — then <code>diskutil partitionDisk /dev/diskN MBR "MS-DOS FAT32" DAISY 2G "Free Space" REST R</code>.</li><li>Copy the .bin above to the root of the card. It must be the only .bin on the card.</li><li>Insert the card and power-cycle. The bootloader flashes the firmware if it differs from what is installed, and boots. The LED stays dark until you freeze.</li><li>Take the card out. Wish doesn't use it.</li></ol><div class="note">On a Mac, Finder writes a hidden twin of the file — ._wish_patch_init-v1.0.0.bin — and it confuses the bootloader. After copying, delete it in Terminal with <code>rm -f /Volumes/DAISY/._*</code>. Building from source? <code>make program-dfu</code> flashes over USB during the bootloader's two-second window after a reset.</div></section><p class="tiny" style="margin-top:30px">Updated October 2026</p></main><footer class="site"><div class="wrap"><span>© Eight4aWish</span><a href="https://github.com/Eight4aWish">GitHub</a><a href="mailto:info@eight4awish.com">info@eight4awish.com</a><a href="https://buymeacoffee.com/eight4awish">Buy me a coffee</a></div></footer></body></html>
