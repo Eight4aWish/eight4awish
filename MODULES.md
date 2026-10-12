@@ -87,8 +87,7 @@ Notes:
   TIME/SIZE/DENSITY CV. Released 2026-10-12 (page, tag `wish-v1.0.0` on `da4b0a5`, the
   default build, with `wish-v1.0.0-NOTICES.txt`); the video is to follow. Like Secret it
   runs on the Alchemy Lab's own panel; the site image is a series-style render
-  (`build123d/panels/alchemy_wish.py`). David's own unit runs `make NOJ3J6=1` until its
-  replacement board arrives (its J3 sits at +12 V).
+  (`build123d/panels/alchemy_wish.py`).
 
 ## Built, page drafted
 
