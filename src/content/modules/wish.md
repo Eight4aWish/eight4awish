@@ -71,7 +71,7 @@ The six knobs are Beads' six big ones.
 | Knob | Job |
 | --- | --- |
 | **TIME** | where in the buffer grains start; plus CV on J6 |
-| **SIZE** | grain length; plus CV on J7 |
+| **SIZE** | grain length: shortest at about half past ten; clockwise of that grains play forwards and grow to four seconds, anticlockwise they play backwards and grow too; plus CV on J7 |
 | **SHAPE** | grain envelope |
 | **DENSITY** | noon is no grains; anticlockwise regular, clockwise random; plus CV on J8 |
 | **PITCH** | grain pitch, snapping through 0, 1, 3, 4, 7, 12 and 24 semitones; plus V/oct on J3 |

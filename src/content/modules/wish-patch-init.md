@@ -95,7 +95,7 @@ layer never makes anything jump.
 | Knob | Job |
 | --- | --- |
 | **TIME** | where in the buffer grains start; plus CV on CV_6 |
-| **SIZE** | grain length; plus CV on CV_7 |
+| **SIZE** | grain length: shortest at about half past ten; clockwise of that grains play forwards and grow to four seconds, anticlockwise they play backwards and grow too; plus CV on CV_7 |
 | **DENSITY** | noon is no grains; anticlockwise regular, clockwise random; plus CV on CV_8 |
 | **PITCH** | grain pitch, snapping through 0, 1, 3, 4, 7, 12 and 24 semitones; plus V/oct on CV_5 |
 | **SHAPE** | grain envelope |
