@@ -48,7 +48,7 @@ draft: true
 
 **Wish** is Mutable Instruments **Beads** — Émilie Gillet's granular texture synthesiser,
 the successor to Clouds — running on the **Hermetic Modular Alchemy Lab**. Mutable
-published the Beads source on 12 October 2026; the DSP here is that code, with one
+published the Beads source on 11 October 2026; the DSP here is that code, with one
 build flag changed (see dirty tape, below). What is new is everything around it: the panel, the jacks, the buttons and
 the saved settings, rebuilt for a module with six knobs, three buttons and six CV jacks.
 
