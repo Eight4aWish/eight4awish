@@ -42,7 +42,7 @@ flash:
     Building from source? `make program-live` reflashes a running Wish over
     USB with no buttons at all. It needs node and dfu-util 0.11 or later; the
     firmware README has the rest.
-draft: true
+draft: false
 ---
 ## Overview
 

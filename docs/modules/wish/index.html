@@ -1,0 +1,172 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Wish — Eight4aWish</title><meta name="description" content="Granular textures for the Alchemy Lab, based on Mutable Instruments Beads — freeze and seed."><link rel="canonical" href="https://eight4awish.com/modules/wish/"><!-- so a link pasted into YouTube, Reddit or Discord shows the artwork.
+     Module pages pass their PANEL RENDER, not the photo, and the two are not
+     interchangeable: a photo is of the module in a rack, and where a module runs
+     on someone else's board the photo is of THEIR panel. Girl runs on a Ksoloti
+     Big Genes, so its photo is a Big Genes front panel - which is what Discord
+     was showing for /modules/girl. The render is always the module's own. --><meta property="og:type" content="website"><meta property="og:title" content="Wish — Eight4aWish"><meta property="og:description" content="Granular textures for the Alchemy Lab, based on Mutable Instruments Beads — freeze and seed."><meta property="og:image" content="https://eight4awish.com/opt/alchemy_wish_flat.og.jpg"><meta property="og:url" content="https://eight4awish.com/modules/wish/"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Wish — Eight4aWish"><meta name="twitter:description" content="Granular textures for the Alchemy Lab, based on Mutable Instruments Beads — freeze and seed."><meta name="twitter:image" content="https://eight4awish.com/opt/alchemy_wish_flat.og.jpg"><link rel="stylesheet" href="/_astro/Base.0OhXl4fk.css"></head><body><header class="site"><div class="wrap"><a class="brand" href="/">Home</a><nav class="site"><a href="/modules/" class="on">Modules</a><a href="/tutorials/">Tutorials</a><a href="/notes/">Notes</a><a href="/about/">About</a></nav></div></header><main class="wrap"><div class="crumb"><a href="/modules/">Modules</a> / Wish</div><h1 style="margin:6px 0 4px">Wish</h1><div class="chips" style="margin-bottom:14px"><span class="chip acc">Alchemy Lab</span><span class="chip">Granular</span><span class="chip">Effect</span></div><p class="sub">Granular textures for the Alchemy Lab, based on Mutable Instruments Beads — freeze and seed.</p><div class="hero-video pending"><img src="/opt/alchemy_wish_flat.med.webp" alt="" loading="lazy" decoding="async"><span class="badge">Video coming soon</span></div><div class="dl" style="margin-top:22px"><a class="btn" href="https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/wish-v1.0.0/wish-v1.0.0.bin">Download firmware v1.0.0</a><a class="btn ghost" href="https://github.com/Eight4aWish/eurorack_daisy_patch_init/tree/main/daisy_beads" target="_blank" rel="noopener">Source on GitHub</a></div><p class="tiny">Sequence it with <a href="/tutorials/strudel/">Strudel</a>.</p><div class="prose"><h2 id="overview">Overview</h2>
+<p><strong>Wish</strong> is a granular texture synthesiser for the <strong>Hermetic Modular Alchemy Lab</strong>, based on
+Mutable Instruments <strong>Beads</strong> — Émilie Gillet’s successor to Clouds. Mutable
+published the Beads source on 11 October 2026; the DSP here is that code, with one
+build flag changed (see dirty tape, below). What is new is everything around it: the panel, the jacks, the buttons and
+the saved settings, rebuilt for a module with six knobs, three buttons and six CV jacks.</p>
+<p>Beads records whatever comes in, and plays it back as grains — short slices, each with
+its own pitch, length and envelope. <strong>FREEZE</strong> stops recording and holds the buffer.
+<strong>SEED</strong> fires grains: by hand, latched to the internal clock, or from triggers on the
+SEED jack. With nothing patched in, Beads plays grains from its own wavetables instead.</p>
+<p>Named — like everything here — after the nursery rhyme: <em>eight for a wish</em>, the line
+the channel takes its name from. Not affiliated with, or endorsed by, Mutable Instruments
+or Hermetic Modular.</p>
+<h2 id="controls">Controls</h2>
+<p>The six knobs are Beads’ six big ones. Hold <strong>B3</strong> and they become the second layer:
+Beads’ four attenuverters, as randomisers, plus two of its small knobs.</p>
+<table>
+<thead>
+<tr>
+<th>Knob</th>
+<th>Job</th>
+<th>Held B3</th>
+<th>Job</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>TIME</strong></td>
+<td>where in the buffer grains start; plus CV on J6</td>
+<td><strong>TIME random</strong></td>
+<td>how far TIME wanders</td>
+</tr>
+<tr>
+<td><strong>SIZE</strong></td>
+<td>grain length; plus CV on J7</td>
+<td><strong>SIZE random</strong></td>
+<td>how far SIZE wanders</td>
+</tr>
+<tr>
+<td><strong>SHAPE</strong></td>
+<td>grain envelope</td>
+<td><strong>SHAPE random</strong></td>
+<td>how far SHAPE wanders</td>
+</tr>
+<tr>
+<td><strong>DENSITY</strong></td>
+<td>noon is no grains; anticlockwise regular, clockwise random; plus CV on J8</td>
+<td><strong>FEEDBACK</strong></td>
+<td>how much of the output goes back into the buffer</td>
+</tr>
+<tr>
+<td><strong>PITCH</strong></td>
+<td>grain pitch, snapping through 0, 1, 3, 4, 7, 12 and 24 semitones; plus V/oct on J3</td>
+<td><strong>PITCH random</strong></td>
+<td>how far PITCH wanders</td>
+</tr>
+<tr>
+<td><strong>DRY/WET</strong></td>
+<td>the mix</td>
+<td><strong>REVERB</strong></td>
+<td>reverb amount</td>
+</tr>
+</tbody>
+</table>
+<p>A randomiser at noon does nothing. Clockwise it is a smooth random walk; anticlockwise,
+a fresh random value for every grain. The second layer is saved, and picks up a knob
+once you turn it past its saved value.</p>
+<table>
+<thead>
+<tr>
+<th>Button</th>
+<th>Job</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>B1</strong></td>
+<td><strong>FREEZE</strong>, on and off</td>
+</tr>
+<tr>
+<td><strong>B2</strong></td>
+<td><strong>SEED</strong>: press for a grain, hold to keep seeding. Hold 4 s, or hold B2 and press B1, to latch the internal clock — how Wish starts</td>
+</tr>
+<tr>
+<td><strong>B3</strong></td>
+<td>tap for <strong>QUALITY</strong>: Beads’ four recording media, digital, vintage digital, clean tape and dirty tape. Hold for the second layer</td>
+</tr>
+<tr>
+<td><strong>B3 + B1</strong></td>
+<td>input: Mono (J1 only), Stereo, or Synth (no input, Beads’ wavetables)</td>
+</tr>
+<tr>
+<td><strong>B3 + B2</strong></td>
+<td>J10 carries Beads’ grain gates instead of audio R</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>In</th>
+<th>Job</th>
+<th>In / out</th>
+<th>Job</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>J1</strong></td>
+<td>audio in L</td>
+<td><strong>J6</strong></td>
+<td>TIME CV</td>
+</tr>
+<tr>
+<td><strong>J2</strong></td>
+<td>audio in R</td>
+<td><strong>J7</strong></td>
+<td>SIZE CV</td>
+</tr>
+<tr>
+<td><strong>J3</strong></td>
+<td>V/oct</td>
+<td><strong>J8</strong></td>
+<td>DENSITY CV</td>
+</tr>
+<tr>
+<td><strong>J4</strong></td>
+<td>SEED trigger</td>
+<td><strong>J9</strong></td>
+<td>audio out L</td>
+</tr>
+<tr>
+<td><strong>J5</strong></td>
+<td>FREEZE gate</td>
+<td><strong>J10</strong></td>
+<td>audio out R, or grain gates</td>
+</tr>
+</tbody>
+</table>
+<p>B3’s top LED shows the quality in Beads’ own colours; the one beneath it is the input
+level, blinking while the automatic gain is still settling.</p>
+<h2 id="differences-from-beads">Differences from Beads</h2>
+<ul>
+<li><strong>The input mode is a setting.</strong> Beads hears whether a cable is in its inputs; the
+Alchemy Lab cannot, so Mono, Stereo and Synth are chosen with B3 + B1.</li>
+<li><strong>SEED counts as patched while triggers arrive</strong>, and for a few seconds after. DENSITY
+then divides or thins them as on Beads, and the internal clock comes back once they stop.</li>
+<li><strong>CV is always added at full depth</strong>, so the randomisers stay randomisers whether a
+jack is patched or not. What is lost is Beads’ patched-and-anticlockwise case, where
+CV sets the amount of randomness.</li>
+<li><strong>No SHAPE CV and no ASSIGN jack</strong> — there are no jacks left.</li>
+<li><strong>Input gain is automatic only</strong>, through Beads’ own AGC. Hold B3 for 1.5 s and let go
+without turning anything to restart it.</li>
+<li><strong>Dirty tape runs at 48 kHz.</strong> Beads slows its codec to 24 kHz for it; the Daisy’s
+codec has no such rate, so it takes Beads’ own 48 kHz path.</li>
+<li><strong>The heaviest settings thin themselves.</strong> Digital stereo with dense grains and random
+pitch asks more of the Alchemy Lab than it has, so past that point fewer new grains
+start, and the module stays responsive.</li>
+<li><strong>A frozen buffer is not kept</strong> through a power cycle.</li>
+</ul>
+<h2 id="provenance">Provenance</h2>
+<p>The DSP is <strong>Mutable Instruments Beads</strong> by Émilie Gillet, MIT-licensed, from
+<a href="https://github.com/pichenettes/eurorack">pichenettes/eurorack</a>. Built on Hermetic
+Modular’s MIT-licensed Alchemy SDK and Electrosmith’s libDaisy. Wish itself is MIT.
+Thanks to Émilie for opening the code up, and to Luke Pendergrass at Hermetic Modular
+for the Alchemy SDK.</p>
+</div><section class="flash"><h2 class="sec">Flash it — no compiler needed</h2><p class="sub">The Alchemy Lab ships with Hermetic Modular&#39;s own bootloader, so there is nothing to install first and no SD card involved. The firmware goes on over the front-panel USB-C from a web page. No compiler needed.</p><div class="warn"><b>Read this first —</b> Not the Daisy route. There is a Daisy Seed inside, but do not use the Daisy Web Programmer or a .bin on an SD card — the Alchemy Lab has its own bootloader, and its own programmer.</div><div class="dl"><a class="btn" href="https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/wish-v1.0.0/wish-v1.0.0.bin">Download firmware v1.0.0</a><a class="btn ghost" href="https://hermeticmodular.com/program" target="_blank" rel="noopener">Hermetic Modular Web Programmer</a></div><ol class="flashsteps"><li>Download the .bin above.</li><li>Connect the Alchemy Lab&#39;s front-panel USB-C to your computer.</li><li>Power on while holding B3. The rings spin a warm-white comet, then breathe slowly: the module is waiting for firmware.</li><li>Open the Hermetic Modular Web Programmer and load the .bin.</li><li>When it finishes, power-cycle. B2&#39;s LEDs breathe amber — the internal clock is seeding grains.</li></ol><div class="note">Building from source? `make program-live` reflashes a running Wish over USB with no buttons at all. It needs node and dfu-util 0.11 or later; the firmware README has the rest.</div></section><p class="tiny" style="margin-top:30px">Updated October 2026</p></main><footer class="site"><div class="wrap"><span>© Eight4aWish</span><a href="https://github.com/Eight4aWish">GitHub</a><a href="mailto:info@eight4awish.com">info@eight4awish.com</a><a href="https://buymeacoffee.com/eight4awish">Buy me a coffee</a></div></footer></body></html>
