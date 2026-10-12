@@ -127,6 +127,13 @@ level, blinking while the automatic gain is still settling.
 Turn DRY/WET fully clockwise to hear only the capture, and tap B1 again to record a new
 one.
 
+## Delay mode
+
+Turn SIZE fully clockwise and Beads stops making grains and becomes a delay. Clocked
+from SEED — triggers on J4, or B2 tapped in time — it follows that tempo, and DENSITY
+picks the division. SIZE random (hold B3, P2) becomes the delay's filter: anticlockwise
+low-pass, clockwise high-pass, noon none.
+
 ## Differences from Beads
 
 - **The input mode is a setting.** Beads hears whether a cable is in its inputs; the

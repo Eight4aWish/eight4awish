@@ -153,6 +153,13 @@ two layers not under the hand, and the calibration are saved, and come back at p
 Turn DRY/WET fully clockwise to hear only the capture, and tap B7 again to record a new
 one.
 
+## Delay mode
+
+Turn SIZE fully clockwise and Beads stops making grains and becomes a delay. Clocked
+from triggers on gate in 1, it follows their tempo, and DENSITY picks the division. SIZE
+random (hold B7, knob 2) becomes the delay's filter: anticlockwise low-pass, clockwise
+high-pass, noon none.
+
 ## Calibration
 
 Hold B7 through power-on. LED solid: patch 1 V into CV_5 and press B7. LED blinking:
