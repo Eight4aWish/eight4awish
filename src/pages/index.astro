@@ -26,13 +26,6 @@ const notes = live(await getCollection('notes'))
   </div>
 
   <div class="sechead">
-    <h2 class="sec">Tutorials</h2>
-    <a class="seeall" href="/tutorials/">All tutorials →</a>
-  </div>
-  {home.tutorialsBlurb && <p class="sub">{home.tutorialsBlurb}</p>}
-  <Cards tutorials={tutorials.slice(0, 3)} />
-
-  <div class="sechead">
     <h2 class="sec">Latest modules</h2>
     <a class="seeall" href="/modules/">All {allModules.length} modules →</a>
   </div>
@@ -43,6 +36,13 @@ const notes = live(await getCollection('notes'))
       <a class="btn ghost" href="/modules/">See all {allModules.length} modules →</a>
     </div>
   )}
+
+  <div class="sechead">
+    <h2 class="sec">Tutorials</h2>
+    <a class="seeall" href="/tutorials/">All tutorials →</a>
+  </div>
+  {home.tutorialsBlurb && <p class="sub">{home.tutorialsBlurb}</p>}
+  <Cards tutorials={tutorials.slice(0, 3)} />
 
   {notes.length > 0 && (
     <>
