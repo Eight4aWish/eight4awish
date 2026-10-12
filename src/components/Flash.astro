@@ -3,6 +3,8 @@
 // just on the platform — a Daisy BOOT_NONE build fits internal flash and flashes
 // directly, while a BOOT_QSPI build runs from the QSPI chip via the Daisy bootloader
 // and needs that installed once first.
+import { inlineMd } from '../lib/inlineMd'
+
 const { binary, version, binaryLabel, extras = [], flash = {} } = Astro.props
 
 
@@ -17,9 +19,9 @@ const bootSteps = g.bootSteps ?? []
 {binary && (
   <section class="flash">
     <h2 class="sec">Flash it — no compiler needed</h2>
-    {g.intro && <p class="sub">{g.intro}</p>}
+    {g.intro && <p class="sub" set:html={inlineMd(g.intro)} />}
 
-    {g.warn && <div class="warn"><b>Read this first —</b> {g.warn}</div>}
+    {g.warn && <div class="warn"><b>Read this first —</b> <Fragment set:html={inlineMd(g.warn)} /></div>}
 
     <div class="dl">
       <a class="btn" href={binary}>Download {binaryLabel ?? 'firmware'}{version ? ` ${version}` : ''}</a>
@@ -38,15 +40,15 @@ const bootSteps = g.bootSteps ?? []
     {bootSteps.length > 0 && (
       <>
         <h3 class="flashsub">{g.stepsTitle}</h3>
-        <ol class="flashsteps">{bootSteps.map((s) => <li>{s}</li>)}</ol>
+        <ol class="flashsteps">{bootSteps.map((s) => <li set:html={inlineMd(s)} />)}</ol>
         <h3 class="flashsub">Every time — load the firmware</h3>
       </>
     )}
 
-    {steps.length > 0 && <ol class="flashsteps">{steps.map((s) => <li>{s}</li>)}</ol>}
+    {steps.length > 0 && <ol class="flashsteps">{steps.map((s) => <li set:html={inlineMd(s)} />)}</ol>}
 
     {g.command && <pre><code>{g.command}</code></pre>}
 
-    {g.note && <div class="note">{g.note}</div>}
+    {g.note && <div class="note" set:html={inlineMd(g.note)} />}
   </section>
 )}

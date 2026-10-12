@@ -63,17 +63,28 @@ or Hermetic Modular.
 
 ## Controls
 
-The six knobs are Beads' six big ones. Hold **B3** and they become the second layer:
-Beads' four attenuverters, as randomisers, plus two of its small knobs.
+The six knobs are Beads' six big ones.
 
-| Knob | Job | Held B3 | Job |
-| --- | --- | --- | --- |
-| **TIME** | where in the buffer grains start; plus CV on J6 | **TIME random** | how far TIME wanders |
-| **SIZE** | grain length; plus CV on J7 | **SIZE random** | how far SIZE wanders |
-| **SHAPE** | grain envelope | **SHAPE random** | how far SHAPE wanders |
-| **DENSITY** | noon is no grains; anticlockwise regular, clockwise random; plus CV on J8 | **FEEDBACK** | how much of the output goes back into the buffer |
-| **PITCH** | grain pitch, snapping through 0, 1, 3, 4, 7, 12 and 24 semitones; plus V/oct on J3 | **PITCH random** | how far PITCH wanders |
-| **DRY/WET** | the mix | **REVERB** | reverb amount |
+| Knob | Job |
+| --- | --- |
+| **TIME** | where in the buffer grains start; plus CV on J6 |
+| **SIZE** | grain length; plus CV on J7 |
+| **SHAPE** | grain envelope |
+| **DENSITY** | noon is no grains; anticlockwise regular, clockwise random; plus CV on J8 |
+| **PITCH** | grain pitch, snapping through 0, 1, 3, 4, 7, 12 and 24 semitones; plus V/oct on J3 |
+| **DRY/WET** | the mix |
+
+Hold **B3** and the same six knobs become the second layer: Beads' four attenuverters,
+as randomisers, plus two of its small knobs.
+
+| Held B3 | Job |
+| --- | --- |
+| **TIME random** | how far TIME wanders |
+| **SIZE random** | how far SIZE wanders |
+| **SHAPE random** | how far SHAPE wanders |
+| **FEEDBACK** | on the DENSITY knob: how much of the output goes back into the buffer |
+| **PITCH random** | how far PITCH wanders |
+| **REVERB** | on the DRY/WET knob: reverb amount |
 
 A randomiser at noon does nothing. Clockwise it is a smooth random walk; anticlockwise,
 a fresh random value for every grain. The second layer is saved, and picks up a knob

@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content'
 import Base from '../../layouts/Base.astro'
 import Video from '../../components/Video.astro'
+import { inlineMd } from '../../lib/inlineMd'
 
 export async function getStaticPaths() {
   // Drafts are previewable locally but never published.
@@ -15,12 +16,6 @@ const { Content } = await render(tut)
 const d = tut.data
 const anchor = (i) => `song${i + 1}`
 
-// Notes are plain text in the CMS; render a tiny bit of inline markdown (`code`, **bold**).
-// Escape HTML first so the note can't inject tags, then add our own.
-const inlineMd = (s = '') => s
-  .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-  .replace(/`([^`]+)`/g, '<code>$1</code>')
-  .replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>')
 ---
 <Base title={`${d.title} — Eight4aWish`} description={d.summary} image={d.graphic} nav="tutorials">
   <div class="crumb"><a href="/tutorials/">Tutorials</a> / {d.title}</div>
