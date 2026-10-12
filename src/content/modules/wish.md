@@ -120,8 +120,9 @@ level, blinking while the automatic gain is still settling.
 3. Play it as a texture: DENSITY clockwise of noon for a cloud, TIME to choose where
    in the capture, SIZE for grain length, PITCH to transpose.
 4. Or play it from a sequencer: gates into **J4**, pitch into **J3**. Each trigger plays
-   one grain at that pitch. DENSITY fully clockwise plays every trigger, noon none, and
-   anticlockwise divides them.
+   one grain at that pitch. With SEED latched, as Wish starts (B2 breathing amber),
+   DENSITY fully clockwise plays every trigger, noon none, and anticlockwise divides
+   them. A press of B2 unlatches it; hold B2 for 4 s to latch it again.
 
 Turn DRY/WET fully clockwise to hear only the capture, and tap B1 again to record a new
 one.
@@ -130,11 +131,12 @@ one.
 
 - **The input mode is a setting.** Beads hears whether a cable is in its inputs; the
   Alchemy Lab cannot, so Mono, Stereo and Synth are chosen with B3 + B1.
-- **SEED counts as patched while triggers arrive**, and for a few seconds after. DENSITY
-  then decides which of them play, as on Beads: fully clockwise every trigger, fewer at
-  random towards noon, none at noon, and anticlockwise a clock division, from every
-  trigger fully anticlockwise to one in sixteen near noon. The internal clock comes back
-  once they stop.
+- **SEED counts as patched while triggers arrive**, and for a few seconds after. With SEED
+  latched, DENSITY then decides which of them play, as on Beads: fully clockwise every
+  trigger, fewer at random towards noon, none at noon, and anticlockwise a clock
+  division, from every trigger fully anticlockwise to one in sixteen near noon. The
+  internal clock comes back once they stop. Unlatched, each gate opens a stream of grains
+  at the DENSITY rate while it is high, and at noon each trigger plays one grain.
 - **CV is always added at full depth**, so the randomisers stay randomisers whether a
   jack is patched or not. What is lost is Beads' patched-and-anticlockwise case, where
   CV sets the amount of randomness.
