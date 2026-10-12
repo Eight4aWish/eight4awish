@@ -89,9 +89,11 @@ as randomisers, plus two of its small knobs.
 | **PITCH random** | how far PITCH wanders |
 | **REVERB** | on the DRY/WET knob: reverb amount |
 
-A randomiser at noon does nothing. Clockwise it is a smooth random walk; anticlockwise,
-a fresh random value for every grain. The second layer is saved, and picks up a knob
-once you turn it past its saved value.
+A randomiser at noon does nothing. Clockwise, every new grain gets the same degree of
+randomness, set by how far you turn; anticlockwise, the degree is itself random, so some
+grains stay where you set them and others land anywhere. In delay mode they become a
+smooth random wander instead, faster clockwise. The second layer is saved, and picks up
+a knob once you turn it past its saved value.
 
 | Button | Job |
 | --- | --- |

@@ -102,7 +102,7 @@ layer never makes anything jump.
 | **DRY/WET** | the mix |
 | **FEEDBACK** | how much of the output goes back into the buffer |
 | **REVERB** | reverb amount |
-| **randomisers** | noon none; clockwise a smooth random walk; anticlockwise a fresh value for every grain |
+| **randomisers** | noon none; clockwise, every grain gets the same degree of randomness, set by the knob; anticlockwise the degree is itself random, so some grains stay put and others land anywhere. In delay mode, a smooth random wander |
 
 | Button | Job |
 | --- | --- |
