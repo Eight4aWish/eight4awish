@@ -40,7 +40,7 @@ tagged release and a downloadable binary.
 | **Girl** | `eurorack_modules` | `src/ksoloti_elements/` | Ksoloti Big Genes | v1.2.3 | MI Elements | MIT |
 | **Silver** | `tiliqua` | `gateware/src/top/silver/` | Tiliqua (FPGA) | mesh-0.5 | original | CERN-OHL-S-2.0 |
 | **Gold** | `tiliqua` | `gateware/src/top/gold/` | Tiliqua (FPGA) | mesh-0.5 | original | CERN-OHL-S-2.0 |
-| **Secret** | `eurorack_daisy_patch_init` | `daisy_chaos/` | Alchemy Lab | v1.0.0 | original (the Teensy Chaos) | MIT |
+| **Secret** | `eurorack_daisy_patch_init` | `daisy_chaos/` | Alchemy Lab | v1.1.0 | original (the Teensy Chaos) | MIT |
 | **Mirth** | `eurorack_daisy_patch_init` | `daisy_neural/` | Daisy Patch Submodule | v1.0.0 | NAM A2-Lite (Keith Shepherd's engine, MIT) | MIT |
 | **Mirth Lite** | `eurorack_daisy_patch_init` | `daisy_neural/` (`make LITE=1`) | Daisy Patch Submodule | v1.0.0 | as Mirth | MIT |
 | **Wish** | `eurorack_daisy_patch_init` | `daisy_beads/` | Alchemy Lab | v1.0.0 | MI Beads | MIT |
@@ -76,7 +76,12 @@ Notes:
   `common/chaos_core/`; the plan and measurements are in `docs/SECRET.md`. Bench on
   2026-10-02: X/Y draws on Tiliqua's `xbeam` from both the CV and the audio outs. Pitch
   follows V/oct; strict 1 V/oct was judged not to matter, so there is no calibration of
-  our own. TAME brings every model under some form of control.
+  our own. TAME brings every model under some form of control. **v1.1.0, 2026-10-12**
+  (tag `secret-v1.1.0` on `e417203`, with its NOTICES): TAME rebuilt as delayed
+  feedback control (Pyragas), settling each model on one of its own orbits and leaving
+  Lorenz, Chua and Lorenz–Lü–Chen free; B2 unused (it was Auto/Force/Sync); 480 MHz
+  with every step cap re-measured; zero-crossing note starts, and a gate re-seeds only
+  from silence. Played on David's module before release.
 - **Wish** (*eight for a wish*, the line the channel is named from) is **Mutable
   Instruments Beads** on the Alchemy Lab, ported as soon as Mutable published the source
   on 2026-10-11 (`pichenettes/eurorack` `d8f4739`, MIT; committed 23:09 UTC, so it reads
