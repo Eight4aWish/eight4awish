@@ -71,8 +71,9 @@ buttons.
 
 Beads records whatever comes in, and plays it back as grains — short slices, each with
 its own pitch, length and envelope. **FREEZE** stops recording and holds the buffer.
-Grains come from the internal clock, or from triggers on the SEED jack. With no input
-selected, Beads plays grains from its own wavetables instead.
+Grains come from the internal clock, or from triggers on the SEED jack. In Synth mode,
+chosen in SETTINGS, Beads plays grains from its own wavetables instead: FEEDBACK picks
+one of twelve banks, and TIME sweeps through it.
 
 Named — like everything here — after the nursery rhyme: *eight for a wish*, the line
 the channel takes its name from. Not affiliated with, or endorsed by, Mutable Instruments
