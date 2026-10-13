@@ -42,6 +42,7 @@ flash:
     Building from source? `make program-live` reflashes a running Wish over
     USB with no buttons at all. It needs node and dfu-util 0.11 or later; the
     firmware README has the rest.
+video: D-5XmIFGvwI
 draft: false
 ---
 ## Overview
@@ -51,7 +52,7 @@ draft: false
 
 **Wish** is a granular texture synthesiser for the **Hermetic Modular Alchemy Lab**, based on
 Mutable Instruments **Beads** — Émilie Gillet's successor to Clouds. Mutable
-published the Beads source on 11 October 2026; the DSP here is that code, with one
+published the Beads source on 12 October 2026; the DSP here is that code, with one
 build flag changed (see dirty tape, below). What is new is everything around it: the panel, the jacks, the buttons and
 the saved settings, rebuilt for a module with six knobs, three buttons and six CV jacks.
 

@@ -85,8 +85,8 @@ Notes:
   from silence. Played on David's module before release.
 - **Wish** (*eight for a wish*, the line the channel is named from) is **Mutable
   Instruments Beads** on the Alchemy Lab, ported as soon as Mutable published the source
-  on 2026-10-11 (`pichenettes/eurorack` `d8f4739`, MIT; committed 23:09 UTC, so it reads
-  as the 12th in Émilie's +0200 timestamp). Beads' DSP is compiled from the submodule
+  on 2026-10-12 in Émilie's time zone (`pichenettes/eurorack` `d8f4739`, MIT; committed
+  01:09 +0200, which is 23:09 UTC on the 11th). Beads' DSP is compiled from the submodule
   with one flag changed (libDaisy has no 24 kHz setting, so dirty tape takes Beads' 48 kHz path);
   `src/wish.cpp` replaces its drivers and UI. Six knobs plus a B3-held layer (the four
   attenuverters as randomisers, FEEDBACK, REVERB); J3 V/OCT, J4 SEED, J5 FREEZE, J6–J8

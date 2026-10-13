@@ -54,6 +54,7 @@ flash:
     — and it confuses the bootloader. After copying, delete it in Terminal with
     `rm -f /Volumes/DAISY/._*`. Building from source? `make program-dfu` flashes
     over USB during the bootloader's two-second window after a reset.
+video: D-5XmIFGvwI
 draft: false
 ---
 ## Overview
@@ -63,7 +64,7 @@ draft: false
 
 **Wish** is a granular texture synthesiser for a stock Daisy patch.Init(), based on
 Mutable Instruments **Beads** — Émilie Gillet's successor to Clouds. Mutable published
-the Beads source on 11 October 2026. The DSP here is that code, built exactly as Wish
+the Beads source on 12 October 2026. The DSP here is that code, built exactly as Wish
 builds it for the Alchemy Lab. Same chip, same
 clock: the Patch Submodule is the same STM32H750 at 480 MHz. What changes is the panel:
 four knobs, one button, one toggle and one LED in place of Beads' twelve knobs and four
