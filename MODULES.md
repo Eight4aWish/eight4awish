@@ -87,7 +87,7 @@ Notes:
   Instruments Beads** on the Alchemy Lab, ported as soon as Mutable published the source
   on 2026-10-11 (`pichenettes/eurorack` `d8f4739`, MIT; committed 23:09 UTC, so it reads
   as the 12th in Émilie's +0200 timestamp). Beads' DSP is compiled from the submodule
-  with one flag changed (no 24 kHz codec rate, so dirty tape takes the 48 kHz path);
+  with one flag changed (libDaisy has no 24 kHz setting, so dirty tape takes Beads' 48 kHz path);
   `src/wish.cpp` replaces its drivers and UI. Six knobs plus a B3-held layer (the four
   attenuverters as randomisers, FEEDBACK, REVERB); J3 V/OCT, J4 SEED, J5 FREEZE, J6–J8
   TIME/SIZE/DENSITY CV. Released 2026-10-12 (page, tag `wish-v1.0.0` on `da4b0a5`, the

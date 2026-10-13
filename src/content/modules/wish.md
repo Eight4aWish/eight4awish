@@ -154,7 +154,7 @@ low-pass, clockwise high-pass, noon none.
 - **Input gain is automatic only**, through Beads' own AGC. Hold B3 for 1.5 s and let go
   without turning anything to restart it.
 - **Dirty tape runs at 48 kHz.** Beads slows its codec to 24 kHz for it; the Daisy's
-  codec has no such rate, so it takes Beads' own 48 kHz path.
+  audio library has no 24 kHz setting, so it takes the 48 kHz path Beads also has.
 - **The heaviest settings thin themselves.** Digital stereo with dense grains and random
   pitch asks more of the Alchemy Lab than it has, so past that point fewer new grains
   start, and the module stays responsive.
