@@ -15,6 +15,38 @@
 		{
 			"name": "private notes",
 			"path": "../eight4awish_private"
+		},
+		{
+			"name": "firmware: Daisy",
+			"path": "../eurorack_daisy_patch_init"
+		},
+		{
+			"name": "modules (Teensy, ESP32)",
+			"path": "../eurorack_modules"
+		},
+		{
+			"name": "electronics",
+			"path": "../eurorack_electronics"
+		},
+		{
+			"name": "Tiliqua (FPGA)",
+			"path": "../tiliqua"
+		},
+		{
+			"name": "Ogham (fork)",
+			"path": "../ogham"
+		},
+		{
+			"name": "Ksoloti",
+			"path": "../ksoloti"
+		},
+		{
+			"name": "Seeed recorder",
+			"path": "../seeed-recorder"
+		},
+		{
+			"name": "KiCad",
+			"path": "../kicad"
 		}
 	],
 	"settings": {
@@ -25,7 +57,21 @@
 			"**/node_modules/**": true,
 			"**/docs/**": true,
 			"**/.venv/**": true,
-			"**/render/out/**": true
-		}
+			"**/render/out/**": true,
+			"**/build/**": true,
+			"**/.pio/**": true
+		},
+		"C_Cpp.default.includePath": [
+			"${workspaceFolder:firmware: Daisy}/**",
+			"${workspaceFolder:firmware: Daisy}/deps/daisy/libDaisy",
+			"${workspaceFolder:firmware: Daisy}/deps/daisy/libDaisy/src",
+			"${workspaceFolder:firmware: Daisy}/deps/daisy/libDaisy/core",
+			"${workspaceFolder:firmware: Daisy}/deps/daisy/DaisySP",
+			"${workspaceFolder:firmware: Daisy}/deps/daisy/DaisySP/Source",
+			"${workspaceFolder:firmware: Daisy}/deps/mutable/eurorack"
+		],
+		"C_Cpp.default.browse.path": [
+			"${workspaceFolder:firmware: Daisy}"
+		]
 	}
 }
