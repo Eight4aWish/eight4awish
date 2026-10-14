@@ -37,10 +37,6 @@
 			"path": "../ogham"
 		},
 		{
-			"name": "Ksoloti",
-			"path": "../ksoloti"
-		},
-		{
 			"name": "Seeed recorder",
 			"path": "../seeed-recorder"
 		},
@@ -52,6 +48,9 @@
 	"settings": {
 		"files.exclude": {
 			"**/.DS_Store": true
+		},
+		"files.associations": {
+			"ratio": "cpp"
 		},
 		"search.exclude": {
 			"**/node_modules/**": true,
