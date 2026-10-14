@@ -21,7 +21,7 @@
 			"path": "../eurorack_daisy_patch_init"
 		},
 		{
-			"name": "modules (Teensy, ESP32)",
+			"name": "modules",
 			"path": "../eurorack_modules"
 		},
 		{
