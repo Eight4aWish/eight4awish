@@ -240,7 +240,7 @@ panels modelled against the real hardware, so those are the most trustworthy of 
 | **Plaits** | CCTV | 12 ✓ | macro oscillator | Mutable clone on **Plaits 1.2 alt firmware**. The oscillator in the CortHex voice. |
 | **Rings** | CCTV | 14 ✓ | resonator | Mutable clone (Immutable Rings), Thonk DIY kit. Why no Rings engine was written for MultiOsc. |
 | **Peaks** | CCTV | 8 ✓ | envelope / LFO / drum | Mutable clone (Immutable Peaks). Four functions in 8HP: ADSR, LFO, tap-tempo LFO, drum synth. |
-| **Swords** | Behringer | 18 ◆ | dual multimode filter | **Mutable Blades clone.** Two 12 dB state-variable filters, Mode morphs LP→BP→HP, Routing blends single/parallel/series, plus drive and a two-stage wavefolder. Self-oscillates above ~+3 V. The filter in the CortHex voice. |
+| **Swords** | Behringer | 18 ◆ | dual multimode filter | **Mutable Blades clone, analog.** Two 12 dB state-variable filters built from op-amps with V2164 VCAs; no microcontroller (Mutable's published schematic, `blades_v40.sch`). **Cutoff and resonance are both under CV.** Mode morphs LP→BP→HP, Routing blends single/parallel/series, plus drive and a two-stage wavefolder. Self-oscillates above ~+3 V. The filter in the CortHex voice. |
 | **Steps** ×2 | Behringer | 14 ✓ | function generator / sequencer | **Mutable Stages clone.** Six stages each; two units chain to 36 segments, which is presumably why there are two. |
 | **Four Play** | Behringer | 12 ✓ | quad VCA + mixer | Coolaudio V2164A. DC-coupled, cascaded outs so Mix alone makes it a 4-in VC mixer. **See the CV6 note below.** |
 | **Four LFO** | Behringer | 12 ◆ | quad LFO | **Xaoc Batumi clone.** Fader per LFO, assignable waveforms, 500 Hz down to ~28 hours. |
@@ -262,8 +262,8 @@ panels modelled against the real hardware, so those are the most trustworthy of 
 | **T01 VCO** | Thonk | 4 ✓ | oscillator | SQR → T03 VCA A. |
 | **T03 Dual VCA** ×2 | Thonk | 6 ✓ | dual VCA | A left, B right. One is the VCA in the CortHex voice. |
 | **BUF (T06)** | Thonk | 4 ◆ | buffered multiple | Precision multiple: three channels of 1-in / 3-out. |
-| **A-121d** | Doepfer | 8 ◆ | dual multimode filter | Shared Frequency with a Delta spread control; VCF1 has HP, VCF2 has LP, both have BP. Series or parallel. |
-| **A-124** | Doepfer | 8 ✓ | multimode filter (Wasp) | VCF 5, after the EDP Wasp. Note the variants: A-124 SE, and the A-124-2 SE mini at 4HP. |
+| **A-121d** | Doepfer | 8 ◆ | dual multimode filter | Shared Frequency with a Delta spread control; VCF1 has HP, VCF2 has LP, both have BP. Series or parallel. **Cutoffs are under CV four ways:** FCV moves both (~1 V/oct); DCV sets the spread, its depth fixed by an internal trimmer; FCV1 and FCV2 each pass through an attenuator, and FCV2 is normalled from FCV1. **Resonance (Q1, Q2) is knob only.** Out jacks: H1, L2, B2, and the mixer's MxO, which is B1 + B2 unless Mx1 or Mx2 is patched (B1 has no jack of its own). Stops short of self-oscillation from the factory; two internal trimmers allow it. |
+| **A-124** | Doepfer | 8 ✓ | multimode filter (Wasp) | VCF 5, after the EDP Wasp: CD4069 inverters used as op-amps. **Only the cutoff is under CV:** CV 1 (~1 V/oct, no attenuator) and CV 2 (through its attenuator). Res, Lev (input level) and Mix (LP → notch → HP on the LP/HP out) are knob only. Outputs: BP and LP/HP mix. Cannot self-oscillate. Note the variants: A-124 SE, and the A-124-2 SE mini at 4HP. |
 | **A-142-3** | Doepfer | 4 ✓ | AD/AR envelope + VCA | Toggle picks A/D or A/R, a second toggle picks envelope or free-running LFO. Envelope drives a linear VCA. 555 timer + CEM3381. |
 | **A-148** | Doepfer | 4 ✓ | dual sample & hold | S/H or T/H per sub-module by jumper. |
 | **A-138a** | Doepfer | 8 ✓ | 4-channel linear mixer | |
@@ -351,4 +351,6 @@ Purchased, but the platform rather than the instrument.
 
 Sources: manufacturer and retailer pages, checked 2026-09-18. doepfer.de and
 modulargrid.net are blocked by this session's proxy, so Doepfer figures come from
-retailers and are the least certain of the ✓ set.
+retailers and are the least certain of the ✓ set. The A-124 and A-121d rows were later
+checked against doepfer.de, and the A-124 against its manual too (2026-10-17): 8 HP
+each, as listed.
