@@ -190,12 +190,12 @@ over HTTP/WiFi, and the menu bar itself. Identical output from all three.
 
 Worth recording so they don't get re-counted:
 
-- **`daisy_fm4op` / `daisy_interval_osc` / `daisy_scanned` / `daisy_bytebeat`** — these are
+- **`daisy_fm4op` / `daisy_interval_osc` / `daisy_scanned`** — these are
   *engines inside* Daisy MultiOsc, not separate modules. MultiOsc boots a chooser and
   hosts FM4OP, INTVL, SCAN and WAVES (a plain sine/triangle/saw/square VCO) behind one
   universal panel. `daisy_fm4op` and `daisy_interval_osc` also have standalone builds;
-  `daisy_scanned` is engine source only. `daisy_bytebeat` left MultiOsc on 2026-10-24
-  (the Ogham is in the rack) and is unbuilt source.
+  `daisy_scanned` is engine source only. The BYTEBEAT engine (`daisy_bytebeat`, ported
+  from Ogham) left MultiOsc and was deleted on 2026-10-24, since the Ogham is in the rack.
 - **`tiliqua` `beamrace/`, `xbeam/`, `polysyn/`, `macro_osc/`, `sid/`, `sampler/`, etc.** —
   upstream apf.audio gateware (Seb Holzapfel, CERN-OHL-S-2.0), inherited by the fork.
   Only `mesh/`, `silver/` and `gold/` are original work.
@@ -277,7 +277,7 @@ panels modelled against the real hardware, so those are the most trustworthy of 
 | **FX Aid 1U** | Happy Nerding | 24 ◆ | DSP effects | **Intellijel-format 1U tile**, not a 3U module — it lives in a 1U row. Spin FV-1 based: 32 effects in 4 banks of 8, three controls plus analog dry/wet with CV, four storable presets, reflashable. |
 | **Alchemy Lab** | Hermetic Modular | 12 ✓ | open DSP platform | **Electrosmith Daisy inside** (Daisy Seed 2 DFM — STM32H750, 64 MB SDRAM), MIT-licensed SDK, stereo audio in/out, six pots, three buttons, six firmware-controllable CV jacks, USB-C MIDI, microSD, 102 addressable LEDs, no screen. The fallback host for `daisy_neural/` if it outgrows the patch.init's CV. **This unit is V2 hardware** (MCP4728 on J3–J6). The target for **Secret**, the chaos oscillator replacing the Teensy Chaos (`eurorack_daisy_patch_init/daisy_chaos/`). The SDK builds with CMake and pins its own libDaisy. |
 | **Monsoon** | Jakplugg | 12 ✓ | granular / texture | Clouds redesigned to 12HP with bi-colour illuminated faders for the four granular parameters. **Typhoon is Jakplugg's *expanded* Monsoon**, so `ROADMAP.md:49`'s "Typhoon = Clouds" is the same family, not a different module. |
-| **Ogham** | Keeos | 10 ✓ | dual bytebeat oscillator | Two formulas from a pool of 100, CV over the A and B parameters plus sync and timing. **You own the module whose code became your BYTEBEAT engine** — `daisy_bytebeat` is ported from keeos-io/ogham (MIT), and the 100-formula bank is the same one. **Built 2026-09-18** from Steve's PCB and panel, panel hardware from stock and AliExpress. Runs **patched, non-stock firmware** — v1.18 plus an encoder fix for the substitute EC11, on branch `encoder-credit-partial-detent` at [`Eight4aWish/ogham`](https://github.com/Eight4aWish/ogham). **Do not reflash from keeos.io**: the web flasher would silently revert it. |
+| **Ogham** | Keeos | 10 ✓ | dual bytebeat oscillator | Two formulas from a pool of 100, CV over the A and B parameters plus sync and timing. **You own the module whose code became your BYTEBEAT engine**, `daisy_bytebeat`, ported from keeos-io/ogham (MIT) with the same 100-formula bank. Because of that, the engine was taken out of MultiOsc and deleted on 2026-10-24; it is in `eurorack_daisy_patch_init`'s git history. **Built 2026-09-18** from Steve's PCB and panel, panel hardware from stock and AliExpress. Runs **patched, non-stock firmware** — v1.18 plus an encoder fix for the substitute EC11, on branch `encoder-credit-partial-detent` at [`Eight4aWish/ogham`](https://github.com/Eight4aWish/ogham). **Do not reflash from keeos.io**: the web flasher would silently revert it. |
 | **EuroPi** | Allen Synthesis | 8 ✓ | clock / CV (programmable) | **Built with a Pico 2 W** (RP2350 + wifi). Reprogrammable in MicroPython; config lives at `/config/EuroPiConfig.json` on the Pico. Runs a Pamela's-style firmware; the repos call it "Pam's clone". One of four clock sources — a swung clock from it gives a swung Sorrow pattern. |
 | **ES-10** | Expert Sleepers | 12 ✓ | audio interface | 8-channel DC-coupled ADAT. End of the chain; every audio out terminates here. |
 | **ADSR** | N8Synth | 4 ✓ | envelope | Single column: IN, A, D, S, R, OUT. |
