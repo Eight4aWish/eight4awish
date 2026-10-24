@@ -192,9 +192,10 @@ Worth recording so they don't get re-counted:
 
 - **`daisy_fm4op` / `daisy_interval_osc` / `daisy_scanned` / `daisy_bytebeat`** — these are
   *engines inside* Daisy MultiOsc, not separate modules. MultiOsc boots a chooser and
-  hosts FM4OP, INTVL, SCAN, BYTEBEAT and a SINE test voice behind one universal panel.
-  `daisy_fm4op` and `daisy_interval_osc` also have standalone builds; `daisy_scanned` and
-  `daisy_bytebeat` are engine source only.
+  hosts FM4OP, INTVL, SCAN and WAVES (a plain sine/triangle/saw/square VCO) behind one
+  universal panel. `daisy_fm4op` and `daisy_interval_osc` also have standalone builds;
+  `daisy_scanned` is engine source only. `daisy_bytebeat` left MultiOsc on 2026-10-24
+  (the Ogham is in the rack) and is unbuilt source.
 - **`tiliqua` `beamrace/`, `xbeam/`, `polysyn/`, `macro_osc/`, `sid/`, `sampler/`, etc.** —
   upstream apf.audio gateware (Seb Holzapfel, CERN-OHL-S-2.0), inherited by the fork.
   Only `mesh/`, `silver/` and `gold/` are original work.
