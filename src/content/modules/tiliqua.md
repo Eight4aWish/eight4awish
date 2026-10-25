@@ -33,9 +33,9 @@ flash:
     chosen from the front panel — no compiler needed if you take a release
     archive.
   warn: >-
-    Two video modes are built. Take `720x720p60r2` for a round Waveshare or
-    Tiliqua screen and `1280x720p60` for a capture card or monitor that favours
-    this screen resolution.
+    Two video modes are built. Take `720x720p60r2` for the round Tiliqua
+    Screen and `1280x720p60` for a capture card or monitor that favours this
+    screen resolution.
   bootSteps: []
   steps:
     - Take the archive for the instrument you want and the screen you have.
