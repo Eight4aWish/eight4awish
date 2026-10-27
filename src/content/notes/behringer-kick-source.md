@@ -12,7 +12,7 @@ chips:
   - Behringer KICK
   - Source code
 repo: https://github.com/Eight4aWish/0700-AAM
-video: VrAJ9hLs5Go
+video: mxko71HaekE
 ask: >-
   Uli, your new open-source organisation says Music Tribe makes the hardware
   and the community builds on it, and you have talked about people using AI to
