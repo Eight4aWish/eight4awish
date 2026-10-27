@@ -10,9 +10,10 @@ const allModules = live(await getCollection('modules'))
 const tutorials = live(await getCollection('tutorials'))
   .sort((a, b) => a.data.order - b.data.order)
 const latest = allModules.slice(0, home.latestCount)
-// Notes get a strip rather than cards. They are short form and there are few of
-// them; a row of 220px thumbnails would give them more of the page than the
-// modules, which are the point of the site.
+// Notes get a strip rather than cards: they are short form, and a row of 220px
+// thumbnails would crowd the modules. The strip sits at the top of the page, so the
+// newest note is the first thing a visitor sees (David, 2026-10-27; notesCount in
+// home.json sets how many).
 const notes = live(await getCollection('notes'))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, home.notesCount ?? 3)
@@ -24,25 +25,6 @@ const notes = live(await getCollection('notes'))
     <p>{home.intro}</p>
     {home.tagline && <p class="tagline">{home.tagline}</p>}
   </div>
-
-  <div class="sechead">
-    <h2 class="sec">Latest modules</h2>
-    <a class="seeall" href="/modules/">All {allModules.length} modules →</a>
-  </div>
-  <Cards modules={latest} />
-
-  {allModules.length > latest.length && (
-    <div class="morerow">
-      <a class="btn ghost" href="/modules/">See all {allModules.length} modules →</a>
-    </div>
-  )}
-
-  <div class="sechead">
-    <h2 class="sec">Tutorials</h2>
-    <a class="seeall" href="/tutorials/">All tutorials →</a>
-  </div>
-  {home.tutorialsBlurb && <p class="sub">{home.tutorialsBlurb}</p>}
-  <Cards tutorials={tutorials.slice(0, 3)} />
 
   {notes.length > 0 && (
     <>
@@ -63,5 +45,24 @@ const notes = live(await getCollection('notes'))
       </ul>
     </>
   )}
+
+  <div class="sechead">
+    <h2 class="sec">Latest modules</h2>
+    <a class="seeall" href="/modules/">All {allModules.length} modules →</a>
+  </div>
+  <Cards modules={latest} />
+
+  {allModules.length > latest.length && (
+    <div class="morerow">
+      <a class="btn ghost" href="/modules/">See all {allModules.length} modules →</a>
+    </div>
+  )}
+
+  <div class="sechead">
+    <h2 class="sec">Tutorials</h2>
+    <a class="seeall" href="/tutorials/">All tutorials →</a>
+  </div>
+  {home.tutorialsBlurb && <p class="sub">{home.tutorialsBlurb}</p>}
+  <Cards tutorials={tutorials.slice(0, 3)} />
 
 </Base>
