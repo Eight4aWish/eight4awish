@@ -96,7 +96,7 @@ It took about 820 lines:
 - **juce_serialport**: a small POSIX serial port, which is also what the panel link on the real KICK needs.
 - A handful of one-line fixes where macOS is stricter than Linux about includes.
 
-None of this is Music Tribe's original code, and it is not finished. I have not heard a note out of it yet, the panel simulator still predates the current protocol, and nothing has been built for the KICK itself. The build, with notes on every stand-in, is the `macos-build` branch of [my fork](https://github.com/Eight4aWish/0700-AAM).
+None of this is Music Tribe's original code, and it is not finished. I have not heard a note out of it yet, the panel simulator still predates the current protocol, and nothing has been built for the KICK itself. The build, with notes on every stand-in, is the `macos-build` branch of [my fork](https://github.com/Eight4aWish/0700-AAM). Since then, another developer, HeyMoustache, has [confirmed on GitHub](https://github.com/MusicTribeOpenSource/0700-AAM/issues/9#issuecomment-6445051910) that the same branch builds and runs on Linux, with no changes.
 
 ## For hardware hackers
 
