@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content'
 import Base from '../../layouts/Base.astro'
+import Video from '../../components/Video.astro'
 
 export async function getStaticPaths() {
   // Drafts are previewable locally but never published.
@@ -26,6 +27,10 @@ const when = d.date.toLocaleDateString('en-GB', { year: 'numeric', month: 'long'
       {d.chips.map((c, i) => <span class={i === 0 ? 'chip acc' : 'chip'}>{c}</span>)}
     </div>
   )}
+
+  {/* A note that has a video leads with it, as module and tutorial pages do. Without one,
+      there is no placeholder: most notes are text and never get a video. */}
+  {d.video && <Video id={d.video} title={d.title} poster={d.graphic} />}
 
   {/* The ask leads — this is a call for testers, so it goes above the story rather
       than after it. */}

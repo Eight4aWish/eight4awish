@@ -12,6 +12,7 @@ chips:
   - Behringer KICK
   - Source code
 repo: https://github.com/Eight4aWish/0700-AAM
+video: VrAJ9hLs5Go
 ask: >-
   Uli, your new open-source organisation says Music Tribe makes the hardware
   and the community builds on it, and you have talked about people using AI to
@@ -24,8 +25,6 @@ ask: >-
   or what "az01" was, email info@eight4awish.com.
 draft: false
 ---
-<!-- Add the video link here once it is up. -->
-
 ## A groovebox I could reprogram
 
 On 14 October Behringer put the source code for the KICK (BE 0700-AAM) on GitHub: the JUCE application, the audio engine, the protocol for the front panel and a complete Buildroot Linux image. The KICK is not on sale yet, and it is laid out like an Akai MPC One.

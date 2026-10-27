@@ -106,6 +106,7 @@ const notes = defineCollection({
     })).default([]),
     // The point of most notes: someone else can do the bit we cannot.
     ask: z.string().optional(),                  // the call to action, in one paragraph
+    video: z.string().optional(),                // YouTube id; a note with a video leads with it
     draft: z.boolean().default(false),
   }),
 })
