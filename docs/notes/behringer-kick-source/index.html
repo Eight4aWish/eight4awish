@@ -1,0 +1,116 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Behringer&#39;s KICK on a Mac, and what its source code reveals — Eight4aWish</title><meta name="description" content="Behringer published the KICK's source before it is on sale. It did not build, so I filled the gaps, and their app now runs on my Mac. The code also shows eight CV outputs, and no code for the AI camera."><link rel="canonical" href="https://eight4awish.com/notes/behringer-kick-source/"><!-- so a link pasted into YouTube, Reddit or Discord shows the artwork.
+     Module pages pass their PANEL RENDER, not the photo, and the two are not
+     interchangeable: a photo is of the module in a rack, and where a module runs
+     on someone else's board the photo is of THEIR panel. Girl runs on a Ksoloti
+     Big Genes, so its photo is a Big Genes front panel - which is what Discord
+     was showing for /modules/girl. The render is always the module's own. --><meta property="og:type" content="website"><meta property="og:title" content="Behringer's KICK on a Mac, and what its source code reveals — Eight4aWish"><meta property="og:description" content="Behringer published the KICK's source before it is on sale. It did not build, so I filled the gaps, and their app now runs on my Mac. The code also shows eight CV outputs, and no code for the AI camera."><meta property="og:image" content="https://eight4awish.com/opt/kick_app_on_mac.og.jpg"><meta property="og:url" content="https://eight4awish.com/notes/behringer-kick-source/"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Behringer's KICK on a Mac, and what its source code reveals — Eight4aWish"><meta name="twitter:description" content="Behringer published the KICK's source before it is on sale. It did not build, so I filled the gaps, and their app now runs on my Mac. The code also shows eight CV outputs, and no code for the AI camera."><meta name="twitter:image" content="https://eight4awish.com/opt/kick_app_on_mac.og.jpg"><link rel="stylesheet" href="/_astro/Base.CwYbVU1P.css"></head><body><header class="site"><div class="wrap"><a class="brand" href="/">Home</a><nav class="site"><a href="/modules/">Modules</a><a href="/tutorials/">Tutorials</a><a href="/notes/" class="on">Notes</a><a href="/about/">About</a></nav></div></header><main class="wrap"><div class="crumb"><a href="/notes/">Notes</a> / Behringer&#39;s KICK on a Mac, and what its source code reveals</div><p class="eyebrow" style="margin-top:14px">Teardown · 27 October 2026</p><h1 style="margin:0 0 6px">Behringer&#39;s KICK on a Mac, and what its source code reveals</h1><p class="sub">Behringer published the KICK&#39;s source before it is on sale. It did not build, so I filled the gaps, and their app now runs on my Mac. The code also shows eight CV outputs, and no code for the AI camera.</p><div class="chips" style="margin:14px 0 0"><span class="chip acc">Teardown</span><span class="chip">Behringer KICK</span><span class="chip">Source code</span></div><section class="note"><h2 class="sec">Can you help?</h2><p style="margin:0">Uli, your new open-source organisation says Music Tribe makes the hardware and the community builds on it, and you have talked about people using AI to write that firmware. That is what this channel does, and your app already runs on my Mac. Send me a KICK and I will take it the rest of the way, in public: put this build on the real hardware, test all eight CV outputs into my rack, look for the camera, and port my own modules onto it, open source like yours. Everyone else: if you know which panel microcontroller or CV converter this is, which Variscite module is inside, or what &quot;az01&quot; was, email info@eight4awish.com.</p></section><div class="prose"><!-- Add the video link here once it is up. -->
+<h2 id="a-groovebox-i-could-reprogram">A groovebox I could reprogram</h2>
+<p>On 14 October Behringer put the source code for the KICK (BE 0700-AAM) on GitHub: the JUCE application, the audio engine, the protocol for the front panel and a complete Buildroot Linux image. The KICK is not on sale yet, and it is laid out like an Akai MPC One.</p>
+<p>I have owned MPCs and Maschine hardware, and I never got on with either. A groovebox whose code I can change is a different proposition, so I wanted to know what is inside it and whether my own modules could run on it. As released, the code does not build, so I filled in the missing pieces, and Behringer’s own KICK app now runs on my Mac.</p>
+<p>I did not read 15,002 files myself. Claude cloned the repository and searched every file and all 14 commits, and I checked each finding against the file and line it came from. Most of the files are the stock Buildroot tree; about 3,200 are the app, the audio engine and the protocol. Six of Behringer’s own release commits list Claude as a co-author, so this was one AI checking another’s work.</p>
+<h2 id="no-ai-camera-in-the-code">No AI camera in the code</h2>
+<p>The headline feature is “AI camera for gesture control”. There is no code for it.</p>
+<ul>
+<li>The app, the audio engine and the protocol never mention a camera or gesture, in any commit. The only hits for camera, gesture, V4L2, OpenCV or TensorFlow are in bundled third-party libraries.</li>
+<li>The panel protocol has message types for system, buttons, LEDs, pads, knobs, MIDI, CV and a slider. None is for a camera.</li>
+<li>The Linux image has no camera software: no GStreamer, no OpenCV.</li>
+<li>The OV5640 and USB webcam drivers in the kernel configuration are line for line the same as Variscite’s own configuration at the same commit. The one camera in the device tree is Variscite’s evaluation-board camera, which Behringer’s changes leave untouched.</li>
+<li>The i.MX 8M Mini has no neural accelerator; the i.MX 8M Plus does. Hand tracking would need its own AI chip in the camera module, or would have to run on the Arm cores.</li>
+</ul>
+<p>So either this code predates the camera, or the camera’s code is not published yet.</p>
+<h2 id="the-hardware-the-code-describes">The hardware the code describes</h2>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>What the code shows</th>
+<th>Where</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Main computer</td>
+<td>NXP i.MX 8M Mini, Cortex-A53 at up to 1.8 GHz, on a Variscite module. The code does not say how many cores; the chip comes with one, two or four. The first README said DART-MX8M-MINI; the build uses Variscite’s device tree for the VAR-SOM-MX8M-MINI on their Symphony evaluation board</td>
+<td><code>Linux/buildroot/configs/KTKick_defconfig</code></td>
+</tr>
+<tr>
+<td>Audio</td>
+<td>Coolaudio V4220M, a 24-bit stereo codec, two in and two out, at 48 kHz. Linux has no driver for it, so the patch borrows the Bluetooth dummy codec, gives it a Wolfson WM8804’s sample rates and comments out three error exits in the sound core</td>
+<td><code>patches/linux/001.imx8mm_dtsi.patch</code>, <code>002.fsl_sai_codec.patch</code></td>
+</tr>
+<tr>
+<td>Panel</td>
+<td>A separate microcontroller on a serial line at 230,400 baud, reflashed by Linux from <code>Kick_MCU.hex</code>. A reset command named <code>EN_SYS_RESET_GD</code> hints at a GigaDevice GD32, which is a guess</td>
+<td><code>Kick/modules/input_events/input_events.cpp</code>, <code>ComProtocol/PktMgr/PktMgr.hpp</code></td>
+</tr>
+<tr>
+<td>CV and gate</td>
+<td>An eight-channel, 12-bit converter on I²C at 0x0C, 0 to 5 V, calibrated at every volt, with a 61-note table: five octaves of 1 V/oct. Its command bytes match Analog Devices’ AD5671R, an inference rather than a part number. Four stereo jacks labelled 1/5 to 4/8 carry two outputs each, and any output can be pitch, gate, mod wheel or velocity. I found no CV inputs</td>
+<td><code>Kick/modules/hardware/source/kick_I2c.cpp</code>, <code>kick_I2c.h</code></td>
+</tr>
+<tr>
+<td>Screen</td>
+<td>1024 × 600 LVDS. The Goodix GT911 touch controller is still set to 800 × 480</td>
+<td><code>001.imx8mm_dtsi.patch</code></td>
+</tr>
+<tr>
+<td>Controls</td>
+<td>16 pads with aftertouch in banks A to H, Q-Link knobs, an encoder and a touch strip with three LED modes. The button names (Full Level, 16 Levels, Note Repeat, Prog Edit, Track Mute, Pad Mute, Next Seq, Erase, Overdub, TC) are the MPC One’s</td>
+<td><code>Kick/modules/contracts/dcl/dcl_contracts.h</code></td>
+</tr>
+<tr>
+<td>Not on the feature list</td>
+<td>Broadcom Wi-Fi and Bluetooth firmware and a Wi-Fi settings page; updates from SD, a USB stick, a computer or over the air</td>
+<td><code>kick_WifiFirmware.cpp</code>, <code>kick_Hwcommon.h</code></td>
+</tr>
+</tbody>
+</table>
+<p>The audio engine’s “over 300 effects” are Chris Johnson’s open-source Airwindows collection: 329 of them. My favourite comment in the repository is on the screen timing: “tried 1366 &amp; 1000 as well.. 1024 works..”.</p>
+<h2 id="what-the-commit-history-shows">What the commit history shows</h2>
+<ul>
+<li>The first README called the KICK “an MPC-style groove box / sampler that was not finished” and said development had stopped. A commit 39 minutes later removed every status line.</li>
+<li>The AI camera first appears the next day, with the product photos. Three minutes later a commit titled “Remove processor and module details from READMEs” took out the chip line. The build files still name it.</li>
+<li>The last commit renamed everything called “az01”, an earlier codename, to kick-storage. The partition IDs it replaced are version-1 UUIDs, which carry a timestamp, and they decode to 26 May 2021 at 06:34 UTC.</li>
+<li>Every app is version 0.3.3, Behringer’s copyright headers run from 2021 to 2024, and a second build configuration is called “7th_July”.</li>
+</ul>
+<p>It reads as a project that was shelved and has been brought back for launch, in public, where anyone can watch it happen.</p>
+<h2 id="could-my-modules-run-on-it">Could my modules run on it?</h2>
+<p>I have built modules on five platforms: the Daisy, the Teensy 4.1, the Ksoloti, the Pico 2 W and the Tiliqua. The four microcontrollers run at 150 to 600 MHz with no operating system, between 520 KB and 64 MB of memory, and audio from 32 to 96 kHz; the Tiliqua is an FPGA. The sound code is not tied to any of those chips. Beads, the MultiOsc engines and Mirth’s neural networks already build and run on my Mac, which is how the animations for my videos are made. The KICK is a Linux computer at up to 1.8 GHz, with stereo audio at 48 kHz.</p>
+<p>What would change is everything around the sound: audio through ALSA or JACK (both are in the image), the controls through the panel protocol, and CV out through the converter, whose byte format is in <code>kick_I2c.cpp</code>. None of it needs Behringer’s app. What I would try first:</p>
+<ul>
+<li><a href="/modules/wish/"><strong>Wish</strong></a>, Beads on the KICK’s sampler and stereo input.</li>
+<li><a href="/modules/mirth/"><strong>Mirth</strong></a>’s neural captures as an effect, with more room for bigger networks than the Daisy has.</li>
+<li><a href="/modules/sorrow/"><strong>Sorrow</strong></a>’s Grids patterns out of the CV jacks into the drum modules in my rack.</li>
+<li><a href="/modules/joy/"><strong>Joy</strong></a> and the MultiOsc engines as voices on the pads.</li>
+</ul>
+<p>Two things will not cross: <a href="/modules/tiliqua/"><strong>Silver and Gold</strong></a>, which are FPGA gateware rather than code for a processor, and anything that needs CV in.</p>
+<h2 id="it-builds-and-it-runs">It builds, and it runs</h2>
+<p>As published, the repository does not build. Two modules the app includes were never released, nor was the CMake file that registers them with the build, and the serial-port library for the panel was removed because it had no licence. With the two modules stubbed out, <a href="https://github.com/MusicTribeOpenSource/0700-AAM/issues/9">issue #9</a> counted about 4,500 errors.</p>
+<p>So Claude and I wrote a stand-in for each piece, working from how the rest of the code uses it, and Behringer’s own KICK app now builds on a Mac and opens its Projects screen at the KICK’s 1024 × 600:</p>
+<p><img src="/renders/kick_app_on_mac.png" alt="The KICK app’s Projects screen, running on a Mac"></p>
+<p>It took about 820 lines:</p>
+<ul>
+<li><strong>AudIO_constants</strong>: the ranges for MIDI, channels, polyphony, gain, pan and the meter floor, and the audio engine’s sample rate and bus counts. Most of the values can be read straight off the code: <code>MIDI::SCALER</code> maps 0–127 onto 0–1, so it is 1/127, and <code>MIDI::NUMERIC_MAX</code> sizes the pad-colour arrays, so it is 128. The few that are guesses are marked as guesses.</li>
+<li><strong>AudIO_juce</strong>, the glue between the audio engine and JUCE. The recorder and looper the app expects fit neatly over a recorder that AudIO already publishes but leaves switched off. The audio device drives AudIO’s engine from JUCE. The drum voice’s filter is a state-variable filter covering all 27 types in its menu.</li>
+<li><strong>juce_serialport</strong>: a small POSIX serial port, which is also what the panel link on the real KICK needs.</li>
+<li>A handful of one-line fixes where macOS is stricter than Linux about includes.</li>
+</ul>
+<p>None of this is Music Tribe’s original code, and it is not finished. I have not heard a note out of it yet, the panel simulator still predates the current protocol, and nothing has been built for the KICK itself. The build, with notes on every stand-in, is the <code>macos-build</code> branch of <a href="https://github.com/Eight4aWish/0700-AAM">my fork</a>.</p>
+<h2 id="for-hardware-hackers">For hardware hackers</h2>
+<p>The device tree says what Linux is told exists, not what the board brings out to a header, but it is suggestive:</p>
+<ul>
+<li>The CV converter sits alone on the chip’s fourth I²C bus, at 400 kHz. The app writes to it directly from user space, so the device tree declares nothing on that bus.</li>
+<li>A spare SPI device node is left in from Variscite’s defaults.</li>
+<li>The Linux login console is on the fourth serial port, and on this development build root has no password. The first serial port runs the panel and the third runs MIDI.</li>
+</ul>
+<h2 id="what-the-code-cannot-tell-me">What the code cannot tell me</h2>
+<ul>
+<li>Where the camera code is.</li>
+<li>Which Variscite module is inside: the DART the README named, or the VAR-SOM the build is set up for.</li>
+<li>Which microcontroller runs the panel, and which converter drives the CV.</li>
+<li>What az01 was.</li>
+<li>Whether this is the shipping firmware. Version 0.3.3, the commented-out error checks and a root account with no password all say prototype.</li>
+<li>The price and ship date, neither of which has been announced.</li>
+</ul>
+<p>Everything here is from the public source and history as of 27 October 2026, and the hardware that ships may differ.</p>
+</div><p style="margin-top:22px"><a href="https://github.com/Eight4aWish/0700-AAM">Source and tooling on GitHub →</a></p></main><footer class="site"><div class="wrap"><span>© Eight4aWish</span><a href="https://github.com/Eight4aWish">GitHub</a><a href="mailto:info@eight4awish.com">info@eight4awish.com</a><a href="https://buymeacoffee.com/eight4awish">Buy me a coffee</a></div></footer></body></html>
