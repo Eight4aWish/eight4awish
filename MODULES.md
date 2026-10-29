@@ -41,8 +41,8 @@ tagged release and a downloadable binary.
 | **Silver** | `tiliqua` | `gateware/src/top/silver/` | Tiliqua (FPGA) | mesh-0.5 | original | CERN-OHL-S-2.0 |
 | **Gold** | `tiliqua` | `gateware/src/top/gold/` | Tiliqua (FPGA) | mesh-0.5 | original | CERN-OHL-S-2.0 |
 | **Secret** | `eurorack_daisy_patch_init` | `daisy_chaos/` | Alchemy Lab | v1.1.0 | original (the Teensy Chaos) | MIT |
-| **Mirth** | `eurorack_daisy_patch_init` | `daisy_neural/` | Daisy Patch Submodule | v1.0.0 | NAM A2-Lite (Keith Shepherd's engine, MIT) | MIT |
-| **Mirth Lite** | `eurorack_daisy_patch_init` | `daisy_neural/` (`make LITE=1`) | Daisy Patch Submodule | v1.0.0 | as Mirth | MIT |
+| **Mirth** | `eurorack_daisy_patch_init` | `daisy_neural/` | Daisy Patch Submodule | v1.1.0 | NAM A2-Lite (Keith Shepherd's engine, MIT) | MIT |
+| **Mirth Lite** | `eurorack_daisy_patch_init` | `daisy_neural/` (`make LITE=1`) | Daisy Patch Submodule | v1.1.0 | as Mirth | MIT |
 | **Wish on Alchemy Lab** | `eurorack_daisy_patch_init` | `daisy_beads/` | Alchemy Lab | v1.0.0 | MI Beads | MIT |
 | **Wish on Daisy patch.Init()** | `eurorack_daisy_patch_init` | `daisy_beads_patch_init/` | Daisy Patch Submodule | v1.0.0 | MI Beads | MIT |
 
@@ -61,12 +61,16 @@ Notes:
 - **Sorrow is GPL-3.0-or-later** (Grids is copyleft, unlike most MI sources) and runs
   `BOOT_SRAM`, so it needs the Daisy bootloader.
 - **Mirth / Mirth Lite** (*two for mirth*, the rhyme's other second line) are one generation,
-  like Joy and Joy Lite: NAM A2-Lite captures off the card (AMPS) and twelve not-amps built
-  from nine of the starter captures (NOT-AMPS), with a dry/wet mix. Mirth adds a 64×48 OLED
-  where the B8 toggle was; Lite runs on a stock patch.init(), B8 picking the bank (up AMPS).
-  Released 2026-10-03 (page, tags `mirth-v1.0.0` / `mirth_lite-v1.0.0`); the video is to
-  follow. Release assets: both `.bin`s, the twelve CC0/CC BY starter captures as a zip with
-  `STARTER_CAPTURES.md`, and a notices file each. Panel: `build123d/panels/daisy_neural.py`.
+  like Joy and Joy Lite: NAM A2-Lite captures off the card (AMPS), nineteen not-amps built
+  from ten of the starter captures and four random-weight networks (NOT-AMPS), and seven
+  filters learned from the rack's Wasp and Swords (FILTERS), with a dry/wet mix and a drive.
+  Mirth adds a 64×48 OLED where the B8 toggle was; Lite runs on a stock patch.init(), B7
+  stepping patches and banks on both. v1.0.0 released 2026-10-03, v1.1.0 2026-10-29 (tags
+  `mirth-v1.1.0` / `mirth_lite-v1.1.0`). Two pages, one per video, both videos to follow:
+  Mirth (amps) at `/modules/mirth/` and Mirth (filters) at `/modules/mirth-filters/`.
+  Release assets: both `.bin`s, `mirth-v1.1.0-card.zip` (the twelve CC0/CC BY starter
+  captures, `notamps/`, the seven CC BY 4.0 filters, `STARTER_CAPTURES.md`, `FILTERS.md`),
+  and a notices file each. Panel: `build123d/panels/daisy_neural.py`.
 - **Secret** (*seven for a secret*) is a chaotic-attractor oscillator: twelve models, V/oct
   and TAME, on the Alchemy SDK. It succeeds the Teensy **Chaos**, whose six attractors are
   its first bank. Released 2026-10-02 (page, tag `secret-v1.0.0`); the video is to follow.

@@ -1,0 +1,307 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mirth (filters) — Eight4aWish</title><meta name="description" content="Two filters from my rack, a Doepfer Wasp and a Behringer Swords, as neural networks with cutoff and resonance as knobs, on a Daisy patch.Init()."><link rel="canonical" href="https://eight4awish.com/modules/mirth-filters/"><!-- so a link pasted into YouTube, Reddit or Discord shows the artwork.
+     Module pages pass their PANEL RENDER, not the photo, and the two are not
+     interchangeable: a photo is of the module in a rack, and where a module runs
+     on someone else's board the photo is of THEIR panel. Girl runs on a Ksoloti
+     Big Genes, so its photo is a Big Genes front panel - which is what Discord
+     was showing for /modules/girl. The render is always the module's own. --><meta property="og:type" content="website"><meta property="og:title" content="Mirth (filters) — Eight4aWish"><meta property="og:description" content="Two filters from my rack, a Doepfer Wasp and a Behringer Swords, as neural networks with cutoff and resonance as knobs, on a Daisy patch.Init()."><meta property="og:image" content="https://eight4awish.com/opt/daisy_neural_flat.og.jpg"><meta property="og:url" content="https://eight4awish.com/modules/mirth-filters/"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Mirth (filters) — Eight4aWish"><meta name="twitter:description" content="Two filters from my rack, a Doepfer Wasp and a Behringer Swords, as neural networks with cutoff and resonance as knobs, on a Daisy patch.Init()."><meta name="twitter:image" content="https://eight4awish.com/opt/daisy_neural_flat.og.jpg"><link rel="stylesheet" href="/_astro/Base.CwYbVU1P.css"></head><body><header class="site"><div class="wrap"><a class="brand" href="/">Home</a><nav class="site"><a href="/modules/" class="on">Modules</a><a href="/tutorials/">Tutorials</a><a href="/notes/">Notes</a><a href="/about/">About</a></nav></div></header><main class="wrap"><div class="crumb"><a href="/modules/">Modules</a> / Mirth (filters)</div><h1 style="margin:6px 0 4px">Mirth (filters)</h1><div class="chips" style="margin-bottom:14px"><span class="chip acc">Patch Submodule</span><span class="chip">Filter</span><span class="chip">Neural Networks</span><span class="chip">Daisy patch.Init()</span></div><p class="sub">Two filters from my rack, a Doepfer Wasp and a Behringer Swords, as neural networks with cutoff and resonance as knobs, on a Daisy patch.Init().</p><div class="hero-video pending"><img src="/opt/daisy_neural_flat.med.webp" alt="" loading="lazy" decoding="async"><span class="badge">Video coming soon</span></div><div class="dl" style="margin-top:22px"><a class="btn" href="https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/mirth-v1.1.0/mirth-v1.1.0.bin">Download firmware v1.1.0</a><a class="btn" href="https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/mirth_lite-v1.1.0/mirth_lite-v1.1.0.bin">Download Mirth Lite v1.1.0</a><a class="btn" href="https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/mirth-v1.1.0/mirth-v1.1.0-card.zip">Download card files</a><a class="btn ghost" href="https://github.com/Eight4aWish/eurorack_daisy_patch_init/tree/main/daisy_neural" target="_blank" rel="noopener">Source on GitHub</a></div><p class="tiny">Sequence it with <a href="/tutorials/strudel/">Strudel</a>.</p><div class="prose"><h2 id="overview">Overview</h2>
+<p><strong>Mirth</strong> plays neural networks on a Daisy patch.Init(). <a href="/modules/mirth/">Mirth (amps)</a>
+covers its first two banks, AMPS and NOT-AMPS: NAM’s A2-Lite captures, the same kind people
+share by the thousand for guitar amps and pedals. Every capture I could find was an amp or
+a pedal. I wanted something from my own rack.</p>
+<p>So the third bank, <strong>FILTERS</strong>, plays two of my filters: a <strong>Doepfer A-124 Wasp</strong> and a
+<strong>Behringer Swords</strong>, each learned from recordings of the real module. This page is how they
+were made, and how to play them.</p>
+<p>The Wasp is Doepfer’s take on the filter from the EDP Wasp, the late-70s synth whose filter
+uses CMOS logic chips as amplifiers. That is where its dirt comes from, and dirt is what
+makes a module worth capturing. It also has a property that turned out to shape everything:
+only the cutoff is under CV. Resonance is a knob.</p>
+<h2 id="the-seven-filters">The seven filters</h2>
+<table>
+<thead>
+<tr>
+<th>Screen</th>
+<th>The filter</th>
+<th>FREQ</th>
+<th>RES</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>FLT1</code></td>
+<td>the Wasp’s low-pass at one setting, as an amp-style capture</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>FLT2</code></td>
+<td>the Wasp’s low-pass, learned at one resonance</td>
+<td>cutoff</td>
+<td>feedback from 9</td>
+</tr>
+<tr>
+<td><code>FLT3</code></td>
+<td>the Wasp’s low-pass, cutoff and resonance</td>
+<td>cutoff</td>
+<td>resonance</td>
+</tr>
+<tr>
+<td><code>FLT4</code></td>
+<td>FLT3 with the Wasp’s own unpredictability above Res 8, as a granular layer</td>
+<td>cutoff</td>
+<td>resonance</td>
+</tr>
+<tr>
+<td><code>FLT5</code></td>
+<td>the Wasp’s high-pass</td>
+<td>cutoff</td>
+<td>resonance</td>
+</tr>
+<tr>
+<td><code>FLT6</code></td>
+<td>Swords, cutoff and resonance</td>
+<td>cutoff, V/oct</td>
+<td>resonance</td>
+</tr>
+<tr>
+<td><code>FLT7</code></td>
+<td>FLT6 with Swords’ self-oscillation added</td>
+<td>cutoff, V/oct</td>
+<td>resonance; oscillates from 10</td>
+</tr>
+</tbody>
+</table>
+<h2 id="controls">Controls</h2>
+<p>The same knobs as the other banks. Each knob is summed with the CV jack under it.</p>
+<table>
+<thead>
+<tr>
+<th>Control</th>
+<th>FILTERS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CV_1</strong> (+ CV_5)</td>
+<td>MIX, dry to wet</td>
+</tr>
+<tr>
+<td><strong>CV_2</strong> (+ CV_6)</td>
+<td>FREQ, the cutoff; the jack adds its volts, as on the real filter</td>
+</tr>
+<tr>
+<td><strong>CV_3</strong> (+ CV_7)</td>
+<td>RES, 0 to 11</td>
+</tr>
+<tr>
+<td><strong>CV_4</strong> (+ CV_8)</td>
+<td>DRIVE into the network, −20 to +20 dB, unity at noon</td>
+</tr>
+<tr>
+<td><strong>B7</strong> short</td>
+<td>the next filter</td>
+</tr>
+<tr>
+<td><strong>B7</strong> held 1.5 s</td>
+<td>the next bank: AMPS → NOT-AMPS → FILTERS</td>
+</tr>
+</tbody>
+</table>
+<p>Audio in on IN_L; the same mixed signal on both outputs. On Mirth the screen shows the
+cutoff in volts and the Res dial; on Mirth Lite the LED flickers three times for FILTERS,
+then blinks the filter’s number. The full controls for both builds are on
+<a href="/modules/mirth/">Mirth (amps)</a>.</p>
+<h2 id="a2-first-and-why-it-is-not-enough">A2 first, and why it is not enough</h2>
+<p>NAM’s easy trainer only accepts its own input file. To my ear it is a guitar riff sped up
+and repitched, veering into synth territory. So I recorded that file through the Wasp at
+one setting (Res 6, the cutoff held at +5 V) and trained an A2-Lite capture of it. It is
+on the card as <strong>FLT1</strong>.</p>
+<p>The score here is <strong>ESR</strong>, error-to-signal ratio: the share of the real Wasp’s output the
+network fails to reproduce. NAM’s grades are under 0.01 great, under 0.035 not bad and under
+0.1 might sound ok.</p>
+<p>On NAM’s own validation passage, A2-Lite scored 0.048. On a synth riff it never trained on,
+two detuned saws at the same setting, it scored <strong>0.105</strong>. NAM’s file does not drive the
+Wasp the way a sustained oscillator does. And an A2 has no knob: it is one setting,
+frozen. FREQ and RES do nothing on FLT1.</p>
+<p><strong>The riff, 4 seconds, Res 6, cutoff held at +5 V:</strong></p>
+<p><strong>Real Wasp</strong><br><audio controls preload="none" src="/audio/wasp/wasp-riff_real-wasp.mp3" style="width:100%"></audio></p>
+<p><strong>A2-Lite</strong>, ESR 0.105<br><audio controls preload="none" src="/audio/wasp/wasp-riff_a2-lite.mp3" style="width:100%"></audio></p>
+<p><strong>A GRU with the cutoff as a knob</strong> (below), ESR 0.008<br><audio controls preload="none" src="/audio/wasp/wasp-riff_gru24-cutoff.mp3" style="width:100%"></audio></p>
+<h2 id="recording-the-wasp">Recording the Wasp</h2>
+<p>An Expert Sleepers ES-10 on my audio interface plays audio and a cutoff CV into the Wasp
+and records its outputs, with a loopback cable so every take lines up to the sample.
+Because resonance is a knob, I recorded a session at each of the eleven marks on the Res
+dial, sweeping the cutoff by CV inside each take: about four minutes of synth material per
+mark, for low-pass and again for high-pass. <strong>Res 5 was recorded and then kept back</strong>, so
+there would be a test of whether a network can fill in a setting it never heard.</p>
+<h2 id="a-network-with-knobs">A network with knobs</h2>
+<p>A <strong>GRU</strong>, a gated recurrent unit, reads the audio one sample at a time and carries a small
+history forward: 16 numbers, updated every sample, with learned gates deciding what to keep.
+The cutoff CV and the Res position go in alongside the audio, so the history depends on them
+too. That is 1,025 parameters, against A2-Lite’s 1,871.</p>
+<p>I trained a larger size too, 24 numbers of history and 2,113 parameters. On the Daisy it
+needs 10,330 processor cycles a sample, against a budget of 10,000, so the module runs the
+16s. The clips on this page come from the 24s, which score a little better (0.012 against
+0.017 at Res 6).</p>
+<h2 id="the-first-version-was-badly-designed-and-it-is-worth-saying-how">The first version was badly designed, and it is worth saying how</h2>
+<p>To compare A2 with a GRU, I first trained a set of GRUs on the same NAM take. On NAM’s
+passage they scored around 0.001, forty times better than A2, and I nearly believed it. On
+the synth riff they fell to between 0.05 and 0.25, and the ranking changed completely. Every
+network had been chosen on a quiet nine-second passage of guitar-like plucks, which told me
+almost nothing about synth material. My family could not tell the best of them from the real
+Wasp on the riff, which says something about ESR too.</p>
+<p>So I started again from the question. Train on synth material: about 31 minutes of sweeps
+across the ten trained Res marks. Choose each network on synth material spread through every
+take, at its beginning, middle and end, in case the Wasp drifts as it warms. Test once, at
+the end, on a riff no network trained on. And train every design several times from
+different random starts, so a lucky run cannot pass for a better design.</p>
+<h2 id="what-it-learned">What it learned</h2>
+<p>The cutoff, in every run. With the cutoff alone at Res 6, the riff scored <strong>0.012</strong>, and
+the same 4 seconds A2-Lite scored 0.105 on scored 0.008.</p>
+<p><strong>Real Wasp</strong>, Res 6, the cutoff stepping from 2 to 10 V<br><audio controls preload="none" src="/audio/wasp/wasp-res6_real-wasp.mp3" style="width:100%"></audio></p>
+<p><strong>The cutoff as a knob</strong>, ESR 0.010<br><audio controls preload="none" src="/audio/wasp/wasp-res6_gru24-cutoff.mp3" style="width:100%"></audio></p>
+<p><strong>Leftover</strong>: the real Wasp minus the network, at the same gain<br><audio controls preload="none" src="/audio/wasp/wasp-res6_leftover.mp3" style="width:100%"></audio></p>
+<p>With cutoff and resonance, one network across the whole dial. ESR on the held-out riff, the
+average of three training runs of the 16 that went on the card:</p>
+<table>
+<thead>
+<tr>
+<th>Res</th>
+<th style="text-align: right">0</th>
+<th style="text-align: right">1</th>
+<th style="text-align: right">2</th>
+<th style="text-align: right">3</th>
+<th style="text-align: right">4</th>
+<th style="text-align: right"><strong>5</strong></th>
+<th style="text-align: right">6</th>
+<th style="text-align: right">7</th>
+<th style="text-align: right">8</th>
+<th style="text-align: right">9</th>
+<th style="text-align: right">10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ESR</td>
+<td style="text-align: right">0.014</td>
+<td style="text-align: right">0.014</td>
+<td style="text-align: right">0.009</td>
+<td style="text-align: right">0.011</td>
+<td style="text-align: right">0.020</td>
+<td style="text-align: right"><strong>0.031</strong></td>
+<td style="text-align: right">0.067</td>
+<td style="text-align: right">0.17</td>
+<td style="text-align: right">0.30</td>
+<td style="text-align: right">0.51</td>
+<td style="text-align: right">0.72</td>
+</tr>
+</tbody>
+</table>
+<p>The bold one is the setting it never heard. It lands between its neighbours, so one network
+fills the gap in the resonance dial.</p>
+<p><strong>Real Wasp</strong>, Res 5<br><audio controls preload="none" src="/audio/wasp/wasp-res5_real-wasp.mp3" style="width:100%"></audio></p>
+<p><strong>Cutoff and resonance</strong>, never trained at Res 5, ESR 0.047<br><audio controls preload="none" src="/audio/wasp/wasp-res5_gru24-cutoff-res.mp3" style="width:100%"></audio></p>
+<p><strong>Leftover</strong><br><audio controls preload="none" src="/audio/wasp/wasp-res5_leftover.mp3" style="width:100%"></audio></p>
+<p><strong>Then I played it on the module, and Res did almost nothing.</strong> The cutoff worked perfectly.
+Measured, at a cutoff of 6 V, the real Wasp grows by 8 to 18 dB across the spectrum from Res
+6 to 10; the network fell by 2 to 4 dB. ESR counts the phase of every wiggle, which the ear
+ignores, so a network can keep its score low while getting the control wrong. Nothing in my
+tests had checked that the knob does what the real knob does. Now they do.</p>
+<p>The network keeps pace with the Wasp’s resonance up to Res 7, then falls behind. So on the
+module the dial lifts its Res input above 7, and from 9 feeds the network’s output back into
+its input. <strong>RES goes to 11</strong>: from 10 it rings and holds a tone of its own, which the real
+Wasp never does.</p>
+<h2 id="the-wasp-never-does-the-same-thing-twice">The Wasp never does the same thing twice</h2>
+<p>At high resonance the Wasp goes wild. I recorded the same input four times at each of Res 6
+to 10. Up to Res 7 the takes match each other almost exactly (ESR 0.0015 between them). At 8
+they start to part (0.073), and from 9, at and above the cutoff, the difference between takes
+is most of what there is.</p>
+<p>A network trained to get as close as possible to every sample cannot predict which way the
+next wiggle goes, so the closest it can get is the average of the possibilities. That is
+tamer than any of them.</p>
+<p><strong>Real Wasp</strong>, Res 10<br><audio controls preload="none" src="/audio/wasp/wasp-res10_real-wasp.mp3" style="width:100%"></audio></p>
+<p><strong>Cutoff and resonance</strong>, ESR 0.64<br><audio controls preload="none" src="/audio/wasp/wasp-res10_gru24-cutoff-res.mp3" style="width:100%"></audio></p>
+<p><strong>Leftover</strong><br><audio controls preload="none" src="/audio/wasp/wasp-res10_leftover.mp3" style="width:100%"></audio></p>
+<h2 id="borrowing-the-misbehaviour-back">Borrowing the misbehaviour back</h2>
+<p>So the network plays the average Wasp, and the wildness goes back on top, taken from the
+recordings. No sound is added. The four takes give a record of how each one lifts and dips
+against their average, band by band, measured at each distance from the cutoff. On the
+module, grains of that record, about 117 ms each, drawn at random, boost and cut the
+network’s output at the same distance from wherever the cutoff is now.</p>
+<p>I chose the settings by ear, over three rounds of listening: gentler grains cured a digital
+edge the first ones had. The layer fades in from Res 8 to 9, where the Wasp stops repeating
+itself, and there is no knob for it. That is <strong>FLT4</strong>: FLT3’s network with the layer.</p>
+<p>It is not a perfect copy of the Wasp, but it has some of its own character, and that is
+audibly interesting: a beating in the mid-range, and at a low cutoff a rumble that sounds as
+if it is coming from a cave.</p>
+<p>The first build glitched. I had estimated what the layer would cost instead of measuring it,
+and its worst moments came in at 2.7 times the estimate. Spread over ten blocks of audio
+instead of three, it fits: 70% of the processor, and at its busiest about 8,600 cycles a
+sample of the 10,000. It runs 54 ms late to make room for its grains, and the dry side is
+delayed to match, so MIX stays in time.</p>
+<h2 id="swords-the-same-question-with-res-under-cv">Swords: the same question, with Res under CV</h2>
+<p>On the Wasp every Res mark was a separate session, set by hand. Maybe that was why the
+networks learned Res weakly. On Swords, Res is under CV, so I recorded an hour with the
+cutoff and Res swept together.</p>
+<p>The cutoff was learned in all twelve runs. Res was not. Above about 4 V on its Res CV, Swords
+self-oscillates, and three quarters of what training heard was that oscillation, which
+never repeats. Trained on Res 0 to 4 V only, the same data and the same recipe, Res moved the
+way Swords’ does, by about twice as much as before. That is <strong>FLT6</strong>.</p>
+<h2 id="swords-oscillation-built-from-measurements">Swords’ oscillation, built from measurements</h2>
+<p>Past that threshold Swords is not like the Wasp. It sings one clean, stable tone at the
+filter’s own frequency, and from take to take only the phase changes: where each take’s
+oscillation starts in its cycle. Everything you hear repeats. The Wasp’s wildness changes
+its spectrum from take to take, which is why it needs a random layer.</p>
+<p>So Swords’ oscillation is built part by part, from measurements I had already made, and
+added to FLT6’s network as <strong>FLT7</strong>:</p>
+<ul>
+<li><strong>when it sounds:</strong> it starts above a threshold that depends on the cutoff, and stops a
+little lower than it starts;</li>
+<li><strong>its pitch:</strong> 169 Hz at V/OCT 4 V, close to an octave per volt;</li>
+<li><strong>its level:</strong> about 7 V peak, ducked when the input is loud, since the two share Swords’
+clipping;</li>
+<li><strong>its shape:</strong> almost a sine at the start, odd harmonics growing with Res;</li>
+<li><strong>locking:</strong> it pulls to the input when a note is near its pitch;</li>
+<li><strong>its start:</strong> a random phase each time.</li>
+</ul>
+<p>On the module the dial’s 10 to 11 takes the oscillation from its onset to 6 V on Swords’
+Res CV, at up to 76% of the processor. It sounds good to me there; I have not yet set it
+side by side with Swords.</p>
+<h2 id="the-high-pass">The high-pass</h2>
+<p>The Wasp’s high-pass, trained with exactly the low-pass recipe, learned Res far better than
+the low-pass did. I have not tested why. It is <strong>FLT5</strong>.</p>
+<h2 id="hardware">Hardware</h2>
+<p>The same module as <a href="/modules/mirth/">Mirth (amps)</a>: Mirth Lite runs on a stock Daisy
+patch.Init(), and full Mirth adds a 64×48 SSD1306 OLED (I²C) in place of the B8 toggle, a
+few hook-up wires and a printed panel.</p>
+<h2 id="capture-your-module-with-me">Capture your module with me</h2>
+<p>I would like to capture more Eurorack classics this way: filters, folders, drive circuits,
+anything whose character lives in its circuit. If you own one and would like to capture it
+with me, email <a href="mailto:info@eight4awish.com">info@eight4awish.com</a>. You could run the recordings yourself, with a
+DC-coupled interface such as an Expert Sleepers ES-8 or ES-9 and the scripts in the repo
+(written for my rig, but not tied to it), and I will help train and compare the networks.
+Or, if you are in the UK, lend me the module for a fortnight and I will capture it and send
+it back. And if you know of anyone else capturing Eurorack modules like this, I would like
+to hear about that too.</p>
+<h2 id="similar-work-not-the-same">Similar work, not the same</h2>
+<p>Other people have done something similar, but not the same:</p>
+<ul>
+<li><a href="https://github.com/GuitarML/NeuralSeed">GuitarML NeuralSeed</a>: amp and pedal captures on a
+Daisy Seed, a GRU with knobs as inputs.</li>
+<li><a href="https://dafx.de/paper-archive/details/tieFMcaohHBxl_2yPyIGFA">Wright, Damskägg and Välimäki, DAFx 2019</a>:
+recurrent networks modelling amps and pedals in real time.</li>
+<li><a href="https://research.aalto.fi/fi/publications/neural-modeling-of-phaser-and-flanging-effects/">Wright and Välimäki, JAES 2021</a>:
+phaser and flanger models with the LFO as an input.</li>
+<li><a href="https://arxiv.org/abs/2405.04124">Simionato and Fasciani, 2025</a>: networks modelling analog
+effects with their controls as inputs, a synth’s filter among them.</li>
+<li>Serra and Smith’s Spectral Modeling Synthesis (1990) and
+<a href="https://arxiv.org/abs/2001.04643">DDSP</a> (2020): sound split into a repeatable part and a
+random part, the idea behind putting the wildness back on top.</li>
+</ul>
+<p>If I have got any of this wrong, tell me.</p>
+<h2 id="credits">Credits</h2>
+<p>Recorded and trained by me in October 2026, on the rack’s own Wasp and Swords. The seven
+filter files are CC BY 4.0, credited in <code>FILTERS.md</code> in the card zip: use them, bend them
+and share them, with credit. The training scripts and the module’s GRU engine are in the
+<a href="https://github.com/Eight4aWish/eurorack_daisy_patch_init/tree/main/daisy_neural">firmware repo</a>;
+Mirth itself is MIT. Not affiliated with, or endorsed by, Doepfer or Behringer.</p>
+</div><section class="flash"><h2 class="sec">Flash it — no compiler needed</h2><p class="sub">The filters are a bank of Mirth, the same firmware as Mirth (amps). It runs from the Daisy's QSPI chip through the Daisy bootloader: a one-time bootloader install, then the firmware goes on with an SD card. The same card then holds the filters. No compiler needed.</p><div class="warn"><b>Read this first —</b> The card must be one FAT32 partition of 2 GB or less, with the rest of the card left unallocated. A full-size FAT32 volume on a big card fails at start-up, and exFAT is not read at all.</div><div class="dl"><a class="btn" href="https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/mirth-v1.1.0/mirth-v1.1.0.bin">Download firmware v1.1.0</a><a class="btn" href="https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/mirth_lite-v1.1.0/mirth_lite-v1.1.0.bin">Download Mirth Lite v1.1.0</a><a class="btn" href="https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/mirth-v1.1.0/mirth-v1.1.0-card.zip">Download card files</a><a class="btn ghost" href="https://flash.daisy.audio" target="_blank" rel="noopener">Daisy Web Programmer</a></div><p class="tiny">The firmware is for a patch.Init() with the OLED fitted; Mirth Lite is for a stock patch.Init(), no screen. Both flash the same way and both take the same card: the zip holds the seven filters, the amps and not-amps of Mirth (amps), their credits, and these card instructions.</p><h3 class="flashsub">One time per module — install the bootloader</h3><ol class="flashsteps"><li>Plug the Daisy Patch.Init in with a USB-C data cable.</li><li>Hold BOOT, tap RESET, then release BOOT.</li><li>Open the Daisy Web Programmer and go to its Bootloader section.</li><li>Click Flash. That is the bootloader on — you never have to do this again.</li></ol><h3 class="flashsub">Every time — load the firmware</h3><ol class="flashsteps"><li>Format the card: one FAT32 partition of 2 GB or less. On a Mac, check the disk number with <code>diskutil list external</code> first — this erases it — then <code>diskutil partitionDisk /dev/diskN MBR "MS-DOS FAT32" DAISY 2G "Free Space" REST R</code>.</li><li>Copy the Mirth or Mirth Lite .bin above to the root of the card. It must be the only .bin on the card.</li><li>Unzip the card files and copy everything in the folder to the root as well, the <code>notamps</code> folder included. The seven <code>f1_</code> to <code>f7_</code> files are the filters.</li><li>Insert the card and power-cycle. The bootloader flashes the firmware if it differs from what is installed, and boots. Hold B7 for 1.5 s, twice, to reach FILTERS.</li></ol><div class="note">On a Mac, Finder writes a hidden twin of every file — ._mirth.bin, ._f3_WASP_LP_16.grnb. The .bin twin confuses the bootloader and the filter twins fail their checksum. After copying, delete them in Terminal with <code>rm -f /Volumes/DAISY/._* /Volumes/DAISY/notamps/._*</code> — the usual <code>cp -X</code> no longer prevents them on current macOS.</div></section><p class="tiny" style="margin-top:30px">Updated October 2026</p></main><footer class="site"><div class="wrap"><span>© Eight4aWish</span><a href="https://github.com/Eight4aWish">GitHub</a><a href="mailto:info@eight4awish.com">info@eight4awish.com</a><a href="https://buymeacoffee.com/eight4awish">Buy me a coffee</a></div></footer></body></html>
