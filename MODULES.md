@@ -234,8 +234,8 @@ Everything here is bought, not built. **The list of modules is David's own, give
 verified or high-confidence; **HP is the weak column** and is marked per row.
 
 HP key: **✓** verified against manufacturer or retailer · **◆** confirmed by David directly.
-Sizes for the ten modules marked ✓ from `eight4awish-video/src/rigModules.ts` come from
-panels modelled against the real hardware, so those are the most trustworthy of all.
+Sizes marked ✓ that come from `eight4awish-video/src/rigModules.ts` are from panels
+modelled against the real hardware, so those are the most trustworthy of all.
 
 ## In the rack
 
@@ -253,7 +253,6 @@ panels modelled against the real hardware, so those are the most trustworthy of 
 | **Chaos** | Behringer | 18 ✓ | random gates + random CV | Analog random sampler, two chained sub-sections. |
 | **Abacus** | Behringer | 20 ✓ | function generator / CV maths | Modelled on Buchla 257 + 281. Four CV ins with depth and direction; lag / slew / portamento. |
 | **Waves** | Behringer | 14 ✓ | function generator / tidal modulator | **Mutable Tides clone** — three generator modes, AR and AD envelopes, looping VC-LFO and VCDO, morphing waveforms. Its **Smoothness** control is a wavefolder clockwise of centre (and a 2-pole low-pass counter-clockwise), so `ROADMAP.md:48` is right to count it alongside Chopping Kinky as West-Coast folding. |
-| **Workshop Computer** | Music Thing Modular | 8 ✓ | programmable CV / MIDI | Runs the **Simple MIDI** program card for two fixed voices. MIDI port `Workshop System MIDI`. |
 | **Turing Machine Mk II** | Music Thing Modular | 10 ✓ | random looping sequencer | A 16-bit shift register producing clocked random CV that can be locked into repeating loops by the Length control. Steerable, not programmable — sequences cannot be saved or returned to once changed. Host for the three expanders below. |
 | **Turing Pulses** | Music Thing Modular | 4 ✓ | trigger / gate expander | Eleven rhythmic pulse-train outputs derived from the sequence. Connects at the back by 16-way ribbon; works with Mk2, or Mk1 with the backpack. |
 | **Turing Volts** | Music Thing Modular | 4 ✓ | CV expander | A variable 5-bit DAC: five bits off the GATES expansion port through five pots to one summed CV out. |
