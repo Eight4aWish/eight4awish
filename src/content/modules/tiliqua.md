@@ -13,17 +13,17 @@ panel: /renders/tiliqua_gold_flat.png
 status: built
 firmware: https://github.com/Eight4aWish/tiliqua
 binary: >-
-  https://github.com/Eight4aWish/tiliqua/releases/download/mesh-0.5/silver-48x48-1280x720p60.tar.gz
+  https://github.com/Eight4aWish/tiliqua/releases/download/mesh-0.6/silver-48x48-1280x720p60.tar.gz
 extraBinaries:
   - label: Gold bitstream, 1280×720
     url: >-
-      https://github.com/Eight4aWish/tiliqua/releases/download/mesh-0.5/gold-48x48-1280x720p60.tar.gz
+      https://github.com/Eight4aWish/tiliqua/releases/download/mesh-0.6/gold-48x48-1280x720p60.tar.gz
   - label: Silver bitstream, 720×720 round panel
     url: >-
-      https://github.com/Eight4aWish/tiliqua/releases/download/mesh-0.5/silver-48x48-720x720p60r2.tar.gz
+      https://github.com/Eight4aWish/tiliqua/releases/download/mesh-0.6/silver-48x48-720x720p60r2.tar.gz
   - label: Gold bitstream, 720×720 round panel
     url: >-
-      https://github.com/Eight4aWish/tiliqua/releases/download/mesh-0.5/gold-48x48-720x720p60r2.tar.gz
+      https://github.com/Eight4aWish/tiliqua/releases/download/mesh-0.6/gold-48x48-720x720p60r2.tar.gz
 firmwareVersion: ""
 binaryLabel: Silver bitstream, 1280×720
 flash:
