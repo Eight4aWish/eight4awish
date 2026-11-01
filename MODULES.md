@@ -111,7 +111,7 @@ release, for the name actually chosen then.
 
 | Module | Repo | Firmware | Platform | Page |
 |---|---|---|---|---|
-| **Boy** | `eurorack_modules` | `src/teensy_move/` | Teensy 4.1 | `boy.md`. **To be replaced by Boy2** (decided 2026-11-01): once Boy2's firmware has taken over, Boy and its Teensy Expander leave this list, and `src/teensy_move/` is archived or deleted, when David says. |
+| **Boy** | `eurorack_electronics` (hardware); `eurorack_modules` (firmware) | `src/teensy_move/`, env `teensy41`, `docs/TEENSY_MOVE.md` | Teensy 4.1 on the analogue board Rev A (`teensy_core_midi`), n8synth 10HP deck | `boy.md`, still written for the old Boy (its panel render and its FX). The old Boy's panel and screen on the new board: six CV outs (DAC8568), four gate outs, stereo audio in and out (PCM3060), a push encoder in place of the button and pot 1, TRS MIDI in (Type A). Hardware built, and every function it uses tested, 2026-11-01, as "Boy2"; renamed Boy the same day. Its firmware took over `src/teensy_move/`. Modes chosen at power-on: 1 the Move companion (built 2026-11-01, not yet on the bench), 2 Warps, 3 other two-input processing (spectral morphing and sidechain ducking first). Board notes: `docs/analogue_board_reva_firmware.md` in `eurorack_electronics`, **read it before any firmware work**. |
 | **Chaos** | `eurorack_modules` | `src/teensy_chaos/` | Teensy 4.1 | No page: its draft became `secret.md`. **Frozen 2026-09-30, to be retired** — the Teensy hardware will be repurposed, and **Secret** is its successor. Not the Behringer **Chaos** in the rack, which is a random sampler. |
 | **CortHex** | `eurorack_modules` | `src/nanoesp32_corthex/` | Arduino Nano ESP32 (NORA-W106 / ESP32-S3) | `corthex.md`. CV6 is a 0–5 V gain CV that drives **either** the Behringer Four Play or a Thonk T03, whichever is patched — `main.cpp:1048` and `proxy.py` name different ones and both are valid. |
 | **Daisy MultiOsc** | `eurorack_daisy_patch_init` | `daisy_multiosc/` | Daisy Patch Submodule | `daisy-multiosc.md` |
@@ -128,11 +128,11 @@ Nothing in `src/content/modules/` covers these.
 | Module | Repo | Firmware / docs | Platform | What it is |
 |---|---|---|---|---|
 | **Daisy MultiFX (Seed)** | `eurorack_daisy_patch_init` | `daisy_multifx_seed/` | bare Daisy Seed + home-built Eurorack front end | Sibling of Daisy MultiFX on different hardware. Same `multifx_core` DSP/UI, 16 effects in 4×4. Migrated off DaisyDuino onto libDaisy + current DaisySP. |
-| **Teensy Expander** | `eurorack_modules` | `src/teensy_move/` | Teensy 4.1 companion, 6HP | Expander for **Boy**: a 74HC595 latch plus inverter driving four drum triggers and two extra CV/gate channels via two MCP4822 DACs. Drum outs idle LOW with a 500 µs HIGH pulse (`DRUM_TRIG_US[]`), tuned so gate-sensitive hats do not read them as gates. Goes with Boy when Boy2 replaces it. |
+| **Teensy Expander** | `eurorack_modules` | `src/teensy_move_old/` | Teensy 4.1 companion, 6HP | Expander for **the old Boy**: a 74HC595 latch plus inverter driving four drum triggers and two extra CV/gate channels via two MCP4822 DACs. Drum outs idle LOW with a 500 µs HIGH pulse (`DRUM_TRIG_US[]`), tuned so gate-sensitive hats do not read them as gates. Goes with the old Boy. |
 | **Seeed Recorder (RP2040)** | `seeed-recorder` | `firmware/` | Seeed Xiao RP2040, **1U tile** | Capture trigger for the Retrospective Mac app over **USB-MIDI** (button → Note On; Note On → LED). Momentary switch on `D5`, LED on `D0`. **USB-powered — no Eurorack bus power in v1.** Built with arduino-pico + Adafruit TinyUSB. Any MIDI controller sending the same Note triggers it too. |
 | **ESP32 ClkLink** | `eurorack_modules` | `src/esp32_clklink/` | ESP32-Dev + MCP4728 | The original Ableton Link clock/reset generator; predecessor to ClkLinkRec. OFF / INTERNAL / LINK switch. **GPL-2.0-or-later** (links Ableton Link). |
 | **MOD2 / Melon** | `eurorack_electronics` | `docs/mod2_*` | mixed-signal, n8synth 6HP | Dual-firmware-compatible board running 25 published HAGIWO voices — every MOD2 *and* Melon firmware unmodified. 7805 from +12V, both indicator types populated, JP1/JP2 promoted to panel switches. |
-| **Boy2** | `eurorack_electronics` (hardware); `eurorack_modules` (firmware, not written yet; it replaces `src/teensy_move/`) | `docs/analogue_board_reva_firmware.md` in `eurorack_electronics`: **read it before any firmware work** | Teensy 4.1 on the analogue board Rev A (`teensy_core_midi`), n8synth 10HP deck | Boy's panel and screen on the new analogue board: six CV outs (DAC8568), four gate outs, stereo audio in and out (PCM3060), a push encoder in place of Boy's button and pot 1, TRS MIDI in (Type A). Hardware built, and every function it uses tested, 2026-11-01. Boy's `src/teensy_move/` is the starting point for its firmware, but none of Boy's chips or pins carry over. |
+| **The old Boy** | `eurorack_modules` | `src/teensy_move_old/`, env `teensy_move_old` | Teensy 4.1 on hand-built hardware, with the Teensy Expander | Boy before the analogue board: four MIDI-to-CV voices with mod, four drums, an SGTL5000 FX send. **Being replaced** by Boy on Rev A (decided 2026-11-01): once the new firmware has taken over, it and the Teensy Expander leave this list, and `src/teensy_move_old/` is archived or deleted, when David says. |
 
 ## Panel widths
 
@@ -350,7 +350,7 @@ Purchased, but the platform rather than the instrument.
 |---|---|---|
 | **Proton** | Behringer | Semi-modular. Dual VCF, dual LFO, 2 ADSR + 2 ASR, wavefolder, 40-in/24-out patchbay. Reference: `eurorack_modules/docs/PROTON_SIGNAL_ROUTING.md`. |
 | **Neutron** | Behringer | Semi-modular. One VCF (dual output tap), one LFO, 2 ADSR, BBD delay, overdrive, 32-in/24-out patchbay. Reference: `NEUTRON_SIGNAL_ROUTING.md`. **Do not infer Proton routing from Neutron or vice versa.** |
-| **Move** | Ableton | Groovebox. Boy is its Eurorack bridge — MIDI-to-CV plus audio FX on the Move's output. |
+| **Move** | Ableton | Groovebox. Boy is its Eurorack bridge: MIDI-to-CV, clock, reset and drum triggers. |
 | **Scarlett 16i16** | Focusrite | USB interface, Mac default input. Rack patches to inputs 1&2. The capture source in the recorder protocol. |
 
 ---
