@@ -1,0 +1,8 @@
+schema_version: "1.1"
+name: cv-output-mcp4822
+expected_outcome: |
+  A written review that reads at least three published Eurorack CV output stages from their own
+  files, flags the offset taken from the -12 V rail (its noise and drift go into the pitch) in
+  favour of one derived from the DAC's reference, flags the missing series output resistor,
+  checks the 3.3 V Teensy's SPI levels against a 5 V MCP4822, quantifies 1 V/oct resolution and
+  accuracy, and gives ranked findings with exact parts and values.

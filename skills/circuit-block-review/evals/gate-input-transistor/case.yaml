@@ -1,0 +1,7 @@
+schema_version: "1.1"
+name: gate-input-transistor
+expected_outcome: |
+  A written review that reads at least three published Eurorack gate inputs from their own
+  files, checks the threshold against Doepfer's convention, catches that a negative input
+  (a bipolar LFO, or -12 V) reverse-biases the transistor's base-emitter junction past its
+  rating, and gives ranked findings with exact parts and values, plus what is already right.

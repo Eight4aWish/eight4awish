@@ -63,6 +63,10 @@ Seeed Xiao midi based switch connected to a Mac app which listens in and retrosp
   <img src="docs/images/retrospective-settings.png" alt="Retrospective Settings" height="200">
 </p>
 
+## Claude skills
+
+[skills/](skills/) holds Claude skills that came out of this work, MIT licensed. The first, **circuit-block-review**, checks one block of a circuit (a CV input, a gate output, the power entry…) against published, proven Eurorack designs before a PCB order: it's how the analogue board behind Boy was reviewed.
+
 ## Thanks
 
 Huge thanks to [Benjiao Modular](https://benjiaomodular.com) for their fantastic work and inspiration.
