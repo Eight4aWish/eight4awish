@@ -348,10 +348,15 @@ Purchased, but the platform rather than the instrument.
 
 | Gear | Maker | What it does |
 |---|---|---|
-| **Proton** | Behringer | Semi-modular. Dual VCF, dual LFO, 2 ADSR + 2 ASR, wavefolder, 40-in/24-out patchbay. Reference: `eurorack_modules/docs/PROTON_SIGNAL_ROUTING.md`. |
-| **Neutron** | Behringer | Semi-modular. One VCF (dual output tap), one LFO, 2 ADSR, BBD delay, overdrive, 32-in/24-out patchbay. Reference: `NEUTRON_SIGNAL_ROUTING.md`. **Do not infer Proton routing from Neutron or vice versa.** |
+| **Proton** | Behringer | Semi-modular. Dual VCF, dual LFO, 2 ADSR + 2 ASR, wavefolder, 40-in/24-out patchbay. No delay and no overdrive. Reference: `eurorack_modules/docs/PROTON_SIGNAL_ROUTING.md`. |
 | **Move** | Ableton | Groovebox. Boy is its Eurorack bridge: MIDI-to-CV, clock, reset and drum triggers. |
 | **Scarlett 16i16** | Focusrite | USB interface, Mac default input. Rack patches to inputs 1&2. The capture source in the recorder protocol. |
+
+**There is no Neutron.** David has the Proton only (said 2026-11-03). This table listed a
+Behringer Neutron, with its BBD delay and overdrive, from 2026-09-18 until then. Its only
+basis was `eurorack_modules/docs/NEUTRON_SIGNAL_ROUTING.md`, a reference written on
+2026-05-31 while the Proton docs were being corrected. That doc is not a record of
+ownership. The "Neutron" in the video and Resolve notes is iZotope's mixing plug-in.
 
 ---
 
