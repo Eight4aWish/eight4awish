@@ -1,0 +1,7 @@
+schema_version: "1.1"
+name: mixer-6hp-from-netlist
+expected_outcome: |
+  A layout and netlist for the mixer on a 6HP board, with both checks passing. The rail bulk and connector
+  bypass capacitors are dropped and reported; the chip's decoupling and the protection diodes stay. The
+  spare half of the TL072 is tied off. Jacks use the 6HP deck's pads on the left edge. It ends with a panel
+  map, and says what the checks can't see.

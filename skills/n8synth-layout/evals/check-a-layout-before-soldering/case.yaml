@@ -1,0 +1,9 @@
+schema_version: "1.1"
+name: check-a-layout-before-soldering
+expected_outcome: |
+  Five independent faults are in the layout: the chip's pins 5-8 are numbered the wrong way, C2's ground
+  end is on a +12 V hole, R1's end is a row off, J2's panel wire is on a position with no pad, and the
+  deck-ground wire is missing. The run reports each with a fix, says which could do damage at power-on, and
+  fixes the file with a small change, keeping the rest of the placement.
+context:
+  scaffold_script: place-files.sh

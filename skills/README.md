@@ -7,6 +7,7 @@ references and scripts it needs, that Claude loads when a task matches it.
 | Skill | What it does |
 |---|---|
 | [circuit-block-review](circuit-block-review/) | Reviews one block of a circuit (CV in, gate out, power, MIDI…) against published, proven designs before a PCB order: real schematics, datasheets, the arithmetic, and ranked findings with parts and costs |
+| [n8synth-layout](n8synth-layout/) | Lays a circuit out on an [n8synth](https://www.n8synth.com/) solderable breadboard and control deck, then checks it net by net before anything is soldered: from a netlist, schematic or description to a placed layout in a viewer, a build order with tests, and a panel map. It also checks and repairs existing layouts. Carries its own copy of the [layout tool](https://github.com/Eight4aWish/eurorack_electronics/tree/main/tools/visualizer) |
 
 ## Using one
 

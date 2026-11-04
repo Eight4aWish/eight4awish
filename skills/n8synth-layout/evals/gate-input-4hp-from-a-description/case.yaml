@@ -1,0 +1,7 @@
+schema_version: "1.1"
+name: gate-input-4hp-from-a-description
+expected_outcome: |
+  A netlist written from the description, then a layout for a 4HP board with both checks passing. The 4HP
+  deck has few pads, so panel wires land only on positions that have one. The decisions it made about the
+  circuit, such as how the LED is driven, are stated to the owner, and the transistor's legs are checked
+  against its pinout.

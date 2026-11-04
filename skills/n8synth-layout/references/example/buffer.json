@@ -1,0 +1,256 @@
+{
+ "title": "Example: buffered input and output",
+ "source": "references/example/buffer.net",
+ "board": "n8synth (single board, rows 1-36)",
+ "boardId": "n8synth-6hp",
+ "revision": "drawn, not built",
+ "notes": "Half a TL072 as a buffer; the other half tied off as a follower. Jack sleeves go on the deck's D bus. On the deck, bridge J1's spare pad C to D, so the bus reaches ground through position 3.",
+ "stages": [
+  {
+   "id": 1,
+   "name": "Power and the chip",
+   "desc": "Socket, supply wires, both 100 nF capacitors, the tied-off half, the follower wire.",
+   "test": "Power on with no chip in the socket: +12 V on pin 8, -12 V on pin 4, measured from ground.",
+   "color": "#e74c3c"
+  },
+  {
+   "id": 2,
+   "name": "The signal path",
+   "desc": "Deck wires, input network, output resistor.",
+   "test": "Insert the chip. Patch a signal into IN: the same signal at OUT, and no offset with IN unplugged.",
+   "color": "#3498db"
+  }
+ ],
+ "ics": [
+  {
+   "id": "U1",
+   "value": "TL072",
+   "label": "TL072",
+   "stage": 1,
+   "pins": [
+    {
+     "n": 1,
+     "r": 6,
+     "c": "e",
+     "net": "BUF_OUT"
+    },
+    {
+     "n": 2,
+     "r": 7,
+     "c": "e",
+     "net": "BUF_OUT"
+    },
+    {
+     "n": 3,
+     "r": 8,
+     "c": "e",
+     "net": "BUF_IN"
+    },
+    {
+     "n": 4,
+     "r": 9,
+     "c": "e",
+     "net": "VEE"
+    },
+    {
+     "n": 5,
+     "r": 9,
+     "c": "f",
+     "net": "GND"
+    },
+    {
+     "n": 6,
+     "r": 8,
+     "c": "f",
+     "net": "SPARE"
+    },
+    {
+     "n": 7,
+     "r": 7,
+     "c": "f",
+     "net": "SPARE"
+    },
+    {
+     "n": 8,
+     "r": 6,
+     "c": "f",
+     "net": "VCC"
+    }
+   ]
+  }
+ ],
+ "twoPins": [
+  {
+   "id": "C1",
+   "type": "C",
+   "value": "100nF",
+   "r1": 6,
+   "c1": "h",
+   "r2": 5,
+   "c2": "pwrR",
+   "stage": 1
+  },
+  {
+   "id": "C2",
+   "type": "C",
+   "value": "100nF",
+   "r1": 9,
+   "c1": "b",
+   "r2": 9,
+   "c2": "pwrL",
+   "stage": 1
+  },
+  {
+   "id": "R1",
+   "type": "R",
+   "value": "100k",
+   "r1": 2,
+   "c1": "b",
+   "r2": 3,
+   "c2": "pwrL",
+   "stage": 2
+  },
+  {
+   "id": "R2",
+   "type": "R",
+   "value": "1k",
+   "r1": 2,
+   "c1": "c",
+   "r2": 8,
+   "c2": "c",
+   "stage": 2
+  },
+  {
+   "id": "R3",
+   "type": "R",
+   "value": "1k",
+   "r1": 6,
+   "c1": "c",
+   "r2": 12,
+   "c2": "c",
+   "stage": 2
+  }
+ ],
+ "jumpers": [
+  {
+   "id": "W1",
+   "r1": 8,
+   "c1": "g",
+   "r2": 7,
+   "c2": "g",
+   "label": "tied-off half: pin 6 to pin 7",
+   "stage": 1
+  },
+  {
+   "id": "W2",
+   "r1": 7,
+   "c1": "d",
+   "r2": 6,
+   "c2": "d",
+   "label": "follower: pin 2 to pin 1",
+   "stage": 1
+  },
+  {
+   "id": "W3",
+   "r1": 1,
+   "c1": "ctrlLi",
+   "r2": 2,
+   "c2": "a",
+   "label": "IN",
+   "stage": 2
+  },
+  {
+   "id": "W4",
+   "r1": 4,
+   "c1": "ctrlLi",
+   "r2": 12,
+   "c2": "a",
+   "label": "OUT",
+   "stage": 2
+  },
+  {
+   "id": "W5",
+   "r1": 3,
+   "c1": "ctrlLi",
+   "r2": 5,
+   "c2": "pwrL",
+   "label": "deck ground",
+   "stage": 2
+  }
+ ],
+ "powerWires": [
+  {
+   "id": "P1",
+   "r1": 6,
+   "c1": "g",
+   "r2": 6,
+   "c2": "pwrL",
+   "label": "U1 pin 8: +12V, only on the left rail",
+   "stage": 1
+  },
+  {
+   "id": "P2",
+   "r1": 9,
+   "c1": "a",
+   "r2": 10,
+   "c2": "pwrR",
+   "label": "U1 pin 4: -12V, only on the right rail",
+   "stage": 1
+  },
+  {
+   "id": "P3",
+   "r1": 9,
+   "c1": "g",
+   "r2": 9,
+   "c2": "pwrR",
+   "label": "U1 pin 5: ground",
+   "stage": 1
+  }
+ ],
+ "jpsWires": [
+  {
+   "id": "J1.A",
+   "ref": "J1",
+   "pad": "A",
+   "label": "IN",
+   "lbl": "IN",
+   "row": 1,
+   "col": "ctrlLo",
+   "stage": 2
+  },
+  {
+   "id": "J1.C",
+   "ref": "J1",
+   "pad": "C",
+   "label": "deck ground",
+   "lbl": "GND",
+   "row": 3,
+   "col": "ctrlLo",
+   "stage": 2
+  },
+  {
+   "id": "J2.A",
+   "ref": "J2",
+   "pad": "A",
+   "label": "OUT",
+   "lbl": "OUT",
+   "row": 4,
+   "col": "ctrlLo",
+   "stage": 2
+  }
+ ],
+ "netLabels": [
+  {
+   "r": 2,
+   "side": "L",
+   "name": "IN",
+   "stage": 2
+  },
+  {
+   "r": 12,
+   "side": "L",
+   "name": "OUT",
+   "stage": 2
+  }
+ ]
+}

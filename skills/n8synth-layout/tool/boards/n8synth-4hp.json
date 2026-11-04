@@ -1,0 +1,277 @@
+{
+  "id": "n8synth-4hp",
+  "hp": 4,
+  "source": "4HP Template.n8layout",
+  "breadboard": {
+    "count": 1,
+    "boards": [
+      {
+        "variant": "powered",
+        "mainAreaRows": [
+          1,
+          36
+        ]
+      }
+    ],
+    "mainArea": {
+      "holeCols": [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "h",
+        "i",
+        "j"
+      ],
+      "centreGap": [
+        "e",
+        "f"
+      ],
+      "note": "Five holes each side of the gap are joined. The LEFT and RIGHT halves of a row are NOT joined to each other. Powered boards have 36 main-area rows; plain boards have 40."
+    },
+    "edgeConnector": {
+      "positions": 40,
+      "holesPerPosition": 2,
+      "headerSpans": [
+        [
+          1,
+          10
+        ],
+        [
+          16,
+          25
+        ],
+        [
+          31,
+          40
+        ]
+      ],
+      "columns": {
+        "ctrlLo": "left edge connector, OUTER column (nearer the board edge)",
+        "ctrlLi": "left edge connector, INNER column (nearer the power rail)",
+        "ctrlRo": "right edge connector, OUTER column",
+        "ctrlRi": "right edge connector, INNER column"
+      },
+      "pairNote": "The two holes at a position are one node. Address a specific hole as ctrlLo5 / ctrlLi5; bare ctrlL5 means the position with the hole unspecified. Two occupants at one position are normal - typically a panel wire in one hole and a component leg in the other - and are NOT a collision. OUTER carries the control-deck connection to the first board; INNER carries small headers jumping to a second stacked board, so on a single-board module the inner column is free for component legs and routing. A position with no JPS cell has NO deck connection - it is an isolated pair of joined holes, usable as a tie point for routing across or under the board. Do not assume a control-lane position carries a panel net.",
+      "note": "Two adjacent columns; the two holes at a position are joined to each other and to nothing else. JPS cell pads A/B/C terminate HERE, not on main-area rows \u2014 a panel signal reaches the circuit by a wire from its doublet into the main area. Positions 37-40 are therefore usable even on a powered board, which has no main-area row there. Positions not claimed by a JPS cell are free tie points and can be repurposed for routing."
+    },
+    "powerRail": {
+      "positions": 40,
+      "pwrL": {
+        "oddPositions": "GND",
+        "evenPositions": "VCC"
+      },
+      "pwrR": {
+        "oddPositions": "GND",
+        "evenPositions": "VEE"
+      },
+      "reserved": {
+        "37": "10uF+ electrolytic",
+        "38": "10uF+ electrolytic"
+      },
+      "note": "Numbering top to bottom, position 1 is GND and 2 is the supply (+12V on the left column, -12V on the right). On powered boards the 100nF caps consume no positions; the 10uF+ electrolytics sit on positions 37-38. Positions 1, 2, 39, 40 exist to jump power between stacked boards and are FREE on a single-board module \u2014 39 (GND) is handy for grounding near the bottom."
+    }
+  },
+  "deck": {
+    "symbol": "n8-cd-4hp-1x6",
+    "grid": {
+      "cols": 1,
+      "rows": 6
+    },
+    "strips": 1,
+    "groundBus": {
+      "pad": "D",
+      "scope": "whole deck",
+      "note": "One D pad per cell, bussed deck-wide. Bridge a cell's spare A/B/C solder point to D for local grounds; the bus must reach breadboard GND via at least one outer-strip hole."
+    },
+    "padsPerCell": {
+      "A": 2,
+      "B": 2,
+      "C": 2,
+      "D": 1
+    },
+    "cells": {
+      "JPS1": {
+        "strip": "ctrlL",
+        "ctrlRows": {
+          "A": 1,
+          "B": 2,
+          "C": 3
+        }
+      },
+      "JPS2": {
+        "strip": "ctrlL",
+        "ctrlRows": {
+          "A": 8,
+          "B": 9,
+          "C": 10
+        }
+      },
+      "JPS3": {
+        "strip": "ctrlL",
+        "ctrlRows": {
+          "A": 15,
+          "B": 16,
+          "C": 17
+        }
+      },
+      "JPS4": {
+        "strip": "ctrlL",
+        "ctrlRows": {
+          "A": 22,
+          "B": 23,
+          "C": 24
+        }
+      },
+      "JPS5": {
+        "strip": "ctrlL",
+        "ctrlRows": {
+          "A": 30,
+          "B": 31,
+          "C": 32
+        }
+      },
+      "JPS6": {
+        "strip": "ctrlL",
+        "ctrlRows": {
+          "A": 38,
+          "B": 39,
+          "C": 40
+        }
+      }
+    }
+  },
+  "ctrlMap": {
+    "ctrlL": {
+      "1": {
+        "cell": "JPS1",
+        "pad": "A"
+      },
+      "2": {
+        "cell": "JPS1",
+        "pad": "B"
+      },
+      "3": {
+        "cell": "JPS1",
+        "pad": "C"
+      },
+      "4": null,
+      "5": null,
+      "6": null,
+      "7": null,
+      "8": {
+        "cell": "JPS2",
+        "pad": "A"
+      },
+      "9": {
+        "cell": "JPS2",
+        "pad": "B"
+      },
+      "10": {
+        "cell": "JPS2",
+        "pad": "C"
+      },
+      "11": null,
+      "12": null,
+      "13": null,
+      "14": null,
+      "15": {
+        "cell": "JPS3",
+        "pad": "A"
+      },
+      "16": {
+        "cell": "JPS3",
+        "pad": "B"
+      },
+      "17": {
+        "cell": "JPS3",
+        "pad": "C"
+      },
+      "18": null,
+      "19": null,
+      "20": null,
+      "21": null,
+      "22": {
+        "cell": "JPS4",
+        "pad": "A"
+      },
+      "23": {
+        "cell": "JPS4",
+        "pad": "B"
+      },
+      "24": {
+        "cell": "JPS4",
+        "pad": "C"
+      },
+      "25": null,
+      "26": null,
+      "27": null,
+      "28": null,
+      "29": null,
+      "30": {
+        "cell": "JPS5",
+        "pad": "A"
+      },
+      "31": {
+        "cell": "JPS5",
+        "pad": "B"
+      },
+      "32": {
+        "cell": "JPS5",
+        "pad": "C"
+      },
+      "33": null,
+      "34": null,
+      "35": null,
+      "36": null,
+      "37": null,
+      "38": {
+        "cell": "JPS6",
+        "pad": "A"
+      },
+      "39": {
+        "cell": "JPS6",
+        "pad": "B"
+      },
+      "40": {
+        "cell": "JPS6",
+        "pad": "C"
+      }
+    }
+  },
+  "gapRows": {
+    "ctrlL": [
+      4,
+      5,
+      6,
+      7,
+      11,
+      12,
+      13,
+      14,
+      18,
+      19,
+      20,
+      21,
+      25,
+      26,
+      27,
+      28,
+      29,
+      33,
+      34,
+      35,
+      36,
+      37
+    ]
+  },
+  "gapRowNote": "Gap rows have no JPS pad; the deck hole is otherwise unconnected, so they are free feed-through tie points (useful for long jumps routed across the deck).",
+  "stacking": {
+    "supported": true,
+    "note": "Extra breadboards stack via connectors on any deck size. Deck mounts right way up; stacked boards are typically mounted FLIPPED (left/right strips swap) so components face outward for probing. SIGNALS do pass between stacked boards, but the stacking connectors are awkward in practice \u2014 the working method is 1-to-6-way pin headers on the INSIDE of the connector rails, jumping deck -> board 1 -> board 2. Power is jumped via power-rail positions 1, 2, 39, 40. See docs/n8synth_platform.md before layouts.",
+    "passThroughConfirmed": true
+  }
+}

@@ -1,0 +1,13 @@
+# Buffered input and output, half a TL072. The other half is tied off as a follower.
+# Jack sleeves aren't here: they solder to the deck's D bus. J1.C is J1's spare pad, bridged to D on
+# the deck, which is how the bus reaches ground.
+
++12V: rail:+12V U1.8 C1.1
+-12V: rail:-12V U1.4 C2.1
+GND: rail:GND C1.2 C2.2 R1.2 U1.5 J1.C
+
+IN: J1.A R1.1 R2.1
+BUF_IN: R2.2 U1.3
+BUF_OUT: U1.1 U1.2 R3.1
+OUT: R3.2 J2.A
+SPARE: U1.6 U1.7

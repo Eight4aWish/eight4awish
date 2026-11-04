@@ -1,0 +1,225 @@
+{
+ "title": "Inverter",
+ "board": "n8synth (single board, rows 1-36)",
+ "boardId": "n8synth-6hp",
+ "revision": "drawn, not built",
+ "notes": "Inverting amplifier, gain of one.",
+ "stages": [
+  {
+   "id": 1,
+   "name": "Power and the chip",
+   "desc": "Socket, supply, decoupling, the spare half.",
+   "test": "+12 V on pin 8 and -12 V on pin 4 with no chip fitted.",
+   "color": "#e74c3c"
+  },
+  {
+   "id": 2,
+   "name": "Signal",
+   "desc": "Input, feedback, output, deck wires.",
+   "test": "A signal at IN comes out at OUT, inverted.",
+   "color": "#3498db"
+  }
+ ],
+ "ics": [
+  {
+   "id": "U1",
+   "value": "TL072",
+   "label": "TL072",
+   "stage": 1,
+   "pins": [
+    {
+     "n": 1,
+     "r": 14,
+     "c": "e"
+    },
+    {
+     "n": 2,
+     "r": 15,
+     "c": "e"
+    },
+    {
+     "n": 3,
+     "r": 16,
+     "c": "e"
+    },
+    {
+     "n": 4,
+     "r": 17,
+     "c": "e"
+    },
+    {
+     "n": 5,
+     "r": 14,
+     "c": "f"
+    },
+    {
+     "n": 6,
+     "r": 15,
+     "c": "f"
+    },
+    {
+     "n": 7,
+     "r": 16,
+     "c": "f"
+    },
+    {
+     "n": 8,
+     "r": 17,
+     "c": "f"
+    }
+   ]
+  }
+ ],
+ "twoPins": [
+  {
+   "id": "C1",
+   "type": "C",
+   "value": "100nF",
+   "r1": 14,
+   "c1": "h",
+   "r2": 13,
+   "c2": "pwrR",
+   "stage": 1
+  },
+  {
+   "id": "C2",
+   "type": "C",
+   "value": "100nF",
+   "r1": 17,
+   "c1": "b",
+   "r2": 18,
+   "c2": "pwrL",
+   "stage": 1
+  },
+  {
+   "id": "R1",
+   "type": "R",
+   "value": "100k",
+   "r1": 8,
+   "c1": "c",
+   "r2": 16,
+   "c2": "c",
+   "stage": 2
+  },
+  {
+   "id": "R2",
+   "type": "R",
+   "value": "100k",
+   "r1": 15,
+   "c1": "b",
+   "r2": 14,
+   "c2": "b",
+   "stage": 2
+  },
+  {
+   "id": "R3",
+   "type": "R",
+   "value": "1k",
+   "r1": 14,
+   "c1": "c",
+   "r2": 21,
+   "c2": "c",
+   "stage": 2
+  }
+ ],
+ "jumpers": [
+  {
+   "id": "W1",
+   "r1": 16,
+   "c1": "g",
+   "r2": 15,
+   "c2": "g",
+   "label": "spare half: pin 6 to pin 7",
+   "stage": 1
+  },
+  {
+   "id": "W2",
+   "r1": 7,
+   "c1": "ctrlLi",
+   "r2": 8,
+   "c2": "a",
+   "label": "IN",
+   "stage": 2
+  },
+  {
+   "id": "W3",
+   "r1": 20,
+   "c1": "ctrlLi",
+   "r2": 21,
+   "c2": "a",
+   "label": "OUT",
+   "stage": 2
+  }
+ ],
+ "powerWires": [
+  {
+   "id": "P1",
+   "r1": 14,
+   "c1": "g",
+   "r2": 14,
+   "c2": "pwrL",
+   "label": "U1 pin 8: +12V",
+   "stage": 1
+  },
+  {
+   "id": "P2",
+   "r1": 17,
+   "c1": "a",
+   "r2": 18,
+   "c2": "pwrR",
+   "label": "U1 pin 4: -12V",
+   "stage": 1
+  },
+  {
+   "id": "P3",
+   "r1": 17,
+   "c1": "g",
+   "r2": 17,
+   "c2": "pwrR",
+   "label": "U1 pin 5: ground",
+   "stage": 1
+  },
+  {
+   "id": "P4",
+   "r1": 16,
+   "c1": "b",
+   "r2": 15,
+   "c2": "pwrL",
+   "label": "U1 pin 3: ground",
+   "stage": 1
+  }
+ ],
+ "jpsWires": [
+  {
+   "id": "J1.A",
+   "ref": "J1",
+   "pad": "A",
+   "label": "IN",
+   "lbl": "IN",
+   "row": 7,
+   "col": "ctrlLo",
+   "stage": 2
+  },
+  {
+   "id": "J1.C",
+   "ref": "J1",
+   "pad": "C",
+   "label": "deck ground",
+   "lbl": "GND",
+   "row": 9,
+   "col": "ctrlLo",
+   "stage": 2
+  },
+  {
+   "id": "J2.A",
+   "ref": "J2",
+   "pad": "A",
+   "label": "OUT",
+   "lbl": "OUT",
+   "row": 20,
+   "col": "ctrlLo",
+   "stage": 2
+  }
+ ],
+ "netLabels": []
+}
