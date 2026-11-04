@@ -131,8 +131,15 @@ Nothing in `src/content/modules/` covers these.
 | **Teensy Expander** | `eurorack_modules` | `src/teensy_move_old/` | Teensy 4.1 companion, 6HP | Expander for **the old Boy**: a 74HC595 latch plus inverter driving four drum triggers and two extra CV/gate channels via two MCP4822 DACs. Drum outs idle LOW with a 500 µs HIGH pulse (`DRUM_TRIG_US[]`), tuned so gate-sensitive hats do not read them as gates. Goes with the old Boy. |
 | **Seeed Recorder (RP2040)** | `seeed-recorder` | `firmware/` | Seeed Xiao RP2040, **1U tile** | Capture trigger for the Retrospective Mac app over **USB-MIDI** (button → Note On; Note On → LED). Momentary switch on `D5`, LED on `D0`. **USB-powered — no Eurorack bus power in v1.** Built with arduino-pico + Adafruit TinyUSB. Any MIDI controller sending the same Note triggers it too. |
 | **ESP32 ClkLink** | `eurorack_modules` | `src/esp32_clklink/` | ESP32-Dev + MCP4728 | The original Ableton Link clock/reset generator; predecessor to ClkLinkRec. OFF / INTERNAL / LINK switch. **GPL-2.0-or-later** (links Ableton Link). |
-| **MOD2 / Melon** | `eurorack_electronics` | `docs/mod2_*` | mixed-signal, n8synth 6HP | Dual-firmware-compatible board running 25 published HAGIWO voices — every MOD2 *and* Melon firmware unmodified. 7805 from +12V, both indicator types populated, JP1/JP2 promoted to panel switches. |
 | **The old Boy** | `eurorack_modules` | `src/teensy_move_old/`, env `teensy_move_old` | Teensy 4.1 on hand-built hardware, with the Teensy Expander | Boy before the analogue board: four MIDI-to-CV voices with mod, four drums, an SGTL5000 FX send. **Being replaced** by Boy on Rev A (decided 2026-11-01): once the new firmware has taken over, it and the Teensy Expander leave this list, and `src/teensy_move_old/` is archived or deleted, when David says. |
+
+## Designed, not built
+
+Netlist, BOM and journal only: **not built yet** (David, 2026-11-04).
+
+| Module | Repo | Firmware / docs | Platform | What it is |
+|---|---|---|---|---|
+| **MOD2 / Melon** | `eurorack_electronics` | `docs/mod2_*` | mixed-signal, n8synth 6HP | Dual-firmware-compatible board running 25 published HAGIWO voices — every MOD2 *and* Melon firmware unmodified. 7805 from +12V, both indicator types populated, JP1/JP2 promoted to panel switches. |
 
 ## Panel widths
 
