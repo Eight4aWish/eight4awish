@@ -7,7 +7,7 @@
 //   the published modules, tutorials and notes   src/content, and whether docs/ has the page
 //   the built modules that have no page yet      src/content/modules with draft: true
 //   the intro                                    src/content/home.json
-//   the public repos                             the GitHub API, with the notes in REPO_NOTES
+//   the public repos                             the GitHub API: each repo's own description
 //   the skills                                   skills/README.md
 //
 // Only the text between <!-- generated:x --> markers is replaced. Everything else in the
@@ -30,17 +30,10 @@ const OWNER = 'Eight4aWish'
 const SITE = 'https://eight4awish.com'
 const CHECK = process.argv.includes('--check')
 
-// What a visitor needs to know about each repo. A public repo with no note here still gets
-// listed, with its GitHub description, so a new one shows up without anyone remembering.
-const REPO_NOTES = {
-  eurorack_daisy_patch_init: 'Firmware for the Daisy patch.Init() and the Alchemy Lab: Joy, Sorrow, Mirth, Secret, Wish and more.',
-  eurorack_modules: 'Firmware for modules on Teensy, Pico, ESP32, Ksoloti and AMYboard: Girl, Boy, CortHex and more.',
-  eurorack_electronics: 'Analogue designs and breadboard layouts: the Dual Pingable LPG, and the board behind Boy.',
-  build123d: 'Panels as code: the Eurorack front panels, plus cable and headphone holders.',
-  [OWNER.toLowerCase()]: 'The eight4awish.com site, this page, the full module inventory and the Claude skills.',
-  'seeed-recorder': 'Retrospective, a Mac app that saves the audio you just played, and its 1U trigger module.',
-  tiliqua: 'Silver and Gold, bitstream instruments for the Tiliqua, on a fork of its source.',
-}
+// The order to list the main repos in. The words are each repo's GitHub description, the
+// same ones its pinned card shows. Any other public repo follows these, so a new one shows
+// up without anyone remembering.
+const REPO_ORDER = ['eurorack_daisy_patch_init', 'eurorack_modules', 'eurorack_electronics', 'build123d', OWNER.toLowerCase(), 'seeed-recorder', 'tiliqua']
 
 // Top-level keys only, which is all this needs: plain values, quoted values, trailing
 // comments and folded (>-) blocks. Nested blocks are indented, so they are skipped.
@@ -172,14 +165,10 @@ async function reposBlock() {
     return null
   }
   repos = repos.filter((r) => !r.private && !r.archived)
-  const order = Object.keys(REPO_NOTES)
-  const rank = (r) => (order.includes(r.name) ? order.indexOf(r.name) : order.length)
+  const rank = (r) => (REPO_ORDER.includes(r.name) ? REPO_ORDER.indexOf(r.name) : REPO_ORDER.length)
   const rows = repos
     .sort((a, b) => rank(a) - rank(b))
-    .map((r) => {
-      const note = REPO_NOTES[r.name] ?? `${r.description ?? ''}${r.fork ? ' (fork)' : ''}`
-      return `| [${r.name}](${r.html_url}) | ${cell(note.trim())} |`
-    })
+    .map((r) => `| [${r.name}](${r.html_url}) | ${cell(r.description ?? '')} |`)
   return ['| Repo | What it holds |', '| --- | --- |', ...rows].join('\n')
 }
 

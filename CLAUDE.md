@@ -13,8 +13,9 @@ the website brings the README up to date with it**, and new work reaches both.
 - `.github/workflows/readme.yml` catches what skips a deploy, every day and on every push
   to the content: a new public repo, a missing image, a dead source link, or a release newer
   than the one its page offers. A failed run means something needs a person.
-- The hand-written parts, and `REPO_NOTES` in the script, are mine to keep true: when a
-  change makes them wrong, fix them in the same commit.
+- The hand-written parts are mine to keep true: when a change makes them wrong, fix them in
+  the same commit. The repo table's words are each repo's GitHub description, so change them
+  there (`gh repo edit --description`).
 - A new module gets a `src/content/modules/` page (with `draft: true` until it's released)
   and a line in `MODULES.md`. Give a draft its `firmware:` link, and it's listed on the README
   as built.

@@ -81,11 +81,11 @@ Everything built or designed, the hardware in the rack and which repo each thing
 | [eurorack_modules](https://github.com/Eight4aWish/eurorack_modules) | Firmware for modules on Teensy, Pico, ESP32, Ksoloti and AMYboard: Girl, Boy, CortHex and more. |
 | [eurorack_electronics](https://github.com/Eight4aWish/eurorack_electronics) | Analogue designs and breadboard layouts: the Dual Pingable LPG, and the board behind Boy. |
 | [build123d](https://github.com/Eight4aWish/build123d) | Panels as code: the Eurorack front panels, plus cable and headphone holders. |
-| [eight4awish](https://github.com/Eight4aWish/eight4awish) | The eight4awish.com site, this page, the full module inventory and the Claude skills. |
+| [eight4awish](https://github.com/Eight4aWish/eight4awish) | The eight4awish.com site, this profile page, the full module inventory and the Claude skills. |
 | [seeed-recorder](https://github.com/Eight4aWish/seeed-recorder) | Retrospective, a Mac app that saves the audio you just played, and its 1U trigger module. |
-| [tiliqua](https://github.com/Eight4aWish/tiliqua) | Silver and Gold, bitstream instruments for the Tiliqua, on a fork of its source. |
-| [0700-AAM](https://github.com/Eight4aWish/0700-AAM) | Fork of Behringer KICK (BE 0700-AAM) source: stand-ins for the unreleased modules so the KICK app builds and runs on macOS. Not affiliated with Music Tribe. (fork) |
-| [ogham](https://github.com/Eight4aWish/ogham) | Ogham — a dual-voice bytebeat synthesizer for Eurorack. Firmware (MIT) and hardware (CC BY-SA 4.0). (fork) |
+| [tiliqua](https://github.com/Eight4aWish/tiliqua) | Silver and Gold, bitstream instruments for the Tiliqua, on a fork of apfaudio/tiliqua. |
+| [behringer-kick-macos](https://github.com/Eight4aWish/behringer-kick-macos) | Fork of the Behringer KICK (BE 0700-AAM) source: stand-ins for the unreleased modules so the KICK app builds and runs on macOS. Not affiliated with Music Tribe. |
+| [ogham](https://github.com/Eight4aWish/ogham) | A fork of Ogham, a dual-voice bytebeat synth for Eurorack, with a firmware change for a substitute encoder. |
 <!-- /generated:repos -->
 
 ## Claude skills
