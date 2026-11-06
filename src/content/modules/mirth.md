@@ -131,23 +131,24 @@ speaker, and some are the amp alone.
 
 ### Why a network can copy it
 
-Start with one neuron. It takes some samples of audio in, multiplies each one by a weight,
-adds them up, adds a fixed amount called a bias, and puts the result through an activation
-function, a gentle bend. Each layer reads the last few values as well as the current one,
-and deeper layers leave gaps between the values they read, so by the last layer the network
-is reaching more than six thousand samples back.
+Each neuron reads the current sample of audio and some earlier ones. That reaching back in
+time is a delay, and by the last layer it reaches about 132 milliseconds, long enough to
+catch a speaker ringing on and an amp recovering from a big note. Each of those samples is
+multiplied by a weight and they are added up, and the weights are what make a filter.
 
-Now look at that in the same terms as the amp. A neuron reads a few short delays and mixes
-them with its weights. One delay on its own is just a delay. But mix it with the original: a
-note that is half a cycle late arrives upside down and cancels, and at twice that pitch it
-lines up and adds. Same delay, different pitches treated differently. That is all a filter
-is. Line enough copies up at one pitch and that pitch keeps going after the input stops.
-That is resonance: ping a filter and it rings on, as the speaker does. A clipper cannot do
-that, because it only ever sees now. The bias is the offset. The activation is the bend.
+Put the delay and the filter together and some frequencies cancel while others are
+amplified. With enough of them lined up at one frequency, it keeps going after the input
+stops. That is the resonance, the ringing.
 
-So every layer is a filter, an offset and a bend. There are 23 in a row, three lanes wide,
-and all that is missing is the settings. That is the 1,871 numbers. Training plays the same
-signal through the real amp and the network, and turns those knobs until the two match.
+Then the activation squashes the values, flattening anything below zero almost to nothing,
+and that is what copies the clipping. A fixed amount added just before it, called the bias,
+moves where the squashing starts, which is where the unevenness comes from.
+
+An amp and a cab have many elements that affect the sound, so the network has to be big
+enough to capture the nuance. A2-Lite has 23 layers, three lanes side by side, and 1,871
+parameters, the weights and biases: big enough for that, and small enough for a Eurorack
+module. Training plays the same signal through the real amp and the network, and adjusts
+those numbers until the two match.
 
 ### What a capture cannot do
 
