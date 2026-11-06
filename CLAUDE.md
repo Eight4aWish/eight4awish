@@ -20,8 +20,9 @@ the website brings the README up to date with it**, and new work reaches both.
   as built.
 - Pull before pushing: the workflow can commit the README to `main`.
 
-Every firmware or gateware app has its own README, and its repo's README lists it, both
-written when the app is created and updated when it changes.
+Every firmware or gateware app has its own README (`docs/<APP>.md` in `eurorack_modules`,
+`SILVER.md` and `GOLD.md` in `tiliqua`), and its repo's README lists it, both written when the
+app is created and updated when it changes.
 
 ## Committing here
 

@@ -5,7 +5,7 @@ learner-facing; the lesson files stay clean per drafting rule 3 in `COURSE.md`.
 
 ## Channel map
 
-The rig as recorded for the video (21 Sep take), read off `recorded_*.js` and the patch in
+The rig as recorded for the video (21 Sep take). The Workshop Computer has since gone (2026-10-29), so a re-record needs another MIDI-to-CV for the lead voice and the CC outs. This is read off `recorded_*.js` and the patch in
 `eight4awish-video/src/cables.ts`, which is the cable-by-cable authority.
 
 | Ch | From | To | Carries |

@@ -2,6 +2,12 @@
 
 Welcome to your Strudel music live coding workspace! Strudel is a powerful JavaScript-based live coding environment for creating music patterns.
 
+## What's here
+
+- `lessons/`: the lesson files behind the [Strudel primer](https://eight4awish.com/tutorials/strudel/), including the ones recorded for the video.
+- `COURSE.md`, `COMMANDS.md`, `RIG.md`, `JOURNAL.md` and `VERIFY.md`: how the course is written, the commands it teaches, the rig it was recorded on, and the working notes.
+- `templates/`: general starting points, listed below.
+
 ## Getting Started
 
 1. Open [index.html](index.html) in your web browser to use the web-based editor
@@ -14,6 +20,7 @@ Welcome to your Strudel music live coding workspace! Strudel is a powerful JavaS
 - **[basic-beat.js](templates/basic-beat.js)** - Simple drum pattern to get started
 - **[melodic-pattern.js](templates/melodic-pattern.js)** - Layered melody with bass and chords
 - **[full-song.js](templates/full-song.js)** - Complete composition structure
+- **[midi-template.js](templates/midi-template.js)** - Patterns sent out over MIDI to hardware
 
 ### Genre Templates
 - **[techno-groove.js](templates/techno-groove.js)** - Driving techno beat with modulation
