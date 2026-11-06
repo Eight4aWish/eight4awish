@@ -221,6 +221,18 @@ the panel. The splash shows the build.
 
 **Bill of materials:** Mirth Lite runs on Daisy patch.Init(). For full Mirth add a 64×48 SSD1306 OLED (I²C) screen · a few hook-up wires · and a printed panel. The same screen and wiring as Joy: replacing the B8 toggle with the OLED for more feedback during use.
 
+### Build your own patch.Init()
+
+The patch.Init() is often out of stock, but it is easy to build your own. Daisy Audio
+publishes the design on its [patch.Init() page](https://docs.daisy.audio/product/Daisy-Patch-Init/):
+one download holds the control board's Gerbers and KiCad files, a PCB front panel and a
+parts list. Order the boards, add a Daisy Patch Submodule, and the rest is easy to get: 13
+jacks, 4 pots, a button, a toggle, an LED and a microSD socket. My Joy is built this way,
+with a printed panel.
+
+Two things to watch on the parts list: it shows one 2×5 socket, but the board takes four,
+and it doesn't include knobs.
+
 ## More captures
 
 Download A2 captures from TONE3000 — filter by architecture — and copy
