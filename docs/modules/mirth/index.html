@@ -8,13 +8,149 @@
 builds: <strong>Mirth Lite</strong>, for an unmodified patch.Init(), and <strong>Mirth</strong>, which adds a small
 screen (see Hardware).</p>
 <p>A capture is a small neural network trained to behave like one particular amp. For Mirth we use NAM’s A2-Lite neural network: 23 layers, each a dilated causal convolution with a LeakyReLU activation, joined by residual and skip connections — 1,871 parameters in all. Small enough for a Eurorack module, and a format TONE3000’s library lets you filter for.</p>
-<p>That is the first bank, <strong>AMPS</strong>. The second, <strong>NOT-AMPS</strong>, takes the same amps but messes with the parameters to create effects that are definitely not real amps.</p>
-<p>The third, <strong>FILTERS</strong>, plays two real filters from the rack as neural networks — a
-Doepfer A-124 Wasp and a Behringer Swords — with cutoff and resonance as knobs. It has
-its own page, <a href="/modules/mirth-filters/">Mirth (filters)</a>: the same firmware and card.</p>
+<p>The first bank, <strong>AMPS</strong>, plays twelve of those captures. The second, <strong>NOT-AMPS</strong>, takes the same amps but messes with the parameters to create effects that are definitely not real amps. A third bank, <strong>FILTERS</strong>, has its own page: <a href="/modules/mirth-filters/">Mirth (filters)</a>.</p>
 <p>Named — like everything here — after the nursery rhyme, in the version that runs <em>one</em>
 <em>for sorrow, two for mirth</em>. Not affiliated with, or endorsed by, Neural Amp Modeler,
-TONE3000, Electrosmith, Doepfer or Behringer.</p>
+TONE3000, Electrosmith, or the makers of the amps and pedals captured. Product names
+describe what was captured.</p>
+<h2 id="the-amps">The amps</h2>
+<p>Mirth comes with twelve captures, the <strong>starter set</strong>, in the card files beside the
+firmware. They are amps and pedals, some with a speaker in the capture and some without.
+Their creators share them on TONE3000, eight under CC BY and four under CC0, and each is
+credited, with the changes made, in <code>STARTER_CAPTURES.md</code>.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Screen</th>
+<th>Captured from</th>
+<th>By</th>
+<th>Licence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>SVT-2 PRO</code></td>
+<td><a href="https://www.tone3000.com/tones/ampeg-svt-2-pro-5728">Ampeg SVT-2 Pro</a></td>
+<td><a href="https://www.tone3000.com/cobraska">cobraska</a></td>
+<td><a href="https://creativecommons.org/licenses/by/4.0/">CC BY</a></td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>ORANGE TH</code></td>
+<td><a href="https://www.tone3000.com/tones/orange-th100-6554">Orange TH100</a></td>
+<td><a href="https://www.tone3000.com/tupalosa">tupalosa</a></td>
+<td><a href="https://creativecommons.org/licenses/by/4.0/">CC BY</a></td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>FENDER 57</code></td>
+<td><a href="https://www.tone3000.com/tones/fender-57-custom-deluxe-a1-conversion-5590">Fender ’57 Custom Deluxe A1 Conversion</a></td>
+<td><a href="https://www.tone3000.com/danielnguyen">danielnguyen</a></td>
+<td><a href="https://creativecommons.org/licenses/by/4.0/">CC BY</a></td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>BLUESBRKR</code></td>
+<td><a href="https://www.tone3000.com/tones/marshall-bluesbreaker-pedal-original-1778">Marshall Bluesbreaker Pedal (Original)</a></td>
+<td><a href="https://www.tone3000.com/chrisedmo">chrisedmo</a></td>
+<td><a href="https://creativecommons.org/licenses/by/4.0/">CC BY</a></td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>KLON</code></td>
+<td><a href="https://www.tone3000.com/tones/klon-centaur-silver-2599">Klon Centaur (Silver)</a></td>
+<td><a href="https://www.tone3000.com/seanashe">seanashe</a></td>
+<td><a href="https://creativecommons.org/licenses/by/4.0/">CC BY</a></td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>PLEXI LORE</code></td>
+<td><a href="https://www.tone3000.com/tones/plexi-lore-1863">pLEXI-LORE</a></td>
+<td><a href="https://www.tone3000.com/greyback05">greyback05</a></td>
+<td><a href="https://creativecommons.org/licenses/by/4.0/">CC BY</a></td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>SUNBENDER</code></td>
+<td><a href="https://www.tone3000.com/tones/analogman-sun-bender-mkiv-3-nos-mullard-5609">Analogman Sun Bender MKIV (3 NOS Mullard)</a></td>
+<td><a href="https://www.tone3000.com/danielnguyen">danielnguyen</a></td>
+<td><a href="https://creativecommons.org/licenses/by/4.0/">CC BY</a></td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>TWO ROCK</code></td>
+<td><a href="https://www.tone3000.com/tones/two-rock-studio-signature-ox-box-2x12-two-rock-cab-v2-5367">Two Rock Studio Signature + OX Box 2x12 Two Rock Cab (V2)</a></td>
+<td><a href="https://www.tone3000.com/danielnguyen">danielnguyen</a></td>
+<td><a href="https://creativecommons.org/licenses/by/4.0/">CC BY</a></td>
+</tr>
+<tr>
+<td>9</td>
+<td><code>KAY 703</code></td>
+<td><a href="https://www.tone3000.com/tones/kay-703-6302">Kay 703</a></td>
+<td><a href="https://www.tone3000.com/aazuspan">aazuspan</a></td>
+<td><a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a></td>
+</tr>
+<tr>
+<td>10</td>
+<td><code>TRAYNOR</code></td>
+<td><a href="https://www.tone3000.com/tones/traynor-ts-120-b-6333">Traynor TS 120 B</a></td>
+<td><a href="https://www.tone3000.com/rbrt">rbrt</a></td>
+<td><a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a></td>
+</tr>
+<tr>
+<td>11</td>
+<td><code>BUGERA G5</code></td>
+<td><a href="https://www.tone3000.com/tones/bugera-g5-infinium-pack-6151">Bugera G5 Infinium Pack</a></td>
+<td><a href="https://www.tone3000.com/durchschnittsmusiker">durchschnittsmusiker</a></td>
+<td><a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a></td>
+</tr>
+<tr>
+<td>12</td>
+<td><code>DIY BJT</code></td>
+<td><a href="https://www.tone3000.com/tones/diy-drive-pedal-bjt-silicon-celestion-eight-15-ir-5700">DIY drive pedal (BJT silicon) + Celestion Eight 15 IR</a></td>
+<td><a href="https://www.tone3000.com/test98425988">test98425988</a></td>
+<td><a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a></td>
+</tr>
+</tbody>
+</table>
+<p>Each one is a single setting of the real thing, so there are no tone knobs: you play it
+with <strong>DRIVE</strong>, into the network, and <strong>MIX</strong>. They are levelled to one loudness as the ear
+hears it (A-weighted), so the bass amps do not sound quiet. The Orange TH100 is also built
+into the firmware, so a module with no card still plays. The not-amps are built from
+these twelve, so copy them all to the card. With a capture running, the processor sits at
+about 64%.</p>
+<h2 id="an-amp-as-a-patch">An amp as a patch</h2>
+<p>So what actually is an amp and a speaker, as a patch? Take it apart, and there are only a
+few kinds of module in there. The tone controls, and the capacitors between the stages, are
+filters. The valves are clippers: close to linear around the middle, then they flatten at
+the extremes, and not evenly, as if there is an offset going in. On a big note, many amps
+pull their own power supply down, and that is a compressor. And the speaker is a cone on a
+spring, so it has a resonance: hit it and it rings on. That is a resonant band-pass filter,
+with some more clipping when it reaches the end of its travel. Some captures include the
+speaker, and some are the amp alone.</p>
+<h3 id="why-a-network-can-copy-it">Why a network can copy it</h3>
+<p>Start with one neuron. It takes some samples of audio in, multiplies each one by a weight,
+adds them up, adds a fixed amount called a bias, and puts the result through an activation
+function, a gentle bend. Each layer reads the last few values as well as the current one,
+and deeper layers leave gaps between the values they read, so by the last layer the network
+is reaching more than six thousand samples back.</p>
+<p>Now look at that in the same terms as the amp. A neuron reads a few short delays and mixes
+them with its weights. One delay on its own is just a delay. But mix it with the original: a
+note that is half a cycle late arrives upside down and cancels, and at twice that pitch it
+lines up and adds. Same delay, different pitches treated differently. That is all a filter
+is. Line enough copies up at one pitch and that pitch keeps going after the input stops.
+That is resonance: ping a filter and it rings on, as the speaker does. A clipper cannot do
+that, because it only ever sees now. The bias is the offset. The activation is the bend.</p>
+<p>So every layer is a filter, an offset and a bend. There are 23 in a row, three lanes wide,
+and all that is missing is the settings. That is the 1,871 numbers. Training plays the same
+signal through the real amp and the network, and turns those knobs until the two match.</p>
+<h3 id="what-a-capture-cannot-do">What a capture cannot do</h3>
+<p>The network only sees the last 132 milliseconds, so anything slower cannot be in a capture.
+It learns one setting of the amp, which is why a capture has no knobs. And amps flatten,
+they do not fold: turn every neuron into a wavefolder, and it stops sounding like an amp.
+Which is where the second bank starts.</p>
 <h2 id="the-not-amps">The not-amps</h2>
 <p>Nineteen not-amps: fifteen built from the starter captures, four from random numbers.
 Each is changed in one way while it plays, with one control, <strong>STEER</strong>, that you can turn
@@ -101,10 +237,6 @@ only those that leave the region where amps sit were kept — then by ear.</p>
 </table>
 <p>The four RND not-amps and MUTATE KAY need the five files in the zip’s <code>notamps</code> folder;
 AMPS never lists them, since they are not amps.</p>
-<h2 id="the-filters">The filters</h2>
-<p>Seven, on the same card: FLT1 to FLT7, a Wasp and a Swords learned from recordings of
-the real modules, with FREQ and RES, and RES goes to 11. What each one is, how they
-were trained and how they sound: <a href="/modules/mirth-filters/">Mirth (filters)</a>.</p>
 <h2 id="controls">Controls</h2>
 <p>The knobs and jacks are the same on both builds. Each knob is summed with the CV jack
 under it.</p>
@@ -114,7 +246,6 @@ under it.</p>
 <th>Control</th>
 <th>AMPS</th>
 <th>NOT-AMPS</th>
-<th>FILTERS</th>
 </tr>
 </thead>
 <tbody>
@@ -122,45 +253,39 @@ under it.</p>
 <td><strong>CV_1</strong> (+ CV_5)</td>
 <td>MIX, dry to wet</td>
 <td>MIX</td>
-<td>MIX</td>
 </tr>
 <tr>
 <td><strong>CV_2</strong> (+ CV_6)</td>
 <td>—</td>
 <td>STEER, the not-amp’s control</td>
-<td>FREQ, the cutoff; the jack adds its volts, as on the real filter</td>
 </tr>
 <tr>
 <td><strong>CV_3</strong> (+ CV_7)</td>
 <td>—</td>
 <td>—</td>
-<td>RES, 0 to 11</td>
 </tr>
 <tr>
 <td><strong>CV_4</strong> (+ CV_8)</td>
 <td>DRIVE into the network, −20 to +20 dB, unity at noon</td>
-<td>DRIVE</td>
 <td>DRIVE</td>
 </tr>
 <tr>
 <td><strong>B7</strong> short</td>
 <td>the next patch in the bank</td>
 <td></td>
-<td></td>
 </tr>
 <tr>
 <td><strong>B7</strong> held 1.5 s</td>
 <td>the next bank: AMPS → NOT-AMPS → FILTERS</td>
-<td></td>
 <td></td>
 </tr>
 </tbody>
 </table>
 <p>Audio in on IN_L; the same mixed signal on both outputs. MIX fully down is the dry input
 alone, for comparing. DRIVE changes the sound far more than the level: most of the
-captures, and the filters, grow more harmonics as it rises while their output hardly
-moves. Each bank remembers its place, so going round the banks comes back to where you
-were.</p>
+captures grow more harmonics as it rises while their output hardly moves. Each bank
+remembers its place, so going round the banks comes back to where you were. In FILTERS,
+knobs 2 and 3 are FREQ and RES: see <a href="/modules/mirth-filters/">Mirth (filters)</a>.</p>
 <h3 id="mirth-lite--no-screen">Mirth Lite — no screen</h3>
 <table>
 <thead>
@@ -191,19 +316,11 @@ were.</p>
 <h3 id="mirth--with-the-screen">Mirth — with the screen</h3>
 <p>The screen shows what is playing and its place in the bank (<code>AMP 2/12</code>), an input meter
 (before the drive), the CPU load, and the knobs’ values laid out as the knobs sit on
-the panel: the mix, the steer or cutoff, the resonance, the drive. The splash shows the
-build.</p>
+the panel. The splash shows the build.</p>
 <h2 id="hardware">Hardware</h2>
 <p><strong>Bill of materials:</strong> Mirth Lite runs on Daisy patch.Init(). For full Mirth add a 64×48 SSD1306 OLED (I²C) screen · a few hook-up wires · and a printed panel. The same screen and wiring as Joy: replacing the B8 toggle with the OLED for more feedback during use.</p>
-<h2 id="captures">Captures</h2>
-<p>Mirth comes with twelve captures, the <strong>starter set</strong>, in the card files beside the
-firmware: eight CC BY and four CC0, by their creators on TONE3000. Each is credited —
-creator, source, licence and the changes made — in <code>STARTER_CAPTURES.md</code>, which is in the
-download and in the firmware repo. The not-amps are built from them, so copy all twelve to
-the card. They are levelled to one loudness as the ear hears it (A-weighted), so the
-bass amps do not sound quiet. The Orange TH100 is also built into the firmware, so a
-module with no card still plays.</p>
-<p><strong>More captures:</strong> download A2 captures from TONE3000 — filter by architecture — and copy
+<h2 id="more-captures">More captures</h2>
+<p>Download A2 captures from TONE3000 — filter by architecture — and copy
 the <code>.nam</code> file to the root of the card. At the next boot Mirth converts it: it takes
 the A2-Lite network, names it from the file, levels it with the rest and writes the
 capture beside it, about three seconds a file, then moves the <code>.nam</code> into <code>nam_done</code>, or
@@ -219,17 +336,29 @@ levelled by A-weighted loudness rather than RMS (v1.0.0’s SVT played about 2 d
 its Sun Bender 4 dB loud).</li>
 <li><strong>Copy the <code>notamps</code> folder</strong> to the card: without it the four RND not-amps and
 MUTATE KAY show <code>N need cap</code>.</li>
-<li><strong>The knobs have moved.</strong> Knob 1 is MIX, 2 STEER (FREQ in FILTERS), 3 RES, 4 DRIVE; B7
+<li><strong>The knobs have moved.</strong> Knob 1 is MIX, 2 STEER, 4 DRIVE; B7
 now steps through the patches, so a patch can no longer be chosen by CV, and there is
 no bypass (MIX fully down is the dry input). On Mirth Lite the B8 toggle no longer
 picks the bank: hold B7. FRZ E TR has gone, and the not-amps have new numbers.</li>
 </ul>
+<h2 id="similar-work-not-the-same">Similar work, not the same</h2>
+<p>Other people have done something similar, but not the same:</p>
+<ul>
+<li><a href="https://github.com/roccoagain/nam-seed3">roccoagain/nam-seed3</a>: A2-Lite on a Daisy Seed.</li>
+<li><a href="https://github.com/oyama/pico-neural-amp-modeler-demo">oyama/pico-neural-amp-modeler-demo</a>:
+A2-Lite on an RP2350.</li>
+<li><a href="https://research.aalto.fi/en/publications/deep-learning-for-tube-amplifier-emulation/">Damskägg, Juvela, Thuillier and Välimäki, ICASSP 2019</a>:
+WaveNet-style tube amp emulation.</li>
+<li><a href="https://arxiv.org/abs/2010.04237">Steinmetz and Reiss, 2020</a>: random networks tend to
+delay and resonance.</li>
+</ul>
+<p>If I have got any of this wrong, tell me.</p>
 <h2 id="credits">Credits</h2>
-<p>The A2 engine is Keith Shepherd’s, from
+<p>Mirth plays captures from <a href="https://www.neuralampmodeler.com/">Neural Amp Modeler</a>, Steven
+Atkinson’s open-source project. The A2 engine is Keith Shepherd’s, from
 <a href="https://github.com/bkshepherd/DaisySeedProjects">DaisySeedProjects</a> (MIT), based on code
 nadavb shared on the Daisy forum. The twelve captures are their creators’, credited in
 <a href="https://github.com/Eight4aWish/eurorack_daisy_patch_init/blob/main/daisy_neural/STARTER_CAPTURES.md"><code>STARTER_CAPTURES.md</code></a>.
-The filter networks were trained on recordings of the rack’s own Wasp and Swords, credited
-in <code>FILTERS.md</code> and described on <a href="/modules/mirth-filters/">Mirth (filters)</a>.
-Built on Electrosmith’s libDaisy. Mirth itself is MIT.</p>
+The filters are credited on <a href="/modules/mirth-filters/">Mirth (filters)</a>. Built on
+Electrosmith’s libDaisy. Mirth itself is MIT.</p>
 </div><section class="flash"><h2 class="sec">Flash it — no compiler needed</h2><p class="sub">Mirth runs from the Daisy's QSPI chip through the Daisy bootloader: a one-time bootloader install, then the firmware goes on with an SD card. The same card then holds the captures. No compiler needed.</p><div class="warn"><b>Read this first —</b> The card must be one FAT32 partition of 2 GB or less, with the rest of the card left unallocated. A full-size FAT32 volume on a big card fails at start-up, and exFAT is not read at all.</div><div class="dl"><a class="btn" href="https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/mirth-v1.1.0/mirth-v1.1.0.bin">Download firmware v1.1.0</a><a class="btn" href="https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/mirth_lite-v1.1.0/mirth_lite-v1.1.0.bin">Download Mirth Lite v1.1.0</a><a class="btn" href="https://github.com/Eight4aWish/eurorack_daisy_patch_init/releases/download/mirth-v1.1.0/mirth-v1.1.0-card.zip">Download card files</a><a class="btn ghost" href="https://flash.daisy.audio" target="_blank" rel="noopener">Daisy Web Programmer</a><a class="btn ghost" href="https://www.tone3000.com/" target="_blank" rel="noopener">TONE3000 (filter for A2)</a></div><p class="tiny">The firmware is for a patch.Init() with the OLED fitted; Mirth Lite is for a stock patch.Init(), no screen. Both flash the same way and both take the same card: the zip holds the twelve starter captures, the five files the not-amps need in `notamps`, the seven filters, their credits, and these card instructions. Coming from v1.0.0? See &quot;Updating from v1.0.0&quot; below.</p><h3 class="flashsub">One time per module — install the bootloader</h3><ol class="flashsteps"><li>Plug the Daisy Patch.Init in with a USB-C data cable.</li><li>Hold BOOT, tap RESET, then release BOOT.</li><li>Open the Daisy Web Programmer and go to its Bootloader section.</li><li>Click Flash. That is the bootloader on — you never have to do this again.</li></ol><h3 class="flashsub">Every time — load the firmware</h3><ol class="flashsteps"><li>Format the card: one FAT32 partition of 2 GB or less. On a Mac, check the disk number with <code>diskutil list external</code> first — this erases it — then <code>diskutil partitionDisk /dev/diskN MBR "MS-DOS FAT32" DAISY 2G "Free Space" REST R</code>.</li><li>Copy the Mirth or Mirth Lite .bin above to the root of the card. It must be the only .bin on the card.</li><li>Unzip the card files and copy everything in the folder to the root as well, the <code>notamps</code> folder included. The not-amps are built from these files, by name.</li><li>Insert the card and power-cycle. The bootloader flashes the firmware if it differs from what is installed, and boots.</li></ol><div class="note">On a Mac, Finder writes a hidden twin of every file — ._mirth.bin, ._n02_ORANGE_TH.a2nb. The .bin twin confuses the bootloader and the capture twins fail their checksum. After copying, delete them in Terminal with <code>rm -f /Volumes/DAISY/._* /Volumes/DAISY/notamps/._*</code> — the usual <code>cp -X</code> no longer prevents them on current macOS.</div></section><p class="tiny" style="margin-top:30px">Updated October 2026</p></main><footer class="site"><div class="wrap"><span>© Eight4aWish</span><a href="https://github.com/Eight4aWish">GitHub</a><a href="mailto:info@eight4awish.com">info@eight4awish.com</a><a href="https://buymeacoffee.com/eight4awish">Buy me a coffee</a></div></footer></body></html>
