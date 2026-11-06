@@ -8,5 +8,6 @@ tags:
   - Ableton Link
 panel: /renders/clklinkrec_flat.png
 status: built
+firmware: https://github.com/Eight4aWish/eurorack_modules/tree/main/src/esp32_clklinkrec
 draft: true   # post-launch: needs write-up + video
 ---

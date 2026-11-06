@@ -1,0 +1,54 @@
+# README.md is the GitHub profile page. A deploy regenerates it (see tools/build-readme.mjs),
+# and this catches what doesn't go through a deploy: content pushed without a build, a new
+# public repo, or a release newer than the one the site offers.
+#
+# A failed run means something needs a person: an image or source link has gone, or a
+# release isn't on its page yet. The run's log names it.
+
+name: Keep the README in step
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - docs/modules/**
+      - docs/notes/**
+      - docs/tutorials/**
+      - public/opt/**
+      - README.md
+      - skills/README.md
+      - src/content/**
+      - tools/build-readme.mjs
+  schedule:
+    - cron: '17 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  readme:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Regenerate and check
+        run: node tools/build-readme.mjs --check
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
+      # Runs even if the check failed: a release waiting for its page is no reason to hold
+      # back an otherwise good README.
+      - name: Commit any change
+        if: always()
+        run: |
+          if git diff --quiet README.md; then
+            echo "README already matches"
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add README.md
+          git commit -m 'README: keep in step with the site'
+          git pull --rebase origin main
+          git push origin main

@@ -4,6 +4,8 @@
   "version": "1.0.0",
   "scripts": {
     "build": "astro build",
+    "postbuild": "node tools/build-readme.mjs",
+    "readme": "node tools/build-readme.mjs",
     "deploy": "node tools/deploy.mjs",
     "dev": "astro dev",
     "edit": "astro dev --open /keystatic",

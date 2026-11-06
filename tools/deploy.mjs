@@ -23,6 +23,10 @@ if (branch !== 'main') {
   process.exit(1)
 }
 
+// main can move without this Mac: cloud sessions push to it, and so does the workflow that
+// keeps the README in step. Catch up first, so the push at the end isn't refused.
+run('git', 'pull', '--rebase', '--autostash', 'origin', 'main')
+
 console.log('building ...')
 run('npm', 'run', 'build')
 

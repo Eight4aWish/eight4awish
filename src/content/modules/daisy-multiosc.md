@@ -7,5 +7,6 @@ tags:
   - oscillator
 panel: /renders/daisy_multiosc_flat.png
 status: built
+firmware: https://github.com/Eight4aWish/eurorack_daisy_patch_init/tree/main/daisy_multiosc
 draft: true   # post-launch: needs write-up + video
 ---

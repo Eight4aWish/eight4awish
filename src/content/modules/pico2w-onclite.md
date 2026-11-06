@@ -8,5 +8,6 @@ tags:
   - MIDI
 panel: /renders/pico2w_onclite_flat.png
 status: built
+firmware: https://github.com/Eight4aWish/eurorack_modules/tree/main/src/pico2w_oc
 draft: true   # post-launch: needs write-up + video
 ---

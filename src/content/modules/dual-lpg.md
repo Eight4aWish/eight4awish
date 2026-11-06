@@ -7,5 +7,6 @@ tags:
   - LPG
 panel: /renders/duallpg_flat.png
 status: built
+firmware: https://github.com/Eight4aWish/eurorack_electronics/blob/main/docs/lpg_netlist.md
 draft: true
 ---

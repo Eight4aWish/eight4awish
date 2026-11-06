@@ -7,5 +7,6 @@ tags:
   - effects
 panel: /renders/daisy_mfx_flat.png
 status: built
+firmware: https://github.com/Eight4aWish/eurorack_daisy_patch_init/tree/main/daisy_multifx_oled
 draft: true   # post-launch: needs write-up + video
 ---

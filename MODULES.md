@@ -38,8 +38,8 @@ tagged release and a downloadable binary.
 | **Joy** | `eurorack_daisy_patch_init` | `daisy_braids_oled/` | Daisy Patch Submodule | v1.4.0 | MI Braids | MIT |
 | **Joy Lite** | `eurorack_daisy_patch_init` | `daisy_joy_lite/` | Daisy Patch Submodule | v1.4.0 | MI Braids | MIT |
 | **Girl** | `eurorack_modules` | `src/ksoloti_elements/` | Ksoloti Big Genes | v1.2.3 | MI Elements | MIT |
-| **Silver** | `tiliqua` | `gateware/src/top/silver/` | Tiliqua (FPGA) | mesh-0.5 | original | CERN-OHL-S-2.0 |
-| **Gold** | `tiliqua` | `gateware/src/top/gold/` | Tiliqua (FPGA) | mesh-0.5 | original | CERN-OHL-S-2.0 |
+| **Silver** | `tiliqua` | `gateware/src/top/silver/` | Tiliqua (FPGA) | mesh-0.6 | original | CERN-OHL-S-2.0 |
+| **Gold** | `tiliqua` | `gateware/src/top/gold/` | Tiliqua (FPGA) | mesh-0.6 | original | CERN-OHL-S-2.0 |
 | **Secret** | `eurorack_daisy_patch_init` | `daisy_chaos/` | Alchemy Lab | v1.1.0 | original (the Teensy Chaos) | MIT |
 | **Mirth** | `eurorack_daisy_patch_init` | `daisy_neural/` | Daisy Patch Submodule | v1.1.0 | NAM A2-Lite (Keith Shepherd's engine, MIT) | MIT |
 | **Mirth Lite** | `eurorack_daisy_patch_init` | `daisy_neural/` (`make LITE=1`) | Daisy Patch Submodule | v1.1.0 | as Mirth | MIT |
