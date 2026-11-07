@@ -122,11 +122,11 @@ about 64%.
 
 So what actually is an amp and a speaker, as a patch? Take it apart, and there are only a
 few kinds of module in there. The tone controls, and the capacitors between the stages, are
-filters. The valves are clippers: close to linear around the middle, then they flatten at
-the extremes, and not evenly, as if there is an offset going in. On a big note, many amps
+filters. The valves are waveshapers: close to linear around the middle, then they flatten
+the peaks of the wave, and not evenly, as if there is an offset going in. On a big note, many amps
 pull their own power supply down, and that is a compressor. And the speaker is a cone on a
 spring, so it has a resonance: hit it and it rings on. That is a resonant band-pass filter,
-with some more clipping when it reaches the end of its travel. Some captures include the
+with some more flattening when it reaches the end of its travel. Some captures include the
 speaker, and some are the amp alone.
 
 ### Why a network can copy it
@@ -141,7 +141,7 @@ amplified. With enough of them lined up at one frequency, it keeps going after t
 stops. That is the resonance, the ringing.
 
 Then the activation squashes the values, flattening anything below zero almost to nothing,
-and that is what copies the clipping. A fixed amount added just before it, called the bias,
+and that makes it a waveshaper, like the valves. A fixed amount added just before it, called the bias,
 moves where the squashing starts, which is where the unevenness comes from.
 
 An amp and a cab have many elements that affect the sound, so the network has to be big
@@ -168,7 +168,7 @@ only those that leave the region where amps sit were kept — then by ear.
 | Screen | Built from | What changes | The control |
 | --- | --- | --- | --- |
 | `SINE BUG` | Bugera G5 | every neuron becomes a sine — a wavefolder inside the network | how hard it folds |
-| `TANH BJT` | DIY BJT drive | every neuron becomes a soft clipper | how hard it clips |
+| `TANH BJT` | DIY BJT drive | every neuron becomes a softer waveshaper, a tanh curve | how hard it squashes |
 | `LINEAR TR` · `LINEAR TRY` · `LINEAR ORG` | Two Rock · Traynor TS 120 B · Orange TH100 | every neuron loses its bend, toward a straight line | trained → linear |
 | `RECT ORG` | Orange TH100 | every neuron bends the other way, toward a full-wave rectifier | trained → rectified |
 | `FB100 F57` | Fender 57 | its output fed back into its input, at 100 Hz | loop gain |

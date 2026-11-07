@@ -273,7 +273,7 @@ added to FLT6's network as **FLT7**:
   little lower than it starts;
 - **its pitch:** 169 Hz at V/OCT 4 V, close to an octave per volt;
 - **its level:** about 7 V peak, ducked when the input is loud, since the two share Swords'
-  clipping;
+  headroom;
 - **its shape:** almost a sine at the start, odd harmonics growing with Res;
 - **locking:** it pulls to the input when a note is near its pitch;
 - **its start:** a random phase each time.
