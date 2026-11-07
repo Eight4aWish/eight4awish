@@ -198,7 +198,9 @@ under it.
 
 Audio in on IN_L; the same mixed signal on both outputs. MIX fully down is the dry input
 alone, for comparing. DRIVE changes the sound far more than the level: most of the
-captures grow more harmonics as it rises while their output hardly moves. Each bank
+captures grow more harmonics as it rises while their output hardly moves. It matters more
+than I expected: set too high, it brings in a harsh digital edge. The artifacts I cut from
+my first rack recording came from DRIVE, not from the captures, so set it by ear. Each bank
 remembers its place, so going round the banks comes back to where you were. In FILTERS,
 knobs 2 and 3 are FREQ and RES: see [Mirth (filters)](/modules/mirth-filters/).
 
