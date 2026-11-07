@@ -180,7 +180,7 @@ different random starts, so a lucky run cannot pass for a better design.
 ## What it learned
 
 The cutoff, in every run. With the cutoff alone at Res 6, the riff scored **0.012**, and
-the same 4 seconds A2-Lite scored 0.105 on scored 0.008.
+the same 4 seconds that A2-Lite scored 0.105 on scored 0.008.
 
 <p><strong>Real Wasp</strong>, Res 6, the cutoff stepping from 2 to 10 V<br><audio controls preload="none" src="/audio/wasp/wasp-res6_real-wasp.mp3" style="width:100%"></audio></p>
 <p><strong>The cutoff as a knob</strong>, ESR 0.010<br><audio controls preload="none" src="/audio/wasp/wasp-res6_gru24-cutoff.mp3" style="width:100%"></audio></p>
