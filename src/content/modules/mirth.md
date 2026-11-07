@@ -153,7 +153,7 @@ those numbers until the two match.
 ### What a capture cannot do
 
 The network only sees the last 132 milliseconds, so anything slower cannot be in a capture.
-It learns one setting of the amp, which is why a capture has no knobs. And amps flatten,
+It learns one setting of the amp, so the amp's own knobs are frozen: on Mirth you can drive a capture harder or softer and mix it with the dry signal, but not turn the amp's gain or tone. And amps flatten,
 they do not fold: turn every neuron into a wavefolder, and it stops sounding like an amp.
 Which is where the second bank starts.
 

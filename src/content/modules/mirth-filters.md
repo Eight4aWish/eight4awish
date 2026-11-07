@@ -132,8 +132,8 @@ network fails to reproduce. NAM's grades are under 0.01 great, under 0.035 not b
 
 On NAM's own validation passage, A2-Lite scored 0.048. On a synth riff it never trained on,
 two detuned saws at the same setting, it scored **0.105**. NAM's file does not drive the
-Wasp the way a sustained oscillator does. And an A2 has no knob: it is one setting,
-frozen. FREQ and RES do nothing on FLT1.
+Wasp the way a sustained oscillator does. And an A2 capture has no cutoff or resonance:
+it is one setting, frozen. FREQ and RES do nothing on FLT1.
 
 **The riff, 4 seconds, Res 6, cutoff held at +5 V:**
 
