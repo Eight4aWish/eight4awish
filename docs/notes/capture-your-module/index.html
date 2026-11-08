@@ -1,0 +1,66 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Capture your module with me — Eight4aWish</title><meta name="description" content="Mirth plays two filters from my rack as networks, cutoff and resonance included. I would like to capture more Eurorack classics, and yours could be next."><link rel="canonical" href="https://eight4awish.com/notes/capture-your-module/"><!-- so a link pasted into YouTube, Reddit or Discord shows the artwork.
+     Module pages pass their PANEL RENDER, not the photo, and the two are not
+     interchangeable: a photo is of the module in a rack, and where a module runs
+     on someone else's board the photo is of THEIR panel. Girl runs on a Ksoloti
+     Big Genes, so its photo is a Big Genes front panel - which is what Discord
+     was showing for /modules/girl. The render is always the module's own. --><meta property="og:type" content="website"><meta property="og:title" content="Capture your module with me — Eight4aWish"><meta property="og:description" content="Mirth plays two filters from my rack as networks, cutoff and resonance included. I would like to capture more Eurorack classics, and yours could be next."><meta property="og:image" content="https://eight4awish.com/opt/capture-rig.og.jpg"><meta property="og:url" content="https://eight4awish.com/notes/capture-your-module/"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Capture your module with me — Eight4aWish"><meta name="twitter:description" content="Mirth plays two filters from my rack as networks, cutoff and resonance included. I would like to capture more Eurorack classics, and yours could be next."><meta name="twitter:image" content="https://eight4awish.com/opt/capture-rig.og.jpg"><link rel="stylesheet" href="/_astro/Base.CwYbVU1P.css"></head><body><header class="site"><div class="wrap"><a class="brand" href="/">Home</a><nav class="site"><a href="/modules/">Modules</a><a href="/tutorials/">Tutorials</a><a href="/notes/" class="on">Notes</a><a href="/about/">About</a></nav></div></header><main class="wrap"><div class="crumb"><a href="/notes/">Notes</a> / Capture your module with me</div><p class="eyebrow" style="margin-top:14px">Call for modules · 8 November 2026</p><h1 style="margin:0 0 6px">Capture your module with me</h1><p class="sub">Mirth plays two filters from my rack as networks, cutoff and resonance included. I would like to capture more Eurorack classics, and yours could be next.</p><div class="chips" style="margin:14px 0 0"><span class="chip acc">Call for modules</span><span class="chip">Mirth</span><span class="chip">Neural capture</span></div><section class="note"><h2 class="sec">Can you help?</h2><p style="margin:0">If you own a module whose character lives in its circuit, a filter, a folder, a drive, and would like to capture it with me, email info@eight4awish.com. You can run the recordings yourself with the guide, and I will help train and compare the networks. Or, if you are in the UK, lend me the module for a fortnight and I will capture it and send it back. Either way, tell me whether you would use a shared library of Eurorack captures.</p></section><div class="prose"><h2 id="what-mirths-filters-showed">What Mirth’s filters showed</h2>
+<p>Guitarists share captures of amps and pedals by the thousand. Every capture I could find was
+an amp or a pedal. So for <a href="/modules/mirth-filters/">Mirth (filters)</a> I recorded two filters
+from my own rack, a Doepfer Wasp and a Behringer Swords, and trained a small network for
+each, with the filter’s cutoff and resonance as inputs, so the knobs still work on the
+module. Each is a GRU of about a thousand parameters, running on a Daisy patch.init.</p>
+<p>The test that mattered was a setting no network heard: Res 5 on the Wasp was held back from
+training altogether, and the networks scored an ESR of 0.031 there, inside what Neural Amp
+Modeler calls “not bad”. One network covers the whole dial, gaps included.</p>
+<h2 id="what-makes-a-good-candidate">What makes a good candidate</h2>
+<ul>
+<li><strong>It repeats itself.</strong> A network can only learn what a module does every time. Play the
+same input four times: the Wasp matched itself up to Res 7 and went its own way from 8,
+where Mirth puts the wildness back with a layer taken from the recordings.</li>
+<li><strong>Self-oscillation is a special case.</strong> Where an oscillation starts in its cycle changes
+from take to take, and no network can learn that. Swords was trained below its threshold,
+and its oscillation was built from measurements instead.</li>
+<li><strong>Controls under CV are easiest.</strong> They can be swept while the recording plays. A control
+that is only a knob means one recording session per position, set by hand.</li>
+</ul>
+<p>Filters, wavefolders and drive circuits are the obvious next ones: anything whose character
+lives in its circuit rather than in a program.</p>
+<h2 id="what-it-takes">What it takes</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>An interface</strong></td>
+<td>DC-coupled, so it can send CV: three outputs and three inputs, and one cable from an output straight back to an input. Mine is an Expert Sleepers ES-10; an ES-8 or ES-9 should do.</td>
+</tr>
+<tr>
+<td><strong>Time</strong></td>
+<td>Half an hour of warm-up, then roughly 75 to 85 minutes of recording per series. Training took 144 minutes per run on a Mac mini, with three runs side by side.</td>
+</tr>
+<tr>
+<td><strong>Disk</strong></td>
+<td>27 to 36 GB per module, recordings and training together.</td>
+</tr>
+<tr>
+<td><strong>A terminal</strong></td>
+<td>The scripts are Python.</td>
+</tr>
+</tbody>
+</table>
+<p>The whole path, from the rig to a file on the card, is in
+<a href="https://github.com/Eight4aWish/eurorack_daisy_patch_init/blob/main/daisy_neural/CAPTURE.md">CAPTURE.md</a>,
+with every command. The capture scripts were written for the Wasp and Swords, so a new
+module means adapting one of them; the guide says which parts change.</p>
+<h2 id="three-ways-in">Three ways in</h2>
+<ol>
+<li><strong>Run it yourself</strong> with the guide, and I will help train and compare the networks.</li>
+<li><strong>Lend me the module</strong>, if you are in the UK, for a fortnight.</li>
+<li><strong>Tell me whether you would use a shared library</strong> of Eurorack captures. And if you know
+of anyone else capturing Eurorack modules like this, I would like to hear about that too.</li>
+</ol>
+</div><p style="margin-top:22px"><a href="https://github.com/Eight4aWish/eurorack_daisy_patch_init/blob/main/daisy_neural/CAPTURE.md">Source and tooling on GitHub →</a></p></main><footer class="site"><div class="wrap"><span>© Eight4aWish</span><a href="https://github.com/Eight4aWish">GitHub</a><a href="mailto:info@eight4awish.com">info@eight4awish.com</a><a href="https://buymeacoffee.com/eight4awish">Buy me a coffee</a></div></footer></body></html>

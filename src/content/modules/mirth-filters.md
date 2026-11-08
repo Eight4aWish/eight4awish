@@ -296,14 +296,10 @@ few hook-up wires and a printed panel.
 ## Capture your module with me
 
 I would like to capture more Eurorack classics this way: filters, folders, drive circuits,
-anything whose character lives in its circuit. If you own one and would like to capture it
-with me, email info@eight4awish.com. You could run the recordings yourself, with a
-DC-coupled interface such as an Expert Sleepers ES-8 or ES-9, following
-[CAPTURE.md](https://github.com/Eight4aWish/eurorack_daisy_patch_init/blob/main/daisy_neural/CAPTURE.md),
-which takes you from the rig to the card, and I will help train and compare the networks.
-Or, if you are in the UK, lend me the module for a fortnight and I will capture it and send
-it back. And if you know of anyone else capturing Eurorack modules like this, I would like
-to hear about that too.
+anything whose character lives in its circuit. If you own one, the
+[call for modules](/notes/capture-your-module/) says what makes a good candidate, what it
+takes, and how to get in touch: run the recordings yourself with the guide, or, in the UK,
+lend me the module for a fortnight.
 
 ## Similar work, not the same
 

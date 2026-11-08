@@ -53,6 +53,7 @@ Everything built or designed, the hardware in the rack and which repo each thing
 
 **Notes**
 
+- **[Capture your module with me](https://eight4awish.com/notes/capture-your-module/)**: Mirth plays two filters from my rack as networks, cutoff and resonance included. I would like to capture more Eurorack classics, and yours could be next.
 - **[Behringer's KICK on a Mac, and what its source code reveals](https://eight4awish.com/notes/behringer-kick-source/)**: Behringer published the KICK's source before it is on sale. It did not build, so I filled the gaps, and their app now runs on my Mac. The code also shows eight CV outputs, and no code for the AI camera. [Video](https://youtu.be/mxko71HaekE)
 - **[New pattern banks for Mutable Grids](https://eight4awish.com/notes/grids-patterns/)**: Sorrow's derived drum maps are the same data structure Grids uses, so they drop straight into the real module. Three new banks, but no hardware to test them on.
 <!-- /generated:reading -->
