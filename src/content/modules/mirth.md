@@ -72,6 +72,7 @@ flash:
     twins fail their checksum. After copying, delete them in Terminal with `rm
     -f /Volumes/DAISY/._* /Volumes/DAISY/notamps/._*` — the usual `cp -X` no
     longer prevents them on current macOS.
+video: pRde9nMYr3w
 draft: false
 ---
 ## Overview
