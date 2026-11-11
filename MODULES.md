@@ -115,7 +115,7 @@ release, for the name actually chosen then.
 | **Chaos** | `eurorack_modules` | `src/teensy_chaos/` | Teensy 4.1 | No page: its draft became `secret.md`. **Frozen 2026-09-30, to be retired** — the Teensy hardware will be repurposed, and **Secret** is its successor. Not the Behringer **Chaos** in the rack, which is a random sampler. |
 | **CortHex** | `eurorack_modules` | `src/nanoesp32_corthex/` | Arduino Nano ESP32 (NORA-W106 / ESP32-S3) | `corthex.md`. CV6 is a 0–5 V gain CV that drives **either** the Behringer Four Play or a Thonk T03, whichever is patched — `main.cpp:1048` and `proxy.py` name different ones and both are valid. |
 | **Daisy MultiOsc** | `eurorack_daisy_patch_init` | `daisy_multiosc/` | Daisy Patch Submodule | `daisy-multiosc.md` |
-| **Daisy MultiFX** | `eurorack_daisy_patch_init` | `daisy_multifx_oled/` | Daisy Patch Submodule | `daisy-multifx.md`. ~~Repurposed for the neural experiment~~ — **not any more**: the Patch SM came back in stock on 2026-09-25, so `daisy_neural/` gets a fresh patch.init() and this unit is untouched. |
+| **Daisy MultiFX** | `eurorack_daisy_patch_init` | `daisy_multifx_oled/` | Daisy Patch Submodule | `daisy-multifx.md`. ~~Repurposed for the neural experiment~~ — **not any more**: the Patch SM came back in stock on 2026-09-25, so `daisy_neural/` gets a fresh patch.init() and this unit is untouched. **Its hand-built sibling, Daisy MultiFX (Seed)** (bare Daisy Seed, 6HP n8synth panel), **was retired on 2026-11-11**: the noise test measured it 6–17 dB noisier than this unit, with a 6.2 kHz line from its screen and 27 dB more hum (`eurorack_electronics/docs/noise_test.md`). Its code is at the tag `multifx-seed-final` in `eurorack_daisy_patch_init`. |
 | **Pico2W OnC Lite** | `eurorack_modules` | `src/pico2w_oc/` | Pico 2 W | `pico2w-onclite.md`. Same board as the EuroPi, so board-level findings transfer between them. |
 | **ESP32 ClkLinkRec** | `eurorack_modules` | `src/esp32_clklinkrec/` | XIAO ESP32-C5 | `esp32-clklinkrec.md` — the **HTTP/WiFi** trigger path into Seeed Recorder, for a rig that moves. Protocol v2.0, mDNS `_recorder._tcp.local.` on port 8765, with a `RECORDER_HOST` fallback in `secrets.h`. |
 | **AMYboard PatchBank** | `eurorack_modules` | `src/amyboard_patchbank/` | shorepine AMYboard (ESP32-S3) | `amyboard.md` |
@@ -127,7 +127,6 @@ Nothing in `src/content/modules/` covers these.
 
 | Module | Repo | Firmware / docs | Platform | What it is |
 |---|---|---|---|---|
-| **Daisy MultiFX (Seed)** | `eurorack_daisy_patch_init` | `daisy_multifx_seed/` | bare Daisy Seed + home-built Eurorack front end | Sibling of Daisy MultiFX on different hardware. Same `multifx_core` DSP/UI, 16 effects in 4×4. Migrated off DaisyDuino onto libDaisy + current DaisySP. |
 | **Seeed Recorder (RP2040)** | `seeed-recorder` | `firmware/` | Seeed Xiao RP2040, **1U tile** | Capture trigger for the Retrospective Mac app over **USB-MIDI** (button → Note On; Note On → LED). Momentary switch on `D5`, LED on `D0`. **USB-powered — no Eurorack bus power in v1.** Built with arduino-pico + Adafruit TinyUSB. Any MIDI controller sending the same Note triggers it too. |
 | **ESP32 ClkLink** | `eurorack_modules` | `src/esp32_clklink/` | ESP32-Dev + MCP4728 | The original Ableton Link clock/reset generator; predecessor to ClkLinkRec. OFF / INTERNAL / LINK switch. **GPL-2.0-or-later** (links Ableton Link). |
 
@@ -151,13 +150,12 @@ reads as 9.94HP and means 10HP).
 | **Girl** | 20 | 3U |
 | **Secret** · **Wish** (the Alchemy Lab's panel) | 12 | 3U |
 | **Sorrow** · **Joy** · **Mirth** · **Boy** · **Chaos** · **CortHex** · **Daisy MultiOsc** · **Daisy MultiFX** · **AMYboard PatchBank** · **Dual LPG** | 10 | 3U |
-| **Silver** · **Gold** · **Pico2W OnC Lite** · **Daisy MultiFX (Seed)** · **MOD2/Melon** · **mkikick** | 6 | 3U |
+| **Silver** · **Gold** · **Pico2W OnC Lite** · **MOD2/Melon** · **mkikick** | 6 | 3U |
 | **ESP32 ClkLinkRec** | 4 | 3U |
 | **Seeed Recorder** | 8 | **1U** |
 
-The two MultiFX differ in width as well as hardware: the Patch.Init one is 10HP, the bare
-Seed one 6HP on an n8synth panel. MOD2/Melon and mkikick take their 6HP from the n8synth
-platform rather than a build123d manifest, and the Seed MultiFX from the rig model.
+MOD2/Melon and mkikick take their 6HP from the n8synth platform rather than a build123d
+manifest.
 
 ## Panel layouts — where to get one
 
