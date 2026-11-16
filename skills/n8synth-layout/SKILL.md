@@ -86,8 +86,9 @@ Work in signal order, and copy the shape of `references/example/buffer.json`:
   `pwrR`. A supply is the one reason to cross: pin 8 sits on the right and +12 V only on the left.
 - **Panel signals:** the deck's wire is in the edge position's outer hole, and a wire from its inner
   hole carries the signal into the main area.
-- **Deck ground:** jack sleeves and pot grounds solder to the deck's D bus. Bridge one spare pad to
-  D on the deck and wire that position to ground, or the bus reaches nothing.
+- **Deck ground:** jack sleeves (on pad C, linked to D) and pot grounds go to the deck's D bus.
+  Wire one position on that bus to ground, or the bus reaches nothing: a jack's pad C will do.
+  `references/board.md` says which leg of each part goes on which pad.
 - **Think about the real part.** A resistor lying flat wants about three holes of span; adjacent
   rows means standing it on end. The checks can't see a part that doesn't fit, so say where you
   rely on one standing up.
