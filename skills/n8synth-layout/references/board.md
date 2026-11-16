@@ -78,6 +78,11 @@ These are how the dual low-pass gate was wired. Check them against your own part
   legs if it runs backwards.
 - **An LED:** one leg on each of two pads, usually A and B. Say which leg is on which, because the
   panel side is where it gets soldered.
+- **A two-pin momentary button:** its legs on A and B (the builder, 2026-11-16). One of them goes
+  to the circuit; bridge the other to D if the button switches to ground.
+- **A rotary encoder with push switch** (Bourns PEC11R, as built on the Boy module): its A, C
+  (common) and B pins on pads A, B and C. The two push pins sit on the far side of the body, off
+  the cell's pads: link one on the deck to a free pad of a neighbouring cell, the other to D.
 - **Getting the D bus to ground:** bridge a spare pad to D on the deck, then wire that pad's edge
   position to a ground. One wire is enough. Choosing a position towards the middle of the board
   leaves `pwrL39` free for something near the bottom.
