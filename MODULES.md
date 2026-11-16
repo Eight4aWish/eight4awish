@@ -132,8 +132,9 @@ Nothing in `src/content/modules/` covers these.
 
 ## Designed, not built
 
-Netlist, BOM and journal only: **not built yet** (David, 2026-11-04). Health and Wealth have
-their boards in the post (2026-11-13). Both are working names: the names are undecided (David, 2026-11-13): Health and Wealth, or Boy's name for every Rev A and Rev B board.
+Netlist, BOM and journal only: **not built yet** (David, 2026-11-04). Health and Wealth's
+boards arrived on 2026-11-16, and Health's bring-up began that day
+(`eurorack_electronics/docs/analogue_board_revb_bringup.md`). Both are working names: the names are undecided (David, 2026-11-13): Health and Wealth, or Boy's name for every Rev A and Rev B board.
 
 | Module | Repo | Firmware / docs | Platform | What it is |
 |---|---|---|---|---|
