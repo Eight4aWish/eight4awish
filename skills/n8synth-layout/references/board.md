@@ -75,7 +75,10 @@ These are how the dual low-pass gate was wired. Check them against your own part
 
 - **A jack:** the tip on pad A, the sleeve on pad C, and the cell's other C contact linked to D
   (the builder, 2026-11-16). So pad C's edge position is on the ground bus: wire no signal to it.
-  A TRS MIDI jack is the exception: keep its sleeve off D, or it makes a ground loop.
+  A TRS MIDI jack is the exception: keep its sleeve off D, or it makes a ground loop. Pad B holds
+  a switched mono jack's third leg, the switch lug: the tip rests on it while the jack is empty,
+  and a plug lifts it off. Leave it unwired, or wire a default to it (a normal), such as one
+  input's tip into its neighbour's pad B, so a mono cable feeds both.
 - **A pot:** the three legs on A, B and C: left, wiper, right, with the knob facing you. Swap the outer
   legs if it runs backwards.
 - **An LED:** one leg on each of two pads, usually A and B. Say which leg is on which, because the
